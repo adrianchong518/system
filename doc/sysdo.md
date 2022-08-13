@@ -36,7 +36,7 @@ $ sysdo bootstrap [OPTIONS] [HOST]
 
 **Arguments**:
 
-* `[HOST]`: the hostname of the configuration to build
+* `[HOST]`: the hostname of the configuration to build [default: Current Hostname]
 
 **Options**:
 
@@ -57,7 +57,7 @@ $ sysdo build [OPTIONS] [HOST]
 
 **Arguments**:
 
-* `[HOST]`: the hostname of the configuration to build
+* `[HOST]`: the hostname of the configuration to build [default: Current Hostname]
 
 **Options**:
 
@@ -78,7 +78,7 @@ $ sysdo cache [OPTIONS]
 
 **Options**:
 
-* `--cache-name TEXT`: [default: kclejeune]
+* `--cache-name TEXT`: [default: adrianchong]
 * `--help`: Show this message and exit.
 
 ## `sysdo clean`
@@ -151,7 +151,7 @@ $ sysdo switch [OPTIONS] [HOST]
 
 **Arguments**:
 
-* `[HOST]`: the hostname of the configuration to build
+* `[HOST]`: the hostname of the configuration to build [default: Current Hostname]
 
 **Options**:
 

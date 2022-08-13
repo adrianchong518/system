@@ -20,6 +20,7 @@ class Colors(Enum):
     INFO = typer.colors.BLUE
     ERROR = typer.colors.RED
 
+CURRENT_HOST = platform.node().removesuffix(".local")
 
 if os.system("command -v nixos-rebuild > /dev/null") == 0:
     # if we're on nixos, this command is built in
@@ -74,7 +75,7 @@ def select(nixos: bool, darwin: bool, home_manager: bool):
     hidden=PLATFORM == FlakeOutputs.NIXOS,
 )
 def bootstrap(
-    host: str = typer.Argument(None, help="the hostname of the configuration to build"),
+    host: str = typer.Argument(CURRENT_HOST, help=f"the hostname of the configuration to build"),
     nixos: bool = False,
     darwin: bool = False,
     home_manager: bool = False,
@@ -107,10 +108,9 @@ def bootstrap(
 
 @app.command(
     help="builds the specified flake output; infers correct platform to use if not specified",
-    no_args_is_help=True,
 )
 def build(
-    host: str = typer.Argument(None, help="the hostname of the configuration to build"),
+    host: str = typer.Argument(CURRENT_HOST, help=f"the hostname of the configuration to build"),
     pull: bool = typer.Option(
         default=False, help="whether to fetch current changes from the remote"
     ),
@@ -179,7 +179,6 @@ def fmt():
 
 @app.command(
     help="run garbage collection on unused nix store paths",
-    no_args_is_help=True,
 )
 def gc(
     delete_older_than: str = typer.Option(
@@ -234,13 +233,9 @@ def git_push():
 
 @app.command(
     help="builds and activates the specified flake output; infers correct platform to use if not specified",
-    no_args_is_help=True,
 )
 def switch(
-    host: str = typer.Argument(
-        default=None,
-        help="the hostname of the configuration to build",
-    ),
+    host: str = typer.Argument(CURRENT_HOST, help=f"the hostname of the configuration to build"),
     pull: bool = typer.Option(
         default=False, help="whether to fetch current changes from the remote"
     ),
@@ -248,10 +243,6 @@ def switch(
     darwin: bool = False,
     home_manager: bool = False,
 ):
-    if not host:
-        typer.secho("Error: host configuration not specified.", fg=Colors.ERROR.value)
-        raise typer.Abort()
-
     cfg = select(nixos=nixos, darwin=darwin, home_manager=home_manager)
     if cfg is None:
         return
@@ -273,7 +264,7 @@ def switch(
 
 
 @app.command(help="cache the output environment of flake.nix")
-def cache(cache_name: str = "kclejeune"):
+def cache(cache_name: str = "adrianchong"):
     cmd = f"nix flake archive --json | jq -r '.path,(.inputs|to_entries[].value.path)' | cachix push {cache_name}"
     run_cmd(cmd)
 
