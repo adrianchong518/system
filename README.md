@@ -14,6 +14,11 @@ Run the installer script:
 ./bin/install-nix.sh
 ```
 
+### Installing homebrew on Darwin
+
+Some packages / brews / casks are not available in nix, so you need to install
+`brew` from [brew.sh](https://brew.sh)
+
 ### Bootstrapping
 
 #### NixOS

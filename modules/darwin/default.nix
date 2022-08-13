@@ -2,7 +2,7 @@
   imports = [
     ../common.nix
     ./core.nix
-    # ./brew.nix
+    ./brew.nix
     # ./preferences.nix
     # ./display-manager.nix
   ];

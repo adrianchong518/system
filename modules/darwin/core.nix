@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, lib, ... }:
 let
   prefix = "/run/current-system/sw/bin";
   inherit (pkgs.stdenvNoCC) isAarch64 isAarch32;
@@ -7,7 +7,9 @@ in
   # environment setup
   environment = {
     loginShell = pkgs.fish;
-    etc = { darwin.source = "${inputs.darwin}"; };
+    etc = {
+      darwin.source = "${inputs.darwin}";
+    };
   };
 
   homebrew.brewPrefix = if isAarch64 || isAarch32 then "/opt/homebrew/bin" else "/usr/local/bin";
