@@ -3,7 +3,9 @@ let
   homeDir = config.home.homeDirectory;
 in
 {
-  # Let Home Manager install and manage itself.
+  nixpkgs.config = import ../config.nix;
+  xdg.configFile."nixpkgs/config.nix".source = ../config.nix;
+
   programs.home-manager = {
     enable = true;
     path = "${homeDir}/.nixpkgs/modules/home-manager";
