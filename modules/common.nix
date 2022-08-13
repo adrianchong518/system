@@ -1,5 +1,9 @@
 { inputs, config, lib, pkgs, ... }: {
-  imports = [ ./primary.nix ./nixpkgs.nix ./overlays.nix ];
+  imports = [
+    ./primary.nix
+    ./nixpkgs.nix
+    ./overlays.nix
+  ];
 
   programs.zsh = {
     enable = true;
@@ -45,6 +49,7 @@
       bat
       fzf
       ripgrep
+      fd
 
       # languages
       python3

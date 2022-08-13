@@ -5,8 +5,7 @@ in
 {
   imports = [
     ./cli
-    ./kitty
-    ./kakoune
+    ./gui
   ];
 
   nixpkgs.config = import ../config.nix;
@@ -21,8 +20,6 @@ in
     stateVersion = "22.05";
 
     packages = with pkgs; [
-      bat
-      exa
       grc
       ripgrep
       fd
