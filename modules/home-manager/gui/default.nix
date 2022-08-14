@@ -5,4 +5,6 @@
     ./kitty.nix
     ./vscode
   ];
+
+  home.packages = with pkgs; [];
 }

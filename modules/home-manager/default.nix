@@ -6,7 +6,6 @@ in
 {
   imports = [
     ./cli
-    ./gui
   ];
 
   nixpkgs.config = import ../config.nix;

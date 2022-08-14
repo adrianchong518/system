@@ -1,19 +1,6 @@
 {
   description = "adrianchong518's system configurations";
 
-  nixConfig = {
-    substituters = [
-      "https://cache.nixos.org"
-      "https://nix-community.cachix.org"
-    ];
-
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
-  };
-
-
   inputs = {
     devshell.url = "github:numtide/devshell";
     flake-utils.url = "github:numtide/flake-utils";
@@ -47,6 +34,8 @@
       isDarwin = system: (builtins.elem system nixpkgs.lib.platform.darwin);
       homePrefix = system: if isDarwin system then "/Users" else "/home";
 
+      commonModules = [ ];
+
       # generate a base darwin configuration with the
       # specified hostname, overlays, and any extraModules applied
       mkDarwinConfig =
@@ -61,7 +50,7 @@
         }:
         darwinSystem {
           inherit system;
-          modules = baseModules ++ extraModules;
+          modules = commonModules ++ baseModules ++ extraModules;
           specialArgs = { inherit inputs nixpkgs stable; };
         };
 
@@ -92,7 +81,7 @@
             inherit system;
           };
           extraSpecialArgs = { inherit inputs nixpkgs stable; };
-          modules = baseModules ++ extraModules ++ [ ./modules/overlays.nix ];
+          modules = commonModules ++ baseModules ++ extraModules ++ [ ./modules/overlays.nix ];
         };
     in
     {
@@ -100,6 +89,7 @@
         macbook-air = mkDarwinConfig
           {
             extraModules = [
+              ./profiles/gui
               ./profiles/personal
             ];
           };
