@@ -1,5 +1,8 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
+
+{
   imports = [
-    ./kitty
+    ./kitty.nix
+    ./vscode
   ];
 }

@@ -1,4 +1,6 @@
-{ inputs, config, lib, pkgs, ... }: {
+{ inputs, config, lib, pkgs, ... }:
+
+{
   imports = [
     ./primary.nix
     ./nixpkgs.nix

@@ -1,4 +1,6 @@
-{ inputs, config, pkgs, ... }: {
+{ inputs, config, pkgs, ... }:
+
+{
   homebrew = {
     enable = true;
     global = {
@@ -15,8 +17,45 @@
       "homebrew/bundle"
     ];
 
+    # "essential" brews, casks and apps
     brews = [
       "mas"
     ];
+
+    casks = [
+      # DE
+      "kitty"
+      "amethyst"
+
+      # utils
+      "appcleaner"
+      "the-unarchiver"
+      "transmission"
+      "aldente"
+
+      # system monitoring
+      "hot"
+      "stats"
+
+      # raycast
+      "raycast"
+
+      # browsers
+      "firefox"
+
+      # video playback
+      "iina"
+
+      # dev tools
+      "visual-studio-code"
+
+      # vm
+      "utm"
+    ];
+
+    masApps = {
+      Amphetamine = 937984704;
+      Bitwarden = 1352778147;
+    };
   };
 }

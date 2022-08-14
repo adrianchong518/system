@@ -99,8 +99,7 @@
         macbook-air = mkDarwinConfig
           {
             extraModules = [
-              ./modules/darwin/apps.nix
-              ./profiles/personal.nix
+              ./profiles/personal
             ];
           };
       };

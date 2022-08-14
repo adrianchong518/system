@@ -1,4 +1,5 @@
 { inputs, config, pkgs, lib, ... }:
+
 let
   prefix = "/run/current-system/sw/bin";
   inherit (pkgs.stdenvNoCC) isAarch64 isAarch32;

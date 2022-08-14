@@ -1,4 +1,6 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }:
+
+{
   imports = [
     ./fish.nix
     ./git.nix
@@ -35,6 +37,9 @@
     };
 
   programs.ssh.enable = true;
+
+  programs.exa.enable = true;
+  programs.bat.enable = true;
 
   programs.direnv = {
     enable = true;

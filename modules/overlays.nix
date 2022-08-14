@@ -1,4 +1,6 @@
-{ inputs, lib, ... }: {
+{ inputs, lib, ... }:
+
+{
   nixpkgs.overlays = [
     # channels
     (final: prev: {
