@@ -32,6 +32,7 @@
       "the-unarchiver"
       "transmission"
       "aldente"
+      "monitorcontrol"
 
       # system monitoring
       "hot"

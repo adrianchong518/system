@@ -26,23 +26,14 @@ in
       fd
       tldr
       neofetch
-      rustup
       btop
-      cmake
-      gcc
       bitwarden-cli
       any-nix-shell
-      nixpkgs-fmt
     ];
 
     sessionVariables = {
       EDITOR = "kak";
       MANPAGER = "sh -c 'col -bx | bat -l man -p --paging always'";
     };
-
-    sessionPath = [
-      "$HOME/.cabal/bin"
-      "$HOME/.ghcup/bin"
-    ];
   };
 }

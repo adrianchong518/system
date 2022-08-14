@@ -36,8 +36,9 @@
         test -e /opt/homebrew \
           && eval (/opt/homebrew/bin/brew shellenv)
       ''}
+
       # see https://github.com/LnL7/nix-darwin/issues/122
-      fish_add_path --move --prepend --path "$HOME/.cabal/bin" "$HOME/.ghcup/bin" $HOME/.nix-profile/bin /run/wrappers/bin /etc/profiles/per-user/$USER/bin /nix/var/nix/profiles/default/bin /run/current-system/sw/bin
+      fish_add_path --move --prepend --path $HOME/.nix-profile/bin /run/wrappers/bin /etc/profiles/per-user/$USER/bin /nix/var/nix/profiles/default/bin /run/current-system/sw/bin
 
       # vulkan SDK
       test -e $HOME/VulkanSDK/1.3.211.0/setup-env.sh \
