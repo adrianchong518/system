@@ -10,7 +10,7 @@
       AppleShowAllFiles = true;
 
       # keyboard
-      InitialKeyRepeat = 10;
+      InitialKeyRepeat = 15;
       KeyRepeat = 2;
 
       # beep

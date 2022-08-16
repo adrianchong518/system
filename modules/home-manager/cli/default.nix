@@ -21,7 +21,7 @@
     gplo = "git pull origin";
     gf = "git fetch";
     gst = "git status";
-    ga = "git add -u";
+    ga = "git add";
     gaa = "git add --all";
     gc = "git commit";
     gcm = "git commit -m";

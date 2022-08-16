@@ -18,6 +18,9 @@ lib.mkIf pkgs.stdenvNoCC.isDarwin {
 
       # obsidian
       "obsidian"
+
+      # steam
+      "steam"
     ];
 
     masApps = {
