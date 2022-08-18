@@ -16,7 +16,7 @@
       "${config.user.name}" = {
         isNormalUser = true;
         extraGroups = [ "wheel" "networkmanager" ];
-        hashedPassword = "$6$QigNSajFRcGnIvxf$vrXIdhu1v9MRw9h5ZcpAr.ZbYrzD7NzgvGfDzqUNlWxm9r4p1oeh09HGBjhzyFb2fxUMxcG5YXhzX5dwPg43N10";
+        hashedPassword = "$6$WL27euXBHM6kPnvr$TLA.U/zWaarsCJrvNiCXJ3/VD8D6s/cihD6u/oEoHJPmMBSThx44396df17k6TOkiz9Iv4Xlmxl5/AGFL5yI1";
       };
     };
   };
