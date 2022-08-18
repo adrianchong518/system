@@ -26,7 +26,7 @@ Some packages / brews / casks are not available in nix, so you need to install
 Run the following:
 
 ```bash
-sudo nixos-install --flake github:kclejeune/system#[host]
+sudo nixos-install --flake github:adrianchong518/system#[host]
 ```
 
 #### Darwin / Linux
