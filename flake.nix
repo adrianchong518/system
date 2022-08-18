@@ -57,6 +57,27 @@
           specialArgs = { inherit inputs nixpkgs stable; };
         };
 
+
+      # generate a base nixos configuration with the
+      # specified overlays, hardware modules, and any extraModules applied
+      mkNixosConfig =
+        { system ? "x86_64-linux"
+        , nixpkgs ? inputs.nixos-unstable
+        , stable ? inputs.stable
+        , hardwareModules
+        , baseModules ? [
+            home-manager.nixosModules.home-manager
+            ./modules/nixos
+          ]
+        , extraModules ? [ ]
+        }:
+        nixosSystem {
+          inherit system;
+          modules = [{ custom.isNixos = true; }]
+            ++ commonModules ++ baseModules ++ hardwareModules ++ extraModules;
+          specialArgs = { inherit inputs nixpkgs stable; };
+        };
+
       # generate a home-manager configuration usable on any unix system
       # with overlays and any extraModules applied
       mkHomeConfig =
@@ -93,6 +114,20 @@
           {
             extraModules = [
               ./profiles/gui
+              ./profiles/personal
+            ];
+          };
+      };
+
+      nixosConfigurations = {
+        nixos-vm = mkNixosConfig
+          {
+            hardwareModules = [
+              ./machine/nixos-vm
+            ];
+            extraModules = [
+              ./profiles/gui
+              ./profiles/vm
               ./profiles/personal
             ];
           };
