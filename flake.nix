@@ -120,6 +120,7 @@
       nixosConfigurations = {
         nixos-vm = mkNixosConfig
           {
+            system = "aarch64-linux";
             hardwareModules = [
               ./machine/nixos-vm
             ];
