@@ -34,7 +34,9 @@
       isDarwin = system: (builtins.elem system nixpkgs.lib.platform.darwin);
       homePrefix = system: if isDarwin system then "/Users" else "/home";
 
-      commonModules = [ ];
+      commonModules = [
+        ./modules/custom-config.nix
+      ];
 
       # generate a base darwin configuration with the
       # specified hostname, overlays, and any extraModules applied
@@ -50,7 +52,8 @@
         }:
         darwinSystem {
           inherit system;
-          modules = commonModules ++ baseModules ++ extraModules;
+          modules = [{ custom.isDarwin = true; }]
+            ++ commonModules ++ baseModules ++ extraModules;
           specialArgs = { inherit inputs nixpkgs stable; };
         };
 

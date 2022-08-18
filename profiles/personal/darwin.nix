@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 
-lib.mkIf pkgs.stdenvNoCC.isDarwin {
+lib.mkIf config.custom.isDarwin {
   homebrew = {
     casks = [
       # communication
