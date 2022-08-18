@@ -1,9 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  programs.password-store.enable = true;
-  services.pass-secret-service.enable = true;
-
   programs.git = {
     enable = true;
 
