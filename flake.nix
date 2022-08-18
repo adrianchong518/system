@@ -34,9 +34,7 @@
       isDarwin = system: (builtins.elem system nixpkgs.lib.platform.darwin);
       homePrefix = system: if isDarwin system then "/Users" else "/home";
 
-      commonModules = [
-        ./modules/custom-config.nix
-      ];
+      commonModules = [ ];
 
       # generate a base darwin configuration with the
       # specified hostname, overlays, and any extraModules applied
@@ -52,8 +50,27 @@
         }:
         darwinSystem {
           inherit system;
-          modules = [{ custom.isDarwin = true; }]
-            ++ commonModules ++ baseModules ++ extraModules;
+          modules = commonModules ++ baseModules ++ extraModules;
+          specialArgs = { inherit inputs nixpkgs stable; };
+        };
+
+
+      # generate a base nixos configuration with the
+      # specified overlays, hardware modules, and any extraModules applied
+      mkNixosConfig =
+        { system ? "x86_64-linux"
+        , nixpkgs ? inputs.nixos-unstable
+        , stable ? inputs.stable
+        , hardwareModules
+        , baseModules ? [
+            home-manager.nixosModules.home-manager
+            ./modules/nixos
+          ]
+        , extraModules ? [ ]
+        }:
+        nixosSystem {
+          inherit system;
+          modules = commonModules ++ baseModules ++ hardwareModules ++ extraModules;
           specialArgs = { inherit inputs nixpkgs stable; };
         };
 
@@ -93,6 +110,24 @@
           {
             extraModules = [
               ./profiles/gui
+              ./profiles/gui/darwin.nix
+              ./profiles/personal
+              ./profiles/personal/darwin.nix
+            ];
+          };
+      };
+
+      nixosConfigurations = {
+        nixos-vm = mkNixosConfig
+          {
+            system = "aarch64-linux";
+            hardwareModules = [
+              ./machine/nixos-vm
+            ];
+            extraModules = [
+              ./profiles/gui
+              ./profiles/gui/nixos.nix
+              ./profiles/vm/nixos.nix
               ./profiles/personal
             ];
           };
