@@ -126,6 +126,7 @@
             ];
             extraModules = [
               ./profiles/gui
+              ./profiles/gui/nixos.nix
               ./profiles/vm/nixos.nix
               ./profiles/personal
             ];
