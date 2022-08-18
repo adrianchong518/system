@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./kakoune
     ./fish.nix
     ./git.nix
   ];
