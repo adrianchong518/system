@@ -7,12 +7,19 @@
     ./git.nix
   ];
 
-  home.shellAliases = rec {
+  home.shellAliases =
+  let
+    ls-base = "exa --group-directories-first --color=always";
+  in
+  rec {
     # exa
-    l = "exa -a --group-directories-first --color=always";
-    la = "${l} -l";
-    tree = "${l} -T";
-    ltree = "${l} -lT";
+    l = "${ls-base} -l";
+    ls = "${l}";
+    la = "${ls-base} -la";
+    t = "${ls-base} -T";
+    lt = "${ls-base} -lT";
+    ta = "${ls-base} -aT";
+    lta = "${ls-base} -laT";
 
     # git
     g = "git";
