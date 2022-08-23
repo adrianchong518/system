@@ -20,23 +20,6 @@
     lt = "${ls-base} -lT";
     ta = "${ls-base} -aT";
     lta = "${ls-base} -laT";
-
-    # git
-    g = "git";
-    gp = "git push";
-    gpo = "git push origin";
-    gpl = "git pull";
-    gplo = "git pull origin";
-    gf = "git fetch";
-    gst = "git status";
-    ga = "git add";
-    gaa = "git add --all";
-    gc = "git commit";
-    gcm = "git commit -m";
-    gcam = "git commit -am";
-    gcl = "git clone";
-    gb = "git branch";
-    gco = "git checkout";
   } // lib.optionalAttrs pkgs.stdenvNoCC.isDarwin
     rec {
       # darwin specific aliases
