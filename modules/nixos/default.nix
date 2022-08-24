@@ -4,6 +4,7 @@
   imports = [
     ../common.nix
     ./nixpkgs.nix
+    ./code-server.nix
   ];
 
   time.timeZone = "Hongkong";
