@@ -10,7 +10,6 @@
     stable.url = "github:nixos/nixpkgs/nixos-21.11";
     small.url = "github:nixos/nixpkgs/nixos-unstable-small";
 
-
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
@@ -21,6 +20,8 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    vscode-server.url = "github:msteen/nixos-vscode-server";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, darwin, flake-utils, ... }:
