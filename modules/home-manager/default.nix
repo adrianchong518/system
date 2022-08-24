@@ -33,6 +33,10 @@ in
     sessionVariables = {
       EDITOR = "kak";
       MANPAGER = "sh -c 'col -bx | bat -l man -p --paging always'";
+
+      # https://github.com/NixOS/nixpkgs/issues/24311
+      SSH_ASKPASS = "";
+      GIT_ASKPASS = "";
     };
   };
 }
