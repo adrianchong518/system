@@ -3,10 +3,13 @@
 {
   homebrew = {
     enable = true;
+
     global = {
       brewfile = true;
       noLock = true;
     };
+
+    cleanup = "zap";
 
     taps = [
       "homebrew/cask"

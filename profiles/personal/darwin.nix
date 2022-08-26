@@ -15,6 +15,7 @@
 
       # office
       "microsoft-office"
+      "microsoft-auto-update"
 
       # obsidian
       "obsidian"
