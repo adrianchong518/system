@@ -5,27 +5,28 @@
     ./kakoune
     ./fish.nix
     ./git.nix
+    ./starship.nix
   ];
 
   home.shellAliases =
-  let
-    ls-base = "exa --group-directories-first --color=always";
-  in
-  rec {
-    # exa
-    l = "${ls-base} -l";
-    ls = "${l}";
-    la = "${ls-base} -la";
-    t = "${ls-base} -T";
-    lt = "${ls-base} -lT";
-    ta = "${ls-base} -aT";
-    lta = "${ls-base} -laT";
-  } // lib.optionalAttrs pkgs.stdenvNoCC.isDarwin
+    let
+      ls-base = "exa --group-directories-first --color=always";
+    in
     rec {
-      # darwin specific aliases
-      ibrew = "arch -x86_64 brew";
-      abrew = "arch -arm64 brew";
-    };
+      # exa
+      l = "${ls-base} -l";
+      ls = "${l}";
+      la = "${ls-base} -la";
+      t = "${ls-base} -T";
+      lt = "${ls-base} -lT";
+      ta = "${ls-base} -aT";
+      lta = "${ls-base} -laT";
+    } // lib.optionalAttrs pkgs.stdenvNoCC.isDarwin
+      rec {
+        # darwin specific aliases
+        ibrew = "arch -x86_64 brew";
+        abrew = "arch -arm64 brew";
+      };
 
   programs.ssh.enable = true;
 
