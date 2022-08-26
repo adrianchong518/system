@@ -51,14 +51,4 @@
     changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d";
     # changeDirWidgetOptions = [ "--preview '${pkgs.tree}/bin/tree -C {} | head -200'" ];
   };
-
-  programs.starship = {
-    enable = true;
-    enableFishIntegration = true;
-
-    settings = {
-      directory.fish_style_pwd_dir_length = 1;
-      status.disabled = false;
-    };
-  };
 }
