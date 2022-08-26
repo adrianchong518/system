@@ -2,7 +2,6 @@
 
 {
   home.shellAliases = {
-    # git
     g = "git";
     gp = "git push";
     gpo = "git push origin";
@@ -15,10 +14,12 @@
     gap = "git add -p";
     gc = "git commit";
     gcm = "git commit -m";
+    gcam = "git commit -am";
     gcl = "git clone";
     gb = "git branch";
     gco = "git checkout";
     gs = "git stash";
+    gd = "git diff";
   };
 
   programs.git = {
