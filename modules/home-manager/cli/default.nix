@@ -10,7 +10,7 @@
 
   home.shellAliases =
     let
-      ls-base = "exa --group-directories-first --color=always";
+      ls-base = "exa --group-directories-first --color=always --icons --git";
     in
     rec {
       # exa

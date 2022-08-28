@@ -70,6 +70,9 @@
 
   fonts = {
     fontDir.enable = true;
-    fonts = with pkgs; [ iosevka-bin ];
+    fonts = with pkgs; [
+      iosevka-bin
+      (nerdfonts.override { fonts = [ "Iosevka" ]; })
+    ];
   };
 }
