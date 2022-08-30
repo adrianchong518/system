@@ -1,26 +1,30 @@
 { config, pkgs, lib, ... }:
 
+let
+  ayuThemePlugin = {
+    name = "ayu-theme";
+    src = pkgs.fetchFromGitHub
+      {
+        owner = "edouard-lopez";
+        repo = "ayu-theme.fish";
+        rev = "d351d24263d87bef3a90424e0e9c74746673e383";
+        hash = "sha256-rx9izD2pc3hLObOehuiMwFB4Ta5G1lWVv9Jdb+JHIz0=";
+      };
+  };
+in
 {
   programs.fish = {
     enable = true;
 
     plugins = [
-      {
-        name = "darcula";
-        src = pkgs.fetchFromGitHub {
-          owner = "dracula";
-          repo = "fish";
-          rev = "610147cc384ff161fbabb9a9ebfd22b743f82b67";
-          sha256 = "0pf65j87pgf2z3818lbijqnffam319x0gzll4v3hfiws04c08b2v";
-        };
-      }
+      ayuThemePlugin
       {
         name = "puffer-fish";
         src = pkgs.fetchFromGitHub {
           owner = "nickeb96";
           repo = "puffer-fish";
           rev = "f8df25bde0875359805967aa999744a28dee0561";
-          sha256 = "0pbqswjl22yfjdj6yhz32n2kw0djhlr0swdxiji6vp7ljyghhvhs";
+          hash = "sha256-Gm4In5f03G2ijL1xDTKFsgE+hRXjQ29kk84LQSXXeF0=";
         };
       }
       { name = "foreign-env"; src = pkgs.fishPlugins.foreign-env.src; }
@@ -53,6 +57,9 @@
 
       # any-nix-shell
       any-nix-shell fish --info-right | source
+
+      # ayu theme
+      source ${ayuThemePlugin.src}/conf.d/ayu-dark.fish && enable_ayu_theme_dark
     '';
   };
 }
