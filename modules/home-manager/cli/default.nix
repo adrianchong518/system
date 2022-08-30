@@ -1,5 +1,17 @@
 { config, lib, pkgs, ... }:
 
+let
+  lsBase = "${pkgs.exa}/bin/exa --group-directories-first --color=always --icons --git";
+  exaAliases = rec {
+    l = "${lsBase} -l";
+    ls = "${l}";
+    la = "${lsBase} -la";
+    t = "${lsBase} -T";
+    lt = "${lsBase} -lT";
+    ta = "${lsBase} -aT";
+    lta = "${lsBase} -laT";
+  };
+in
 {
   imports = [
     ./kakoune
@@ -9,20 +21,9 @@
   ];
 
   home.shellAliases =
-    let
-      ls-base = "exa --group-directories-first --color=always --icons --git";
-    in
-    rec {
-      # exa
-      l = "${ls-base} -l";
-      ls = "${l}";
-      la = "${ls-base} -la";
-      t = "${ls-base} -T";
-      lt = "${ls-base} -lT";
-      ta = "${ls-base} -aT";
-      lta = "${ls-base} -laT";
-    } // lib.optionalAttrs pkgs.stdenvNoCC.isDarwin
-      rec {
+    exaAliases
+    // lib.optionalAttrs pkgs.stdenvNoCC.isDarwin
+      {
         # darwin specific aliases
         ibrew = "arch -x86_64 brew";
         abrew = "arch -arm64 brew";
@@ -49,6 +50,5 @@
     fileWidgetCommand = "${defaultCommand}";
     fileWidgetOptions = [ "--preview '${pkgs.bat}/bin/bat --color=always --plain --line-range=:200 {}'" ];
     changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d";
-    # changeDirWidgetOptions = [ "--preview '${pkgs.tree}/bin/tree -C {} | head -200'" ];
   };
 }
