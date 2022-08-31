@@ -51,4 +51,11 @@ in
     fileWidgetOptions = [ "--preview '${pkgs.bat}/bin/bat --color=always --plain --line-range=:200 {}'" ];
     changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d";
   };
+
+  programs.nix-index = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableFishIntegration = true;
+  };
 }

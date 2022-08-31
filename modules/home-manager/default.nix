@@ -28,6 +28,7 @@ in
       btop
       bitwarden-cli
       any-nix-shell
+      comma
     ];
 
     sessionVariables = {
