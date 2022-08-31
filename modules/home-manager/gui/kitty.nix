@@ -8,7 +8,7 @@
 
     settings = {
       font_family = "Iosevka Term";
-      font_size = 14;
+      font_size = 12;
 
       window_padding_width = "1.0";
 
