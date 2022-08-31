@@ -65,6 +65,7 @@
         , hardwareModules
         , baseModules ? [
             home-manager.nixosModules.home-manager
+            inputs.vscode-server.nixosModule
             ./modules/nixos
           ]
         , extraModules ? [ ]
