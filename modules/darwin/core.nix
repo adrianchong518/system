@@ -13,6 +13,10 @@ in
     };
   };
 
+  nixpkgs.overlays = [
+    inputs.nixpkgs-firefox-darwin.overlay
+  ];
+
   homebrew.brewPrefix = if isAarch64 || isAarch32 then "/opt/homebrew/bin" else "/usr/local/bin";
 
   nix.nixPath = [ "darwin=/etc/${config.environment.etc.darwin.target}" ];

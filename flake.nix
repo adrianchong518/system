@@ -22,6 +22,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     vscode-server.url = "github:msteen/nixos-vscode-server";
+    nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, darwin, flake-utils, ... }:

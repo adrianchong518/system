@@ -138,6 +138,24 @@
         "type": "github"
       }
     },
+    "nixpkgs-firefox-darwin": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1661908426,
+        "narHash": "sha256-o+kH0ssqCnfN+4RHe2BHJIJYCqF4kJJU3ZNCeLAQrrI=",
+        "owner": "bandithedoge",
+        "repo": "nixpkgs-firefox-darwin",
+        "rev": "ba45629e9813a8136d861ee62f521c5af13b16b2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bandithedoge",
+        "repo": "nixpkgs-firefox-darwin",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1660375717,
@@ -155,6 +173,22 @@
       }
     },
     "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1639237670,
+        "narHash": "sha256-RTdL4rEQcgaZGpvtDgkp3oK/V+1LM3I53n0ACPSroAQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "edfb969386ebe6c3cf8f878775a7975cd88f926d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1655361562,
         "narHash": "sha256-chPaIIhmdL6jdZWpf/K6yQCsuBNOYuMqbJsNpLfrdTE=",
@@ -177,6 +211,7 @@
         "home-manager": "home-manager",
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-firefox-darwin": "nixpkgs-firefox-darwin",
         "small": "small",
         "stable": "stable",
         "vscode-server": "vscode-server"
@@ -231,7 +266,7 @@
     },
     "vscode-server": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1661283412,

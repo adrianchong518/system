@@ -20,9 +20,6 @@
       # raycast
       "raycast"
 
-      # browsers
-      "firefox"
-
       # video playback
       "iina"
 
