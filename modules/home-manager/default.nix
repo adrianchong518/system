@@ -19,18 +19,6 @@ in
   home = {
     stateVersion = "22.05";
 
-    packages = with pkgs; [
-      grc
-      ripgrep
-      fd
-      tldr
-      neofetch
-      btop
-      bitwarden-cli
-      any-nix-shell
-      comma
-    ];
-
     sessionVariables = {
       EDITOR = "kak";
       MANPAGER = "sh -c 'col -bx | bat -l man -p --paging always'";

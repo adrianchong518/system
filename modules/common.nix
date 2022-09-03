@@ -35,29 +35,6 @@
 
   # environment setup
   environment = {
-    systemPackages = with pkgs; [
-      # editors
-      neovim
-      kakoune
-
-      # standard toolset
-      coreutils-full
-      curl
-      wget
-      git
-      jq
-
-      # helpful shell stuff
-      bat
-      fzf
-      ripgrep
-      fd
-
-      # languages
-      python3
-      ruby
-    ];
-
     etc = {
       home-manager.source = "${inputs.home-manager}";
       nixpkgs.source = "${pkgs.path}";

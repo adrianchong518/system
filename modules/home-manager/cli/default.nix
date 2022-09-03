@@ -20,6 +20,33 @@ in
     ./starship.nix
   ];
 
+  home.packages = with pkgs; [
+    # editors
+    neovim
+
+    # standard toolset
+    coreutils-full
+    curl
+    wget
+    git
+    jq
+
+    # helpful shell stuff
+    bat
+    fzf
+    ripgrep
+    fd
+    grc
+    tldr
+    neofetch
+    btop
+    bitwarden-cli
+
+    # helpful nix tools
+    any-nix-shell
+    comma
+  ];
+
   home.shellAliases =
     exaAliases
     // lib.optionalAttrs pkgs.stdenvNoCC.isDarwin
