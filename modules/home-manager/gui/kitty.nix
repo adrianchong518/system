@@ -4,7 +4,7 @@
   programs.kitty = {
     enable = true;
 
-    theme = "Ayu";
+    theme = "Dark One Nuanced";
 
     settings = {
       font_family = "Iosevka Term";
