@@ -13,6 +13,7 @@
       window_padding_width = "1.0";
 
       term = "xterm-256color";
+      shell_integration = "no-cursor";
 
       enable_audio_bell = "no";
 
@@ -26,4 +27,11 @@
       macos_thicken_font = "0.25";
     };
   };
+
+  programs.fish.interactiveShellInit = ''
+    if set -q KITTY_INSTALLATION_DIR
+      source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
+      set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
+    end
+  '';
 }
