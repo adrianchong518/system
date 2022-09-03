@@ -30,8 +30,8 @@
       showhidden = true;
 
       autohide = true;
-      autohide-delay = "0.0";
-      autohide-time-modifier = "0.0";
+      autohide-delay = 0.0;
+      autohide-time-modifier = 0.0;
 
       mineffect = "scale";
       minimize-to-application = true;
