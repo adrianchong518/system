@@ -2,28 +2,27 @@
 
 let
   lsBase = "${pkgs.exa}/bin/exa --group-directories-first --color=always --icons --git";
+  treeBase = "${lsBase} --git-ignore";
   exaAliases = rec {
     l = "${lsBase} -l";
     ls = "${l}";
     la = "${lsBase} -la";
-    t = "${lsBase} -T";
-    lt = "${lsBase} -lT";
-    ta = "${lsBase} -aT";
-    lta = "${lsBase} -laT";
+    t = "${treeBase} -T";
+    lt = "${treeBase} -lT";
+    ta = "${treeBase} -aT";
+    lta = "${treeBase} -laT";
   };
 in
 {
   imports = [
     ./kakoune
+    ./neovim
     ./fish.nix
     ./git.nix
     ./starship.nix
   ];
 
   home.packages = with pkgs; [
-    # editors
-    neovim
-
     # standard toolset
     coreutils-full
     curl
@@ -72,11 +71,12 @@ in
     enableZshIntegration = true;
     enableFishIntegration = true;
 
-    defaultCommand = "fd --type f --hidden -g \"!{**/.git/*,**/node_modules/*}\"";
-    defaultOptions = [ "--height 50%" ];
+    defaultCommand = "${pkgs.fd}/bin/fd --type f --hidden --follow --exclude '.git' --exclude 'node_modules'";
+    defaultOptions = [ "--preview '${pkgs.bat}/bin/bat --color=always --style=changes {}' --height 50%" ];
     fileWidgetCommand = "${defaultCommand}";
-    fileWidgetOptions = [ "--preview '${pkgs.bat}/bin/bat --color=always --plain --line-range=:200 {}'" ];
-    changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d";
+    fileWidgetOptions = defaultOptions;
+    changeDirWidgetCommand = "${defaultCommand} --type d";
+    changeDirWidgetOptions = [ "--preview '${exaAliases.ta} {}'" ];
   };
 
   programs.nix-index = {

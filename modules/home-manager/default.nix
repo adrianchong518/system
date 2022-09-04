@@ -20,7 +20,7 @@ in
     stateVersion = "22.05";
 
     sessionVariables = {
-      EDITOR = "kak";
+      EDITOR = "nvim";
       MANPAGER = "sh -c 'col -bx | bat -l man -p --paging always'";
 
       # https://github.com/NixOS/nixpkgs/issues/24311
