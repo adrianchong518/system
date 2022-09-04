@@ -24,7 +24,6 @@
 
       macos_option_as_alt = "left";
       macos_quit_when_last_window_closed = "yes";
-      macos_thicken_font = "0.25";
     };
   };
 
