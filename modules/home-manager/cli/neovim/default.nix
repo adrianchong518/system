@@ -1,26 +1,6 @@
 { config, pkgs, lib, ... }:
 
 rec {
-  imports = [
-    ./plugins
-  ];
-
-  lib.vimUtils = rec {
-    wrapLuaConfig = luaConfig: ''
-      lua<<EOF
-      ${luaConfig}
-      EOF
-    '';
-    readConfig = file:
-      if (pkgs.lib.strings.hasSuffix ".lua" (builtins.toString file)) then
-        wrapLuaConfig (builtins.readFile file) else
-        builtins.readFile file;
-    pluginWithConfig = { plugin, config, extraConfig ? "" }: {
-      inherit plugin;
-      config = readConfig config + extraConfig;
-    };
-  };
-
   home.shellAliases = {
     v = "nvim";
   };
@@ -31,9 +11,66 @@ rec {
     vimAlias = true;
     vimdiffAlias = true;
 
+    plugins = with pkgs.vimPlugins; [
+      plenary-nvim
+
+      # UI / Theming
+      nvim-web-devicons
+      awesome-vim-colorschemes
+      lualine-nvim
+
+      # Panels
+      nvim-tree-lua
+      tagbar
+      telescope-nvim
+      telescope-coc-nvim
+      telescope-fzf-native-nvim
+
+      # Editor Features
+      vim-lion
+      nvim-surround
+      comment-nvim
+      nvim-autopairs
+
+      # Language / LSP
+      vim-nix
+
+      # Treesitter
+      (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
+      nvim-treesitter-context
+
+      # coc
+      coc-json
+      coc-lua
+      coc-rust-analyzer
+      coc-vimlsp
+      coc-toml
+    ];
+
+    coc = {
+      enable = true;
+      settings = lib.importJSON ./coc-settings.json;
+    };
+
+    extraPackages = with pkgs; [
+      universal-ctags
+    ];
+
     extraConfig = ''
-      ${lib.vimUtils.readConfig ./settings.lua}
-      ${lib.vimUtils.readConfig ./keymaps.lua}
+      lua << EOF
+      ${builtins.readFile ./nvim.lua}
+      EOF
+
+      " coc configs
+      ${builtins.readFile ./coc-nvim.vim}
+
+      " Set up ctags for tagbar
+      let g:tagbar_ctags_bin = '${pkgs.universal-ctags}/bin/ctags'
     '';
+  };
+
+  xdg.configFile."plenary-types.lua" = {
+    source = ./plenary-types.lua;
+    target = "nvim/data/plenary/filetypes/plenary-types.lua";
   };
 }
