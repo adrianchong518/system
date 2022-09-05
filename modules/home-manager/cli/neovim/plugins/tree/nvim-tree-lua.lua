@@ -2,16 +2,22 @@ require("nvim-tree").setup({
     view = {
         width = 60,
     },
+
     renderer = {
         add_trailing = true,
         group_empty = true,
-        highlight_opened_files = "all",
+        highlight_git = true,
         indent_markers = {
             enable = true,
         },
         icons = {
             git_placement = "signcolumn",
         },
+    },
+
+    open_on_setup_file = true,
+    update_focused_file = {
+        enable = true,
     },
 })
 

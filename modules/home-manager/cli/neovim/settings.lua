@@ -16,6 +16,7 @@ vim.o.incsearch = true
 vim.o.hlsearch = true
 vim.o.mouse = "a"
 vim.o.scrolloff = 5
+vim.o.cursorline = true
 
 function vim.fn.stripTrailingWhitespace()
     local l = vim.fn.line(".")

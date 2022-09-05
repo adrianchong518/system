@@ -2,7 +2,13 @@ require("telescope").load_extension("fzf")
 require("telescope").load_extension("coc")
 
 require("telescope").setup {
-    defaults = require("telescope.themes").get_ivy {
+    defaults = {
+        layout_strategy = "flex",
+        layout_config = {
+            width = { 0.8, max = 235 },
+            height = { 0.95, max = 50 },
+            flip_columns = 150
+        },
         mappings = {
             i ={
                 ["<esc>"] = "close",
