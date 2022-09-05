@@ -11,6 +11,7 @@
         "python",
         "rust",
         "json",
-        "markdown"
+        "markdown",
+        "nix"
     ]
 }

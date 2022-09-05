@@ -13,8 +13,7 @@
       coc-lua
       coc-rust-analyzer
       coc-vimlsp
-
-      coc-pairs
+      coc-toml
     ];
   };
 }

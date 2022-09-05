@@ -26,3 +26,10 @@ end
 
 -- strip all files by default
 vim.cmd("autocmd BufWritePre * :lua vim.fn.stripTrailingWhitespace()")
+
+vim.cmd("autocmd FileType nix setlocal shiftwidth=2 softtabstop=2 expandtab")
+vim.cmd("autocmd FileType markdown setlocal shiftwidth=2 softtabstop=2 expandtab")
+vim.cmd("autocmd FileType c setlocal shiftwidth=2 softtabstop=2 expandtab")
+vim.cmd("autocmd FileType cpp setlocal shiftwidth=2 softtabstop=2 expandtab")
+vim.cmd("autocmd FileType scheme setlocal shiftwidth=2 softtabstop=2 expandtab")
+vim.cmd("autocmd FileType haskell setlocal shiftwidth=2 softtabstop=2 expandtab")
