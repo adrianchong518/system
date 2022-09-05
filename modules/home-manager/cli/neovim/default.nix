@@ -13,6 +13,7 @@ rec {
 
     plugins = with pkgs.vimPlugins; [
       plenary-nvim
+      impatient-nvim
 
       # UI / Theming
       nvim-web-devicons

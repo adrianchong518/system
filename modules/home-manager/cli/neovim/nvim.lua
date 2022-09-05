@@ -1,3 +1,6 @@
+-- Speed up!
+require('impatient')
+
 --- General Vim Settings ----------
 vim.o.number = true
 vim.o.relativenumber = true
