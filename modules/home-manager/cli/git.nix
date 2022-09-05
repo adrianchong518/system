@@ -2,6 +2,7 @@
 
 {
   home.shellAliases = {
+    cdr = "cd $(git rev-parse --show-toplevel)";
     g = "git";
     gp = "git push";
     gpo = "git push origin";
