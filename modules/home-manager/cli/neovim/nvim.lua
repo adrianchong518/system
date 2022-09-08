@@ -38,12 +38,16 @@ vim.o.expandtab = true
 vim.o.autoindent = true
 vim.o.smartindent = true
 
-vim.cmd("autocmd FileType nix setlocal shiftwidth=2 softtabstop=2 expandtab")
-vim.cmd("autocmd FileType markdown setlocal shiftwidth=2 softtabstop=2 expandtab")
-vim.cmd("autocmd FileType c setlocal shiftwidth=2 softtabstop=2 expandtab")
-vim.cmd("autocmd FileType cpp setlocal shiftwidth=2 softtabstop=2 expandtab")
-vim.cmd("autocmd FileType scheme setlocal shiftwidth=2 softtabstop=2 expandtab")
-vim.cmd("autocmd FileType haskell setlocal shiftwidth=2 softtabstop=2 expandtab")
+function setTabWidth(filetype, width)
+    vim.cmd(string.format("autocmd FileType %s setlocal shiftwidth=%d softtabstop=%d expandtab", filetype, width, width))
+end
+
+setTabWidth("nix", 2)
+setTabWidth("c", 2)
+setTabWidth("cpp", 2)
+setTabWidth("scheme", 2)
+setTabWidth("haskell", 2)
+setTabWidth("markdown", 2)
 
 -- Plenary
 require'plenary.filetype'.add_file('plenary-types')
@@ -87,7 +91,6 @@ require("nvim-tree").setup({
         },
     },
 
-    open_on_setup_file = true,
     update_focused_file = {
         enable = true,
     },
