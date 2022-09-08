@@ -32,6 +32,7 @@ rec {
       nvim-surround
       comment-nvim
       nvim-autopairs
+      indent-blankline-nvim
 
       # Language / LSP
       vim-nix

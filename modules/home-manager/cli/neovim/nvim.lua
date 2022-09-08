@@ -129,6 +129,12 @@ require("nvim-surround").setup()
 require('Comment').setup()
 require("nvim-autopairs").setup {}
 
+require("indent_blankline").setup {
+    use_treesitter = true,
+    show_current_context = true,
+}
+vim.cmd("highlight IndentBlanklineContextChar guifg=#A8A8A8 gui=nocombine")
+
 --- Language / LSP ----------
 -- Tree Sitter
 require("nvim-treesitter.configs").setup({
