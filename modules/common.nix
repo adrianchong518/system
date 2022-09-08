@@ -48,8 +48,8 @@
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
-      iosevka-bin
-      (nerdfonts.override { fonts = [ "Iosevka" ]; })
+      jetbrains-mono
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
   };
 }

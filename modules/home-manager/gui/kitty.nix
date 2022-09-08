@@ -7,8 +7,9 @@
     theme = "Dark One Nuanced";
 
     settings = {
-      font_family = "Iosevka Term";
-      font_size = 12;
+      font_family = "JetBrains Mono";
+      font_size = 13;
+      adjust_line_height = "120%";
 
       window_padding_width = "1.0";
 

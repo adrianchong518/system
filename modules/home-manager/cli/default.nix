@@ -72,7 +72,7 @@ in
     enableFishIntegration = true;
 
     defaultCommand = "${pkgs.fd}/bin/fd --type f --hidden --follow --exclude '.git' --exclude 'node_modules'";
-    defaultOptions = [ "--preview '${pkgs.bat}/bin/bat --color=always --style=changes {}' --height 50%" ];
+    defaultOptions = [ "--preview '${pkgs.bat}/bin/bat --color=always --style=changes {}' --height 50% --reverse" ];
     fileWidgetCommand = "${defaultCommand}";
     fileWidgetOptions = defaultOptions;
     changeDirWidgetCommand = "${defaultCommand} --type d";

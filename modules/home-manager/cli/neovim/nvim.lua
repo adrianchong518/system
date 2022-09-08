@@ -72,7 +72,7 @@ require("lualine").setup({
 -- nvim-tree
 require("nvim-tree").setup({
     view = {
-        width = 60,
+        width = 50,
     },
 
     renderer = {
