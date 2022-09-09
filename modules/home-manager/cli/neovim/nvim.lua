@@ -52,7 +52,6 @@ setTabWidth("markdown", 2)
 -- Set textwidth etc.
 vim.o.colorcolumn = "+1"
 vim.o.formatoptions = "tcqjn"
-vim.cmd("autocmd BufEnter * highlight ColorColumn ctermbg=darkgrey guibg=darkgrey")
 
 function setTextWidth(filetype, tw)
     vim.cmd(string.format("autocmd FileType %s setlocal textwidth=%d", filetype, tw))
