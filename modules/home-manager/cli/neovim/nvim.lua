@@ -145,6 +145,7 @@ require("telescope").setup {
 require("nvim-surround").setup()
 require("nvim_comment").setup()
 require("nvim-autopairs").setup {}
+require("todo-comments").setup()
 
 require("indent_blankline").setup {
     show_current_context = true,
@@ -202,6 +203,15 @@ vim.opt.foldlevelstart = 99
 --- Keymappings ----------
 vim.keymap.set("n", [[\\]], ":noh<CR>")
 
+-- todo-comments.nvim
+vim.keymap.set("n", "]t", function()
+  require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "[t", function()
+  require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
+
 -- coc --
 vim.keymap.set("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
 vim.keymap.set("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
@@ -238,6 +248,7 @@ vim.keymap.set("n", "<space>ff", function() require("telescope.builtin").find_fi
 vim.keymap.set("n", "<space>fg", function() require("telescope.builtin").live_grep() end)
 vim.keymap.set("n", "<space>fb", function() require("telescope.builtin").buffers() end)
 vim.keymap.set("n", "<space>fh", function() require("telescope.builtin").help_tags() end)
+vim.keymap.set("n", "<space>ft", ":TodoTelescope<cr>")
 
 -- Buffer --
 vim.keymap.set("n", "<space>bb", function() require("telescope.builtin").buffers() end)

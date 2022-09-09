@@ -214,6 +214,7 @@
         "nixpkgs-firefox-darwin": "nixpkgs-firefox-darwin",
         "small": "small",
         "stable": "stable",
+        "todo-comments-nvim": "todo-comments-nvim",
         "vscode-server": "vscode-server"
       }
     },
@@ -246,6 +247,22 @@
         "owner": "nixos",
         "ref": "nixos-21.11",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "todo-comments-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662452059,
+        "narHash": "sha256-XjE4X8C30rHbQfe2msUCzG1o8ulMlRRRTXuYFfufiDg=",
+        "owner": "folke",
+        "repo": "todo-comments.nvim",
+        "rev": "a57b18c8b3fe9340d48585371df2c793fff417a7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "todo-comments.nvim",
         "type": "github"
       }
     },

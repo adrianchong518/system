@@ -34,6 +34,7 @@ rec {
       nvim-autopairs
       indent-blankline-nvim
       vim-illuminate
+      todo-comments-nvim
 
       # Language / LSP
       vim-nix

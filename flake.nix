@@ -23,6 +23,12 @@
 
     vscode-server.url = "github:msteen/nixos-vscode-server";
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
+
+    # vimPlugins
+    todo-comments-nvim = {
+      url = "github:folke/todo-comments.nvim";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, darwin, flake-utils, ... }:
