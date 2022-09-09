@@ -87,7 +87,7 @@ require("lualine").setup({
     options = { theme = "onedark" },
 })
 
---- Panels ----------
+--- Panels ---------
 -- nvim-tree
 require("nvim-tree").setup({
     view = {
@@ -122,8 +122,8 @@ require("telescope").setup {
             width = { 0.8, max = 235 },
             height = { 0.95, max = 50 },
             flex = {
-                flip_columns = 150
-            }
+                flip_columns = 185,
+            },
         },
         mappings = {
             i ={
