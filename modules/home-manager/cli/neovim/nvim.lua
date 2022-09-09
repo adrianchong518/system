@@ -148,10 +148,22 @@ require("nvim_comment").setup()
 require("nvim-autopairs").setup {}
 
 require("indent_blankline").setup {
-    use_treesitter = true,
     show_current_context = true,
 }
 vim.cmd("highlight IndentBlanklineContextChar guifg=#A8A8A8 gui=nocombine")
+
+require("illuminate").configure({
+    filetypes_denylist = {
+        "dirvish",
+        "fugitive",
+        "NvimTree",
+        "tagbar",
+        "TelescopePrompt",
+        "gitcommit",
+        "markdown",
+        "help",
+    },
+})
 
 --- Language / LSP ----------
 -- Tree Sitter
