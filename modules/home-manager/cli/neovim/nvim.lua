@@ -144,7 +144,7 @@ require("telescope").setup {
 
 --- Editor Features ----------
 require("nvim-surround").setup()
-require("Comment").setup()
+require("nvim_comment").setup()
 require("nvim-autopairs").setup {}
 
 require("indent_blankline").setup {

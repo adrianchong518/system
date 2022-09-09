@@ -30,7 +30,7 @@ rec {
       # Editor Features
       vim-lion
       nvim-surround
-      comment-nvim
+      nvim-comment
       nvim-autopairs
       indent-blankline-nvim
 
