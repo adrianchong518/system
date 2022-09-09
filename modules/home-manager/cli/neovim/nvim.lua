@@ -49,6 +49,22 @@ setTabWidth("scheme", 2)
 setTabWidth("haskell", 2)
 setTabWidth("markdown", 2)
 
+-- Set textwidth etc.
+vim.o.colorcolumn = "+1"
+vim.o.formatoptions = "tcqjn"
+vim.cmd("autocmd BufEnter * highlight ColorColumn ctermbg=darkgrey guibg=darkgrey")
+
+function setTextWidth(filetype, tw)
+    vim.cmd(string.format("autocmd FileType %s setlocal textwidth=%d", filetype, tw))
+    vim.cmd(string.format("autocmd FileType %s highlight OverLength ctermbg=darkgrey guibg=#592929", filetype))
+    vim.cmd(string.format("autocmd FileType %s match OverLength /\\%%%dv.*/", filetype, tw+1))
+end
+
+setTextWidth("markdown", 80)
+setTextWidth("c", 80)
+setTextWidth("cpp", 80)
+setTextWidth("rust", 120)
+
 -- Plenary
 require"plenary.filetype".add_file("plenary-types")
 
