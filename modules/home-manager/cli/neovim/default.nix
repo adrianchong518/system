@@ -35,6 +35,7 @@ rec {
       indent-blankline-nvim
       vim-illuminate
       todo-comments-nvim
+      gitsigns-nvim
 
       # Language / LSP
       vim-nix

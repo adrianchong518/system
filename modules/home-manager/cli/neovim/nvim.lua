@@ -177,6 +177,10 @@ require("illuminate").configure({
     },
 })
 
+require("gitsigns").setup({
+    current_line_blame = true,
+})
+
 --- Language / LSP ----------
 -- Tree Sitter
 require("nvim-treesitter.configs").setup({
