@@ -26,6 +26,7 @@ rec {
       telescope-nvim
       telescope-coc-nvim
       telescope-fzf-native-nvim
+      telescope-file-browser-nvim
 
       # Editor Features
       vim-lion

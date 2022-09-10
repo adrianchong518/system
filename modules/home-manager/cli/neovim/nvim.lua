@@ -147,11 +147,16 @@ require("telescope").setup {
             override_file_sorter = true,
             case_mode = "smart_case",
         },
+        file_browser = {
+            grouped = true,
+            hijack_netrw = true,
+        },
     },
 }
 
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("coc")
+require("telescope").load_extension("file_browser")
 
 --- Editor Features ----------
 require("nvim-surround").setup()
@@ -292,7 +297,7 @@ vim.keymap.set("n", "<space>tE", ":NvimTreeFocus<cr>", { silent = true })
 -- Find --
 vim.keymap.set("n", "<space>ff", function() require("telescope.builtin").find_files() end)
 vim.keymap.set("n", "<space>fg", function() require("telescope.builtin").live_grep() end)
-vim.keymap.set("n", "<space>fb", function() require("telescope.builtin").buffers() end)
+vim.keymap.set("n", "<space>fb", function() require("telescope").extensions.file_browser.file_browser() end)
 vim.keymap.set("n", "<space>fh", function() require("telescope.builtin").help_tags() end)
 
 -- NOTE: Filtering by keywords seems broken
