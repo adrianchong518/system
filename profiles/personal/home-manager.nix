@@ -2,7 +2,7 @@
 
 {
   programs.git = {
-    userName = "adrianchong518";
+    userName = "Adrian Chong";
     userEmail = "adrianchong518@gmail.com";
   };
 }

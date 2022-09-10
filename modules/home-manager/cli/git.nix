@@ -3,6 +3,7 @@
 {
   home.shellAliases = {
     cdr = "cd $(git rev-parse --show-toplevel)";
+
     g = "git";
     gp = "git push";
     gpo = "git push origin";
@@ -21,6 +22,8 @@
     gco = "git checkout";
     gs = "git stash";
     gd = "git diff";
+
+    lg = "lazygit";
   };
 
   programs.git = {
@@ -39,6 +42,19 @@
     aliases = {
       fix = "commit --amend --no-edit";
       oops = "reset HEAD~1";
+    };
+  };
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      gui = {
+        theme = {
+          selectedLineBgColor = [ "default" ];
+          selectedRangeBgColor = [ "default" ];
+        };
+        showIcons = true;
+      };
     };
   };
 }
