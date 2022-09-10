@@ -27,7 +27,7 @@ function vim.fn.stripTrailingWhitespace()
     local l = vim.fn.line(".")
     local c = vim.fn.col(".")
     vim.cmd([[%s/\s\+$//e]])
-    vim.fn.cursor(l, c)
+    vim.fn.cursor({l, c})
 end
 vim.cmd("autocmd BufWritePre * :lua vim.fn.stripTrailingWhitespace()")
 
@@ -38,7 +38,7 @@ vim.o.expandtab = true
 vim.o.autoindent = true
 vim.o.smartindent = true
 
-function setTabWidth(filetype, width)
+local function setTabWidth(filetype, width)
     vim.cmd(string.format("autocmd FileType %s setlocal shiftwidth=%d softtabstop=%d expandtab", filetype, width, width))
 end
 
@@ -53,7 +53,7 @@ setTabWidth("markdown", 2)
 vim.o.colorcolumn = "+1"
 vim.o.formatoptions = "tcqjn"
 
-function setTextWidth(filetype, tw)
+local function setTextWidth(filetype, tw)
     vim.cmd(string.format("autocmd FileType %s setlocal textwidth=%d", filetype, tw))
     vim.cmd(string.format("autocmd FileType %s highlight OverLength ctermbg=darkgrey guibg=#592929", filetype))
     vim.cmd(string.format("autocmd FileType %s match OverLength /\\%%%dv.*/", filetype, tw+1))
