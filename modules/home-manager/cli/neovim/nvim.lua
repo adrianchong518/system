@@ -112,21 +112,25 @@ require("nvim-tree").setup({
 })
 
 -- Telescope
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("coc")
-
 require("telescope").setup {
     defaults = {
         layout_strategy = "flex",
         layout_config = {
             width = { 0.8, max = 235 },
-            height = { 0.95, max = 50 },
+            height = { 0.90, max = 50 },
+            prompt_position = "top",
             flex = {
                 flip_columns = 185,
             },
+            vertical = {
+                preview_height = 15,
+            },
         },
+        sorting_strategy = "ascending",
+        dynamic_preview_title = true,
+
         mappings = {
-            i ={
+            i = {
                 ["<esc>"] = "close",
                 ["<C-k>"] = "move_selection_previous",
                 ["<C-j>"] = "move_selection_next",
@@ -135,11 +139,19 @@ require("telescope").setup {
     },
     extensions = {
         coc = {
-            theme = "ivy",
             prefer_locations = true,
+        },
+        fzf = {
+            fuzzy = false,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
         },
     },
 }
+
+require("telescope").load_extension("fzf")
+require("telescope").load_extension("coc")
 
 --- Editor Features ----------
 require("nvim-surround").setup()
