@@ -336,3 +336,6 @@ vim.keymap.set("n", "<space>cs", ":Telescope coc workspace_symbols<cr>", { silen
 vim.keymap.set("n", "<space>ce", ":<C-u>CocList extensions<cr>", { silent = true, nowait = true })
 vim.keymap.set("n", "<space>cc", ":Telescope coc commands<cr>", { silent = true, nowait = true })
 
+-- Git --
+vim.keymap.set("n", "<space>gg", ":LazyGit<cr>", { silent = true })
+

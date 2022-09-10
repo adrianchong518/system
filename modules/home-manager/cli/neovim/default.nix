@@ -23,6 +23,7 @@ rec {
       # Panels
       nvim-tree-lua
       tagbar
+      lazygit-nvim
       telescope-nvim
       telescope-coc-nvim
       telescope-fzf-native-nvim
