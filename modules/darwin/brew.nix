@@ -6,10 +6,14 @@
 
     global = {
       brewfile = true;
-      noLock = true;
+      autoUpdate = false;
     };
 
-    cleanup = "zap";
+    onActivation = {
+      cleanup = "zap";
+      upgrade = true;
+      autoUpdate = false;
+    };
 
     taps = [
       "homebrew/cask"
