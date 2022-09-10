@@ -13,5 +13,6 @@
         "json",
         "markdown",
         "nix"
-    ]
+    ],
+    "sumneko-lua.enableNvimLuaDev": true
 }

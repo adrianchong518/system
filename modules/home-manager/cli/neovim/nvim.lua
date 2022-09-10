@@ -65,7 +65,8 @@ setTextWidth("cpp", 80)
 setTextWidth("rust", 120)
 
 -- Plenary
-require"plenary.filetype".add_file("plenary-types")
+require("plenary.filetype").add_file("plenary-types")
+
 
 --- UI / Theming ----------
 if vim.fn.empty("$TMUX") then
@@ -86,6 +87,7 @@ vim.cmd([[
 require("lualine").setup({
     options = { theme = "onedark" },
 })
+
 
 --- Panels ---------
 -- nvim-tree
@@ -112,7 +114,7 @@ require("nvim-tree").setup({
 })
 
 -- Telescope
-require("telescope").setup {
+require("telescope").setup({
     defaults = {
         layout_strategy = "flex",
         layout_config = {
@@ -142,7 +144,6 @@ require("telescope").setup {
             prefer_locations = true,
         },
         fzf = {
-            fuzzy = false,
             override_generic_sorter = true,
             override_file_sorter = true,
             case_mode = "smart_case",
@@ -152,21 +153,22 @@ require("telescope").setup {
             hijack_netrw = true,
         },
     },
-}
+})
 
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("coc")
 require("telescope").load_extension("file_browser")
 
+
 --- Editor Features ----------
 require("nvim-surround").setup()
 require("nvim_comment").setup()
-require("nvim-autopairs").setup {}
+require("nvim-autopairs").setup()
 require("todo-comments").setup()
 
-require("indent_blankline").setup {
+require("indent_blankline").setup({
     show_current_context = true,
-}
+})
 vim.cmd("highlight IndentBlanklineContextChar guifg=#A8A8A8 gui=nocombine")
 
 require("illuminate").configure({
@@ -185,45 +187,8 @@ require("illuminate").configure({
 require("gitsigns").setup({
     current_line_blame = true,
     numhl = true,
-    on_attach = function(bufnr)
-        local gs = package.loaded.gitsigns
-
-        local function map(mode, l, r, opts)
-          opts = opts or {}
-          opts.buffer = bufnr
-          vim.keymap.set(mode, l, r, opts)
-        end
-
-        -- Navigation
-        map('n', ']c', function()
-          if vim.wo.diff then return ']c' end
-          vim.schedule(function() gs.next_hunk() end)
-          return '<Ignore>'
-        end, {expr=true})
-
-        map('n', '[c', function()
-          if vim.wo.diff then return '[c' end
-          vim.schedule(function() gs.prev_hunk() end)
-          return '<Ignore>'
-        end, {expr=true})
-
-        -- Actions
-        map({'n', 'v'}, '<space>gs', ':Gitsigns stage_hunk<CR>')
-        map({'n', 'v'}, '<space>gr', ':Gitsigns reset_hunk<CR>')
-        map('n', '<space>gS', gs.stage_buffer)
-        map('n', '<space>gu', gs.undo_stage_hunk)
-        map('n', '<space>gR', gs.reset_buffer)
-        map('n', '<space>gp', gs.preview_hunk)
-        map('n', '<space>gb', function() gs.blame_line{full=true} end)
-        map('n', '<space>tgb', gs.toggle_current_line_blame)
-        map('n', '<space>gd', gs.diffthis)
-        map('n', '<space>gD', function() gs.diffthis('~') end)
-        map('n', '<space>tgd', gs.toggle_deleted)
-
-        -- Text object
-        map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
-    end,
 })
+
 
 --- Language / LSP ----------
 -- Tree Sitter
@@ -245,7 +210,7 @@ require("nvim-treesitter.configs").setup({
     },
 })
 
-require"treesitter-context".setup{
+require("treesitter-context").setup({
     patterns = {
         rust = {
             "impl_item",
@@ -254,45 +219,62 @@ require"treesitter-context".setup{
             "mod",
         }
     }
-}
+})
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevelstart = 99
 
+
 --- Keymappings ----------
 vim.keymap.set("n", [[\\]], ":noh<CR>")
 
--- coc --
+-- Navigation --
 vim.keymap.set("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
 vim.keymap.set("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
 
-vim.keymap.set("n", "K", ":call ShowDocumentation()<cr>", { silent = true })
+vim.keymap.set("n", "]c", function()
+  if vim.wo.diff then return "]c" end
+  vim.schedule(function() require("gitsigns").next_hunk() end)
+  return "<Ignore>"
+end, { expr = true })
+vim.keymap.set("n", "[c", function()
+  if vim.wo.diff then return "[c" end
+  vim.schedule(function() require("gitsigns").prev_hunk() end)
+  return "<Ignore>"
+end, { expr = true })
 
--- Use <c-space> to trigger completion.
-vim.keymap.set("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
-
--- GoTo code navigation.
+-- GoTo navigation.
 vim.keymap.set("n", "gd", ":Telescope coc definitions<cr>", { silent = true})
 vim.keymap.set("n", "gy", ":Telescope coc type-definitions<cr>", { silent = true})
 vim.keymap.set("n", "gi", ":Telescope coc implementations<cr>", { silent = true})
 vim.keymap.set("n", "gr", ":Telescope coc references<cr>", { silent = true})
 
--- Selection ranges (Requires "textDocument/selectionRange" support of language server.)
-vim.keymap.set({"n", "x"}, "<C-s>", "<Plug>(coc-range-select)", { silent = true })
-
--- Map function and class text objects
+-- Text objects
 -- NOTE: Requires "textDocument.documentSymbol" support from the language server.
 vim.keymap.set({"x", "o"}, "if", "<Plug>(coc-funcobj-i)")
 vim.keymap.set({"x", "o"}, "af", "<Plug>(coc-funcobj-a)")
 vim.keymap.set({"x", "o"}, "ic", "<Plug>(coc-classobj-i)")
 vim.keymap.set({"x", "o"}, "ac", "<Plug>(coc-classobj-a)")
 
+vim.keymap.set({"o", "x"}, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+
+-- coc --
+vim.keymap.set("n", "K", ":call ShowDocumentation()<cr>", { silent = true })
+-- Use <c-space> to trigger completion.
+vim.keymap.set("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
+-- Selection ranges (Requires "textDocument/selectionRange" support of language server.)
+vim.keymap.set({"n", "x"}, "<C-s>", "<Plug>(coc-range-select)", { silent = true })
+
 -- Toggle --
 vim.keymap.set("n", "<space>to", ":TagbarToggle<cr>", { silent = true })
 vim.keymap.set("n", "<space>tO", ":TagbarOpenAutoClose<cr>", { silent = true })
-vim.keymap.set("n", "<space>te", function() require"nvim-tree".toggle(false, true) end, { silent = true })
+vim.keymap.set("n", "<space>te", function() require("nvim-tree").toggle(false, true) end, { silent = true })
 vim.keymap.set("n", "<space>tE", ":NvimTreeFocus<cr>", { silent = true })
+
+-- Git
+vim.keymap.set("n", "<space>tgb", require("gitsigns").toggle_current_line_blame)
+vim.keymap.set("n", "<space>tgd", require("gitsigns").toggle_deleted)
 
 -- Find --
 vim.keymap.set("n", "<space>ff", function() require("telescope.builtin").find_files() end)
@@ -338,4 +320,13 @@ vim.keymap.set("n", "<space>cc", ":Telescope coc commands<cr>", { silent = true,
 
 -- Git --
 vim.keymap.set("n", "<space>gg", ":LazyGit<cr>", { silent = true })
+vim.keymap.set({"n", "v"}, "<space>gs", ":Gitsigns stage_hunk<CR>")
+vim.keymap.set({"n", "v"}, "<space>gr", ":Gitsigns reset_hunk<CR>")
+vim.keymap.set("n", "<space>gS", require("gitsigns").stage_buffer)
+vim.keymap.set("n", "<space>gu", require("gitsigns").undo_stage_hunk)
+vim.keymap.set("n", "<space>gR", require("gitsigns").reset_buffer)
+vim.keymap.set("n", "<space>gp", require("gitsigns").preview_hunk)
+vim.keymap.set("n", "<space>gb", function() require("gitsigns").blame_line{ full = true } end)
+vim.keymap.set("n", "<space>gd", require("gitsigns").diffthis)
+vim.keymap.set("n", "<space>gD", function() require("gitsigns").diffthis("~") end)
 

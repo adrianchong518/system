@@ -48,7 +48,7 @@ rec {
 
       # coc
       coc-json
-      coc-lua
+      coc-sumneko-lua
       coc-rust-analyzer
       coc-vimlsp
       coc-toml
