@@ -24,7 +24,7 @@
       gcloud.format = "\\[[$symbol$account(@$domain)(\\($region\\))]($style)\\] ";
 
       status.disabled = false;
-      shlvl.disabled = false;
+      shlvl.disabled = true;
 
       character = {
         success_symbol = "[>](bold green)";

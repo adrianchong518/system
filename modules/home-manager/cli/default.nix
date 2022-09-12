@@ -17,9 +17,11 @@ in
   imports = [
     ./kakoune
     ./neovim
+
     ./fish.nix
     ./git.nix
     ./starship.nix
+    ./tmux.nix
   ];
 
   home.packages = with pkgs; [
