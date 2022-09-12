@@ -1,6 +1,33 @@
 { config, pkgs, lib, ... }:
 
 rec {
+  imports = [
+    ./plugins
+  ];
+
+  lib.vimUtils = rec {
+    # For plugins configured with lua
+    wrapLuaConfig = luaConfig: ''
+      lua<<EOF
+      ${luaConfig}
+      EOF
+    '';
+    readVimConfigRaw = file:
+      if (pkgs.lib.strings.hasSuffix ".lua" (builtins.toString file)) then
+        wrapLuaConfig (builtins.readFile file)
+      else
+        builtins.readFile file;
+    readVimConfig = file: ''
+      if !exists('g:vscode')
+        ${readVimConfigRaw file}
+      endif
+    '';
+    pluginWithCfg = { plugin, file }: {
+      inherit plugin;
+      config = readVimConfig file;
+    };
+  };
+
   home.shellAliases = {
     v = "nvim";
   };
@@ -12,40 +39,6 @@ rec {
     vimdiffAlias = true;
 
     plugins = with pkgs.vimPlugins; [
-      plenary-nvim
-      impatient-nvim
-
-      # UI / Theming
-      nvim-web-devicons
-      awesome-vim-colorschemes
-      lualine-nvim
-
-      # Panels
-      nvim-tree-lua
-      tagbar
-      lazygit-nvim
-      telescope-nvim
-      telescope-coc-nvim
-      telescope-fzf-native-nvim
-      telescope-file-browser-nvim
-
-      # Editor Features
-      vim-lion
-      nvim-surround
-      nvim-comment
-      nvim-autopairs
-      indent-blankline-nvim
-      vim-illuminate
-      todo-comments-nvim
-      gitsigns-nvim
-
-      # Language / LSP
-      vim-nix
-
-      # Treesitter
-      (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
-      nvim-treesitter-context
-
       # coc
       coc-json
       coc-sumneko-lua
@@ -56,28 +49,13 @@ rec {
 
     coc = {
       enable = true;
-      settings = lib.importJSON ./coc-settings.json;
+      settings = pkgs.lib.importJSON ./coc-settings.json;
     };
 
-    extraPackages = with pkgs; [
-      universal-ctags
-    ];
-
     extraConfig = ''
-      lua << EOF
-      ${builtins.readFile ./nvim.lua}
-      EOF
-
-      " coc configs
-      ${builtins.readFile ./coc-nvim.vim}
-
-      " Set up ctags for tagbar
-      let g:tagbar_ctags_bin = '${pkgs.universal-ctags}/bin/ctags'
+      ${lib.vimUtils.readVimConfig ./setting.lua}
+      ${lib.vimUtils.readVimConfig ./keymap.lua}
+      ${lib.vimUtils.readVimConfig ./coc-nvim.vim}
     '';
-  };
-
-  xdg.configFile."plenary-types.lua" = {
-    source = ./plenary-types.lua;
-    target = "nvim/data/plenary/filetypes/plenary-types.lua";
   };
 }
