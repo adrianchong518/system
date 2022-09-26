@@ -13,6 +13,9 @@
 
     extraConfig = ''
       set -ga terminal-overrides ",*256col*:Tc"
+
+      set -g mouse on
+      set -sg escape-time 0
     '';
   };
 }
