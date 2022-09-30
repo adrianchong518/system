@@ -52,8 +52,8 @@ vim.o.formatoptions = "tcqjn"
 
 local function setTextWidth(filetype, tw)
     vim.cmd(string.format("autocmd FileType %s setlocal textwidth=%d", filetype, tw))
-    vim.cmd(string.format("autocmd FileType %s highlight OverLength ctermbg=darkgrey guibg=#592929", filetype))
-    vim.cmd(string.format("autocmd FileType %s match OverLength /\\%%%dv.*/", filetype, tw+1))
+    -- vim.cmd(string.format("autocmd FileType %s highlight OverLength ctermbg=darkgrey guibg=#592929", filetype))
+    -- vim.cmd(string.format("autocmd FileType %s match OverLength /\\%%%dv.*/", filetype, tw+1))
 end
 
 setTextWidth("markdown", 80)
