@@ -31,10 +31,10 @@ sudo nixos-install --flake github:adrianchong518/system#[host]
 
 #### Darwin / Linux
 
-Clone this repository into `~/.nixpkgs` with
+Clone this repository into `~/.system` with
 
 ```bash
-git clone https://github.com/adrianchong518/system ~/.nixpkgs
+git clone https://github.com/adrianchong518/system ~/.system
 ```
 
 You can bootstrap a new nix-darwin system using
