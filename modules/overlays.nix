@@ -12,8 +12,9 @@
     # vimPlugins
     (final: prev:
       let
-        todo-comments-nvim = prev.vimUtils.buildVimPlugin {
-          name = "todo-comments-nvim";
+        todo-comments-nvim = prev.vimUtils.buildVimPlugin rec {
+          pname = "todo-comments-nvim";
+          name = pname;
           src = inputs.todo-comments-nvim;
         };
       in
