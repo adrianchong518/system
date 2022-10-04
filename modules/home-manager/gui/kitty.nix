@@ -7,7 +7,10 @@
     theme = "Dark One Nuanced";
 
     settings = {
-      font_family = "JetBrains Mono";
+      font_family =
+        if pkgs.stdenvNoCC.isDarwin
+        then "JetBrains Mono"
+        else "JetBrainsMono Nerd Font Mono";
       font_size = 13;
       adjust_line_height = "120%";
 

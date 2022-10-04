@@ -3,7 +3,6 @@
 {
   imports = [
     ../common.nix
-    ./nixpkgs.nix
   ];
 
   time.timeZone = "Hongkong";
