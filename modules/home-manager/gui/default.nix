@@ -7,6 +7,6 @@
   ];
 
   home.packages = with pkgs; [
-    firefox
+    (if system == "aarch64-linux" then firefox else firefox-bin)
   ];
 }
