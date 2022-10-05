@@ -17,9 +17,9 @@ in
   imports = [
     ./kakoune
     ./neovim
+    ./git
 
     ./fish.nix
-    ./git.nix
     ./starship.nix
     ./tmux.nix
   ];

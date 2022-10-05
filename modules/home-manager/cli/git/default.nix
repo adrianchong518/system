@@ -5,23 +5,23 @@
     cdr = "cd $(git rev-parse --show-toplevel)";
 
     g = "git";
-    gp = "git push";
-    gpo = "git push origin";
-    gpl = "git pull";
-    gplo = "git pull origin";
-    gf = "git fetch";
-    gst = "git status";
     ga = "git add";
     gaa = "git add --all";
     gap = "git add -p";
+    gb = "git branch";
     gc = "git commit";
-    gcm = "git commit -m";
     gcam = "git commit -am";
     gcl = "git clone";
-    gb = "git branch";
+    gclw = "git clone-worktree";
+    gcm = "git commit -m";
     gco = "git checkout";
-    gs = "git stash";
     gd = "git diff";
+    gf = "git fetch";
+    gp = "git push";
+    gpl = "git pull";
+    gs = "git stash";
+    gst = "git status";
+    gw = "git worktree";
 
     lg = "lazygit";
   };
@@ -42,6 +42,7 @@
     aliases = {
       fix = "commit --amend --no-edit";
       oops = "reset HEAD~1";
+      clone-worktree = "!sh ${./git-clone-for-worktree.sh}";
     };
   };
 
