@@ -212,26 +212,9 @@
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-firefox-darwin": "nixpkgs-firefox-darwin",
-        "small": "small",
         "stable": "stable",
         "todo-comments-nvim": "todo-comments-nvim",
         "vscode-server": "vscode-server"
-      }
-    },
-    "small": {
-      "locked": {
-        "lastModified": 1664816058,
-        "narHash": "sha256-oPmvKHY8ycCpbe0f/UPSFu7drY7gaRWraggzJ1XPLTw=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "e21955bc1c4d143c318c2edbfd6fdefaf9612d27",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable-small",
-        "repo": "nixpkgs",
-        "type": "github"
       }
     },
     "stable": {
