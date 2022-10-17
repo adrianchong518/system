@@ -16,12 +16,13 @@
     };
 
     taps = [
+      "homebrew/bundle"
       "homebrew/cask"
+      "homebrew/cask-drivers"
       "homebrew/cask-fonts"
       "homebrew/cask-versions"
       "homebrew/core"
       "homebrew/services"
-      "homebrew/bundle"
     ];
 
     # "essential" brews, casks and apps

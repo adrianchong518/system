@@ -17,11 +17,11 @@
       "microsoft-office"
       "microsoft-auto-update"
 
-      # obsidian
       "obsidian"
-
-      # steam
       "steam"
+
+      # driver
+      "logi-options-plus"
     ];
 
     masApps = {
