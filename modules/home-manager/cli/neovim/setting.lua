@@ -56,7 +56,6 @@ local function setTextWidth(filetype, tw)
     -- vim.cmd(string.format("autocmd FileType %s match OverLength /\\%%%dv.*/", filetype, tw+1))
 end
 
-setTextWidth("markdown", 80)
 setTextWidth("c", 80)
 setTextWidth("cpp", 80)
 setTextWidth("rust", 120)
