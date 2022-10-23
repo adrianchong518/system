@@ -35,6 +35,8 @@
 
       mineffect = "scale";
       minimize-to-application = true;
+
+      mru-spaces = false;
     };
 
     # finder
