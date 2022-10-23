@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# From https://github.com/marakim/git-clone-for-worktree
 
 for arg
 do
