@@ -7,5 +7,5 @@ end
 vim.o.termguicolors = true
 vim.cmd([[
   syntax enable
-  colorscheme molokai
+  colorscheme ayu
 ]])

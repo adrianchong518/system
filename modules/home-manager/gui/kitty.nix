@@ -4,7 +4,7 @@
   programs.kitty = {
     enable = true;
 
-    theme = "Molokai";
+    theme = "Ayu";
 
     settings = {
       font_family =
