@@ -4,7 +4,7 @@
   programs.kitty = {
     enable = true;
 
-    theme = "Dark One Nuanced";
+    theme = "Molokai";
 
     settings = {
       font_family =
