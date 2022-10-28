@@ -7,10 +7,7 @@
     theme = "Ayu";
 
     settings = {
-      font_family =
-        if pkgs.stdenvNoCC.isDarwin
-        then "JetBrains Mono"
-        else "JetBrainsMono Nerd Font Mono";
+      font_family = "JetBrainsMono Nerd Font";
       font_size = 13;
       adjust_line_height = "120%";
 
