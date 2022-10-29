@@ -253,15 +253,16 @@
     "todo-comments-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1666961860,
-        "narHash": "sha256-8sSPpg6G/EHVCm2bZV5LZHn/+Kxdq47IEum4oWyrYa4=",
+        "lastModified": 1666870346,
+        "narHash": "sha256-cVcABWdReJdK63iPolV+GKXncbyHv6gXELyytI2g9XQ=",
         "owner": "folke",
         "repo": "todo-comments.nvim",
-        "rev": "530eb3a896e9eef270f00f4baafa102361afc93b",
+        "rev": "7b8f174de9cac9d892c6ffda3778b1e4f4288d44",
         "type": "github"
       },
       "original": {
         "owner": "folke",
+        "ref": "neovim-pre-0.8.0",
         "repo": "todo-comments.nvim",
         "type": "github"
       }

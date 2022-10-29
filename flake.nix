@@ -26,7 +26,7 @@
 
     # vimPlugins
     todo-comments-nvim = {
-      url = "github:folke/todo-comments.nvim";
+      url = "github:folke/todo-comments.nvim/neovim-pre-0.8.0";
       flake = false;
     };
   };
