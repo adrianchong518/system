@@ -7,7 +7,7 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    stable.url = "github:nixos/nixpkgs/nixos-21.11";
+    stable.url = "github:nixos/nixpkgs/nixos-22.05";
     small.url = "github:nixos/nixpkgs/nixos-unstable-small";
 
     flake-compat = {
@@ -149,7 +149,7 @@
             overlays = [ inputs.devshell.overlay ];
           };
           pyEnv = (pkgs.python3.withPackages
-            (ps: with ps; [ black typer colorama shellingham ]));
+            (ps: with ps; [ ])); #[ black typer colorama shellingham ]));
           sysdo = pkgs.writeShellScriptBin "sysdo" ''
             cd $PRJ_ROOT && ${pyEnv}/bin/python3 bin/do.py $@
           '';
