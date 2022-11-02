@@ -7,7 +7,7 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    stable.url = "github:nixos/nixpkgs/nixos-21.11";
+    stable.url = "github:nixos/nixpkgs/nixos-22.05";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -35,6 +35,7 @@
       inherit (flake-utils.lib) eachDefaultSystemMap;
 
       flake = self;
+
       lib = nixpkgs.lib.extend
         (self: super: {
           my = import ./lib {
@@ -46,18 +47,16 @@
     {
       lib = lib.my;
 
-      overlays = import ./overlays { inherit inputs lib; };
-
       darwinConfigurations = import ./hosts/darwin { inherit inputs lib; };
 
       devShells = eachDefaultSystemMap (system:
         let
-          pkgs = import inputs.stable {
+          pkgs = import inputs.nixpkgs {
             inherit system;
             overlays = [ inputs.devshell.overlay ];
           };
           pyEnv = (pkgs.python3.withPackages
-            (ps: with ps; [ black typer colorama shellingham ]));
+            (ps: with ps; [ typer ]));# [ black typer colorama shellingham ]));
           sysdo = pkgs.writeShellScriptBin "sysdo" ''
             cd $PRJ_ROOT && ${pyEnv}/bin/python3 bin/do.py $@
           '';

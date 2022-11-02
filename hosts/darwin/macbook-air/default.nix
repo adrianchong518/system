@@ -1,8 +1,6 @@
-{ flake, inputs, config, pkgs, lib, ... }:
+{ flake, inputs, pkgs, lib, ... }:
 
 {
   environment.systemPackages = with pkgs; [
   ];
-
-  nixpkgs.overlays = flake.overlays;
 }

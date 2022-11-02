@@ -20,7 +20,9 @@ class Colors(Enum):
     INFO = typer.colors.BLUE
     ERROR = typer.colors.RED
 
-CURRENT_HOST = platform.node().removesuffix(".local")
+CURRENT_HOST = platform.node()
+if CURRENT_HOST.endswith(".local"):
+    CURRENT_HOST = CURRENT_HOST[:-len(".local")]
 
 if os.system("command -v nixos-rebuild > /dev/null") == 0:
     # if we're on nixos, this command is built in

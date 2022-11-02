@@ -12,7 +12,10 @@ with lib.my;
     nameValuePair hostName (inputs.darwin.lib.darwinSystem
       {
         inherit system;
-        specialArgs = { inherit flake inputs lib system nixpkgs; };
+        specialArgs = {
+          inherit flake inputs lib system nixpkgs;
+          hostType = "darwin";
+        };
         modules = [
           {
             networking.hostName = mkDefault hostName;
@@ -22,6 +25,8 @@ with lib.my;
         ];
       });
 
+  isDarwinHost = hostType: hostType == "darwin";
+
   mkNixosHost =
     { path
     , system ? "x86_64-linux"
@@ -30,7 +35,10 @@ with lib.my;
     }:
     nameValuePair hostName (inputs.nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit flake inputs lib system nixpkgs; };
+      specialArgs = {
+        inherit flake inputs lib system nixpkgs;
+        hostType = "nixos";
+      };
       modules = [
         {
           networking.hostName = mkDefault hostName;
@@ -39,6 +47,8 @@ with lib.my;
         (import path)
       ];
     });
+
+  isNixosHost = hostType: hostType == "nixos";
 
   mkLinuxHost =
     { path
@@ -50,11 +60,16 @@ with lib.my;
       pkgs = import nixpkgs {
         inherit system;
       };
-      specialArgs = { inherit flake inputs lib system hostName nixpkgs; };
+      specialArgs = {
+        inherit flake inputs lib system hostName nixpkgs;
+        hostType = "linux";
+      };
       modules = [
         { }
         ../modules
         (import path)
       ];
     };
+
+  isLinuxHost = hostType: hostType == "linux";
 }
