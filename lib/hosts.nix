@@ -2,7 +2,13 @@
 
 with lib;
 with lib.my;
-{
+rec {
+  isDarwinHost = hostType: hostType == "darwin";
+  isNixosHost = hostType: hostType == "nixos";
+  isLinuxHost = hostType: hostType == "linux";
+
+  isManagedSystem = hostType: isDarwinHost hostType || isNixosHost hostType;
+
   mkDarwinHost =
     { path
     , system ? "aarch64-darwin"
@@ -19,13 +25,12 @@ with lib.my;
         modules = [
           {
             networking.hostName = mkDefault hostName;
+            modules.desktop.enable = mkDefault true;
           }
           ../modules
           (import path)
         ];
       });
-
-  isDarwinHost = hostType: hostType == "darwin";
 
   mkNixosHost =
     { path
@@ -48,8 +53,6 @@ with lib.my;
       ];
     });
 
-  isNixosHost = hostType: hostType == "nixos";
-
   mkLinuxHost =
     { path
     , system ? "x86_64-linux"
@@ -65,11 +68,8 @@ with lib.my;
         hostType = "linux";
       };
       modules = [
-        { }
         ../modules
         (import path)
       ];
     };
-
-  isLinuxHost = hostType: hostType == "linux";
 }
