@@ -8,7 +8,7 @@ with lib.my;
     ./nixpkgs
     ./options.nix
   ]
-  ++ optional (isManagedSystem hostType) ./managed
+  ++ optional (isManagedSystem hostType) ./managed.nix
   ++ optional (isDarwinHost hostType) ./darwin
   ++ optional (isNixosHost hostType) ./nixos;
 }
