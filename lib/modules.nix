@@ -49,7 +49,7 @@ rec {
           (filterAttrs
             (n: v: v == "directory" && !(hasPrefix "_" n))
             (readDir dir));
-      files = mapModules id dir;
+      files = mapModulesList id dir;
       paths = files ++ concatLists (map (d: mapModulesListRec id d) dirs);
     in
     map fn paths;
