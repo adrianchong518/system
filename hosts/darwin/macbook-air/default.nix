@@ -1,6 +1,7 @@
 { flake, inputs, pkgs, lib, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-  ];
+  modules = {
+    darwin.homebrew.enable = true;
+  };
 }

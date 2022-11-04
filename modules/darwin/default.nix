@@ -1,11 +1,11 @@
 { inputs, config, pkgs, lib, ... }:
 
-let
-  inherit (pkgs.stdenvNoCC) isAarch64 isAarch32;
-in
 {
   imports = [
     inputs.home-manager.darwinModules.home-manager
+  ]
+  ++ [
+    ./homebrew.nix
   ];
 
   # environment setup
@@ -14,8 +14,6 @@ in
   nixpkgs.overlays = [
     inputs.nixpkgs-firefox-darwin.overlay
   ];
-
-  homebrew.brewPrefix = if isAarch64 || isAarch32 then "/opt/homebrew/bin" else "/usr/local/bin";
 
   nix.nixPath = [ "darwin=/etc/${config.environment.etc.darwin.target}" ];
   nix.extraOptions = ''
