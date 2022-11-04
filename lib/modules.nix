@@ -53,4 +53,8 @@ rec {
       paths = files ++ concatLists (map (d: mapModulesListRec id d) dirs);
     in
     map fn paths;
+
+  importModules = dir: mapModulesList import dir;
+
+  importModulesRec = dir: mapModulesListRec import dir;
 }

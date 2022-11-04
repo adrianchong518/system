@@ -3,12 +3,8 @@
 with lib;
 with lib.my;
 {
-  imports = [
-    ./desktop
-    ./nixpkgs
-    ./options.nix
-  ]
-  ++ optional (isManagedSystem hostType) ./managed.nix
-  ++ optional (isDarwinHost hostType) ./darwin
-  ++ optional (isNixosHost hostType) ./nixos;
+  imports = importModulesRec ./.
+    ++ optional (isManagedSystem hostType) ./_managed.nix
+    ++ optional (isDarwinHost hostType) ./_darwin
+    ++ optional (isNixosHost hostType) ./_nixos;
 }

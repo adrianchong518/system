@@ -1,14 +1,17 @@
 { flake, inputs, config, pkgs, lib, ... }:
 
+let
+  nixpkgsConfigFile = ./_nixpkgs-config.nix;
+in
 {
   nixpkgs = {
-    config = import ./nixpkgs-config.nix;
+    config = import nixpkgsConfigFile;
     overlays = import "${flake}/overlays" { inherit inputs lib; };
   };
 
   hm = {
-    nixpkgs.config = import ./nixpkgs-config.nix;
-    xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
+    nixpkgs.config = import nixpkgsConfigFile;
+    xdg.configFile."nixpkgs/config.nix".source = nixpkgsConfigFile;
   };
 
   nix = {

@@ -1,12 +1,13 @@
 { inputs, config, pkgs, lib, ... }:
 
+with lib;
+with lib.my;
 {
-  imports = [
-    inputs.home-manager.darwinModules.home-manager
-  ]
-  ++ [
-    ./homebrew.nix
-  ];
+  imports =
+    importModulesRec ./.
+    ++ [
+      inputs.home-manager.darwinModules.home-manager
+    ];
 
   # environment setup
   environment.etc.darwin.source = "${inputs.darwin}";
