@@ -12,35 +12,41 @@ in
     enable = mkBoolOpt false;
   };
 
-  config.homebrew = mkIf cfg.enable {
-    enable = true;
+  config = mkIf cfg.enable {
+    homebrew = {
+      enable = true;
 
-    brewPrefix = if isAarch64 || isAarch32 then "/opt/homebrew/bin" else "/usr/local/bin";
+      brewPrefix = if isAarch64 || isAarch32 then "/opt/homebrew/bin" else "/usr/local/bin";
 
-    global = {
-      brewfile = true;
-      autoUpdate = false;
+      global = {
+        brewfile = true;
+        autoUpdate = false;
+      };
+
+      onActivation = {
+        cleanup = "zap";
+        upgrade = true;
+        autoUpdate = false;
+      };
+
+      taps = [
+        "homebrew/bundle"
+        "homebrew/cask"
+        "homebrew/cask-drivers"
+        "homebrew/cask-fonts"
+        "homebrew/cask-versions"
+        "homebrew/core"
+        "homebrew/services"
+      ];
+
+      # "essential" brews, casks and apps
+      brews = [
+        "mas"
+      ];
     };
 
-    onActivation = {
-      cleanup = "zap";
-      upgrade = true;
-      autoUpdate = false;
-    };
-
-    taps = [
-      "homebrew/bundle"
-      "homebrew/cask"
-      "homebrew/cask-drivers"
-      "homebrew/cask-fonts"
-      "homebrew/cask-versions"
-      "homebrew/core"
-      "homebrew/services"
-    ];
-
-    # "essential" brews, casks and apps
-    brews = [
-      "mas"
-    ];
+    modules.shell.envInit = ''
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    '';
   };
 }

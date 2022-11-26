@@ -1,4 +1,4 @@
-{ inputs, config, options, pkgs, lib, system, hostType, ... }:
+{ config, options, pkgs, lib, hostType, ... }:
 
 with lib;
 with lib.my;
@@ -10,13 +10,12 @@ with lib.my;
 
   config = {
     hm.home.stateVersion = "22.11";
+
     user =
       let
         user = builtins.getEnv "USER";
         name = if elem user [ "" "root" ] then "adrianchong" else user;
-
-        isDarwin = builtins.elem system platforms.darwin;
-        homePrefix = if isDarwin then "/Users" else "/home";
+        homePrefix = if pkgs.stdenvNoCC.isDarwin then "/Users" else "/home";
       in
       {
         inherit name;
