@@ -9,8 +9,9 @@
     ./lualine
     ./tagbar
     ./telescope
-    ./theme
+    # ./theme
     ./tree
+    ./ayu
 
     # Editor Features
     ./autopairs

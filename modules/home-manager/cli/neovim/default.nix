@@ -34,7 +34,6 @@ rec {
 
   programs.neovim = {
     enable = true;
-    package = pkgs.stable.neovim-unwrapped;
 
     viAlias = true;
     vimAlias = true;

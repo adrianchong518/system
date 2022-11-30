@@ -1,5 +1,5 @@
 require('lualine').setup({
-    options = { theme = 'onedark' },
+    options = { theme = 'ayu' },
     sections = {
         lualine_c = {
             {
