@@ -1,5 +1,7 @@
 { inputs, config, options, pkgs, lib, ... }:
 
+with lib;
+with lib.my;
 let
   cfg = config.modules.shell.utils.exa;
 in
@@ -9,8 +11,8 @@ in
     lsAlias = mkBoolOpt true;
   };
 
-  config = cfg.enable {
-    hm.progams.exa.enable = true;
+  config = mkIf cfg.enable {
+    hm.programs.exa.enable = true;
 
     modules.shell.aliases = mkIf cfg.lsAlias (
       let
