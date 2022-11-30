@@ -14,14 +14,16 @@
       "google-drive"
 
       # office
+      "libreoffice"
       "microsoft-office"
       "microsoft-auto-update"
 
       "obsidian"
       "steam"
+      "gimp"
 
       # driver
-      "logi-options-plus"
+      "mos"
     ];
 
     masApps = {
