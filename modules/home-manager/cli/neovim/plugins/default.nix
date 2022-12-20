@@ -15,6 +15,7 @@
 
     # Editor Features
     ./autopairs
+    ./centerpad
     ./comment
     ./gitsigns
     ./illuminate

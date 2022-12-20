@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "centerpad-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1620975636,
+        "narHash": "sha256-clHJFfU7F95WYpGVGr3iQEN+00lnS9YxIpLOoH56e68=",
+        "owner": "smithbm2316",
+        "repo": "centerpad.nvim",
+        "rev": "666641d02fd8c58ac401c1fb6bf596bb00b815fb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "smithbm2316",
+        "repo": "centerpad.nvim",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -204,6 +220,7 @@
     },
     "root": {
       "inputs": {
+        "centerpad-nvim": "centerpad-nvim",
         "darwin": "darwin",
         "devshell": "devshell",
         "flake-compat": "flake-compat",

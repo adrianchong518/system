@@ -10,20 +10,21 @@
     })
 
     # vimPlugins
-    (final: prev:
-      let
-        todo-comments-nvim = prev.vimUtils.buildVimPlugin rec {
-          pname = "todo-comments-nvim";
-          name = pname;
-          src = inputs.todo-comments-nvim;
-        };
-      in
-      {
-        vimPlugins =
-          prev.vimPlugins // {
-            inherit todo-comments-nvim;
+    (final: prev: {
+      vimPlugins =
+        prev.vimPlugins // {
+          todo-comments-nvim = prev.vimUtils.buildVimPlugin rec {
+            pname = "todo-comments-nvim";
+            name = pname;
+            src = inputs.todo-comments-nvim;
           };
-      }
+          centerpad-nvim = prev.vimUtils.buildVimPlugin rec {
+            pname = "centerpad-nvim";
+            name = pname;
+            src = inputs.centerpad-nvim;
+          };
+        };
+    }
     )
   ];
 }
