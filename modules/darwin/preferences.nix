@@ -37,6 +37,7 @@
       minimize-to-application = true;
 
       mru-spaces = false;
+      expose-animation-duration = 0.1;
     };
 
     # finder
