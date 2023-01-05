@@ -11,7 +11,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    hm.home.packages = [ pkgs.grc ];
+    modules.packages = [ pkgs.grc ];
 
     modules.shell.fish.extraInit = ''
       source "${pkgs.grc}/etc/grc.fish"

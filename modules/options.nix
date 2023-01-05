@@ -6,10 +6,15 @@ with lib.my;
   options = with types; {
     hm = mkOpt attrs { };
     user = mkOpt attrs { };
+
+    modules.packages = mkOpt (listOf package) [ ];
   };
 
   config = {
-    hm.home.stateVersion = "22.11";
+    hm.home = {
+      stateVersion = "22.11";
+      packages = mkAliasDefinitions options.modules.packages;
+    };
 
     user =
       let

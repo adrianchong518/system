@@ -11,22 +11,22 @@ in
   };
 
   config = mkIf cfg.enable {
-    hm = {
-      home.packages = with pkgs; [
+    hm.programs.nix-index = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      enableFishIntegration = true;
+    };
+
+    modules = {
+      packages = with pkgs; [
         any-nix-shell
         comma
       ];
 
-      programs.nix-index = {
-        enable = true;
-        enableBashIntegration = true;
-        enableZshIntegration = true;
-        enableFishIntegration = true;
-      };
+      shell.fish.extraInit = ''
+        any-nix-shell fish --info-right | source
+      '';
     };
-
-    modules.shell.fish.extraInit = ''
-      any-nix-shell fish --info-right | source
-    '';
   };
 }
