@@ -9,6 +9,8 @@ in
   options.modules.shell.git = with types; {
     enable = mkBoolOpt true;
     lazygit.enable = mkBoolOpt false;
+
+    aliases = mkBoolOpt true;
   };
 
   config = mkIf cfg.enable {
@@ -44,6 +46,31 @@ in
           };
         };
       };
+    };
+
+    modules.shell.aliases = mkIf cfg.aliases {
+      cdr = "cd $(git rev-parse --show-toplevel)";
+
+      g = "git";
+      ga = "git add";
+      gaa = "git add --all";
+      gap = "git add -p";
+      gb = "git branch";
+      gc = "git commit";
+      gcam = "git commit -am";
+      gcl = "git clone";
+      gclw = "git clone-worktree";
+      gcm = "git commit -m";
+      gco = "git checkout";
+      gd = "git diff";
+      gf = "git fetch";
+      gp = "git push";
+      gpl = "git pull";
+      gs = "git stash";
+      gst = "git status";
+      gw = "git worktree";
+
+      lg = "lazygit";
     };
   };
 }
