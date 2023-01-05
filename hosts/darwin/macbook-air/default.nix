@@ -1,4 +1,4 @@
-{ flake, inputs, pkgs, lib, ... }:
+{ inputs, pkgs, lib, ... }:
 
 {
   modules = {
@@ -10,6 +10,11 @@
       fish.enable = true;
       starship.enable = true;
       utils.enable = true;
+      git.lazygit.enable = true;
+    };
+
+    services = {
+      ssh.enable = true;
     };
   };
 }

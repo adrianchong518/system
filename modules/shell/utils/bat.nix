@@ -12,5 +12,9 @@ in
 
   config = mkIf cfg.enable {
     hm.programs.bat.enable = true;
+
+    modules.shell.variables = {
+      MANPAGER = "sh -c 'col -bx | bat -l man -p --paging always'";
+    };
   };
 }

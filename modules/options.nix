@@ -30,7 +30,7 @@ with lib.my;
     # user -> users.users.<primary user>
     users.users.${config.user.name} = mkAliasDefinitions options.user;
   }
-  // optionalAttrs (isLinuxHost hostType) (
+  // optionalAttrs (isHmHost hostType) (
     {
       home = {
         username = config.user.name;

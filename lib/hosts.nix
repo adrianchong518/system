@@ -5,7 +5,7 @@ with lib.my;
 rec {
   isDarwinHost = hostType: hostType == "darwin";
   isNixosHost = hostType: hostType == "nixos";
-  isLinuxHost = hostType: hostType == "linux";
+  isHmHost = hostType: hostType == "hm";
 
   isManagedSystem = hostType: isDarwinHost hostType || isNixosHost hostType;
 
@@ -53,7 +53,7 @@ rec {
       ];
     });
 
-  mkLinuxHost =
+  mkHmHost =
     { path
     , system ? "x86_64-linux"
     , hostName ? (removeSuffix ".nix" (baseNameOf path))
@@ -65,7 +65,7 @@ rec {
       };
       specialArgs = {
         inherit flake inputs lib system hostName nixpkgs;
-        hostType = "linux";
+        hostType = "hm";
       };
       modules = [
         ../modules
