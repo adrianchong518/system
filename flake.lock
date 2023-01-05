@@ -218,22 +218,6 @@
         "type": "indirect"
       }
     },
-    "puffer-fish": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1665156549,
-        "narHash": "sha256-aij48yQHeAKCoAD43rGhqW8X/qmEGGkg8B4jSeqjVU0=",
-        "owner": "nickeb96",
-        "repo": "puffer-fish",
-        "rev": "fd0a9c95da59512beffddb3df95e64221f894631",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nickeb96",
-        "repo": "puffer-fish",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "ayu-theme-fish": "ayu-theme-fish",
@@ -245,7 +229,6 @@
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-firefox-darwin": "nixpkgs-firefox-darwin",
-        "puffer-fish": "puffer-fish",
         "stable": "stable",
         "todo-comments-nvim": "todo-comments-nvim",
         "vscode-server": "vscode-server"

@@ -25,7 +25,6 @@
 
     # fish plugins
     ayu-theme-fish = { url = "github:edouard-lopez/ayu-theme.fish"; flake = false; };
-    puffer-fish = { url = "github:nickeb96/puffer-fish"; flake = false; };
 
     # vimPlugins
     todo-comments-nvim = { url = "github:folke/todo-comments.nvim"; flake = false; };

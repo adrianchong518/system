@@ -9,4 +9,18 @@ in
   options.modules.shell.utils = with types; {
     enable = mkBoolOpt false;
   };
+
+  config = mkIf cfg.enable {
+    hm.home.packages = with pkgs; [
+      coreutils-full
+      curl
+      wget
+      git
+      jq
+
+      neofetch
+      tldr
+      btop
+    ];
+  };
 }

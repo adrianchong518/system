@@ -20,7 +20,6 @@ in
 
       plugins = with pkgs.fishPlugins; [
         { name = "ayu-theme"; src = inputs.ayu-theme-fish; }
-        { name = "puffer-fish"; src = inputs.puffer-fish; }
         { name = "foreign-env"; src = foreign-env.src; }
         { name = "fzf-fish"; src = fzf-fish.src; }
       ];
