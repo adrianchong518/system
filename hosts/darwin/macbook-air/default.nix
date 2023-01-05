@@ -4,7 +4,10 @@
   modules = {
     darwin.homebrew.enable = true;
 
-    desktop.enable = true;
+    desktop = {
+      enable = true;
+      browsers.firefox.enable = true;
+    };
 
     shell = {
       fish.enable = true;
