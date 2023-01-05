@@ -17,16 +17,15 @@ in
     modules.shell.aliases = mkIf cfg.lsAlias (
       let
         lsBase = "${pkgs.exa}/bin/exa --group-directories-first --color=always --icons --git";
-        treeBase = "${lsBase} --git-ignore";
       in
       rec {
         l = "${lsBase} -l";
         ls = "${l}";
         la = "${lsBase} -la";
-        t = "${treeBase} -T";
-        lt = "${treeBase} -lT";
-        ta = "${treeBase} -aT";
-        lta = "${treeBase} -laT";
+        t = "${lsBase} -T";
+        lt = "${lsBase} -lT";
+        ta = "${lsBase} -aT";
+        lta = "${lsBase} -laT";
       }
     );
   };
