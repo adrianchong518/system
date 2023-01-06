@@ -11,7 +11,7 @@ in
     enableFishIntegration = mkBoolOpt true;
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (config.modules.desktop.enable && cfg.enable) {
     hm.programs.kitty = {
       enable = true;
 

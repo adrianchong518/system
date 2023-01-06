@@ -10,7 +10,7 @@ in
     enable = mkBoolOpt false;
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (config.modules.desktop.enable && cfg.enable) {
     hm.programs.alacritty = {
       enable = true;
 
