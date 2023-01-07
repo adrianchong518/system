@@ -10,6 +10,10 @@
       term.alacritty.enable = true;
     };
 
+    editors = {
+      vscode.enable = true;
+    };
+
     shell = {
       fish.enable = true;
       starship.enable = true;
