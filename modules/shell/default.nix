@@ -8,7 +8,6 @@ in
 {
   options.modules.shell = with types; {
     aliases = mkOpt (attrsOf str) { };
-    variables = mkOpt attrs { };
 
     rcInit = mkOpt' lines "" ''
       Extra shell init lines to be written to $XDG_CONFIG_HOME/shell/rc.sh
@@ -26,10 +25,7 @@ in
 
   config = {
     hm = {
-      home = {
-        shellAliases = mkAliasDefinitions options.modules.shell.aliases;
-        sessionVariables = mkAliasDefinitions options.modules.shell.variables;
-      };
+      home.shellAliases = mkAliasDefinitions options.modules.shell.aliases;
 
       xdg.configFile = {
         "shell/rc_init.sh".text = ''

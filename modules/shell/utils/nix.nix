@@ -18,12 +18,13 @@ in
       enableFishIntegration = true;
     };
 
-    modules = {
-      packages = with pkgs; [
-        any-nix-shell
-        comma
-      ];
+    packages = with pkgs; [
+      any-nix-shell
+      comma
+    ];
 
+
+    modules = {
       shell.fish.extraInit = ''
         any-nix-shell fish --info-right | source
       '';

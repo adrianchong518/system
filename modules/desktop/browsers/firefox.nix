@@ -11,7 +11,7 @@ in
   };
 
   config = mkIf (config.modules.desktop.enable && cfg.enable) {
-    modules.packages = with pkgs; [
+    packages = with pkgs; [
       (if pkgs.stdenvNoCC.isLinux && pkgs.stdenvNoCC.isAarch64 then firefox else firefox-bin)
     ];
   };

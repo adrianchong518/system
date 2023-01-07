@@ -11,7 +11,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    modules.packages = with pkgs; [
+    packages = with pkgs; [
       coreutils-full
       curl
       wget

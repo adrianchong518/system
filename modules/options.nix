@@ -7,13 +7,15 @@ with lib.my;
     hm = mkOpt attrs { };
     user = mkOpt attrs { };
 
-    modules.packages = mkOpt (listOf package) [ ];
+    packages = mkOpt (listOf package) [ ];
+    env = mkOpt (lazyAttrsOf (oneOf [ str path int float ])) { };
   };
 
   config = {
     hm.home = {
       stateVersion = "22.11";
-      packages = mkAliasDefinitions options.modules.packages;
+      packages = mkAliasDefinitions options.packages;
+      sessionVariables = mkAliasDefinitions options.env;
     };
 
     user =
