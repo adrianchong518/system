@@ -9,10 +9,8 @@ in
     overlays = import "${flake}/overlays" { inherit inputs lib; };
   };
 
-  hm = {
-    nixpkgs.config = import nixpkgsConfigFile;
-    xdg.configFile."nixpkgs/config.nix".source = nixpkgsConfigFile;
-  };
+  hm.nixpkgs.config = import nixpkgsConfigFile;
+  files.config."nixpkgs/config.nix".source = nixpkgsConfigFile;
 
   nix = {
     package = pkgs.nix;
