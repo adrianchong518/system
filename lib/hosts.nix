@@ -1,7 +1,6 @@
 { flake, inputs, lib, ... }:
 
 with lib;
-with lib.my;
 rec {
   isDarwinHost = hostType: hostType == "darwin";
   isNixosHost = hostType: hostType == "nixos";
