@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, ... }:
 
 {
   modules = {
@@ -22,6 +22,8 @@
 
     shell = {
       fish.enable = true;
+      default = config.modules.shell.fish.package;
+
       starship.enable = true;
       utils.enable = true;
       git.lazygit.enable = true;
