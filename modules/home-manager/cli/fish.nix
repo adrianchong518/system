@@ -1,23 +1,10 @@
 { config, pkgs, lib, ... }:
 
-let
-  ayuThemePlugin = {
-    name = "ayu-theme";
-    src = pkgs.fetchFromGitHub
-      {
-        owner = "edouard-lopez";
-        repo = "ayu-theme.fish";
-        rev = "d351d24263d87bef3a90424e0e9c74746673e383";
-        hash = "sha256-rx9izD2pc3hLObOehuiMwFB4Ta5G1lWVv9Jdb+JHIz0=";
-      };
-  };
-in
 {
   programs.fish = {
     enable = true;
 
     plugins = [
-      ayuThemePlugin
       {
         name = "puffer-fish";
         src = pkgs.fetchFromGitHub {
@@ -57,9 +44,6 @@ in
 
       # any-nix-shell
       any-nix-shell fish --info-right | source
-
-      # ayu theme
-      source ${ayuThemePlugin.src}/conf.d/ayu-dark.fish && enable_ayu_theme_dark
     '';
   };
 }
