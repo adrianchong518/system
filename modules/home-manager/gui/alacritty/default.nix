@@ -6,7 +6,7 @@
 
     settings = {
       import = [
-        ./ayu_dark.yaml
+        ./gruvbox-material.yml
       ];
 
       window = {
