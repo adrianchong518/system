@@ -1,4 +1,4 @@
-{ inputs, config, options, pkgs, lib, ... }:
+{ inputs, config, options, pkgs, lib, hostType, ... }:
 
 with lib;
 with lib.my;
@@ -8,6 +8,8 @@ in
 {
   options.modules.shell = with types; {
     aliases = mkOpt (attrsOf str) { };
+
+    default = mkOpt package pkgs.bash;
 
     rcInit = mkOpt' lines "" ''
       Extra shell init lines to be written to $XDG_CONFIG_HOME/shell/rc.sh
@@ -25,6 +27,8 @@ in
 
   config = {
     hm.home.shellAliases = mkAliasDefinitions options.modules.shell.aliases;
+
+    user.shell = cfg.default;
 
     files.config = {
       "shell/rc_init.sh".text = ''
@@ -44,5 +48,11 @@ in
       fenv source $XDG_CONFIG_HOME/shell/env_init.sh
       fenv source $XDG_CONFIG_HOME/shell/rc_init.sh
     '';
+  }
+  // optionalAttrs (isManagedSystem hostType) {
+    environment.shells = [ cfg.default ];
+  }
+  // optionalAttrs (isNixosHost hostType) {
+    users.defaultUserShell = cfg.default;
   };
 }
