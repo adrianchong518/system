@@ -19,7 +19,6 @@ in
       enable = true;
 
       plugins = with pkgs.fishPlugins; [
-        { name = "ayu-theme"; src = inputs.ayu-theme-fish; }
         { name = "foreign-env"; src = foreign-env.src; }
         { name = "fzf-fish"; src = fzf-fish.src; }
       ];
@@ -34,9 +33,6 @@ in
         fish_add_path --move --prepend --path $HOME/.nix-profile/bin /run/wrappers/bin /etc/profiles/per-user/$USER/bin /nix/var/nix/profiles/default/bin /run/current-system/sw/bin
 
         ${cfg.extraInit}
-
-        # ayu theme
-        source ${inputs.ayu-theme-fish}/conf.d/ayu-dark.fish && enable_ayu_theme_dark
       '';
     };
   };
