@@ -13,8 +13,9 @@
     escapeTime = 0;
 
     extraConfig = ''
-      set -ga terminal-overrides ",*256col*:Tc"
+      ${builtins.readFile ./gruvbox-material/dark-hard.conf}
 
+      set -ga terminal-overrides ",*256col*:Tc"
       set -g mouse on
     '';
   };

@@ -17,10 +17,10 @@ in
     ./kakoune
     ./neovim
     ./git
+    ./tmux
 
     ./fish.nix
     ./starship.nix
-    ./tmux.nix
   ];
 
   home.packages = with pkgs; [
