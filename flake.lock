@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "ayu-theme-fish": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1609886786,
-        "narHash": "sha256-rx9izD2pc3hLObOehuiMwFB4Ta5G1lWVv9Jdb+JHIz0=",
-        "owner": "edouard-lopez",
-        "repo": "ayu-theme.fish",
-        "rev": "d351d24263d87bef3a90424e0e9c74746673e383",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edouard-lopez",
-        "repo": "ayu-theme.fish",
-        "type": "github"
-      }
-    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -220,7 +204,6 @@
     },
     "root": {
       "inputs": {
-        "ayu-theme-fish": "ayu-theme-fish",
         "darwin": "darwin",
         "devshell": "devshell",
         "flake-compat": "flake-compat",

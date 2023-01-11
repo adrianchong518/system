@@ -23,9 +23,6 @@
     vscode-server.url = "github:msteen/nixos-vscode-server";
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
 
-    # fish plugins
-    ayu-theme-fish = { url = "github:edouard-lopez/ayu-theme.fish"; flake = false; };
-
     # vimPlugins
     todo-comments-nvim = { url = "github:folke/todo-comments.nvim"; flake = false; };
   };

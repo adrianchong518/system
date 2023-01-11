@@ -12,6 +12,12 @@
 
     editors = {
       vscode.enable = true;
+      neovim = {
+        enable = true;
+        enablePlugins = true;
+      };
+
+      default = "nvim";
     };
 
     shell = {
