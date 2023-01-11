@@ -9,9 +9,12 @@
     ./lualine
     ./tagbar
     ./telescope
+
     # ./theme
     ./tree
-    ./ayu
+    # ./ayu
+    # ./srcery
+    ./gruvbox-material
 
     # Editor Features
     ./autopairs

@@ -13,6 +13,7 @@ vim.o.scrolloff = 5
 vim.o.cursorline = true
 vim.o.updatetime = 300
 vim.o.signcolumn = 'yes'
+vim.o.termguicolors = true
 
 vim.cmd([[
     set nobackup
