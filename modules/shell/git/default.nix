@@ -10,13 +10,19 @@ in
     enable = mkBoolOpt true;
     lazygit.enable = mkBoolOpt false;
 
-    aliases = mkBoolOpt true;
+    enableShellAliases = mkBoolOpt true;
+
+    userName = mkOpt str "Adrian Chong";
+    userEmail = mkOpt str "adrianchong518@gmail.com";
   };
 
   config = mkIf cfg.enable {
     hm = {
       programs.git = {
         enable = true;
+
+        userName = cfg.userName;
+        userEmail = cfg.userEmail;
 
         extraConfig = {
           init.defaultBranch = "main";
@@ -48,7 +54,7 @@ in
       };
     };
 
-    modules.shell.aliases = mkIf cfg.aliases {
+    modules.shell.aliases = mkIf cfg.enableShellAliases {
       cdr = "cd $(git rev-parse --show-toplevel)";
 
       g = "git";
