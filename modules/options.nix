@@ -2,6 +2,9 @@
 
 with lib;
 with lib.my;
+let
+  inherit (pkgs.stdenvNoCC) isDarwin;
+in
 {
   options = with types; {
     hm = mkOpt attrs { };
@@ -22,7 +25,7 @@ with lib.my;
       let
         user = builtins.getEnv "USER";
         name = if elem user [ "" "root" ] then "adrianchong" else user;
-        homePrefix = if pkgs.stdenvNoCC.isDarwin then "/Users" else "/home";
+        homePrefix = if isDarwin then "/Users" else "/home";
       in
       {
         inherit name;

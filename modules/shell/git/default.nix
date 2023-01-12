@@ -3,6 +3,8 @@
 with lib;
 with lib.my;
 let
+  inherit (pkgs.stdenvNoCC) isDarwin;
+
   cfg = config.modules.shell.git;
 in
 {
@@ -28,8 +30,7 @@ in
           init.defaultBranch = "main";
 
           credential.helper =
-            if pkgs.stdenvNoCC.isDarwin then
-              "osxkeychain"
+            if isDarwin then "osxkeychain"
             else "${ pkgs.git.override { withLibsecret = true; } }/bin/git-credential-libsecret";
         };
 

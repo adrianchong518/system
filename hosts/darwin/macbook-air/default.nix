@@ -21,6 +21,7 @@
       enable = true;
       browsers.firefox.enable = true;
       term.alacritty.enable = true;
+      office.libreoffice.enable = true;
     };
 
     shell = {
