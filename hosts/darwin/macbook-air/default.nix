@@ -2,12 +2,34 @@
 
 {
   modules = {
-    darwin.homebrew.enable = true;
+    darwin = {
+      homebrew.enable = true;
+
+      raycast.enable = true;
+
+      windowManager.amethyst.enable = true;
+
+      utils = {
+        enable = true;
+        aldente.enable = true;
+        iina.enable = true;
+        handMirror.enable = true;
+      };
+    };
 
     desktop = {
       enable = true;
       browsers.firefox.enable = true;
       term.alacritty.enable = true;
+    };
+
+    shell = {
+      fish.enable = true;
+      default = config.modules.shell.fish.package;
+
+      starship.enable = true;
+      utils.enable = true;
+      git.lazygit.enable = true;
     };
 
     editors = {
@@ -18,15 +40,6 @@
       };
 
       default = "nvim";
-    };
-
-    shell = {
-      fish.enable = true;
-      default = config.modules.shell.fish.package;
-
-      starship.enable = true;
-      utils.enable = true;
-      git.lazygit.enable = true;
     };
 
     services = {
