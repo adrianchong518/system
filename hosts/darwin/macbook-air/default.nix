@@ -27,6 +27,11 @@
       browsers.firefox.enable = true;
       term.alacritty.enable = true;
       office.libreoffice.enable = true;
+
+      communication = {
+        discord.enable = true;
+        zoom.enable = true;
+      };
     };
 
     shell = {
