@@ -10,7 +10,7 @@ in
     enable = mkBoolOpt true;
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (config.modules.desktop.enable && cfg.enable) {
     packages = [ pkgs.zoom-us ];
   };
 }
