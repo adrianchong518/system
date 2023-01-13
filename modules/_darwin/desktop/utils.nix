@@ -28,7 +28,8 @@ in
 
   config = mkIf (config.modules.desktop.enable && config.modules.darwin.homebrew.enable && cfg.enable) {
     homebrew = {
-      casks = [ ]
+      casks = (
+        [ ]
         ++ optional cfg.aldente.enable "aldente"
         ++ optional cfg.appCleaner.enable "appCleaner"
         ++ optional cfg.hot.enable "hot"
@@ -38,13 +39,14 @@ in
         ++ optional cfg.stats.enable "stats"
         ++ optional cfg.theUnarchiver.enable "the-unarchiver"
         ++ optional cfg.transmission.enable "transmission"
-      ;
+      );
 
-      masApps = { }
+      masApps = (
+        { }
         // optionalAttrs cfg.amphetamine.enable { Amphetamine = 937984704; }
         // optionalAttrs cfg.easyRes.enable { EasyRes = 688211836; }
         // optionalAttrs cfg.handMirror.enable { HandMirror = 1502839586; }
-      ;
+      );
     };
   };
 }

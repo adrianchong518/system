@@ -11,8 +11,7 @@ in
   };
 
   config = mkIf cfg.enable (
-    { }
-    // optionalAttrs (isManagedSystem hostType) {
+    optionalAttrs (isManagedSystem hostType) {
       fonts = {
         fontDir.enable = true;
         fonts = with pkgs; [
