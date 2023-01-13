@@ -32,6 +32,10 @@
         discord.enable = true;
         zoom.enable = true;
       };
+
+      apps = {
+        gimp.enable = true;
+      };
     };
 
     shell = {
