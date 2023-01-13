@@ -6,8 +6,12 @@
       homebrew.enable = true;
 
       desktop = {
-        raycast.enable = true;
-        amethyst.enable = true;
+        de = {
+          raycast.enable = true;
+          amethyst.enable = true;
+        };
+
+        communication.whatsapp.enable = true;
 
         utils = {
           enable = true;
