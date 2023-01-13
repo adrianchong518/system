@@ -5,15 +5,16 @@
     darwin = {
       homebrew.enable = true;
 
-      raycast.enable = true;
+      desktop = {
+        raycast.enable = true;
+        amethyst.enable = true;
 
-      windowManager.amethyst.enable = true;
-
-      utils = {
-        enable = true;
-        aldente.enable = true;
-        iina.enable = true;
-        handMirror.enable = true;
+        utils = {
+          enable = true;
+          aldente.enable = true;
+          iina.enable = true;
+          handMirror.enable = true;
+        };
       };
     };
 

@@ -3,10 +3,10 @@
 with lib;
 with lib.my;
 let
-  cfg = config.modules.darwin.windowManager.amethyst;
+  cfg = config.modules.darwin.desktop.amethyst;
 in
 {
-  options.modules.darwin.windowManager.amethyst = with types; {
+  options.modules.darwin.desktop.amethyst = with types; {
     enable = mkBoolOpt false;
   };
 

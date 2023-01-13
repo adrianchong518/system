@@ -9,7 +9,7 @@ let
 in
 {
   options.modules.darwin.homebrew = {
-    enable = mkBoolOpt false;
+    enable = mkBoolOpt true;
   };
 
   config = mkIf cfg.enable {

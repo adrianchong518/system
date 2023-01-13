@@ -3,10 +3,10 @@
 with lib;
 with lib.my;
 let
-  cfg = config.modules.darwin.utils;
+  cfg = config.modules.darwin.desktop.utils;
 in
 {
-  options.modules.darwin.utils = with types; {
+  options.modules.darwin.desktop.utils = with types; {
     enable = mkBoolOpt false;
 
     # brew casks

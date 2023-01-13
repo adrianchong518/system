@@ -3,10 +3,10 @@
 with lib;
 with lib.my;
 let
-  cfg = config.modules.darwin.raycast;
+  cfg = config.modules.darwin.desktop.raycast;
 in
 {
-  options.modules.darwin.raycast = with types; {
+  options.modules.darwin.desktop.raycast = with types; {
     enable = mkBoolOpt false;
   };
 
