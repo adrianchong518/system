@@ -3,6 +3,8 @@
 with lib;
 with lib.my;
 {
+  imports = importModulesRec ./.;
+
   # let nix manage home-manager profiles and use global nixpkgs
   home-manager = {
     extraSpecialArgs = { inherit inputs; };

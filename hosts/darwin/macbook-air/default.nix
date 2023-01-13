@@ -3,8 +3,6 @@
 {
   modules = {
     darwin = {
-      homebrew.enable = true;
-
       desktop = {
         de = {
           raycast.enable = true;
@@ -21,6 +19,8 @@
         };
       };
     };
+
+    managed.desktop.gaming.steam.enable = true;
 
     desktop = {
       enable = true;
