@@ -35,6 +35,7 @@
 
       apps = {
         gimp.enable = true;
+        obsidian.enable = true;
       };
     };
 
