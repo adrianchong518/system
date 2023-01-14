@@ -3,7 +3,7 @@
 with lib;
 with lib.my;
 {
-  config = mkIf true {
+  config = {
     hm.programs.neovim.plugins = with pkgs.vimPlugins; [
       (pluginWithCfg {
         plugin = gruvbox-material;

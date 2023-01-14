@@ -1,5 +1,5 @@
 require('lualine').setup({
-    options = { theme = 'ayu' },
+    options = { theme = 'gruvbox-material' },
     sections = {
         lualine_c = {
             {

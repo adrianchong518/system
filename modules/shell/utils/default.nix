@@ -17,6 +17,7 @@ in
       wget
       git
       jq
+      ripgrep
 
       neofetch
       tldr

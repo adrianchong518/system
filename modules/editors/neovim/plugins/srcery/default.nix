@@ -3,12 +3,12 @@
 with lib;
 with lib.my;
 {
-  config = mkIf false {
-    hm.programs.neovim.plugins = with pkgs.vimPlugins; [
-      (pluginWithCfg {
-        plugin = srcery-vim;
-        file = ./srcery.vim;
-      })
-    ];
-  };
+  # config = mkIf false {
+  #   hm.programs.neovim.plugins = with pkgs.vimPlugins; [
+  #     (pluginWithCfg {
+  #       plugin = srcery-vim;
+  #       file = ./srcery.vim;
+  #     })
+  #   ];
+  # };
 }
