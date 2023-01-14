@@ -4,6 +4,8 @@ This repository contains the system configuration for all my devices (currently 
 
 This configuration setup is "heavily based on" (copied from)
 
+**NOTE**: There is currently no NixOS configs as this is deemed unnecessary for now as I am not using NixOS.
+
 ## System Setup and Bootstrapping
 
 ### Installing nix on Non-NixOS systems
