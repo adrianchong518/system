@@ -3,6 +3,8 @@
 {
   modules = {
     darwin = {
+      homebrew.enable = true;
+
       desktop = {
         de = {
           raycast.enable = true;

@@ -11,22 +11,22 @@ in
 
     # brew casks
     aldente.enable = mkBoolOpt false; # NOTE: Disabled by default
-    appCleaner.enable = mkBoolOpt true;
-    hot.enable = mkBoolOpt true;
+    appCleaner.enable = mkBoolOpt cfg.enable;
+    hot.enable = mkBoolOpt cfg.enable;
     iina.enable = mkBoolOpt false; # NOTE: Disabled by default
-    monitorControl.enable = mkBoolOpt true;
-    mos.enable = mkBoolOpt true;
-    stats.enable = mkBoolOpt true;
-    theUnarchiver.enable = mkBoolOpt true;
-    transmission.enable = mkBoolOpt true; # TODO: Investigate linux version / alternative
+    monitorControl.enable = mkBoolOpt cfg.enable;
+    mos.enable = mkBoolOpt cfg.enable;
+    stats.enable = mkBoolOpt cfg.enable;
+    theUnarchiver.enable = mkBoolOpt cfg.enable;
+    transmission.enable = mkBoolOpt cfg.enable; # TODO: Investigate linux version / alternative
 
     # mas apps
-    amphetamine.enable = mkBoolOpt true;
-    easyRes.enable = mkBoolOpt true;
+    amphetamine.enable = mkBoolOpt cfg.enable;
+    easyRes.enable = mkBoolOpt cfg.enable;
     handMirror.enable = mkBoolOpt false; # NOTE: Disabled by default
   };
 
-  config = mkIf (config.modules.desktop.enable && config.modules.darwin.homebrew.enable && cfg.enable) {
+  config = {
     homebrew = {
       casks = (
         [ ]

@@ -10,7 +10,7 @@ in
     enable = mkBoolOpt false;
   };
 
-  config = mkIf (config.modules.desktop.enable && cfg.enable) {
+  config = mkIf cfg.enable {
     packages = with pkgs; [
       (if pkgs.stdenvNoCC.isLinux && pkgs.stdenvNoCC.isAarch64 then firefox else firefox-bin)
     ];

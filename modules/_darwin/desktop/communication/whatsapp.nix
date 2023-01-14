@@ -10,7 +10,7 @@ in
     enable = mkBoolOpt false;
   };
 
-  config = mkIf (config.modules.desktop.enable && config.modules.darwin.homebrew.enable && cfg.enable) {
+  config = mkIf cfg.enable {
     homebrew.casks = [
       "whatsapp"
     ];

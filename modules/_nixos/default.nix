@@ -10,4 +10,6 @@ with lib.my;
     ];
 
   system.stateVersion = "22.11";
+
+  user.extraGroups = [ "wheel" ];
 }

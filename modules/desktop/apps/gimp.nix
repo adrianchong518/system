@@ -10,7 +10,7 @@ in
     enable = mkBoolOpt false;
   };
 
-  config = mkIf (config.modules.desktop.enable && cfg.enable) {
+  config = mkIf cfg.enable {
     packages = [ pkgs.gimp ];
   };
 }

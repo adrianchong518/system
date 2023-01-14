@@ -10,14 +10,15 @@ in
     enable = mkBoolOpt false;
   };
 
-  config = mkIf (config.modules.desktop.enable && cfg.enable)
+  config = mkIf cfg.enable
     (
       optionalAttrs (isDarwinHost hostType)
-        (mkIf config.modules.darwin.homebrew.enable {
+        {
           homebrew.casks = [ "steam" ];
-        })
-      // optionalAttrs (isNixosHost hostType) {
-        programs.steam.enable = true;
-      }
+        }
+      // optionalAttrs (isNixosHost hostType)
+        {
+          programs.steam.enable = true;
+        }
     );
 }

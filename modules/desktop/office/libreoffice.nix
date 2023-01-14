@@ -12,7 +12,7 @@ in
     enable = mkBoolOpt false;
   };
 
-  config = mkIf (config.modules.desktop.enable && cfg.enable) {
+  config = mkIf cfg.enable {
     packages = with pkgs; [
       (if isDarwin then libreoffice-bin else libreoffice-qt)
     ];

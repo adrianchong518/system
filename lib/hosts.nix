@@ -24,7 +24,6 @@ rec {
         modules = [
           {
             networking.hostName = mkDefault hostName;
-            modules.desktop.enable = mkDefault true;
           }
           ../modules
           (import path)
