@@ -53,7 +53,7 @@
             overlays = [ inputs.devshell.overlay ];
           };
           pyEnv = (pkgs.python3.withPackages
-            (ps: with ps; [ typer ]));# [ black typer colorama shellingham ]));
+            (ps: with ps; [ typer ])); #[ black colorama shellingham ]));
           sysdo = pkgs.writeShellScriptBin "sysdo" ''
             cd $PRJ_ROOT && ${pyEnv}/bin/python3 bin/do.py $@
           '';
