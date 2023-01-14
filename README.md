@@ -2,7 +2,9 @@
 
 This repository contains the system configuration for all my devices (currently one).
 
-This configuration setup is "heavily based on" (copied from) [kclejeune/system](https://github.com/kclejeune/system)
+This configuration setup is "heavily based on" (copied from)
+
+**NOTE**: There is currently no NixOS configs as this is deemed unnecessary for now as I am not using NixOS.
 
 ## System Setup and Bootstrapping
 
@@ -21,12 +23,16 @@ Some packages / brews / casks are not available in nix, so you need to install
 
 ### Bootstrapping
 
-#### NixOS
+#### NixOS (During install)
 
-Run the following:
+Clone this repo to `/mnt/etc/nixos/flake` or anywhere you like.
+
+Add a new host to [hosts/nixos](./hosts/nixos).
+
+Run the following to install the system:
 
 ```bash
-sudo nixos-install --flake github:adrianchong518/system#[host]
+sudo nixos-install --flake .#[host]
 ```
 
 #### Darwin / Linux
@@ -51,7 +57,16 @@ nix --extra-experimental-features "nix-command flakes" develop -c sysdo bootstra
 
 ## `sysdo` CLI Tool
 
-This `sysdo` util is also developed by @kclejeune in [kclejeune/system](https://github.com/kclejeune/system),
-which I directly "yoinked".
+The `sysdo` util is also developed by @kclejeune in [kclejeune/system](https://github.com/kclejeune/system),
+which I directly "yoinked" and made slight modifications.
+
+In the future, I would most likely write my own utility to fit my needs better.
 
 Read [sysdo.md](./doc/sysdo.md) for documentation and usage.
+
+## References
+
+Here are some nix system configurations that I used as reference:
+
+- [kclejeune/system](https://github.com/kclejeune/system)
+- [hlissner/dotfiles](https://github.com/hlissner/dotfiles)
