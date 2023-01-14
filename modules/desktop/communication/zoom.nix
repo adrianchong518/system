@@ -7,7 +7,7 @@ let
 in
 {
   options.modules.desktop.communication.zoom = with types; {
-    enable = mkBoolOpt true;
+    enable = mkBoolOpt false;
   };
 
   config = mkIf (config.modules.desktop.enable && cfg.enable) {
