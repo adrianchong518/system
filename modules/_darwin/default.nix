@@ -26,5 +26,7 @@ with lib.my;
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
+
+  system.stateVersion = 4;
 }
 
