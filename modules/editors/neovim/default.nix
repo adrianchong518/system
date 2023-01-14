@@ -12,24 +12,20 @@ in
     enablePlugins = mkBoolOpt false;
   };
 
-  config = mkIf cfg.enable
-    ({
-      hm.programs.neovim = {
-        enable = true;
+  config = mkIf cfg.enable {
+    hm.programs.neovim = {
+      enable = true;
 
-        extraConfig = ''
-          ${readVimConfig ./setting.lua}
-          ${readVimConfig ./keymap.lua}
-        '';
-      };
-    }
-    // mkIf cfg.enableAliases {
-      hm.programs.neovim = {
-        viAlias = true;
-        vimAlias = true;
-        vimdiffAlias = true;
-      };
+      viAlias = cfg.enableAliases;
+      vimAlias = cfg.enableAliases;
+      vimdiffAlias = cfg.enableAliases;
 
-      modules.shell.aliases.v = "nvim";
-    });
+      extraConfig = ''
+        ${readVimConfig ./setting.lua}
+        ${readVimConfig ./keymap.lua}
+      '';
+    };
+
+    modules.shell.aliases.v = mkIf cfg.enableAliases "nvim";
+  };
 }
