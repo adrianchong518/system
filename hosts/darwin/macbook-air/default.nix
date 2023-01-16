@@ -5,6 +5,8 @@
     darwin = {
       homebrew.enable = true;
 
+      security.enableSudoTouchIdAuth = true;
+
       desktop = {
         de = {
           raycast.enable = true;
