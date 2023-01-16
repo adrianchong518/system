@@ -42,6 +42,7 @@ in
     }
     // optionalAttrs (isManagedSystem hostType)
       {
+        programs.fish.enable = true;
         environment.shells = [ cfg.package ];
       });
 }

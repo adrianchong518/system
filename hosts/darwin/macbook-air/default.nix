@@ -45,6 +45,8 @@
       fish.enable = true;
       default = config.modules.shell.fish.package;
 
+      tmux.enable = true;
+
       starship.enable = true;
       utils.enable = true;
       git.lazygit.enable = true;
