@@ -19,13 +19,14 @@ require('telescope').setup({
             i = {
                 ['<C-k>'] = 'move_selection_previous',
                 ['<C-j>'] = 'move_selection_next',
+                ["<c-t>"] = require('trouble.providers.telescope').open_with_trouble,
+            },
+            n = {
+                ["<c-t>"] = require('trouble.providers.telescope').open_with_trouble,
             },
         },
     },
     extensions = {
-        coc = {
-            prefer_locations = true,
-        },
         fzf = {
             override_generic_sorter = true,
             override_file_sorter = true,
@@ -39,26 +40,13 @@ require('telescope').setup({
 })
 
 require('telescope').load_extension('fzf')
-require('telescope').load_extension('coc')
 require('telescope').load_extension('file_browser')
 
--- coc
-vim.keymap.set('n', 'gd', ':Telescope coc definitions<cr>', { silent = true})
-vim.keymap.set('n', 'gy', ':Telescope coc type-definitions<cr>', { silent = true})
-vim.keymap.set('n', 'gi', ':Telescope coc implementations<cr>', { silent = true})
-vim.keymap.set('n', 'gr', ':Telescope coc references<cr>', { silent = true})
-
-vim.keymap.set('n', '<space>cd', ':Telescope coc diagnostics<cr>', { silent = true, nowait = true })
-vim.keymap.set('n', '<space>cD', ':Telescope coc workspace_diagnostics<cr>', { silent = true, nowait = true })
-vim.keymap.set('n', '<space>co', ':Telescope coc document_symbols<cr>', { silent = true, nowait = true })
-vim.keymap.set('n', '<space>cs', ':Telescope coc workspace_symbols<cr>', { silent = true, nowait = true })
-vim.keymap.set('n', '<space>cc', ':Telescope coc commands<cr>', { silent = true, nowait = true })
-
 -- Find
-vim.keymap.set('n', '<space>ff', function() require('telescope.builtin').find_files() end)
-vim.keymap.set('n', '<space>fg', function() require('telescope.builtin').live_grep() end)
-vim.keymap.set('n', '<space>fb', function() require('telescope').extensions.file_browser.file_browser() end)
-vim.keymap.set('n', '<space>fh', function() require('telescope.builtin').help_tags() end)
+vim.keymap.set('n', '<space>ff', require('telescope.builtin').find_files)
+vim.keymap.set('n', '<space>fg', require('telescope.builtin').live_grep)
+vim.keymap.set('n', '<space>fb', require('telescope').extensions.file_browser.file_browser)
+vim.keymap.set('n', '<space>fh', require('telescope.builtin').help_tags)
 
 -- Buffer
-vim.keymap.set('n', '<space>bb', function() require('telescope.builtin').buffers() end)
+vim.keymap.set('n', '<space>bb', require('telescope.builtin').buffers)

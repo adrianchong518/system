@@ -59,6 +59,7 @@
       neovim = {
         enable = true;
         enablePlugins = true;
+        lsp.enable = true;
       };
 
       default = "nvim";

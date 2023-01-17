@@ -6,12 +6,9 @@ with lib.my;
   config = mkIf config.modules.editors.neovim.enablePlugins {
     hm.programs.neovim.plugins = with pkgs.vimPlugins; [
       (pluginWithCfg {
-        plugin = telescope-nvim;
-        file = ./telescope-nvim.lua;
+        plugin = fidget-nvim;
+        file = ./fidget.lua;
       })
-
-      telescope-fzf-native-nvim
-      telescope-file-browser-nvim
     ];
   };
 }

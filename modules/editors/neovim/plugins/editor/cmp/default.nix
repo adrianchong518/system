@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, options, pkgs, lib, ... }:
 
 with lib;
 with lib.my;
@@ -6,12 +6,15 @@ with lib.my;
   config = mkIf config.modules.editors.neovim.enablePlugins {
     hm.programs.neovim.plugins = with pkgs.vimPlugins; [
       (pluginWithCfg {
-        plugin = telescope-nvim;
-        file = ./telescope-nvim.lua;
+        plugin = nvim-cmp;
+        file = ./cmp.lua;
       })
 
-      telescope-fzf-native-nvim
-      telescope-file-browser-nvim
+      cmp-nvim-lsp
+      cmp-nvim-lsp-signature-help
+      cmp-vsnip
+      cmp-buffer
+      cmp-path
     ];
   };
 }
