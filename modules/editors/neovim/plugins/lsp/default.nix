@@ -9,6 +9,7 @@ in
   options.modules.editors.neovim.lsp = with types; {
     enable = mkBoolOpt false;
     rust.enable = mkBoolOpt true;
+    rnix.enable = mkBoolOpt true;
   };
 
   config = mkIf cfg.enable {
@@ -22,6 +23,7 @@ in
       extraConfig = ''
         ${readVimConfig ./lsp-config.lua}
         ${optionalString cfg.rust.enable (readVimConfig ./rust.lua)}
+        ${optionalString cfg.rnix.enable (readVimConfig ./rnix.lua)}
       '';
     };
   };
