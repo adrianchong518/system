@@ -15,6 +15,7 @@ in
     hm.programs.neovim = {
       plugins = with pkgs.vimPlugins; [
         nvim-lspconfig
+        null-ls-nvim
       ]
       ++ optional cfg.rust.enable rust-tools-nvim;
 

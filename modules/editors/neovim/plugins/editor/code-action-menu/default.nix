@@ -6,17 +6,9 @@ with lib.my;
   config = mkIf config.modules.editors.neovim.enablePlugins {
     hm.programs.neovim.plugins = with pkgs.vimPlugins; [
       (pluginWithCfg {
-        plugin = nvim-cmp;
-        file = ./cmp.lua;
+        plugin = nvim-code-action-menu;
+        file = ./code-action-menu.lua;
       })
-
-      cmp-nvim-lsp
-      cmp-nvim-lsp-signature-help
-      cmp-vsnip
-      cmp-buffer
-      cmp-path
-      cmp-cmdline
-      crates-nvim
     ];
   };
 }
