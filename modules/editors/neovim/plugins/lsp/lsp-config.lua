@@ -11,6 +11,8 @@ null_ls.setup({
     },
 })
 
+require("lsp-format").setup({})
+
 local on_attach = function(client, buffer)
     -- Set updatetime for CursorHold
     -- 300ms of no cursor movement to trigger CursorHold
@@ -26,6 +28,7 @@ local on_attach = function(client, buffer)
     })
 
     require("lsp-format").on_attach(client)
+    vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
 
     local keymap_opts = { buffer = buffer }
 
