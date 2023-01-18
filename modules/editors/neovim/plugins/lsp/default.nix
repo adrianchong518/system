@@ -17,14 +17,15 @@ in
       plugins = with pkgs.vimPlugins; [
         nvim-lspconfig
         null-ls-nvim
+        lsp-format-nvim
       ]
       ++ optional cfg.rust.enable rust-tools-nvim;
 
-      extraConfig = ''
-        ${readVimConfig ./lsp-config.lua}
-        ${optionalString cfg.rust.enable (readVimConfig ./rust.lua)}
-        ${optionalString cfg.rnix.enable (readVimConfig ./rnix.lua)}
-      '';
+      extraConfig = readVimLuaConfigs (
+        [ ./lsp-config.lua ]
+        ++ optional cfg.rust.enable ./rust.lua
+        ++ optional cfg.rnix.enable ./rnix.lua
+      );
     };
   };
 }

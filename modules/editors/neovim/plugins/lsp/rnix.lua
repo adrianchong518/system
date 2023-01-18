@@ -14,4 +14,6 @@ if not configs.rnix then
     }
 end
 
-lsp.rnix.setup({})
+lsp.rnix.setup({
+    on_attach = on_attach,
+})

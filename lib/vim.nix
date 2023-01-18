@@ -19,6 +19,14 @@ rec {
     endif
   '';
 
+  readVimLuaConfigs = files: ''
+    if !exists('g:vscode')
+    lua << EOF
+    ${lib.concatMapStringsSep "\n" builtins.readFile files}
+    EOF
+    endif
+  '';
+
   pluginWithCfg = { plugin, file ? null, files ? [ ] }: {
     inherit plugin;
     config = ''
