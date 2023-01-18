@@ -13,6 +13,13 @@ in
   };
 
   config = mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = config.modules.editors.neovim.enablePlugins;
+        message = "Neovim plugins must be enabled to enable lsp support";
+      }
+    ];
+
     hm.programs.neovim = {
       plugins = with pkgs.vimPlugins; [
         nvim-lspconfig
