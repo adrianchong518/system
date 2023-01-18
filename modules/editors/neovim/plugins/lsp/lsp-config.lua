@@ -36,8 +36,8 @@ local on_attach = function(client, bufnr)
     local keymap_opts = { buffer = bufnr }
 
     -- Goto previous/next diagnostic warning/error
-    vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, keymap_opts)
-    vim.keymap.set("n", "g]", vim.diagnostic.goto_next, keymap_opts)
+    vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, keymap_opts)
+    vim.keymap.set("n", "]g", vim.diagnostic.goto_next, keymap_opts)
 
     vim.keymap.set("n", "K", vim.lsp.buf.hover, keymap_opts)
     vim.keymap.set("n", "<c-k>", vim.lsp.buf.signature_help, keymap_opts)

@@ -14,6 +14,8 @@ vim.o.cursorline = true
 vim.o.updatetime = 300
 vim.o.signcolumn = 'yes'
 
+vim.o.termguicolors = true
+
 vim.cmd([[
     set nobackup
     set nowritebackup
@@ -24,8 +26,9 @@ function vim.fn.stripTrailingWhitespace()
     local l = vim.fn.line('.')
     local c = vim.fn.col('.')
     vim.cmd([[%s/\s\+$//e]])
-    vim.fn.cursor({l, c})
+    vim.fn.cursor({ l, c })
 end
+
 vim.cmd('autocmd BufWritePre * :lua vim.fn.stripTrailingWhitespace()')
 
 -- Set indentation
@@ -59,4 +62,3 @@ end
 setTextWidth('c', 80)
 setTextWidth('cpp', 80)
 setTextWidth('rust', 120)
-

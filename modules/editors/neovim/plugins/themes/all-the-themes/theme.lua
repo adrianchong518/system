@@ -4,7 +4,6 @@ if vim.fn.empty('$TMUX') then
     end
 end
 
-vim.o.termguicolors = true
 vim.cmd([[
   syntax enable
   colorscheme ayu
