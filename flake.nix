@@ -64,7 +64,7 @@
               nixfmt
               pyEnv
               rnix-lsp
-              stylua
+              sumneko-lua-language-server
               treefmt
             ];
             commands = [{
