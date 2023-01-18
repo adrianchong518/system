@@ -26,6 +26,7 @@ in
         nvim-lspconfig
         null-ls-nvim
         lsp-format-nvim
+        lsp-inlayhints-nvim
       ]
       ++ optional cfg.rust.enable rust-tools-nvim;
 

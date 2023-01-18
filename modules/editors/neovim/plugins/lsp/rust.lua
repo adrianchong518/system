@@ -4,7 +4,7 @@ require("rust-tools").setup({
             use_telescope = true,
         },
         inlay_hints = {
-            auto = true,
+            auto = false,
             show_parameter_hints = false,
             parameter_hints_prefix = "",
             other_hints_prefix = "",
@@ -36,6 +36,7 @@ require("rust-tools").setup({
                     command = "clippy",
                 },
                 inlayHints = {
+                    locationLinks = false,
                     lifetimeElisionHints = {
                         enable = true,
                         useParameterNames = true,

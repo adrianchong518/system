@@ -11,9 +11,10 @@ null_ls.setup({
     },
 })
 
-require("lsp-format").setup({})
+require('lsp-format').setup({})
+require('lsp-inlayhints').setup({})
 
-local on_attach = function(client, buffer)
+local on_attach = function(client, bufnr)
     -- Set updatetime for CursorHold
     -- 300ms of no cursor movement to trigger CursorHold
     vim.opt.updatetime = 100
@@ -30,7 +31,9 @@ local on_attach = function(client, buffer)
     require("lsp-format").on_attach(client)
     vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
 
-    local keymap_opts = { buffer = buffer }
+    require('lsp-inlayhints').on_attach(client, bufnr)
+
+    local keymap_opts = { buffer = bufnr }
 
     -- Goto previous/next diagnostic warning/error
     vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, keymap_opts)
