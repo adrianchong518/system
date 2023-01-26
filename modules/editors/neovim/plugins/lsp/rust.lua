@@ -37,10 +37,6 @@ require("rust-tools").setup({
                 },
                 inlayHints = {
                     locationLinks = false,
-                    lifetimeElisionHints = {
-                        enable = true,
-                        useParameterNames = true,
-                    },
                 },
                 procMacro = {
                     enable = true,
