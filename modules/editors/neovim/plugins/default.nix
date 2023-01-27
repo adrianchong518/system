@@ -9,6 +9,7 @@ with lib.my;
 
       vim-lion
       vim-nix
+      vim-obsession
     ];
   };
 }

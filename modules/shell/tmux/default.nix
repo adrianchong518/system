@@ -23,22 +23,22 @@ in
       escapeTime = 0;
 
       extraConfig = ''
-        set -ga terminal-overrides ",*256col*:Tc"
-        set -g mouse on
-        set -g renumber-windows on
+        set -g terminal-overrides ',*256col*:Tc'
+        set -g mouse              on
+        set -g renumber-windows   on
 
-        set -g status-interval 2
+        set -g status-interval    2
         set -g status-left-length 200
-        set -g status-position top
+        set -g status-position    top
 
-        set -g status-left "#[fg=blue,bold]#S#[fg=white,nobold]#(${pkgs.gitmux}/bin/gitmux -timeout 200ms -cfg ${./gitmux.yml} \"#{pane_current_path}\") "
-        set -g status-right ""
+        set -g status-left  '#[fg=blue,bold]#S#[fg=white,nobold]#(${pkgs.gitmux}/bin/gitmux -timeout 200ms -cfg ${./gitmux.yml} "#{pane_current_path}") '
+        set -g status-right ' '
 
-        set -g pane-active-border-style     "fg=magenta,bg=default"
-        set -g pane-border-style            "fg=brightblack,bg=default"
-        set -g status-style                 "bg=default"
-        set -g window-status-current-format "#[fg=magenta]#W"
-        set -g window-status-format         "#[fg=gray]#W"
+        set -g pane-active-border-style     'fg=magenta,bg=default'
+        set -g pane-border-style            'fg=brightblack,bg=default'
+        set -g status-style                 'bg=default'
+        set -g window-status-current-format '#[fg=magenta]#W'
+        set -g window-status-format         '#[fg=gray]#W'
 
         bind '%' split-window -c '#{pane_current_path}' -h
         bind '"' split-window -c '#{pane_current_path}'
@@ -50,8 +50,8 @@ in
         {
           plugin = better-mouse-mode;
           extraConfig = ''
-            set -g @scroll-without-changing-pane "on"
-            set -g @emulate-scroll-for-no-mouse-alternate-buffer "on"
+            set -g @scroll-without-changing-pane 'on'
+            set -g @emulate-scroll-for-no-mouse-alternate-buffer 'on'
           '';
         }
         {
@@ -59,6 +59,18 @@ in
           extraConfig = ''
             set -g @fzf-url-fzf-options '-w 50% -h 50% --prompt="   " --border-label=" Open URL " --no-preview'
             set -g @fzf-url-history-limit 2000
+          '';
+        }
+        {
+          plugin = resurrect;
+          extraConfig = ''
+            set -g @resurrect-strategy-nvim 'session'
+          '';
+        }
+        {
+          plugin = continuum;
+          extraConfig = ''
+            set -g @continuum-restore 'on'
           '';
         }
       ];
