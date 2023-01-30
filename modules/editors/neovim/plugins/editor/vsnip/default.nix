@@ -5,7 +5,10 @@ with lib.my;
 {
   config = mkIf config.modules.editors.neovim.enablePlugins {
     hm.programs.neovim.plugins = with pkgs.vimPlugins; [
-      vim-vsnip
+      (pluginWithCfg {
+        plugin = vim-vsnip;
+        file = ./vsnip.vim;
+      })
       vim-vsnip-integ
     ];
   };
