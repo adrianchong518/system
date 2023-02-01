@@ -10,15 +10,15 @@ in
     enable = mkBoolOpt false;
   };
 
-  config = mkIf cfg.enable (
-    optionalAttrs (isManagedSystem hostType) {
-      fonts = {
-        fontDir.enable = true;
-        fonts = with pkgs; [
-          jetbrains-mono
-          (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-        ];
-      };
-    }
-  );
+  config = mkIf cfg.enable {
+    hm.fonts.fontconfig.enable = true;
+
+    packages = with pkgs; [
+      jetbrains-mono
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+
+      source-han-serif
+      source-han-sans
+    ];
+  };
 }
