@@ -39,6 +39,7 @@
             inherit flake inputs;
             lib = self;
           };
+          hm = home-manager.lib.hm;
         });
     in
     {

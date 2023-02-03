@@ -11,6 +11,7 @@
         de = {
           raycast.enable = true;
           amethyst.enable = true;
+          hammerspoon.enable = true;
         };
 
         communication.whatsapp.enable = true;
