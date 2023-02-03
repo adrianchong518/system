@@ -16,9 +16,8 @@ in
       assertion =
         cfg.desktop.enable ||
         (all
-          (mod: anyAttrs
-            (n: v: isAttrs v &&
-            anyAttrs (n: v: isAttrs v && !v.enable) v)
+          (mod: anyAttrs'
+            (n: v: !(n == "enable" && isBool v && v))
             mod)
           ([ cfg.desktop ]
           ++ optional (isManagedSystem hostType) cfg.managed.desktop

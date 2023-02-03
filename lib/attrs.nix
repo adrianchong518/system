@@ -24,6 +24,9 @@ rec {
   anyAttrs = pred: attrs:
     any (attr: pred attr.name attr.value) (attrsToList attrs);
 
+  anyAttrs' = pred: attrs:
+    any (attr: if isAttrs attr.value then anyAttrs' pred attr.value else pred attr.name attr.value) (attrsToList attrs);
+
   # countAttrs :: (name -> value -> bool) attrs
   countAttrs = pred: attrs:
     count (attr: pred attr.name attr.value) (attrsToList attrs);
