@@ -1,4 +1,4 @@
-require('nvim-tree').setup({
+require("nvim-tree").setup({
     view = {
         width = 50,
     },
@@ -11,7 +11,7 @@ require('nvim-tree').setup({
             enable = true,
         },
         icons = {
-            git_placement = 'signcolumn',
+            git_placement = "signcolumn",
         },
     },
 
@@ -20,5 +20,5 @@ require('nvim-tree').setup({
     },
 })
 
-vim.keymap.set('n', '<space>te', function() require('nvim-tree').toggle(false, true) end, { silent = true })
-vim.keymap.set('n', '<space>tE', ':NvimTreeFocus<cr>', { silent = true })
+vim.keymap.set("n", "<space>te", function() require("nvim-tree").toggle(false, true) end, { silent = true })
+vim.keymap.set("n", "<space>tE", ":NvimTreeFocus<cr>", { silent = true })

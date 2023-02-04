@@ -26,7 +26,7 @@ cmp.setup({
     -- Installed sources
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
-        { name = 'nvim_lsp_signature_help' },
+        { name = "nvim_lsp_signature_help" },
         { name = "vsnip" },
         { name = "path" },
     }, {
@@ -34,27 +34,27 @@ cmp.setup({
     }),
 })
 
-cmp.setup.filetype('gitcommit', {
+cmp.setup.filetype("gitcommit", {
     sources = cmp.config.sources({
-        { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+        { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
     }, {
-        { name = 'buffer' },
+        { name = "buffer" },
     })
 })
 
-cmp.setup.cmdline({ '/', '?' }, {
+cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-        { name = 'buffer' }
+        { name = "buffer" }
     }
 })
 
-cmp.setup.cmdline(':', {
+cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-        { name = 'path' }
+        { name = "path" }
     }, {
-        { name = 'cmdline' }
+        { name = "cmdline" }
     })
 })
 
@@ -66,7 +66,7 @@ vim.api.nvim_create_autocmd("BufRead", {
     end,
 })
 
-require('crates').setup {
+require("crates").setup {
     null_ls = {
         enabled = true,
         name = "crates.nvim",

@@ -1,9 +1,9 @@
-require('lualine').setup({
-    options = { theme = 'gruvbox-material' },
+require("lualine").setup({
+    options = { theme = "gruvbox-material" },
     sections = {
         lualine_c = {
             {
-                'filename',
+                "filename",
                 path = 1,
             },
         },
@@ -11,7 +11,7 @@ require('lualine').setup({
     inactive_sections = {
         lualine_c = {
             {
-                'filename',
+                "filename",
                 path = 1,
             },
         },

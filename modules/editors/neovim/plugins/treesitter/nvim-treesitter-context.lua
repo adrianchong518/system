@@ -1,10 +1,10 @@
-require('treesitter-context').setup({
+require("treesitter-context").setup({
     patterns = {
         rust = {
-            'impl_item',
-            'struct',
-            'enum',
-            'mod',
+            "impl_item",
+            "struct",
+            "enum",
+            "mod",
         }
     }
 })

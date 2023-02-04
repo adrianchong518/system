@@ -1,6 +1,6 @@
-require('ayu').setup({
+require("ayu").setup({
     mirage = false,
     overrides = {},
 })
 
-require('ayu').colorscheme()
+require("ayu").colorscheme()

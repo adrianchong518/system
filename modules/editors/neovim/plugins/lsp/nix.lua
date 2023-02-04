@@ -1,11 +1,11 @@
-local lsp = require('lspconfig')
-local configs = require('lspconfig.configs')
+local lsp = require("lspconfig")
+local configs = require("lspconfig.configs")
 
 if not configs.rnix then
     configs.rnix = {
         default_config = {
-            cmd = { 'rnix-lsp' },
-            filetypes = { 'nix' },
+            cmd = { "rnix-lsp" },
+            filetypes = { "nix" },
             root_dir = function(fname)
                 return lsp.util.find_git_ancestor(fname) or vim.loop.cwd()
             end,
