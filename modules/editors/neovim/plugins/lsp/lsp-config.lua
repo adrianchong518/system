@@ -11,6 +11,9 @@ null_ls.setup({
     },
 })
 
+local lsp = require("lspconfig")
+local configs = require("lspconfig.configs")
+
 require("lsp-format").setup({})
 require("lsp-inlayhints").setup({})
 
@@ -45,7 +48,7 @@ local on_attach = function(client, bufnr)
     -- Code navigation and shortcuts
     vim.keymap.set("n", "<c-]>", function() require("telescope.builtin").lsp_definitions() end, keymap_opts)
     vim.keymap.set("n", "gD", function() require("telescope.builtin").lsp_implementations() end, keymap_opts)
-    vim.keymap.set("n", "1gD", function() require("telescope.builtin").lsp_type_definitions() end, keymap_opts)
+    vim.keymap.set("n", "gt", function() require("telescope.builtin").lsp_type_definitions() end, keymap_opts)
     vim.keymap.set("n", "gr", function() require("telescope.builtin").lsp_references() end, keymap_opts)
     vim.keymap.set("n", "go", function() require("telescope.builtin").lsp_document_symbols() end, keymap_opts)
     vim.keymap.set("n", "gO", function() require("telescope.builtin").lsp_workspace_symbols() end, keymap_opts)

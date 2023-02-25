@@ -8,9 +8,11 @@ in
 {
   options.modules.editors.neovim.lsp = with types; {
     enable = mkBoolOpt false;
+
     rust.enable = mkBoolOpt true;
     nix.enable = mkBoolOpt true;
     lua.enable = mkBoolOpt true;
+    fennel.enable = mkBoolOpt true;
   };
 
   config = mkIf cfg.enable {
@@ -35,6 +37,7 @@ in
         ++ optional cfg.rust.enable ./rust.lua
         ++ optional cfg.nix.enable ./nix.lua
         ++ optional cfg.lua.enable ./lua.lua
+        ++ optional cfg.fennel.enable ./fennel.lua
       );
     };
   };
