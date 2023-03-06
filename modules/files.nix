@@ -36,5 +36,7 @@ in
     env.XDG_CONFIG_HOME = mkForce cfg.configHome;
     env.XDG_DATA_HOME = mkForce cfg.dataHome;
     env.XDG_BIN_HOME = mkForce cfg.binHome;
+
+    modules.shell.extraPath = [ cfg.binHome ];
   };
 }

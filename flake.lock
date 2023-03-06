@@ -122,6 +122,22 @@
         "type": "github"
       }
     },
+    "lunarvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1678097708,
+        "narHash": "sha256-WyqT2P+JHdOME0UgCfgJAIWu7nBkGnN1ItmmzWgrH0M=",
+        "owner": "LunarVim",
+        "repo": "LunarVim",
+        "rev": "9f1f98312bfc919b695935ec80ba3501b6cfbab9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LunarVim",
+        "repo": "LunarVim",
+        "type": "github"
+      }
+    },
     "nixos-unstable": {
       "locked": {
         "lastModified": 1673631141,
@@ -226,6 +242,7 @@
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils_2",
         "home-manager": "home-manager",
+        "lunarvim": "lunarvim",
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-firefox-darwin": "nixpkgs-firefox-darwin",

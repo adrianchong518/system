@@ -18,6 +18,7 @@ in
       git
       jq
       ripgrep
+      fd
 
       neofetch
       tldr

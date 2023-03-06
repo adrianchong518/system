@@ -11,6 +11,8 @@ in
 
     default = mkOpt package pkgs.bash;
 
+    extraPath = mkOpt (listOf str) [ ];
+
     rcInit = mkOpt' lines "" ''
       Extra shell init lines to be written to $XDG_CONFIG_HOME/shell/rc.sh
       This should be kept POSIX compliant
@@ -26,7 +28,10 @@ in
   };
 
   config = {
-    hm.home.shellAliases = mkAliasDefinitions options.modules.shell.aliases;
+    hm.home = {
+      shellAliases = mkAliasDefinitions options.modules.shell.aliases;
+      sessionPath = mkAliasDefinitions options.modules.shell.extraPath;
+    };
 
     user.shell = cfg.default;
 

@@ -63,6 +63,8 @@
         lsp.enable = true;
       };
 
+      lunarvim.enable = true;
+
       default = "nvim";
     };
 
