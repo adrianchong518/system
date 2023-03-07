@@ -56,7 +56,7 @@
         let
           pkgs = import inputs.nixpkgs {
             inherit system;
-            overlays = [ inputs.devshell.overlay ];
+            overlays = [ inputs.devshell.overlays.default ];
           };
           pyEnv = (pkgs.python3.withPackages
             (ps: with ps; [ typer ])); #[ black colorama shellingham ]));
