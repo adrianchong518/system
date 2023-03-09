@@ -52,14 +52,13 @@ in
       };
     };
 
-    hm.home.activation.syncLVimPacker = hm.dag.entryAfter [ "writeBoundary" ] ''
+    hm.home.activation.syncLunarVimLazy = hm.dag.entryAfter [ "writeBoundary" ] ''
       # Sync packer plugins in LunarVim
       if ! type "${bin}" > /dev/null; then
         echo >&2 "warning: lvim not installed"
       else
         "${bin}" --headless \
-          -c 'autocmd User PackerComplete quitall' \
-          -c 'PackerSync'
+          --headless "+Lazy! sync" +qa
       fi
     '';
   };

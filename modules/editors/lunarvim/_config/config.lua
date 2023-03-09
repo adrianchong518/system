@@ -1,31 +1,16 @@
---[[
- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
- `lvim` is the global options object
-]]
 -- vim options
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 vim.opt.relativenumber = true
+vim.opt.showtabline = 1
+vim.opt.wrap = true
 
 -- general
 lvim.log.level = "info"
-lvim.format_on_save = {
-  enabled = true,
-  pattern = "*.lua",
-  timeout = 1000,
-}
--- to disable icons and use a minimalist setup, uncomment the following
--- lvim.use_icons = false
 
--- keymappings <https://www.lunarvim.org/docs/configuration/keybindings>
+lvim.format_on_save.enabled = true
+
 lvim.leader = "space"
--- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-
--- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
--- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
-
--- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 
@@ -39,38 +24,19 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
-lvim.builtin.telescope.defaults = {
-  layout_strategy = "flex",
-  layout_config = {
-    width = { 0.8, max = 235 },
-    height = { 0.90, max = 50 },
-    prompt_position = "top",
-    preview_cutoff = 75,
-    flex = {
-      flip_columns = 185,
-    },
-    vertical = {
-      preview_height = 15,
-    },
-  },
-  sorting_strategy = "ascending",
-  dynamic_preview_title = true,
-  path_display = {},
-  initial_mode = "insert",
-}
+require("user.telescope").config()
 lvim.builtin.which_key.mappings["f"] = { require("lvim.core.telescope.custom-finders").find_project_files, "Find File" }
 lvim.builtin.which_key.mappings.b.f = { "<cmd>Telescope buffers<cr>", "Find" }
 
--- Automatically install missing parsers when entering buffer
 lvim.builtin.treesitter.auto_install = true
-
--- lvim.builtin.treesitter.ignore_install = { "haskell" }
-
--- always installed on startup, useful for parsers without a strict filetype
 lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "regex" }
+
+lvim.builtin.bufferline.active = false
 
 -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-support>
 lvim.lsp.installer.setup.automatic_installation = false
+
+require("lvim.lsp.manager").setup("rnix")
 
 -- ---configure a server manually. IMPORTANT: Requires `:LvimCacheReset` to take effect
 -- ---see the full default list `:lua =lvim.lsp.automatic_configuration.skipped_servers`
