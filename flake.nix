@@ -72,6 +72,7 @@
               rnix-lsp
               sumneko-lua-language-server
               treefmt
+              stylua
             ];
             commands = [{
               name = "sysdo";

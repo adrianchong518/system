@@ -16,20 +16,20 @@ vim.o.signcolumn = "yes"
 
 vim.o.termguicolors = true
 
-vim.cmd([[
+vim.cmd [[
     set nobackup
     set nowritebackup
-]])
+]]
 
 -- Strip trailing whitespaces
 function vim.fn.stripTrailingWhitespace()
-    local l = vim.fn.line(".")
-    local c = vim.fn.col(".")
-    vim.cmd([[%s/\s\+$//e]])
-    vim.fn.cursor({ l, c })
+  local l = vim.fn.line "."
+  local c = vim.fn.col "."
+  vim.cmd [[%s/\s\+$//e]]
+  vim.fn.cursor { l, c }
 end
 
-vim.cmd("autocmd BufWritePre * :lua vim.fn.stripTrailingWhitespace()")
+vim.cmd "autocmd BufWritePre * :lua vim.fn.stripTrailingWhitespace()"
 
 -- Set indentation
 vim.o.shiftwidth = 4
@@ -39,7 +39,7 @@ vim.o.autoindent = true
 vim.o.smartindent = true
 
 local function setTabWidth(filetype, width)
-    vim.cmd(string.format("autocmd FileType %s setlocal shiftwidth=%d softtabstop=%d expandtab", filetype, width, width))
+  vim.cmd(string.format("autocmd FileType %s setlocal shiftwidth=%d softtabstop=%d expandtab", filetype, width, width))
 end
 
 setTabWidth("nix", 2)
@@ -54,9 +54,9 @@ vim.o.colorcolumn = "+1"
 vim.o.formatoptions = "tcqjn"
 
 local function setTextWidth(filetype, tw)
-    vim.cmd(string.format("autocmd FileType %s setlocal textwidth=%d", filetype, tw))
-    -- vim.cmd(string.format("autocmd FileType %s highlight OverLength ctermbg=darkgrey guibg=#592929", filetype))
-    -- vim.cmd(string.format("autocmd FileType %s match OverLength /\\%%%dv.*/", filetype, tw+1))
+  vim.cmd(string.format("autocmd FileType %s setlocal textwidth=%d", filetype, tw))
+  -- vim.cmd(string.format("autocmd FileType %s highlight OverLength ctermbg=darkgrey guibg=#592929", filetype))
+  -- vim.cmd(string.format("autocmd FileType %s match OverLength /\\%%%dv.*/", filetype, tw+1))
 end
 
 setTextWidth("c", 80)

@@ -36,7 +36,7 @@ lvim.builtin.bufferline.active = false
 -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-support>
 lvim.lsp.installer.setup.automatic_installation = false
 
-require("lvim.lsp.manager").setup("rnix")
+require("lvim.lsp.manager").setup "rnix"
 
 -- ---configure a server manually. IMPORTANT: Requires `:LvimCacheReset` to take effect
 -- ---see the full default list `:lua =lvim.lsp.automatic_configuration.skipped_servers`
@@ -60,16 +60,16 @@ require("lvim.lsp.manager").setup("rnix")
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
 
--- -- linters and formatters <https://www.lunarvim.org/docs/languages#lintingformatting>
--- local formatters = require "lvim.lsp.null-ls.formatters"
--- formatters.setup {
---   { command = "stylua" },
---   {
---     command = "prettier",
---     extra_args = { "--print-width", "100" },
---     filetypes = { "typescript", "typescriptreact" },
---   },
--- }
+-- linters and formatters <https://www.lunarvim.org/docs/languages#lintingformatting>
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { command = "stylua" },
+  -- {
+  --   command = "prettier",
+  --   extra_args = { "--print-width", "100" },
+  --   filetypes = { "typescript", "typescriptreact" },
+  -- },
+}
 -- local linters = require "lvim.lsp.null-ls.linters"
 -- linters.setup {
 --   { command = "flake8", filetypes = { "python" } },

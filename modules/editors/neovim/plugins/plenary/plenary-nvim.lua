@@ -1,1 +1,1 @@
-require("plenary.filetype").add_file("plenary-types")
+require("plenary.filetype").add_file "plenary-types"
