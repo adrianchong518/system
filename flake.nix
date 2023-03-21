@@ -69,7 +69,7 @@
             packages = with pkgs; [
               nixfmt
               pyEnv
-              rnix-lsp
+              nil
               sumneko-lua-language-server
               treefmt
               stylua
