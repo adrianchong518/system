@@ -26,7 +26,6 @@ in
       extraPackages = with pkgs; [
         fd
         ripgrep
-        (tree-sitter.withPlugins (_: tree-sitter.allGrammars))
       ];
     };
 
