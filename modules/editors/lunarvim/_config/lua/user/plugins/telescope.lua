@@ -1,5 +1,7 @@
 local M = {}
 
+local config = require("user").config
+
 local builtin = require "telescope.builtin"
 local themes = require "telescope.themes"
 
@@ -22,6 +24,10 @@ M.setup = function()
   lvim.builtin.telescope.defaults.path_display = {}
 
   lvim.builtin.telescope.pickers.buffers.initial_mode = "insert"
+
+  lvim.builtin.telescope.on_config_done = function(telescope)
+    _ = config.enabled_plugins.telescope.file_browser and pcall(telescope.load_extension, "file_browser")
+  end
 end
 
 M.text_curbuf = function()

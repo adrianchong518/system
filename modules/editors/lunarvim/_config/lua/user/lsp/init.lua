@@ -14,7 +14,10 @@ M.setup = function()
   }
 
   ---@diagnostic disable-next-line: missing-parameter
-  vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rnix", "nil_ls" })
+  vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rnix", "nil_ls", "clangd" })
+  lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+    return server ~= "ccls"
+  end, lvim.lsp.automatic_configuration.skipped_servers)
 end
 
 return M

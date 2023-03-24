@@ -15,13 +15,17 @@ M.setup = function()
       end,
       enabled = config.winbar_provider == "filename",
     },
-
     {
       "j-hui/fidget.nvim",
       config = function()
         require("user.plugins.fidget").setup()
       end,
       enabled = config.enabled_plugins.fidget,
+    },
+    {
+      "nvim-telescope/telescope-file-browser.nvim",
+      dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+      enabled = config.enabled_plugins.telescope.file_browser,
     },
   }
 
