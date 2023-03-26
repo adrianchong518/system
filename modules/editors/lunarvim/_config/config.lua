@@ -17,8 +17,7 @@ require("user").setup {
   winbar_provider = "filename",
   enabled_plugins = {
     fidget = true,
-    telescope = {
-      file_browser = true,
-    },
+    zen_mode = true,
+    telescope = { file_browser = true },
   },
 }

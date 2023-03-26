@@ -27,6 +27,13 @@ M.setup = function()
       dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
       enabled = config.enabled_plugins.telescope.file_browser,
     },
+    {
+      "folke/zen-mode.nvim",
+      config = function()
+        require("zen-mode").setup {}
+      end,
+      enabled = config.enabled_plugins.zen_mode,
+    },
   }
 
   _ = lvim.builtin.bufferline.active and require("user.plugins.bufferline").setup()
