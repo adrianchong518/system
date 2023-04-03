@@ -9,8 +9,6 @@ M.setup = function()
     if not status_ok then
       return
     end
-
-    treesitter_install.compilers = { "clang++", "g++" }
   end
 end
 
