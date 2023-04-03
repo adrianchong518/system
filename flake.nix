@@ -73,6 +73,7 @@
               sumneko-lua-language-server
               treefmt
               stylua
+              nixpkgs-fmt
             ];
             commands = [{
               name = "sysdo";

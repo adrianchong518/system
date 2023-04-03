@@ -11,11 +11,11 @@ M.setup = function()
   lvim.builtin.which_key.mappings.c = nil
 
   lvim.builtin.which_key.mappings.f =
-    { require("lvim.core.telescope.custom-finders").find_project_files, " Find File" }
+  { require("lvim.core.telescope.custom-finders").find_project_files, " Find File" }
 
   if config.enabled_plugins.telescope.file_browser then
     lvim.builtin.which_key.mappings.E =
-      { require("telescope").extensions.file_browser.file_browser, "Telecope Explorer" }
+    { require("telescope").extensions.file_browser.file_browser, "Telecope Explorer" }
   end
 
   lvim.builtin.which_key.mappings.s = nil
