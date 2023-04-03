@@ -66,5 +66,9 @@
     services = {
       ssh.enable = true;
     };
+
+    dev = {
+      platformio.enable = true;
+    };
   };
 }
