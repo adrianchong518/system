@@ -10,19 +10,17 @@ M.setup = function()
   lvim.builtin.which_key.mappings.q = nil
   lvim.builtin.which_key.mappings.c = nil
 
-  lvim.builtin.which_key.mappings.f =
-  { require("lvim.core.telescope.custom-finders").find_project_files, " Find File" }
-
   if config.enabled_plugins.telescope.file_browser then
     lvim.builtin.which_key.mappings.E =
-    { require("telescope").extensions.file_browser.file_browser, "Telecope Explorer" }
+      { require("telescope").extensions.file_browser.file_browser, "Telecope Explorer" }
   end
 
   lvim.builtin.which_key.mappings.s = nil
-  lvim.builtin.which_key.mappings.F = {
+  lvim.builtin.which_key.mappings.f = {
     name = "Find",
     b = { require("telescope.builtin").builtin, "Builtin" },
-    f = { require("telescope.builtin").find_files, "Files" },
+    f = { require("lvim.core.telescope.custom-finders").find_project_files, "Project File" },
+    F = { require("telescope.builtin").find_files, "All Files" },
     t = { require("user.plugins.telescope").text_curbuf, "Text in Current Buffer" },
     g = { require("telescope.builtin").live_grep, "Live Grep" },
     l = { require("telescope.builtin").resume, "Last Search" },
