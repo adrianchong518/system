@@ -1,3 +1,1 @@
-vim.cmd [[
-setlocal tabstop=2 shiftwidth=2
-]]
+require("user.utils").set_indent_width(2)
