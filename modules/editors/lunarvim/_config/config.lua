@@ -19,5 +19,6 @@ require("user").setup {
     fidget = true,
     zen_mode = true,
     telescope = { file_browser = true },
+    crates = true,
   },
 }

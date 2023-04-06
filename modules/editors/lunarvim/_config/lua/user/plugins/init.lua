@@ -34,6 +34,15 @@ M.setup = function()
       end,
       enabled = config.enabled_plugins.zen_mode,
     },
+    {
+      "saecki/crates.nvim",
+      event = { "BufRead Cargo.toml" },
+      dependencies = { "nvim-lua/plenary.nvim" },
+      config = function()
+        require("user.plugins.crates").setup()
+      end,
+      enabled = config.enabled_plugins.crates,
+    },
   }
 
   _ = lvim.builtin.bufferline.active and require("user.plugins.bufferline").setup()
