@@ -16,6 +16,11 @@ in
 
     userName = mkOpt str "Adrian Chong";
     userEmail = mkOpt str "adrianchong518@gmail.com";
+
+    signing = {
+      enable = mkBoolOpt false;
+      key = mkOpt (nullOr str) null;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -38,6 +43,11 @@ in
           fix = "commit --amend --no-edit";
           oops = "reset HEAD~1";
           clone-worktree = "!sh ${./git-clone-for-worktree.sh}";
+        };
+
+        signing = mkIf cfg.signing.enable {
+          signByDefault = true;
+          key = cfg.signing.key;
         };
       };
 

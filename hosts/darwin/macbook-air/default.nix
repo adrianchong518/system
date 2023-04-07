@@ -54,7 +54,15 @@
 
       starship.enable = true;
       utils.enable = true;
-      git.lazygit.enable = true;
+
+      git = {
+        lazygit.enable = true;
+
+        signing = {
+          enable = true;
+          key = "0CF62CE0";
+        };
+      };
     };
 
     editors = {
@@ -67,6 +75,7 @@
 
     services = {
       ssh.enable = true;
+      gpg.enable = true;
     };
 
     dev = {
