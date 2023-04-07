@@ -7,6 +7,9 @@ M.setup = function()
   end
 
   fidget.setup {
+    window = {
+      blend = 10,
+    },
     text = {
       spinner = {
         " ",
