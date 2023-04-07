@@ -16,6 +16,8 @@
 
         communication.whatsapp.enable = true;
 
+        apps.utm.enable = true;
+
         utils = {
           enable = true;
           aldente.enable = true;
