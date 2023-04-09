@@ -43,6 +43,13 @@ M.setup = function()
       end,
       enabled = config.enabled_plugins.crates,
     },
+    {
+      "simrat39/rust-tools.nvim",
+      config = function()
+        require("user.plugins.rust_tools").setup()
+      end,
+      ft = { "rust", "rs" },
+    },
   }
 
   _ = lvim.builtin.bufferline.active and require("user.plugins.bufferline").setup()
