@@ -14,7 +14,7 @@ in
     hm.programs.tmux = {
       enable = true;
 
-      shortcut = "a";
+      shortcut = "Space";
       terminal = "screen-256color";
       keyMode = "vi";
       historyLimit = 1000000;
@@ -71,6 +71,16 @@ in
           plugin = continuum;
           extraConfig = ''
             set -g @continuum-restore 'on'
+          '';
+        }
+        {
+          plugin = tmux-fzf;
+          extraConfig = ''
+            TMUX_FZF_LAUNCH_KEY="C-Space"
+            TMUX_FZF_OPTIONS="-p -w 62% -h 38% -m"
+            TMUX_FZF_PREVIEW=0
+
+            bind a run-shell -b "${tmux-fzf}/share/tmux-plugins/tmux-fzf/scripts/session.sh attach"
           '';
         }
       ];
