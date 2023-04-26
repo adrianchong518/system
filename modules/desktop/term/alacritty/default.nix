@@ -15,10 +15,6 @@ in
       enable = true;
 
       settings = {
-        import = [
-          ./gruvbox-material.yml
-        ];
-
         window = {
           dynamic_padding = true;
           decorations = "none";
