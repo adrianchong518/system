@@ -14,7 +14,10 @@ M.setup = function()
   }
 
   ---@diagnostic disable-next-line: missing-parameter
-  vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rnix", "nil_ls", "clangd", "rust_analyzer" })
+  vim.list_extend(
+    lvim.lsp.automatic_configuration.skipped_servers,
+    { "rnix", "nil_ls", "clangd", "rust_analyzer", "zls" }
+  )
 end
 
 return M
