@@ -13,6 +13,11 @@ lvim.builtin.alpha.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.bufferline.active = false
 
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
+})
+
 require("user").setup {
   winbar_provider = "filename",
   enabled_plugins = {
