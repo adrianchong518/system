@@ -74,7 +74,13 @@
     };
 
     services = {
-      ssh.enable = true;
+      ssh = {
+        enable = true;
+        git = {
+          enable = true;
+          identityFile = "~/.ssh/id_ed25519_git";
+        };
+      };
       gpg.enable = true;
     };
 
