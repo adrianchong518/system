@@ -47,6 +47,20 @@ M.setup = function()
       z = { require("zen-mode").toggle, "Zen Mode" },
     }
   end
+
+  if config.enabled_plugins.zk then
+    lvim.builtin.which_key.mappings.n = {
+      name = "Notes",
+      n = { "<cmd>ZkNew { title = vim.fn.input('Title: ') }<cr>", "New Note" },
+      o = { "<cmd>ZkNotes { sort = { 'modified' } }<cr>", "Open Note" },
+      t = { "<cmd>ZkTags<cr>", "Open Note with Tag" },
+      f = { "<cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<cr>", "Search Notes" },
+    }
+
+    require("which-key").register({
+      ["<leader>nf"] = { ":'<,'>ZkMatch<cr>", "Search selection in Notes" },
+    }, { mode = "v" })
+  end
 end
 
 return M

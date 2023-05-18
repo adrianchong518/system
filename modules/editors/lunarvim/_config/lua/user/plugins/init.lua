@@ -50,6 +50,13 @@ M.setup = function()
       end,
       ft = { "rust", "rs" },
     },
+    {
+      "mickael-menu/zk-nvim",
+      config = function()
+        require("user.plugins.zk").setup()
+      end,
+      enabled = config.enabled_plugins.zk,
+    },
   }
 
   _ = lvim.builtin.bufferline.active and require("user.plugins.bufferline").setup()
