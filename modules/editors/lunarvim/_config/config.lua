@@ -26,5 +26,6 @@ require("user").setup {
     telescope = { file_browser = true },
     crates = true,
     zk = true,
+    surround = true,
   },
 }
