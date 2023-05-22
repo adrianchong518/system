@@ -26,7 +26,7 @@ M.setup = function()
   lvim.builtin.telescope.pickers.buffers.initial_mode = "insert"
 
   lvim.builtin.telescope.on_config_done = function(telescope)
-    _ = config.enabled_plugins.telescope.file_browser and pcall(telescope.load_extension, "file_browser")
+    _ = pcall(telescope.load_extension, "file_browser")
   end
 end
 

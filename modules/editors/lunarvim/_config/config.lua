@@ -18,12 +18,4 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 
 require("user").setup {
   winbar_provider = "filename",
-  enabled_plugins = {
-    fidget = true,
-    zen_mode = true,
-    telescope = { file_browser = true },
-    crates = true,
-    zk = true,
-    surround = true,
-  },
 }

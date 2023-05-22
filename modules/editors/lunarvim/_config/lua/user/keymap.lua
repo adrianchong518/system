@@ -15,10 +15,7 @@ M.setup = function()
   lvim.builtin.which_key.mappings.q = nil
   lvim.builtin.which_key.mappings.c = nil
 
-  if config.enabled_plugins.telescope.file_browser then
-    lvim.builtin.which_key.mappings.E =
-      { require("telescope").extensions.file_browser.file_browser, "Telecope Explorer" }
-  end
+  lvim.builtin.which_key.mappings.E = { require("telescope").extensions.file_browser.file_browser, "Telecope Explorer" }
 
   lvim.builtin.which_key.mappings.s = nil
   lvim.builtin.which_key.mappings.f = {
@@ -46,26 +43,24 @@ M.setup = function()
     t = { require("telescope.builtin").colorscheme, "Theme" },
   }
 
-  if config.enabled_plugins.zen_mode then
-    lvim.builtin.which_key.mappings.z = {
-      name = "Zen",
-      z = { require("zen-mode").toggle, "Zen Mode" },
-    }
-  end
+  lvim.builtin.which_key.mappings.z = {
+    name = "Zen",
+    z = { require("zen-mode").toggle, "Zen Mode" },
+  }
 
-  if config.enabled_plugins.zk then
-    lvim.builtin.which_key.mappings.n = {
-      name = "Notes",
-      n = { "<cmd>ZkNew { title = vim.fn.input('Title: ') }<cr>", "New Note" },
-      o = { "<cmd>ZkNotes { sort = { 'modified' } }<cr>", "Open Note" },
-      t = { "<cmd>ZkTags<cr>", "Open Note with Tag" },
-      f = { "<cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<cr>", "Search Notes" },
-    }
+  lvim.builtin.which_key.mappings.n = {
+    name = "Notes",
+    n = { "<cmd>ZkNew { title = vim.fn.input('Title: ') }<cr>", "New Note" },
+    o = { "<cmd>ZkNotes { sort = { 'modified' } }<cr>", "Open Note" },
+    t = { "<cmd>ZkTags<cr>", "Open Note with Tag" },
+    f = { "<cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<cr>", "Search Notes" },
+  }
 
-    require("which-key").register({
-      ["<leader>nf"] = { ":'<,'>ZkMatch<cr>", "Search selection in Notes" },
-    }, { mode = "v" })
-  end
+  require("which-key").register({
+    ["<leader>nf"] = { ":'<,'>ZkMatch<cr>", "Search selection in Notes" },
+  }, { mode = "v" })
+
+  lvim.lsp.buffer_mappings.normal_mode["gr"] = { require("telescope.builtin").lsp_references, "Goto references" }
 end
 
 return M

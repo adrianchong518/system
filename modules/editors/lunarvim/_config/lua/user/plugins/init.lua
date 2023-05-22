@@ -17,26 +17,22 @@ M.setup = function()
       config = function()
         require("user.plugins.incline").setup()
       end,
-      enabled = config.winbar_provider == "filename",
     },
     {
       "j-hui/fidget.nvim",
       config = function()
         require("user.plugins.fidget").setup()
       end,
-      enabled = config.enabled_plugins.fidget,
     },
     {
       "nvim-telescope/telescope-file-browser.nvim",
       dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-      enabled = config.enabled_plugins.telescope.file_browser,
     },
     {
       "folke/zen-mode.nvim",
       config = function()
         require("zen-mode").setup {}
       end,
-      enabled = config.enabled_plugins.zen_mode,
     },
     {
       "saecki/crates.nvim",
@@ -45,7 +41,6 @@ M.setup = function()
       config = function()
         require("user.plugins.crates").setup()
       end,
-      enabled = config.enabled_plugins.crates,
     },
     {
       "simrat39/rust-tools.nvim",
@@ -59,7 +54,6 @@ M.setup = function()
       config = function()
         require("user.plugins.zk").setup()
       end,
-      enabled = config.enabled_plugins.zk,
     },
     {
       "kylechui/nvim-surround",
@@ -70,13 +64,19 @@ M.setup = function()
           -- Configuration here, or leave empty to use defaults
         }
       end,
-      enabled = config.enabled_plugins.surround,
     },
     {
       "catppuccin/nvim",
       name = "catppuccin",
       config = function()
         lvim.colorscheme = "catppuccin"
+      end,
+    },
+    {
+      "hood/popui.nvim",
+      config = function()
+        vim.ui.select = require "popui.ui-overrider"
+        vim.ui.input = require "popui.input-overrider"
       end,
     },
   }
@@ -87,6 +87,7 @@ M.setup = function()
   require("user.plugins.telescope").setup()
   require("user.plugins.treesitter").setup()
   require("user.plugins.nvimtree").setup()
+  require("user.plugins.indent_blankline").setup()
 end
 
 return M
