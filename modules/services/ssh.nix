@@ -29,6 +29,7 @@ in
         extraOptions = {
           AddKeysToAgent = "yes";
           UseKeychain = "yes";
+          IgnoreUnknown = "UseKeychain";
         };
       };
     };
