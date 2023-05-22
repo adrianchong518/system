@@ -7,8 +7,6 @@ vim.opt.wrap = true
 lvim.log.level = "info"
 lvim.format_on_save.enabled = true
 
-lvim.colorscheme = "lunar"
-
 lvim.builtin.alpha.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.bufferline.active = false

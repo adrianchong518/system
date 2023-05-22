@@ -5,6 +5,11 @@ local config = require("user").config
 M.setup = function()
   lvim.leader = "space"
 
+  lvim.keys.normal_mode["<C-h>"] = "<cmd> TmuxNavigateLeft<CR>"
+  lvim.keys.normal_mode["<C-l>"] = "<cmd> TmuxNavigateRight<CR>"
+  lvim.keys.normal_mode["<C-j>"] = "<cmd> TmuxNavigateDown<CR>"
+  lvim.keys.normal_mode["<C-k>"] = "<cmd> TmuxNavigateUp<CR>"
+
   lvim.builtin.which_key.mappings["/"] = nil
   lvim.builtin.which_key.mappings.w = nil
   lvim.builtin.which_key.mappings.q = nil

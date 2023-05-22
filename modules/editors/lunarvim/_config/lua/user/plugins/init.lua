@@ -9,6 +9,10 @@ M.setup = function()
     --   cmd = "TroubleToggle",
     -- },
     {
+      "christoomey/vim-tmux-navigator",
+      lazy = false,
+    },
+    {
       "b0o/incline.nvim",
       config = function()
         require("user.plugins.incline").setup()
@@ -67,6 +71,13 @@ M.setup = function()
         }
       end,
       enabled = config.enabled_plugins.surround,
+    },
+    {
+      "catppuccin/nvim",
+      name = "catppuccin",
+      config = function()
+        lvim.colorscheme = "catppuccin"
+      end,
     },
   }
 

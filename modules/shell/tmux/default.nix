@@ -23,7 +23,7 @@ in
       escapeTime = 0;
 
       extraConfig = ''
-        set -g terminal-overrides ',*256col*:Tc'
+        set -g terminal-overrides ',xterm*:Tc'
         set -g mouse              on
         set -g renumber-windows   on
 
@@ -31,18 +31,15 @@ in
         set -g status-left-length 200
         set -g status-position    top
 
-        set -g status-left  '#[fg=blue,bold]#S#[fg=white,nobold]#(${pkgs.gitmux}/bin/gitmux -timeout 200ms -cfg ${./gitmux.yml} "#{pane_current_path}") '
-        set -g status-right ' '
-
-        set -g pane-active-border-style     'fg=magenta,bg=default'
-        set -g pane-border-style            'fg=brightblack,bg=default'
-        set -g status-style                 'bg=default'
-        set -g window-status-current-format '#[fg=magenta]#W'
-        set -g window-status-format         '#[fg=gray]#W'
-
         bind '%' split-window -c '#{pane_current_path}' -h
         bind '"' split-window -c '#{pane_current_path}'
         bind c   new-window   -c '#{pane_current_path}'
+
+        bind C-l send-keys C-l
+
+        bind-key -T copy-mode-vi v send-keys -X begin-selection
+        bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+        bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
       '';
 
       plugins = with pkgs.tmuxPlugins; [
@@ -81,6 +78,14 @@ in
             TMUX_FZF_PREVIEW=0
 
             bind a run-shell -b "${tmux-fzf}/share/tmux-plugins/tmux-fzf/scripts/session.sh attach"
+          '';
+        }
+        {
+          plugin = vim-tmux-navigator;
+        }
+        {
+          plugin = catppuccin;
+          extraConfig = ''
           '';
         }
       ];
