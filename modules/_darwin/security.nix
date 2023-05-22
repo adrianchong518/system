@@ -11,19 +11,19 @@ let
       optionText = "# nix system: modules.darwin.security.enableSudoTouchIdAuth";
       sed = "${pkgs.gnused}/bin/sed";
     in
-    if isEnabled then ''
-      # Enable sudo Touch ID authentication, if not already enabled
-      if ! grep 'pam_tid.so' ${file} > /dev/null; then
-        ${sed} -i '2i\
-      auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ${optionText}\
-      auth       sufficient     pam_tid.so ${optionText}
-        ' ${file}
-      fi
-    '' else ''
-      # Disable sudo Touch ID authentication, if added by nix-darwin
+    ''
+      # remove existing configs first
       if grep '${optionText}' ${file} > /dev/null; then
         ${sed} -i '/${optionText}/d' ${file}
       fi
+
+      ${if isEnabled then ''
+        # Enable sudo Touch ID authentication, if not already enabled
+        ${sed} -i '2i\
+        auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ${optionText}\
+        auth       sufficient     pam_tid.so ${optionText}
+        ' ${file}
+      '' else ""}
     '';
 in
 {
