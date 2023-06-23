@@ -20,6 +20,8 @@ M.setup = function()
     },
     {
       "j-hui/fidget.nvim",
+      commit = "0ba1e16",
+      pin = true,
       config = function()
         require("user.plugins.fidget").setup()
       end,
