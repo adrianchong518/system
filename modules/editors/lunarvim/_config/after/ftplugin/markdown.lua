@@ -15,3 +15,9 @@ if require("zk.util").notebook_root(vim.fn.expand "%:p") ~= nil then
     },
   }, { buffer = 0, mode = "v", prefix = "<leader>n" })
 end
+
+vim.cmd [[
+  setl colorcolumn=101
+  setl tw=100
+  setl fo-=l
+]]

@@ -4,6 +4,10 @@ vim.opt.relativenumber = true
 vim.opt.showtabline = 1
 vim.opt.wrap = true
 
+vim.cmd [[
+  set fo+=n/
+]]
+
 lvim.log.level = "info"
 lvim.format_on_save.enabled = true
 
