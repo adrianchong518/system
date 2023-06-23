@@ -16,7 +16,7 @@ in
 
   config = {
     hm.home = {
-      stateVersion = "22.11";
+      stateVersion = "23.05";
       packages = mkAliasDefinitions options.packages;
       sessionVariables = mkAliasDefinitions options.env;
     };

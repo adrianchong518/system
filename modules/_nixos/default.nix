@@ -9,7 +9,7 @@ with lib.my;
       inputs.home-manager.nixosModules.home-manager
     ];
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 
   user.extraGroups = [ "wheel" ];
 }

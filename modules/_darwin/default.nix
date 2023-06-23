@@ -44,6 +44,9 @@ in
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
+  # FIXME: https://github.com/LnL7/nix-darwin/issues/701
+  documentation.enable = false;
+
   system.stateVersion = 4;
 }
 
