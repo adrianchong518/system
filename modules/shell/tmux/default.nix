@@ -17,7 +17,7 @@ in
       shortcut = "Space";
       terminal = "screen-256color";
       keyMode = "vi";
-      historyLimit = 1000000;
+      historyLimit = 10000;
       clock24 = true;
       customPaneNavigationAndResize = true;
       escapeTime = 0;
