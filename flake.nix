@@ -70,7 +70,7 @@
               nixfmt
               pyEnv
               nil
-              sumneko-lua-language-server
+              lua-language-server
               treefmt
               stylua
               nixpkgs-fmt
