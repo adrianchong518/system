@@ -16,7 +16,7 @@ local plugins = {
   },
   {
     "williamboman/mason.nvim",
-    enabled = false,
+    opts = { ensure_installed = "" },
   },
   {
     "christoomey/vim-tmux-navigator",
@@ -39,10 +39,14 @@ local plugins = {
   },
   {
     "simrat39/rust-tools.nvim",
-    config = function()
-      require("user.plugins.rust_tools").setup()
+    ft = "rust",
+    dependencies = "neovim/nvim-lspconfig",
+    opts = function()
+      return require "custom.configs.rust-tools"
     end,
-    ft = { "rust", "rs" },
+    config = function(_, opts)
+      require("rust-tools").setup(opts)
+    end,
   },
   {
     "mickael-menu/zk-nvim",

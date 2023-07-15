@@ -11,11 +11,11 @@ M.ui = {
   nvdash = {
     load_on_startup = true,
     buttons = {
-      { "  Find File",     "Spc f f", "Telescope find_files" },
+      { "  Find File", "Spc f f", "Telescope find_files" },
       { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
-      { "󰈭  Find Word",    "Spc f w", "Telescope live_grep" },
-      { "  Bookmarks",     "Spc f m", "Telescope marks" },
-      { "  Mappings",      "Spc h c", "NvCheatsheet" },
+      { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
+      { "  Bookmarks", "Spc f m", "Telescope marks" },
+      { "  Mappings", "Spc h c", "NvCheatsheet" },
     },
   },
 }

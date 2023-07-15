@@ -1,7 +1,17 @@
-local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
-require("rust-tools").setup {
+local function on_attach(client, bufnr)
+  require("plugins.configs.lspconfig").on_attach(client, bufnr)
+  client.server_capabilities.documentFormattingProvider = true
+  client.server_capabilities.documentRangeFormattingProvider = true
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    callback = function()
+      vim.lsp.buf.format()
+    end,
+  })
+end
+
+local opts = {
   tools = {
     runnables = {
       use_telescope = true,
@@ -44,3 +54,5 @@ require("rust-tools").setup {
     },
   },
 }
+
+return opts
