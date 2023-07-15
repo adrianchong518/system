@@ -67,9 +67,7 @@
 
     editors = {
       vscode.enable = true;
-
       lunarvim.enable = true;
-
       default = "lvim";
     };
 
