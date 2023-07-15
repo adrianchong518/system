@@ -14,7 +14,7 @@ let
 in
 {
   options.modules.editors.lunarvim = with types; {
-    enable = mkBoolOpt true;
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
@@ -50,15 +50,5 @@ in
         '';
       };
     };
-
-    hm.home.activation.syncLunarVimLazy = hm.dag.entryAfter [ "writeBoundary" ] ''
-      # Sync packer plugins in LunarVim
-      if ! type "${bin}" > /dev/null; then
-        echo >&2 "warning: lvim not installed"
-      else
-        "${bin}" --headless \
-          --headless "+Lazy! sync" +qa
-      fi
-    '';
   };
 }
