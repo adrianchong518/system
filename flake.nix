@@ -23,10 +23,8 @@
     vscode-server.url = "github:msteen/nixos-vscode-server";
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
 
-    lunarvim = {
-      url = "github:LunarVim/LunarVim";
-      flake = false;
-    };
+    lunarvim = { url = "github:LunarVim/LunarVim"; flake = false; };
+    nvchad = { url = "github:NvChad/NvChad"; flake = false; };
 
     # vimPlugins
     centerpad-nvim = { url = "github:smithbm2316/centerpad.nvim"; flake = false; };

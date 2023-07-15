@@ -239,6 +239,22 @@
         "type": "indirect"
       }
     },
+    "nvchad": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1688859573,
+        "narHash": "sha256-x8CxYbWDQiT4jYe8ypy0R25Zzn5fsM13iDLNEM7Q0C8=",
+        "owner": "NvChad",
+        "repo": "NvChad",
+        "rev": "720d71b546b8300bf3951c839f52db6cb83c3dc5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NvChad",
+        "repo": "NvChad",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "centerpad-nvim": "centerpad-nvim",
@@ -251,6 +267,7 @@
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-firefox-darwin": "nixpkgs-firefox-darwin",
+        "nvchad": "nvchad",
         "stable": "stable",
         "vscode-server": "vscode-server"
       }

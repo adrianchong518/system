@@ -67,8 +67,12 @@
 
     editors = {
       vscode.enable = true;
-      lunarvim.enable = true;
-      default = "lvim";
+      lunarvim.enable = false;
+      neovim = {
+        enable = true;
+        config = "nvchad";
+      };
+      default = "nvim";
     };
 
     services = {
