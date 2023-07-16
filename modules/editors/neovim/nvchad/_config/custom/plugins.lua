@@ -22,7 +22,7 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       auto_install = true,
-      ensure_installed = { "markdown", "markdown-inline", "lua" },
+      ensure_installed = { "markdown", "markdown_inline", "lua", "rust" },
     },
   },
   {
