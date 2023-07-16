@@ -6,8 +6,8 @@ require("zk").setup {
     config = {
       cmd = { "zk", "lsp" },
       name = "zk",
-      on_attach = require("lvim.lsp").common_on_attach,
-      on_init = require("lvim.lsp").common_on_init,
+      on_attach = require("custom.configs.lspconfig").on_attach_builder { auto_format = true },
+      capabilities = require("custom.configs.lspconfig").capabilities,
     },
 
     -- automatically attach buffers in a zk notebook that match the given filetypes

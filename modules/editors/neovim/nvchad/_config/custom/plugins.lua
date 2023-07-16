@@ -11,12 +11,19 @@ local plugins = {
 
     config = function()
       require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
+      require("custom.configs.lspconfig").setup()
     end,
   },
   {
     "williamboman/mason.nvim",
     opts = { ensure_installed = "" },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      auto_install = true,
+      ensure_installed = { "markdown", "markdown-inline", "lua" },
+    },
   },
   {
     "christoomey/vim-tmux-navigator",
@@ -25,8 +32,9 @@ local plugins = {
   {
     "b0o/incline.nvim",
     lazy = false,
-    config = function()
-      require "custom.configs.incline"
+    opts = require "custom.configs.incline",
+    config = function(_, opts)
+      require("incline").setup(opts)
     end,
   },
   {
@@ -41,15 +49,15 @@ local plugins = {
     "simrat39/rust-tools.nvim",
     ft = "rust",
     dependencies = "neovim/nvim-lspconfig",
-    opts = function()
-      return require "custom.configs.rust-tools"
-    end,
+    opts = require "custom.configs.rust-tools",
     config = function(_, opts)
       require("rust-tools").setup(opts)
     end,
   },
   {
     "mickael-menu/zk-nvim",
+    ft = "markdown",
+    dependencies = "neovim/nvim-lspconfig",
     config = function()
       require "custom.configs.zk"
     end,

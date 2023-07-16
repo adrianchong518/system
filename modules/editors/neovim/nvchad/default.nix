@@ -9,8 +9,13 @@ mkIf (config.modules.editors.neovim.config == "nvchad") {
       recursive = true;
     };
 
+    "${config.files.configHome}/nvim/after" = {
+      source = ./_config/after;
+      recursive = true;
+    };
+
     "${config.files.configHome}/nvim/lua/custom" = {
-      source = ./_config;
+      source = ./_config/custom;
       recursive = true;
     };
   };

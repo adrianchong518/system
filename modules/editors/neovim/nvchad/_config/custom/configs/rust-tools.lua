@@ -1,16 +1,3 @@
-local capabilities = require("plugins.configs.lspconfig").capabilities
-
-local function on_attach(client, bufnr)
-  require("plugins.configs.lspconfig").on_attach(client, bufnr)
-  client.server_capabilities.documentFormattingProvider = true
-  client.server_capabilities.documentRangeFormattingProvider = true
-  vim.api.nvim_create_autocmd("BufWritePost", {
-    callback = function()
-      vim.lsp.buf.format()
-    end,
-  })
-end
-
 local opts = {
   tools = {
     runnables = {
@@ -25,8 +12,8 @@ local opts = {
   },
 
   server = {
-    on_attach = on_attach,
-    capabilities = capabilities,
+    on_attach = require("custom.configs.lspconfig").on_attach_builder { auto_format = true },
+    capabilities = require("custom.configs.lspconfig").capabilities,
 
     settings = {
       ["rust-analyzer"] = {

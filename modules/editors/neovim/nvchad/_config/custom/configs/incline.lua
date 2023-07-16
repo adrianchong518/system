@@ -4,13 +4,15 @@ local function render(props)
   local modified = vim.api.nvim_buf_get_option(props.buf, "modified") and "bold,italic" or "bold"
 
   local buffer = {
-    { ft_icon,                         guifg = ft_color },
+    { ft_icon, guifg = ft_color },
     { " " },
     { vim.fn.pathshorten(filepath, 3), gui = modified },
   }
   return buffer
 end
 
-require("incline").setup {
+local opts = {
   render = render,
 }
+
+return opts
