@@ -22,8 +22,16 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       auto_install = true,
-      ensure_installed = { "markdown", "markdown_inline", "lua", "rust" },
+      ensure_installed = { "markdown", "markdown_inline", "regex" },
     },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    config = function()
+      require("treesitter-context").setup()
+    end,
   },
   {
     "christoomey/vim-tmux-navigator",

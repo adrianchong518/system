@@ -46,7 +46,22 @@ M.help = {
     ["<leader>ht"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
     ["<leader>hm"] = { "<cmd> Telescope man_pages <CR>", "Man pages" },
     ["<leader>hk"] = { "<cmd> Telescope keymaps", "Keymap" },
-  }
+  },
+}
+
+M["treesitter-context"] = {
+  n = {
+    ["<leader>cc"] = {
+      function()
+        local status_ok, tc = pcall(require, "treesitter-context")
+        if not status_ok then
+          return
+        end
+        tc.go_to_context()
+      end,
+      "Jump to context",
+    },
+  },
 }
 
 M.nvterm = {
@@ -64,7 +79,6 @@ M.nvterm = {
       end,
       "New vertical term",
     },
-
   },
 }
 
@@ -122,7 +136,7 @@ M.telescope = {
     ["<leader>tp"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
     ["<leader>fm"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
     ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
-  }
+  },
 }
 
 M.gitsigns = {
@@ -155,12 +169,14 @@ M.zk = {
     ["<leader>nn"] = { "<cmd>ZkNew { title = vim.fn.input('Title: ') }<cr>", "New Note" },
     ["<leader>no"] = { "<cmd>ZkNotes { sort = { 'modified' } }<cr>", "Open Note" },
     ["<leader>nt"] = { "<cmd>ZkTags<cr>", "Open Note with Tag" },
-    ["<leader>nf"] = { "<cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<cr>", "Search Notes" },
+    ["<leader>nf"] = {
+      "<cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<cr>",
+      "Search Notes",
+    },
   },
   v = {
     ["<leader>nf"] = { ":'<,'>ZkMatch<cr>", "Search selection in Notes" },
   },
 }
-
 
 return M
