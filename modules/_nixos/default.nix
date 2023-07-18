@@ -46,7 +46,4 @@ with lib.my;
 
   # Gnome keyring
   services.gnome.gnome-keyring.enable = true;
-
-  # vscode-server
-  services.vscode-server.enable = true;
 }
