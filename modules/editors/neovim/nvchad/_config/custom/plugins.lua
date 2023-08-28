@@ -34,10 +34,6 @@ local plugins = {
     end,
   },
   {
-    "christoomey/vim-tmux-navigator",
-    lazy = false,
-  },
-  {
     "b0o/incline.nvim",
     lazy = false,
     opts = require "custom.configs.incline",
@@ -76,6 +72,13 @@ local plugins = {
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup {}
+    end,
+  },
+  {
+    "numToStr/Navigator.nvim",
+    lazy = false,
+    config = function()
+      require("Navigator").setup()
     end,
   },
 }

@@ -32,7 +32,7 @@
     desktop = {
       enable = true;
       browsers.firefox.enable = true;
-      term.alacritty.enable = true;
+      term.wezterm.enable = true;
       office.libreoffice.enable = true;
 
       communication = {

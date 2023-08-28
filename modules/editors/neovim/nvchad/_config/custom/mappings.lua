@@ -32,10 +32,10 @@ M.disabled = {
 
 M.navigation = {
   n = {
-    ["<C-h>"] = { "<cmd> TmuxNavigateLeft<CR>", "Navigate left" },
-    ["<C-l>"] = { "<cmd> TmuxNavigateRight<CR>", "Navigate right" },
-    ["<C-j>"] = { "<cmd> TmuxNavigateDown<CR>", "Navigate down" },
-    ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "Navigate up" },
+    ["<C-Space>h"] = { "<cmd>NavigatorLeft<CR>", "Navigate left" },
+    ["<C-Space>l"] = { "<cmd>NavigatorRight<CR>", "Navigate right" },
+    ["<C-Space>j"] = { "<cmd>NavigatorDown<CR>", "Navigate down" },
+    ["<C-Space>k"] = { "<cmd>NavigatorUp<CR>", "Navigate up" },
   },
 }
 

@@ -15,7 +15,16 @@ in
 
     packages = with pkgs; [
       jetbrains-mono
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      iosevka-bin
+
+      (nerdfonts.override {
+        fonts = [
+          "JetBrainsMono"
+          "Iosevka"
+          "IosevkaTerm"
+          "NerdFontsSymbolsOnly"
+        ];
+      })
 
       source-han-serif
       source-han-sans
