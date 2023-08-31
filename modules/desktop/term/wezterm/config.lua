@@ -74,7 +74,7 @@ end)
 config.leader = {
   key = "Space",
   mods = "CTRL",
-  timeout_milliseconds = 500,
+  timeout_milliseconds = 1000,
 }
 
 config.disable_default_key_bindings = true
