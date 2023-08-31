@@ -5,6 +5,7 @@ local lint = null_ls.builtins.diagnostics
 
 local sources = {
   formatting.stylua,
+  formatting.black,
 }
 
 null_ls.setup {

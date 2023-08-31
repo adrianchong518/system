@@ -24,24 +24,37 @@ M.setup = function()
   local servers = {
     { name = "ccls", auto_format = true },
     { name = "zls", auto_format = true },
+    {
+      name = "pylsp",
+      auto_format = true,
+      settings = {
+        ["pylsp"] = {
+          configurationSources = { "flake8" },
+          plugins = {
+            autopep8 = { enabled = false },
+            flake8 = { enabled = true },
+          },
+        },
+      },
+    },
+    {
+      name = "nil_ls",
+      auto_format = true,
+      settings = {
+        ["nil"] = {
+          formatting = { command = { "nixpkgs-fmt" } },
+        },
+      },
+    },
   }
 
   for _, lsp in ipairs(servers) do
     lspconfig[lsp.name].setup {
       on_attach = M.on_attach_builder(lsp),
       capabilities = M.capabilities,
+      settings = lsp.settings,
     }
   end
-
-  lspconfig["nil_ls"].setup {
-    on_attach = M.on_attach_builder { auto_format = true },
-    capabilities = M.capabilities,
-    settings = {
-      ["nil"] = {
-        formatting = { command = { "nixpkgs-fmt" } },
-      },
-    },
-  }
 end
 
 return M
