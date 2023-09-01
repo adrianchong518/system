@@ -45,10 +45,7 @@ local function conditionalActivatePane(window, pane, pane_direction, vim_directi
   if isViProcess(pane) then
     window:perform_action(
       -- This should match the keybinds you set in Neovim.
-      act.Multiple {
-        act.SendKey { key = "Space", mods = "CTRL" },
-        act.SendKey { key = vim_direction, mods = "NONE" },
-      },
+      act.SendKey { key = vim_direction, mods = "CTRL" },
       pane
     )
   else
@@ -117,10 +114,10 @@ config.keys = {
   { key = "UpArrow", mods = "SHIFT|CTRL", action = act.ActivatePaneDirection "Up" },
   { key = "DownArrow", mods = "SHIFT|CTRL", action = act.ActivatePaneDirection "Down" },
 
-  { key = "h", mods = "LEADER", action = act.EmitEvent "ActivatePaneDirection-left" },
-  { key = "j", mods = "LEADER", action = act.EmitEvent "ActivatePaneDirection-down" },
-  { key = "k", mods = "LEADER", action = act.EmitEvent "ActivatePaneDirection-up" },
-  { key = "l", mods = "LEADER", action = act.EmitEvent "ActivatePaneDirection-right" },
+  { key = "h", mods = "CTRL", action = act.EmitEvent "ActivatePaneDirection-left" },
+  { key = "j", mods = "CTRL", action = act.EmitEvent "ActivatePaneDirection-down" },
+  { key = "k", mods = "CTRL", action = act.EmitEvent "ActivatePaneDirection-up" },
+  { key = "l", mods = "CTRL", action = act.EmitEvent "ActivatePaneDirection-right" },
 
   { key = "x", mods = "LEADER", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
   { key = "v", mods = "LEADER", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },

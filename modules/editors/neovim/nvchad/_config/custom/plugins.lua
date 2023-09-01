@@ -1,4 +1,5 @@
 local plugins = {
+  { "NvChad/nvterm", enabled = false },
   {
     "neovim/nvim-lspconfig",
 

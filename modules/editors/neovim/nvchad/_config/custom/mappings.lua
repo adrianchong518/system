@@ -32,10 +32,10 @@ M.disabled = {
 
 M.navigation = {
   n = {
-    ["<C-Space>h"] = { "<cmd>NavigatorLeft<CR>", "Navigate left" },
-    ["<C-Space>l"] = { "<cmd>NavigatorRight<CR>", "Navigate right" },
-    ["<C-Space>j"] = { "<cmd>NavigatorDown<CR>", "Navigate down" },
-    ["<C-Space>k"] = { "<cmd>NavigatorUp<CR>", "Navigate up" },
+    ["<C-h>"] = { "<cmd>NavigatorLeft<CR>", "Navigate left" },
+    ["<C-l>"] = { "<cmd>NavigatorRight<CR>", "Navigate right" },
+    ["<C-j>"] = { "<cmd>NavigatorDown<CR>", "Navigate down" },
+    ["<C-k>"] = { "<cmd>NavigatorUp<CR>", "Navigate up" },
   },
 }
 
@@ -45,7 +45,7 @@ M.help = {
     ["<leader>hc"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
     ["<leader>ht"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
     ["<leader>hm"] = { "<cmd> Telescope man_pages <CR>", "Man pages" },
-    ["<leader>hk"] = { "<cmd> Telescope keymaps", "Keymap" },
+    ["<leader>hk"] = { "<cmd> Telescope keymaps <CR>", "Keymap" },
   },
 }
 
@@ -60,24 +60,6 @@ M["treesitter-context"] = {
         tc.go_to_context()
       end,
       "Jump to context",
-    },
-  },
-}
-
-M.nvterm = {
-  n = {
-    ["<leader>th"] = {
-      function()
-        require("nvterm.terminal").new "horizontal"
-      end,
-      "New horizontal term",
-    },
-
-    ["<leader>tv"] = {
-      function()
-        require("nvterm.terminal").new "vertical"
-      end,
-      "New vertical term",
     },
   },
 }
