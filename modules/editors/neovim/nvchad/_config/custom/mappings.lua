@@ -121,6 +121,12 @@ M.telescope = {
   },
 }
 
+M.neogit = {
+  n = {
+    ["<leader>gg"] = { "<cmd>Neogit<cr>", "Open neogit" },
+  },
+}
+
 M.gitsigns = {
   n = {
     ["<leader>gr"] = {

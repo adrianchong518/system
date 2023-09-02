@@ -76,6 +76,15 @@ local plugins = {
     end,
   },
   {
+    "NeogitOrg/neogit",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+    opts = require "custom.configs.neogit",
+    cmd = "Neogit",
+    config = function(_, opts)
+      require("neogit").setup(opts)
+    end,
+  },
+  {
     "numToStr/Navigator.nvim",
     lazy = false,
     config = function()
