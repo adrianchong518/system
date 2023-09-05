@@ -18,6 +18,7 @@ M.ui = {
       { "  Mappings", "Spc h c", "NvCheatsheet" },
     },
   },
+  hl_add = require "custom.ui.hl_add",
 }
 
 return M
