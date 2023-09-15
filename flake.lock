@@ -251,6 +251,7 @@
       },
       "original": {
         "owner": "NvChad",
+        "ref": "v2.0",
         "repo": "NvChad",
         "type": "github"
       }
