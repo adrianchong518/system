@@ -3,20 +3,20 @@
 with lib;
 with lib.my;
 let
-  cfg = config.modules.shell.utils.exa;
+  cfg = config.modules.shell.utils.eza;
 in
 {
-  options.modules.shell.utils.exa = with types; {
+  options.modules.shell.utils.eza = with types; {
     enable = mkBoolOpt config.modules.shell.utils.enable;
     lsAlias = mkBoolOpt true;
   };
 
   config = mkIf cfg.enable {
-    hm.programs.exa.enable = true;
+    hm.programs.eza.enable = true;
 
     modules.shell.aliases = mkIf cfg.lsAlias (
       let
-        lsBase = "${pkgs.exa}/bin/exa --group-directories-first --color=always --icons --git";
+        lsBase = "${pkgs.eza}/bin/eza --group-directories-first --color=always --icons --git";
       in
       rec {
         l = "${lsBase} -l";
