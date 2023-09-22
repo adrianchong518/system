@@ -43,6 +43,7 @@
       apps = {
         gimp.enable = true;
         obsidian.enable = true;
+        zotero.enable = true;
       };
     };
 
