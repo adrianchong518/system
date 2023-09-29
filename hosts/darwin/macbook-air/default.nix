@@ -56,6 +56,8 @@
       starship.enable = true;
       utils.enable = true;
 
+      pandoc.enable = true;
+
       git = {
         lazygit.enable = true;
 
