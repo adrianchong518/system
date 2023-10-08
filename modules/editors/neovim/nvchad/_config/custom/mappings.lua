@@ -66,12 +66,9 @@ M["treesitter-context"] = {
 
 M.lspconfig = {
   n = {
-    ["gt"] = {
-      function()
-        vim.lsp.buf.type_definition()
-      end,
-      "LSP definition type",
-    },
+    ["gt"] = { "<cmd> Telescope lsp_type_definitions <cr>", "LSP type definition" },
+    ["gr"] = { "<cmd> Telescope lsp_references <cr>", "LSP references" },
+    ["gd"] = { "<cmd> Telescope lsp_definitions <cr>", "LSP definitions" },
 
     ["<leader>lr"] = {
       function()
@@ -94,12 +91,7 @@ M.lspconfig = {
       "Floating diagnostic",
     },
 
-    ["<leader>lq"] = {
-      function()
-        vim.diagnostic.setloclist()
-      end,
-      "Diagnostic setloclist",
-    },
+    ["<leader>ld"] = { "<cmd> Telescope diagnostics <cr>", "Diagnostic setloclist" },
 
     ["<leader>lh"] = {
       function()

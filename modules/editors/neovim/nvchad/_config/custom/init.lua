@@ -8,6 +8,8 @@ vim.o.scrolloff = 5
 
 vim.opt.modeline = false
 
+vim.g.editorconfig = true
+
 vim.cmd [[
   set fo=jn/croql
 ]]
