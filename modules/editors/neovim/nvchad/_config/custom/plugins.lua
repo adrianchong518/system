@@ -30,8 +30,9 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = "nvim-treesitter/nvim-treesitter",
     lazy = false,
-    config = function()
-      require("treesitter-context").setup()
+    opts = require "custom.configs.treesitter-context",
+    config = function(_, opts)
+      require("treesitter-context").setup(opts)
     end,
   },
   {
