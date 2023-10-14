@@ -91,6 +91,7 @@
 
     dev = {
       platformio.enable = true;
+      racket.enable = true;
     };
   };
 }

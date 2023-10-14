@@ -24,6 +24,7 @@ M.setup = function()
   local servers = {
     { name = "ccls", auto_format = true },
     { name = "zls", auto_format = true },
+    { name = "racket_langserver", auto_format = true },
     {
       name = "pylsp",
       auto_format = true,
