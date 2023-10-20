@@ -92,6 +92,15 @@ local plugins = {
       require("Navigator").setup()
     end,
   },
+  {
+    "gpanders/nvim-parinfer",
+    ft = require("custom.utils").lisp_ft,
+  },
+  {
+    "windwp/nvim-autopairs",
+    opts = require("custom.configs.nvim-autopairs").opts,
+    config = require("custom.configs.nvim-autopairs").config,
+  },
 }
 
 return plugins
