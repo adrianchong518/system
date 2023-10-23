@@ -53,6 +53,18 @@ in
       fenv source $XDG_CONFIG_HOME/shell/env_init.sh
       fenv source $XDG_CONFIG_HOME/shell/rc_init.sh
     '';
+
+    modules.shell.aliases =
+      let
+        notVim = "echo This is not vim!";
+      in
+      {
+        ":q" = notVim;
+        ":qa" = notVim;
+        ":w" = notVim;
+        ":wa" = notVim;
+        ":wq" = notVim;
+      };
   }
   // optionalAttrs (isManagedSystem hostType) {
     environment.shells = [ cfg.default ];
