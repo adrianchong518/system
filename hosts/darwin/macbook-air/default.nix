@@ -44,6 +44,7 @@
         gimp.enable = true;
         obsidian.enable = true;
         zotero.enable = true;
+        kicad.enable = true;
       };
     };
 
