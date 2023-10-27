@@ -159,4 +159,10 @@ M.zk = {
   },
 }
 
+M.neogen = {
+  n = {
+    ["<leader>lg"] = { "<cmd>Neogen<cr>", "Neogen" },
+  },
+}
+
 return M

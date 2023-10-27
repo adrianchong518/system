@@ -101,6 +101,13 @@ local plugins = {
     opts = require("custom.configs.nvim-autopairs").opts,
     config = require("custom.configs.nvim-autopairs").config,
   },
+  {
+    "danymat/neogen",
+    cmd = "Neogen",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    opts = require "custom.configs.neogen",
+    config = true,
+  },
 }
 
 return plugins
