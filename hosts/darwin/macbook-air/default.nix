@@ -17,6 +17,7 @@
         communication.whatsapp.enable = true;
 
         apps.utm.enable = true;
+        apps.microsoft-office.enable = true;
 
         utils = {
           enable = true;
