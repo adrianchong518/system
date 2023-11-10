@@ -9,7 +9,10 @@ end
 config.color_scheme = "Catppuccin Mocha"
 
 config.font = wezterm.font_with_fallback {
-  "Iosevka",
+  {
+    family = "Iosevka Nerd Font",
+    harfbuzz_features = { "calt=0", "dlig=1" },
+  },
   "Symbols Nerd Font",
 }
 config.font_size = 13
