@@ -165,4 +165,11 @@ M.neogen = {
   },
 }
 
+M.todo = {
+  n = {
+    ["<leader>ft"] = { "<cmd>TodoTrouble<cr>", "Open Todos in trouble" },
+    ["<leader>fT"] = { "<cmd>TodoTelescope<cr>", "Open Todos in telescope" },
+  },
+}
+
 return M

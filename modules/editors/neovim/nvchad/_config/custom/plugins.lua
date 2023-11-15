@@ -108,6 +108,18 @@ local plugins = {
     opts = require "custom.configs.neogen",
     config = true,
   },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    lazy = false,
+    opts = {},
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "folke/trouble.nvim", "nvim-telescope/telescope.nvim" },
+    lazy = false,
+    opts = {},
+  },
 }
 
 return plugins
