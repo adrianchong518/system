@@ -1,5 +1,6 @@
 local plugins = {
   { "NvChad/nvterm", enabled = false },
+  { "lukas-reineke/indent-blankline.nvim", opts = { show_current_context = false } },
   {
     "neovim/nvim-lspconfig",
 
