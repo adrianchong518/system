@@ -118,9 +118,14 @@ config.keys = {
   { key = "DownArrow", mods = "SHIFT|CTRL", action = act.ActivatePaneDirection "Down" },
 
   { key = "h", mods = "CTRL", action = act.EmitEvent "ActivatePaneDirection-left" },
-  { key = "j", mods = "CTRL", action = act.EmitEvent "ActivatePaneDirection-down" },
   { key = "k", mods = "CTRL", action = act.EmitEvent "ActivatePaneDirection-up" },
+  { key = "j", mods = "CTRL", action = act.EmitEvent "ActivatePaneDirection-down" },
   { key = "l", mods = "CTRL", action = act.EmitEvent "ActivatePaneDirection-right" },
+
+  { key = "h", mods = "LEADER", action = act.ActivatePaneDirection "Left" },
+  { key = "k", mods = "LEADER", action = act.ActivatePaneDirection "Up" },
+  { key = "j", mods = "LEADER", action = act.ActivatePaneDirection "Down" },
+  { key = "l", mods = "LEADER", action = act.ActivatePaneDirection "Right" },
 
   { key = "x", mods = "LEADER", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
   { key = "v", mods = "LEADER", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },

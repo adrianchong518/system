@@ -14,12 +14,10 @@ in
     hm.fonts.fontconfig.enable = true;
 
     packages = with pkgs; [
-      jetbrains-mono
       iosevka-bin
 
       (nerdfonts.override {
         fonts = [
-          "JetBrainsMono"
           "Iosevka"
           "IosevkaTerm"
           "NerdFontsSymbolsOnly"
