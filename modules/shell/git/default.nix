@@ -75,7 +75,7 @@ in
       gb = "git branch";
       gc = "git commit";
       gcam = "git commit -am";
-      gcl = "git clone";
+      gcl = "git clone --recursive";
       gclw = "git clone-worktree";
       gcm = "git commit -m";
       gco = "git checkout";
