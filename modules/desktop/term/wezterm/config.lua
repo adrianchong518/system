@@ -174,7 +174,7 @@ config.keys = {
   { key = "n", mods = "SUPER", action = act.SpawnWindow },
 
   { key = "q", mods = "SHIFT|CTRL", action = act.QuitApplication },
-  { key = "q", mods = "SUPER", action = act.QuitApplication },
+  { key = "q", mods = "SUPER", action = act.Nop },
 
   { key = "h", mods = "SHIFT|CTRL", action = act.HideApplication },
   { key = "h", mods = "SUPER", action = act.HideApplication },
