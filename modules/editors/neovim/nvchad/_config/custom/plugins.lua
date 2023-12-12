@@ -121,6 +121,10 @@ local plugins = {
     lazy = false,
     opts = {},
   },
+  {
+    "hrsh7th/nvim-cmp",
+    override_options = require("custom.configs.cmp"),
+  },
 }
 
 return plugins
