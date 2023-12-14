@@ -79,7 +79,7 @@ local plugins = {
   },
   {
     "NeogitOrg/neogit",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim", "nvim-telescope/telescope.nvim" },
     opts = require "custom.configs.neogit",
     cmd = "Neogit",
     config = function(_, opts)
@@ -123,7 +123,7 @@ local plugins = {
   },
   {
     "hrsh7th/nvim-cmp",
-    override_options = require("custom.configs.cmp"),
+    override_options = require "custom.configs.cmp",
   },
 }
 
