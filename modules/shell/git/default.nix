@@ -37,6 +37,13 @@ in
           credential.helper =
             if isDarwin then "osxkeychain"
             else "${ pkgs.git.override { withLibsecret = true; } }/bin/git-credential-libsecret";
+
+          fetch.parallel = 0;
+
+          submodule = {
+            fetchJobs = 0;
+            recurse = true;
+          };
         };
 
         aliases = {
@@ -75,7 +82,7 @@ in
       gb = "git branch";
       gc = "git commit";
       gcam = "git commit -am";
-      gcl = "git clone --recursive";
+      gcl = "git clone --recurse-submodules";
       gclw = "git clone-worktree";
       gcm = "git commit -m";
       gco = "git checkout";
