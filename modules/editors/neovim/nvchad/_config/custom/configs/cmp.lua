@@ -1,4 +1,4 @@
-local cmp = require"cmp"
+local cmp = require "cmp"
 
 local opts = {
   mapping = {
@@ -13,6 +13,8 @@ local opts = {
       s = cmp.mapping.confirm { select = true },
       c = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
     },
+    ["<Tab>"] = nil,
+    ["<S-Tab>"] = nil,
   },
 }
 

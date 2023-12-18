@@ -172,4 +172,24 @@ M.todo = {
   },
 }
 
+local luasnip_nav = {
+  ["<C-S-CR>"] = {
+    function()
+      require("luasnip").jump(-1)
+    end,
+    "Luasnip previous",
+  },
+  ["<C-CR>"] = {
+    function()
+      require("luasnip").jump(1)
+    end,
+    "Luasnip next",
+  },
+}
+
+M.luasnip = {
+  i = luasnip_nav,
+  s = luasnip_nav,
+}
+
 return M
