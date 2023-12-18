@@ -125,6 +125,14 @@ local plugins = {
     "hrsh7th/nvim-cmp",
     override_options = require "custom.configs.cmp",
   },
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = "kevinhwang91/promise-async",
+    config = function()
+      require "custom.configs.ufo"
+    end,
+    lazy = false,
+  },
 }
 
 return plugins

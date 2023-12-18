@@ -1,6 +1,13 @@
 local M = {}
 
-M.capabilities = require("plugins.configs.lspconfig").capabilities
+M.capabilities = (function()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
+  return capabilities
+end)()
 
 M.on_attach_builder = function(opts)
   return function(client, bufnr)
