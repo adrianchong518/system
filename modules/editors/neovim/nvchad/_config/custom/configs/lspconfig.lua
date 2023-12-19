@@ -29,7 +29,8 @@ end
 M.setup = function()
   local lspconfig = require "lspconfig"
   local servers = {
-    { name = "ccls", auto_format = true },
+    -- { name = "ccls", auto_format = true },
+    {name = "clangd", auto_format = true},
     { name = "zls", auto_format = true },
     { name = "racket_langserver", auto_format = true },
     {
