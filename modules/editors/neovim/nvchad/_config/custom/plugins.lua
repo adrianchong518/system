@@ -133,6 +133,16 @@ local plugins = {
     end,
     lazy = false,
   },
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      extensions_list = {"file_browser"}
+    }
+  },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
+  },
 }
 
 return plugins

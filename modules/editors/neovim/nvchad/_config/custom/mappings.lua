@@ -110,6 +110,7 @@ M.telescope = {
     ["<leader>tp"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
     ["<leader>fm"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
     ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
+    ["<leader>fe"] = {"<cmd> Telescope file_browser <CR>", "Telescope file browser"},
   },
 }
 
