@@ -10,7 +10,9 @@ vim.o.modeline = false
 
 vim.g.editorconfig = true
 
-
 vim.cmd [[
   set fo=jn/croql
+
+  set errorformat^=%-Gg%\\?make[%*\\d]:\ ***\ [%f:%l:%m
+  set errorformat^=%-Gg%\\?make:\ ***\ [%f:%l:%m
 ]]
