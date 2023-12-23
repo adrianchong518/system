@@ -136,12 +136,19 @@ local plugins = {
   {
     "nvim-telescope/telescope.nvim",
     opts = {
-      extensions_list = {"file_browser"}
-    }
+      extensions_list = { "file_browser" },
+    },
   },
   {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
+  },
+  {
+    "nvimdev/hlsearch.nvim",
+    event = "BufRead",
+    config = function()
+      require("hlsearch").setup()
+    end,
   },
 }
 
