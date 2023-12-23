@@ -1,7 +1,7 @@
 local M = {}
 
 M.capabilities = (function()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require("plugins.configs.lspconfig").capabilities
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
