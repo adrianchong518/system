@@ -1,6 +1,8 @@
 local cmp = require "cmp"
 
 local opts = {
+  preselect = cmp.PreselectMode.None,
+  completion = { completeopt = "menu,menuone,noselect" },
   mapping = {
     ["<CR>"] = cmp.mapping {
       i = function(fallback)
