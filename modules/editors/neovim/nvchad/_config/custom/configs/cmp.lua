@@ -15,8 +15,12 @@ local opts = {
       s = cmp.mapping.confirm { select = true },
       c = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
     },
-    ["<Tab>"] = nil,
-    ["<S-Tab>"] = nil,
+    ["<Tab>"] = function(fallback)
+      fallback()
+    end,
+    ["<S-Tab>"] = function(fallback)
+      fallback()
+    end,
   },
 }
 
