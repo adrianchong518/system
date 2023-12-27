@@ -97,21 +97,13 @@
     };
   };
 
-  hm.programs.git.includes =
-    let
-      ustUser = {
-        email = "ncachong@connect.ust.hk";
-        signingKey = "5D9B7991";
-      };
-    in
-    [
-      {
-        condition = "gitdir:~/dev/school/**/.git";
-        contents.user = ustUser;
+  hm.programs.git.includes = [
+          {
+            condition = "gitdir:~/dev/hkust/**/.git";
+            contents.user = {
+              email = "ncachong@connect.ust.hk";
+              signingKey = "5D9B7991";
+            };
+          }
+        ];
       }
-      {
-        condition = "gitdir:~/dev/ust-robotics/**/.git";
-        contents.user = ustUser;
-      }
-    ];
-}
