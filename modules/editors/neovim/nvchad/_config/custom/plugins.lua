@@ -136,7 +136,11 @@ local plugins = {
   {
     "nvim-telescope/telescope.nvim",
     opts = {
-      extensions_list = { "file_browser" },
+      extensions = {
+        file_browser = {
+          grouped = true,
+        },
+      },
     },
   },
   {
