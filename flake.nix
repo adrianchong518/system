@@ -3,7 +3,7 @@
 
   inputs = {
     devshell.url = "github:numtide/devshell";
-     flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.url = "github:numtide/flake-utils";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -23,11 +23,8 @@
     vscode-server.url = "github:msteen/nixos-vscode-server";
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
 
-    lunarvim = { url = "github:LunarVim/LunarVim"; flake = false; };
-    nvchad = { url = "github:NvChad/NvChad/v2.0"; flake = false; };
-
-    # vimPlugins
-    centerpad-nvim = { url = "github:smithbm2316/centerpad.nvim"; flake = false; };
+    nvim-config.url = "github:adrianchong518/nvim-config";
+    nvim-config.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, darwin, flake-utils, ... }:

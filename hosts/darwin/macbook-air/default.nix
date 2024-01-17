@@ -72,12 +72,7 @@
 
     editors = {
       vscode.enable = true;
-      lunarvim.enable = false;
-      neovim = {
-        enable = true;
-        config = "nvchad";
-      };
-      default = "nvim";
+      neovim.enable = true;      default = "nvim";
     };
 
     services = {
@@ -98,12 +93,12 @@
   };
 
   hm.programs.git.includes = [
-          {
-            condition = "gitdir:~/dev/hkust/**/.git";
-            contents.user = {
-              email = "ncachong@connect.ust.hk";
-              signingKey = "5D9B7991";
-            };
-          }
-        ];
-      }
+    {
+      condition = "gitdir:~/dev/hkust/**/.git";
+      contents.user = {
+        email = "ncachong@connect.ust.hk";
+        signingKey = "5D9B7991";
+      };
+    }
+  ];
+}

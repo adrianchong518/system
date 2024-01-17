@@ -22,7 +22,7 @@ in
 
       neofetch
       tldr
-      btop
+      # btop
     ];
   };
 }

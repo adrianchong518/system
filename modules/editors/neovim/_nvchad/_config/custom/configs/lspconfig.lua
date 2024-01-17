@@ -1,7 +1,7 @@
 local M = {}
 
 M.capabilities = (function()
-local capabilities = require("plugins.configs.lspconfig").capabilities
+  local capabilities = require("plugins.configs.lspconfig").capabilities
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
@@ -30,7 +30,7 @@ M.setup = function()
   local lspconfig = require "lspconfig"
   local servers = {
     -- { name = "ccls", auto_format = true },
-    {name = "clangd", auto_format = true},
+    { name = "clangd", auto_format = true },
     { name = "zls", auto_format = true },
     { name = "racket_langserver", auto_format = true },
     {
