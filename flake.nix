@@ -24,7 +24,6 @@
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
 
     nvim-config.url = "github:adrianchong518/nvim-config";
-    nvim-config.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, darwin, flake-utils, ... }:

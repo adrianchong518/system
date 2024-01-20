@@ -231,6 +231,22 @@
     },
     "nixpkgs_4": {
       "locked": {
+        "lastModified": 1704194953,
+        "narHash": "sha256-RtDKd8Mynhe5CFnVT8s0/0yqtWFMM9LmCzXv/YKxnq4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "bd645e8668ec6612439a9ee7e71f7eac4099d4f6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
         "lastModified": 1682134069,
         "narHash": "sha256-TnI/ZXSmRxQDt2sjRYK/8j8iha4B4zP2cnQCZZ3vp7k=",
         "owner": "NixOS",
@@ -246,16 +262,14 @@
     "nvim-config": {
       "inputs": {
         "flake-utils": "flake-utils_3",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1705518397,
-        "narHash": "sha256-Oo8kKhDkWkuCuFfj4j35CYhnRWAinq4iSL1gbdPAXvM=",
+        "lastModified": 1705746237,
+        "narHash": "sha256-tAh0BbU3ozwJAJVEViu/I2H8Fr6qLiUPqZsAJR/Bb98=",
         "owner": "adrianchong518",
         "repo": "nvim-config",
-        "rev": "2268eb3a3bba0930f8ebd6e1d538c723b7d83282",
+        "rev": "c79539e10d620cfa9ed5043a1748f8ab12b4702e",
         "type": "github"
       },
       "original": {
@@ -358,7 +372,7 @@
     "vscode-server": {
       "inputs": {
         "flake-utils": "flake-utils_4",
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "lastModified": 1684517665,
