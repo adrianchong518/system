@@ -77,6 +77,8 @@ config.leader = {
   timeout_milliseconds = math.maxinteger,
 }
 
+config.window_decorations = "RESIZE"
+
 config.disable_default_key_bindings = true
 config.keys = {
   { key = "Enter",      mods = "LEADER",       action = act.SendKey { key = "Space", mods = "CTRL" } },
