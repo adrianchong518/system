@@ -24,4 +24,63 @@ function M.make_client_capabilities()
   return capabilities
 end
 
+M.servers = {
+  { name = "clangd" },
+  { name = "zls" },
+  { name = "racket_langserver" },
+  {
+    name = "pylsp",
+    settings = {
+      ["pylsp"] = {
+        configurationSources = { "flake8" },
+        plugins = {
+          autopep8 = { enabled = false },
+          flake8 = { enabled = true },
+        },
+      },
+    },
+  },
+  {
+    name = "nil_ls",
+    override_autoformat = true,
+    settings = {
+      ["nil"] = {
+        formatting = { command = { "nixpkgs-fmt" } },
+      },
+    },
+  },
+  {
+    name = "lua_ls",
+  settings = {
+    Lua = {
+      runtime = {
+        version = "LuaJIT",
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global, etc.
+        globals = {
+          "vim",
+          "describe",
+          "it",
+          "assert",
+          "stub",
+        },
+        disable = {
+          "duplicate-set-field",
+        },
+      },
+      workspace = {
+        checkThirdParty = false,
+      },
+      telemetry = {
+        enable = false,
+      },
+      hint = { -- inlay hints (supported in Neovim >= 0.10)
+        enable = true,
+      },
+    },
+  },
+  }
+}
+
 return M

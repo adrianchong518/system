@@ -25,7 +25,7 @@ opt.number = true
 opt.relativenumber = true
 opt.cursorline = true
 opt.lazyredraw = true
-opt.showmatch = true -- Highlight matching parentheses, etc
+opt.showmatch = false
 opt.incsearch = true
 opt.hlsearch = true
 
@@ -46,7 +46,7 @@ opt.scrolloff = 5
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 opt.foldcolumn = "1"
-opt.foldlevel = 99 -- huge number for ufo.nvim
+opt.foldlevel = 99      -- huge number for ufo.nvim
 opt.foldlevelstart = 99 -- huge number for ufo.nvim
 opt.foldenable = true
 

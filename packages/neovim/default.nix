@@ -53,6 +53,7 @@ in mkNeovimConfig {
     # ^ UI
 
     # language support
+    nvim-lspconfig # more convenient lsp config | nvim-lspconfig
     neodev-nvim # adds support for Neovim's Lua API to lua-language-server | https://github.com/folke/neodev.nvim/
     rustaceanvim # rust-tools successor | https://github.com/mrcjkb/rustaceanvim/
     crates-nvim # check crate versions in Cargo.toml | https://github.com/saecki/crates.nvim/
