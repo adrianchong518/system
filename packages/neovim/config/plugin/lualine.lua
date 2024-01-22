@@ -22,14 +22,19 @@ local function extra_mode_status()
   return ""
 end
 
+local function cwd()
+  return "󰉋  " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
+end
+
 require("lualine").setup {
   globalstatus = true,
   sections = {
+    lualine_b = { "diff", "diagnostics" },
     lualine_c = {
       -- nvim-navic
       { navic.get_location, cond = navic.is_available },
     },
-    lualine_y = { "progress", "location" },
+    lualine_y = { "searchcount", "progress", "location" },
     lualine_z = {
       -- (see above)
       { extra_mode_status },
@@ -41,55 +46,24 @@ require("lualine").setup {
   options = {
     theme = "auto",
   },
-  -- Example top tabline configuration (this may clash with other plugins)
-  -- tabline = {
-  --   lualine_a = {
-  --     {
-  --       'tabs',
-  --       mode = 1,
-  --     },
-  --   },
-  --   lualine_b = {
-  --     {
-  --       'buffers',
-  --       show_filename_only = true,
-  --       show_bufnr = true,
-  --       mode = 4,
-  --       filetype_names = {
-  --         TelescopePrompt = 'Telescope',
-  --         dashboard = 'Dashboard',
-  --         fzf = 'FZF',
-  --       },
-  --       buffers_color = {
-  --         -- Same values as the general color option can be used here.
-  --         active = 'lualine_b_normal', -- Color for active buffer.
-  --         inactive = 'lualine_b_inactive', -- Color for inactive buffer.
-  --       },
-  --     },
-  --   },
-  --   lualine_c = {},
-  --   lualine_x = {},
-  --   lualine_y = {},
-  --   lualine_z = {},
-  -- },
+  tabline = {
+    lualine_a = {
+      { "tabs", mode = 1, show_modified_status = false },
+    },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = { "branch"},
+    lualine_z = { cwd },
+  },
   winbar = {
     lualine_z = {
-      {
-        "filename",
-        path = 1,
-        file_status = true,
-        newfile_status = true,
-      },
+      { "filename", path = 1, file_status = true, newfile_status = true },
     },
   },
   inactive_winbar = {
     lualine_z = {
-      {
-        "filename",
-        path = 1,
-        file_status = true,
-        newfile_status = true,
-      },
+      { "filename", path = 1, file_status = true, newfile_status = true },
     },
   },
   extensions = { "fugitive", "fzf", "toggleterm", "quickfix" },
