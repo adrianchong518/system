@@ -72,7 +72,8 @@
 
     editors = {
       vscode.enable = true;
-      neovim.enable = true;      default = "nvim";
+      neovim.enable = true;
+      default = "nvim";
     };
 
     services = {

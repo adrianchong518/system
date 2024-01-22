@@ -2,5 +2,6 @@
 
 # expose other channels via overlays
 (final: prev: {
-  stable = import inputs.stable { system = prev.system; };
+  stable = import inputs.stable { inherit (prev) system config; };
+  unstable = import inputs.nixpkgs-unstable { inherit (prev) system config; };
 })

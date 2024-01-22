@@ -34,7 +34,7 @@ rec {
     { path
     , system ? "x86_64-linux"
     , hostName ? (removeSuffix ".nix" (baseNameOf path))
-    , nixpkgs ? inputs.nixos-unstable
+    , nixpkgs ? inputs.nixpkgs
     }:
     nameValuePair hostName (inputs.nixpkgs.lib.nixosSystem {
       inherit system;

@@ -2,10 +2,8 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.shell.utils.direnv;
-in
-{
+let cfg = config.modules.shell.utils.direnv;
+in {
   options.modules.shell.utils.direnv = with types; {
     enable = mkBoolOpt config.modules.shell.utils.enable;
   };

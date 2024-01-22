@@ -2,10 +2,8 @@
 
 with lib;
 with lib.my;
-let
-  inherit (pkgs.stdenvNoCC) isDarwin;
-in
-{
+let inherit (pkgs.stdenvNoCC) isDarwin;
+in {
   options = with types; {
     hm = mkOpt attrs { };
     user = mkOpt attrs { };
@@ -32,21 +30,16 @@ in
         description = "Adrian Chong";
         home = "${homePrefix}/${name}";
       };
-  }
-  // optionalAttrs (isManagedSystem hostType) {
+  } // optionalAttrs (isManagedSystem hostType) {
     # set up primary user
     # hm -> home-manager.users.<primary user>
     home-manager.users.${config.user.name} = mkAliasDefinitions options.hm;
     # user -> users.users.<primary user>
     users.users.${config.user.name} = mkAliasDefinitions options.user;
-  }
-  // optionalAttrs (isHmHost hostType) (
-    {
-      home = {
-        username = config.user.name;
-        homeDirectory = config.user.home;
-      };
-    }
-    // config.hm
-  );
+  } // optionalAttrs (isHmHost hostType) ({
+    home = {
+      username = config.user.name;
+      homeDirectory = config.user.home;
+    };
+  } // config.hm);
 }

@@ -2,13 +2,9 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.shell.tmux;
-in
-{
-  options.modules.shell.tmux = with types; {
-    enable = mkBoolOpt false;
-  };
+let cfg = config.modules.shell.tmux;
+in {
+  options.modules.shell.tmux = with types; { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     hm.programs.tmux = {
@@ -80,20 +76,15 @@ in
             bind a run-shell -b "${tmux-fzf}/share/tmux-plugins/tmux-fzf/scripts/session.sh attach"
           '';
         }
-        {
-          plugin = vim-tmux-navigator;
-        }
+        { plugin = vim-tmux-navigator; }
         {
           plugin = catppuccin;
-          extraConfig = ''
-          '';
+          extraConfig = "";
         }
       ];
     };
 
-    packages = with pkgs; [
-      gitmux
-    ];
+    packages = with pkgs; [ gitmux ];
   };
 }
 

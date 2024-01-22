@@ -2,10 +2,8 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.darwin.desktop.de.hammerspoon;
-in
-{
+let cfg = config.modules.darwin.desktop.de.hammerspoon;
+in {
   options.modules.darwin.desktop.de.hammerspoon = with types; {
     enable = mkBoolOpt false;
   };
@@ -15,14 +13,15 @@ in
 
     packages = with pkgs; [ lua54Packages.fennel ];
 
-    hm.home.activation.reloadHammerspoon = hm.dag.entryAfter [ "writeBoundary" ] ''
-      # Reload hammerspoon config
-      if ! type "/usr/local/bin/hs" > /dev/null; then
-        echo >&2 "warning: hs cli not installed, config not reloaded"
-      else
-        /usr/local/bin/hs -c "hs.reload()"
-      fi
-    '';
+    hm.home.activation.reloadHammerspoon =
+      hm.dag.entryAfter [ "writeBoundary" ] ''
+        # Reload hammerspoon config
+        if ! type "/usr/local/bin/hs" > /dev/null; then
+          echo >&2 "warning: hs cli not installed, config not reloaded"
+        else
+          /usr/local/bin/hs -c "hs.reload()"
+        fi
+      '';
 
     files = {
       home.".hammerspoon/init.lua".text = ''
@@ -39,7 +38,9 @@ in
         fennel.path = fennel.path .. ";${./_config}/?.fnl"
         fennel.path = fennel.path .. ";${./_config}/?/init.fnl"
         fennel["macro-path"] = fennel["macro-path"] .. ";${./_config}/?.fnl"
-        fennel["macro-path"] = fennel["macro-path"] .. ";${./_config}/?/init.fnl"
+        fennel["macro-path"] = fennel["macro-path"] .. ";${
+          ./_config
+        }/?/init.fnl"
         debug.traceback = fennel.traceback
         table.insert(package.loaders or package.searchers, fennel.searcher)
 

@@ -2,10 +2,8 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.desktop.term.wezterm;
-in
-{
+let cfg = config.modules.desktop.term.wezterm;
+in {
   options.modules.desktop.term.wezterm = with types; {
     enable = mkBoolOpt false;
   };

@@ -3,8 +3,7 @@
 with lib;
 with lib.my;
 let cfg = config.modules.darwin.desktop.apps.playcover;
-in
-{
+in {
   options.modules.darwin.desktop.apps.playcover = with types; {
     enable = mkBoolOpt false;
   };

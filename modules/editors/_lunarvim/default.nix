@@ -13,9 +13,7 @@ let
   bin = "${config.files.binHome}/lvim";
 in
 {
-  options.modules.editors.lunarvim = with types; {
-    enable = mkBoolOpt false;
-  };
+  options.modules.editors.lunarvim = with types; { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     hm.programs.neovim = {
@@ -23,10 +21,7 @@ in
       withNodeJs = true;
       withPython3 = true;
 
-      extraPackages = with pkgs; [
-        fd
-        ripgrep
-      ];
+      extraPackages = with pkgs; [ fd ripgrep ];
     };
 
     files.home = {

@@ -2,10 +2,8 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.shell.utils.nix;
-in
-{
+let cfg = config.modules.shell.utils.nix;
+in {
   options.modules.shell.utils.nix = with types; {
     enable = mkBoolOpt config.modules.shell.utils.enable;
   };
@@ -18,11 +16,7 @@ in
       enableFishIntegration = true;
     };
 
-    packages = with pkgs; [
-      any-nix-shell
-      comma
-    ];
-
+    packages = with pkgs; [ any-nix-shell comma ];
 
     modules = {
       shell.fish.extraInit = ''

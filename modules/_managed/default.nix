@@ -1,8 +1,7 @@
 { inputs, pkgs, lib, ... }:
 
 with lib;
-with lib.my;
-{
+with lib.my; {
   imports = importModulesRec ./.;
 
   # let nix manage home-manager profiles and use global nixpkgs
@@ -17,6 +16,7 @@ with lib.my;
   environment.etc = {
     home-manager.source = "${inputs.home-manager}";
     nixpkgs.source = "${pkgs.path}";
-    stable.source = "${inputs.stable}";
+    stable.source = "${inputs.nixpkgs-stable}";
+    unstable.source = "${inputs.nixpkgs-unstable}";
   };
 }

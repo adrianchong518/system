@@ -35,8 +35,12 @@ in
           init.defaultBranch = "main";
 
           credential.helper =
-            if isDarwin then "osxkeychain"
-            else "${ pkgs.git.override { withLibsecret = true; } }/bin/git-credential-libsecret";
+            if isDarwin then
+              "osxkeychain"
+            else
+              "${
+              pkgs.git.override { withLibsecret = true; }
+            }/bin/git-credential-libsecret";
 
           fetch.parallel = 0;
 

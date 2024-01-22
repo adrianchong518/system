@@ -2,10 +2,8 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.darwin.preferences;
-in
-{
+let cfg = config.modules.darwin.preferences;
+in {
   options.modules.darwin.preferences = with types; {
     enableDefaults = mkBoolOpt true;
   };
@@ -59,9 +57,7 @@ in
       };
 
       # login
-      loginwindow = {
-        GuestEnabled = false;
-      };
+      loginwindow = { GuestEnabled = false; };
 
       # screencapture
       screencapture = {

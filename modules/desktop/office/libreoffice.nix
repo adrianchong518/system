@@ -13,8 +13,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    packages = with pkgs; [
-      (if isDarwin then libreoffice-bin else libreoffice-qt)
-    ];
+    packages = with pkgs;
+      [ (if isDarwin then libreoffice-bin else libreoffice-qt) ];
   };
 }

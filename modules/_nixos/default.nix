@@ -1,13 +1,9 @@
 { inputs, lib, ... }:
 
 with lib;
-with lib.my;
-{
-  imports =
-    importModulesRec ./.
-    ++ [
-      inputs.home-manager.nixosModules.home-manager
-    ];
+with lib.my; {
+  imports = importModulesRec ./.
+    ++ [ inputs.home-manager.nixosModules.home-manager ];
 
   system.stateVersion = "23.05";
 

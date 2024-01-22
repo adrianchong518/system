@@ -2,23 +2,15 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.managed.desktop.gaming.steam;
-in
-{
+let cfg = config.modules.managed.desktop.gaming.steam;
+in {
   options.modules.managed.desktop.gaming.steam = with types; {
     enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable
-    (
-      optionalAttrs (isDarwinHost hostType)
-        {
-          homebrew.casks = [ "steam" ];
-        }
-      // optionalAttrs (isNixosHost hostType)
-        {
-          programs.steam.enable = true;
-        }
-    );
+    (optionalAttrs (isDarwinHost hostType) { homebrew.casks = [ "steam" ]; }
+      // optionalAttrs (isNixosHost hostType) {
+      programs.steam.enable = true;
+    });
 }

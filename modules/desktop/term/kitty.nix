@@ -2,10 +2,8 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.desktop.term.kitty;
-in
-{
+let cfg = config.modules.desktop.term.kitty;
+in {
   options.modules.desktop.term.kitty = with types; {
     enable = mkBoolOpt false;
     enableFishIntegration = mkBoolOpt true;

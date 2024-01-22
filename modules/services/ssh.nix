@@ -19,13 +19,11 @@ in
   config = mkIf cfg.enable {
     hm.programs.ssh = {
       enable = true;
-    }
-    // optionalAttrs cfg.git.enable {
+    } // optionalAttrs cfg.git.enable {
       matchBlocks."github.com" = {
         host = "github.com";
         identityFile = cfg.git.identityFile;
-      }
-      // optionalAttrs isDarwin {
+      } // optionalAttrs isDarwin {
         extraOptions = {
           AddKeysToAgent = "yes";
           UseKeychain = "yes";

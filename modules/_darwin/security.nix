@@ -8,7 +8,8 @@ let
   mkSudoTouchIdAuthScript = isEnabled:
     let
       file = "/etc/pam.d/sudo";
-      optionText = "# nix system: modules.darwin.security.enableSudoTouchIdAuth";
+      optionText =
+        "# nix system: modules.darwin.security.enableSudoTouchIdAuth";
       sed = "${pkgs.gnused}/bin/sed";
     in
     ''
@@ -23,7 +24,8 @@ let
         auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ${optionText}\
         auth       sufficient     pam_tid.so ${optionText}
         ' ${file}
-      '' else ""}
+      '' else
+        ""}
     '';
 in
 {

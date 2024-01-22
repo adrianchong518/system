@@ -2,13 +2,9 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.editors.kakoune;
-in
-{
-  options.modules.editors.kakoune = with types; {
-    enable = mkBoolOpt false;
-  };
+let cfg = config.modules.editors.kakoune;
+in {
+  options.modules.editors.kakoune = with types; { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     hm.programs.kakoune = {
@@ -52,14 +48,12 @@ in
           }
         ];
 
-        keyMappings = [
-          {
-            mode = "user";
-            key = "w";
-            effect = ":echo %sh{wc -w <lt><lt><lt> \"\${kak_selection}\"}<ret>";
-            docstring = "Word count in selection";
-          }
-        ];
+        keyMappings = [{
+          mode = "user";
+          key = "w";
+          effect = '':echo %sh{wc -w <lt><lt><lt> "''${kak_selection}"}<ret>'';
+          docstring = "Word count in selection";
+        }];
       };
 
       # extraConfig = ''

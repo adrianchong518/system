@@ -2,10 +2,8 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.files;
-in
-{
+let cfg = config.files;
+in {
   options.files = with types; {
     home = mkOpt' attrs { } "Files to be placed in $HOME";
     config = mkOpt' attrs { } "Files to be placed in $XDG_CONFIG_HOME";

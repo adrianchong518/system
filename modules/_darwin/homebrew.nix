@@ -8,15 +8,17 @@ let
   cfg = config.modules.darwin.homebrew;
 in
 {
-  options.modules.darwin.homebrew = {
-    enable = mkBoolOpt false;
-  };
+  options.modules.darwin.homebrew = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     homebrew = {
       enable = true;
 
-      brewPrefix = if isAarch64 || isAarch32 then "/opt/homebrew/bin" else "/usr/local/bin";
+      brewPrefix =
+        if isAarch64 || isAarch32 then
+          "/opt/homebrew/bin"
+        else
+          "/usr/local/bin";
 
       global = {
         brewfile = true;
@@ -40,9 +42,7 @@ in
       ];
 
       # "essential" brews, casks and apps
-      brews = [
-        "mas"
-      ];
+      brews = [ "mas" ];
     };
 
     modules.shell.envInit = ''

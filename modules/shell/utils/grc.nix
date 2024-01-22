@@ -2,10 +2,8 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.shell.utils.grc;
-in
-{
+let cfg = config.modules.shell.utils.grc;
+in {
   options.modules.shell.utils.grc = with types; {
     enable = mkBoolOpt config.modules.shell.utils.enable;
   };

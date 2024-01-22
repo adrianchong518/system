@@ -2,10 +2,8 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.editors.neovim;
-in
-{
+let cfg = config.modules.editors.neovim;
+in {
   options.modules.editors.neovim = with types; {
     enable = mkBoolOpt false;
     enableAliases = mkBoolOpt true;

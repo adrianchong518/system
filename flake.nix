@@ -5,9 +5,9 @@
     devshell.url = "github:numtide/devshell";
     flake-utils.url = "github:numtide/flake-utils";
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    stable.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -22,13 +22,12 @@
 
     vscode-server.url = "github:msteen/nixos-vscode-server";
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
-
-    nvim-config.url = "github:adrianchong518/nvim-config";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, darwin, flake-utils, ... }:
     let
       inherit (flake-utils.lib) eachDefaultSystemMap;
+      inherit (lib.my) mapModules;
 
       flake = self;
 
@@ -43,6 +42,15 @@
     in
     {
       lib = lib.my;
+
+      packages = eachDefaultSystemMap (system:
+        let
+          pkgs = import inputs.nixpkgs {
+            inherit system;
+          };
+        in
+        (mapModules (p: pkgs.callPackage p { }) ./packages)
+      );
 
       darwinConfigurations = import ./hosts/darwin { inherit inputs lib; };
 
@@ -61,7 +69,6 @@
         {
           default = pkgs.devshell.mkShell {
             packages = with pkgs; [
-              nixfmt
               pyEnv
               nil
               lua-language-server

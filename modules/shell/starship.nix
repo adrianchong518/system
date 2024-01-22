@@ -2,13 +2,9 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.shell.starship;
-in
-{
-  options.modules.shell.starship = with types; {
-    enable = mkBoolOpt false;
-  };
+let cfg = config.modules.shell.starship;
+in {
+  options.modules.shell.starship = with types; { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     hm.programs.starship = {
@@ -16,7 +12,8 @@ in
       enableFishIntegration = true;
 
       settings = {
-        format = "$username$hostname$directory$vcsh$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$singularity$kubernetes$docker_context$terraform$nix_shell$conda$spack$aws$gcloud$openstack$azure$crystal$cmd_duration$line_break$shlvl$jobs$status$character";
+        format =
+          "$username$hostname$directory$vcsh$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$singularity$kubernetes$docker_context$terraform$nix_shell$conda$spack$aws$gcloud$openstack$azure$crystal$cmd_duration$line_break$shlvl$jobs$status$character";
 
         fill.symbol = " ";
 
@@ -25,13 +22,16 @@ in
 
         nix_shell.format = "\\[[$symbol$state( \\($name\\))]($style)\\] ";
         openstack.format = "\\[[$symbol$cloud(\\($project\\))]($style)\\] ";
-        kubernetes.format = "\\[[$symbol$context( \\($namespace\\))]($style)\\] ";
+        kubernetes.format =
+          "\\[[$symbol$context( \\($namespace\\))]($style)\\] ";
         spack.format = "\\[[$symbol$environment]($style)\\] ";
         terraform.format = "\\[[$symbol$workspace]($style)\\] ";
-        aws.format = "\\[[$symbol($profile)(\\($region\\))(\\[$duration\\])]($style)\\] ";
+        aws.format =
+          "\\[[$symbol($profile)(\\($region\\))(\\[$duration\\])]($style)\\] ";
         conda.format = "\\[[$symbol$environment]($style)\\] ";
         docker_context.format = "\\[[$symbol$context]($style)\\] ";
-        gcloud.format = "\\[[$symbol$account(@$domain)(\\($region\\))]($style)\\] ";
+        gcloud.format =
+          "\\[[$symbol$account(@$domain)(\\($region\\))]($style)\\] ";
 
         status.disabled = false;
         shlvl.disabled = true;

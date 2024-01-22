@@ -1,6 +1,6 @@
-{ inputs, lib, ... }:
+{ flake, inputs, lib, ... }:
 
 let
   inherit (lib.my) mapModulesList;
 in
-mapModulesList (path: import path { inherit inputs lib; }) ./.
+mapModulesList (path: import path { inherit flake inputs lib; }) ./.

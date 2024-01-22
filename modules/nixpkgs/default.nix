@@ -1,12 +1,10 @@
 { flake, inputs, config, pkgs, lib, ... }:
 
-let
-  nixpkgsConfigFile = ./_nixpkgs-config.nix;
-in
-{
+let nixpkgsConfigFile = ./_nixpkgs-config.nix;
+in {
   nixpkgs = {
     config = import nixpkgsConfigFile;
-    overlays = import "${flake}/overlays" { inherit inputs lib; };
+    overlays = import "${flake}/overlays" { inherit flake inputs lib; };
   };
 
   hm.nixpkgs.config = import nixpkgsConfigFile;
@@ -34,9 +32,7 @@ in
       trusted-users = [ "${config.user.name}" "root" "@admin" "@wheel" ];
       max-jobs = 8;
 
-      substituters = [
-        "https://nix-community.cachix.org"
-      ];
+      substituters = [ "https://nix-community.cachix.org" ];
 
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -57,7 +53,15 @@ in
           id = "stable";
           type = "indirect";
         };
-        flake = inputs.stable;
+        flake = inputs.nixpkgs-stable;
+      };
+
+      unstable = {
+        from = {
+          id = "unstable";
+          type = "indirect";
+        };
+        flake = inputs.nixpkgs-unstable;
       };
     };
   };

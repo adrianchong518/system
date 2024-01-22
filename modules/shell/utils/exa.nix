@@ -2,10 +2,8 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.shell.utils.eza;
-in
-{
+let cfg = config.modules.shell.utils.eza;
+in {
   options.modules.shell.utils.eza = with types; {
     enable = mkBoolOpt config.modules.shell.utils.enable;
     lsAlias = mkBoolOpt true;
@@ -16,7 +14,8 @@ in
 
     modules.shell.aliases = mkIf cfg.lsAlias (
       let
-        lsBase = "${pkgs.eza}/bin/eza --group-directories-first --color=always --icons --git";
+        lsBase =
+          "${pkgs.eza}/bin/eza --group-directories-first --color=always --icons --git";
       in
       rec {
         l = "${lsBase} -l";
