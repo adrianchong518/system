@@ -41,6 +41,8 @@ in mkNeovimConfig {
     telescope-file-browser-nvim # https://github.com/nvim-telescope/telescope-file-browser.nvim/
     # ^ telescope and extensions
 
+    oil-nvim # file explorer | https://github.com/stevearc/oil.nvim/
+
     # UI
     catppuccin-nvim # Catppuccin theme | https://github.com/catppuccin/nvim/
     which-key-nvim # Which key | https://github.com/folke/which-key.nvim

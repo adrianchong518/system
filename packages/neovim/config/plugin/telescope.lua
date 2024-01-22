@@ -1,5 +1,6 @@
 local telescope = require "telescope"
 local actions = require "telescope.actions"
+local actions_state = require("telescope.actions.state")
 local builtin = require "telescope.builtin"
 local wk = require "which-key"
 local trouble = require("trouble.providers.telescope")
@@ -55,6 +56,12 @@ end
 
 local function fuzzy_grep_current_file_type()
   grep_current_file_type(fuzzy_grep)
+end
+
+local function open_in_oil(bufnr)
+  local entry = actions_state.get_selected_entry()
+  actions.close(bufnr)
+  require("oil").open(entry.path)
 end
 
 wk.register({
@@ -140,6 +147,14 @@ telescope.setup {
     },
     file_browser = {
       grouped = true,
+      mappings = {
+        i = {
+          ["<C-o>"] = open_in_oil,
+        },
+        n = {
+          o = open_in_oil,
+        },
+      },
     },
   },
 }
