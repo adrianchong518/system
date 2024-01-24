@@ -87,7 +87,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         a = { vim.lsp.buf.code_action, "[lsp] code action" },
         l = { vim.lsp.codelens.run, "[lsp] run code lens" },
         L = { vim.lsp.codelens.refresh, "[lsp] refresh code lenses" },
-        f = {
+        F = {
           function()
             vim.lsp.buf.format { async = true }
           end,
