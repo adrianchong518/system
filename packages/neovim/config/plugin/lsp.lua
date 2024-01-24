@@ -55,9 +55,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
     require("which-key").register({
       ["gD"] = { vim.lsp.buf.declaration, "[lsp] go to declaration" },
-      ["gd"] = { function() require("trouble").toggle("lsp_definitions") end, "[lsp] go to definition" },
+      ["gd"] = { function() require("trouble").open("lsp_definitions") end, "[lsp] go to definition" },
       ["gi"] = { vim.lsp.buf.implementation, "[lsp] go to implementation" },
-      ["gr"] = { function() require("trouble").toggle("lsp_references") end, "[lsp] find references" },
+      ["gr"] = { function() require("trouble").open("lsp_references") end, "[lsp] find references" },
       ["K"] = { vim.lsp.buf.hover, "[lsp] hover" },
       ["<C-S-k>"] = { vim.lsp.buf.signature_help, "[lsp] signature help" },
       ["<leader>l"] = {
@@ -82,8 +82,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         r = { vim.lsp.buf.rename, "[lsp] rename" },
         S = { require("telescope.builtin").lsp_dynamic_workspace_symbols, "[lsp] workspace symbol" },
         s = { require("telescope.builtin").lsp_document_symbols, "[lsp] document symbol" },
-        d = { function() require("trouble").toggle("document_diagnostics") end, "[lsp] document diagnostics" },
-        D = { function() require("trouble").toggle("workspace_diagnostics") end, "[lsp] workspace diagnostics" },
+        d = { function() require("trouble").open("document_diagnostics") end, "[lsp] document diagnostics" },
+        D = { function() require("trouble").open("workspace_diagnostics") end, "[lsp] workspace diagnostics" },
         a = { vim.lsp.buf.code_action, "[lsp] code action" },
         l = { vim.lsp.codelens.run, "[lsp] run code lens" },
         L = { vim.lsp.codelens.refresh, "[lsp] refresh code lenses" },
