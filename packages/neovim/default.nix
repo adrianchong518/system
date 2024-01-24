@@ -59,6 +59,7 @@ in mkNeovimConfig {
     neodev-nvim # adds support for Neovim's Lua API to lua-language-server | https://github.com/folke/neodev.nvim/
     rustaceanvim # rust-tools successor | https://github.com/mrcjkb/rustaceanvim/
     crates-nvim # check crate versions in Cargo.toml | https://github.com/saecki/crates.nvim/
+    neogen # generate documentation template | https://github.com/danymat/neogen/
     # ^ language support
 
     # navigation/editing enhancement plugins
