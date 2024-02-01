@@ -10,5 +10,6 @@ in {
 
   config = mkIf cfg.enable {
     homebrew.casks = [ "microsoft-office" "microsoft-auto-update" ];
+    packages = with pkgs; [teams];
   };
 }
