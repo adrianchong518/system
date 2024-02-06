@@ -4,6 +4,7 @@
   modules = {
     darwin = {
       homebrew.enable = true;
+      docker.enable = true;
 
       security.enableSudoTouchIdAuth = true;
 
