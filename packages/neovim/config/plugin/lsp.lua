@@ -104,10 +104,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- Format on save if supported
     if (client.server_capabilities.documentFormattingProvider) then
-      vim.api.nvim_create_autocmd("BufWritePost", {
+      vim.api.nvim_create_autocmd("BufWritePre", {
         buffer = 0,
         callback = function()
-          vim.lsp.buf.format()
+          vim.lsp.buf.format { async = false }
         end,
       })
     end
