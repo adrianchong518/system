@@ -8,5 +8,10 @@ in {
     enable = mkBoolOpt config.modules.shell.utils.enable;
   };
 
-  config = mkIf cfg.enable { hm.programs.zoxide.enable = true; };
+  config = mkIf cfg.enable {
+    hm.programs.zoxide = {
+      enable = true;
+      options = [ "--cmd cd" ];
+    };
+  };
 }
