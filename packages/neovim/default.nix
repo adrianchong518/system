@@ -53,7 +53,6 @@ in mkNeovimConfig {
     statuscol-nvim # Status column | https://github.com/luukvbaal/statuscol.nvim/
     nvim-treesitter-context # nvim-treesitter-context
     fidget-nvim # lsp loading progess | https://github.com/j-hui/fidget.nvim/
-    tint-nvim # dim inactive panes | https://github.com/levouh/tint.nvim/
     # ^ UI
 
     # language support
