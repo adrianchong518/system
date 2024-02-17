@@ -97,7 +97,7 @@
 
   hm.programs.git.includes = [
     {
-      condition = "gitdir:~/dev/hkust/**/.git";
+      condition = "gitdir:~/dev/hkust/";
       contents.user = {
         email = "ncachong@connect.ust.hk";
         signingKey = "5D9B7991";
