@@ -61,7 +61,8 @@ end
 local function open_in_oil(bufnr)
   local entry = actions_state.get_selected_entry()
   actions.close(bufnr)
-  require("oil").open(entry.path)
+  local folder_path = vim.fn.fnamemodify(entry.path, ":h")
+  require("oil").open(folder_path)
 end
 
 wk.register({
@@ -109,10 +110,12 @@ telescope.setup {
       i = {
         ["<C-s>"] = actions.file_split,
         ["<C-t>"] = trouble.open_with_trouble,
+        ["<C-o>"] = open_in_oil,
       },
       n = {
         q = actions.close,
         ["<C-t>"] = trouble.open_with_trouble,
+        o = open_in_oil,
       },
     },
     preview = {
@@ -147,14 +150,6 @@ telescope.setup {
     },
     file_browser = {
       grouped = true,
-      mappings = {
-        i = {
-          ["<C-o>"] = open_in_oil,
-        },
-        n = {
-          o = open_in_oil,
-        },
-      },
     },
   },
 }
