@@ -17,10 +17,10 @@ end
 
 require("neodev").setup {
   override = function(root_dir, library)
-    if has_file(root_dir, "/etc/nixos") or has_file(root_dir, "nvim-config") then
+    if has_file(root_dir, "/etc/nixos") or has_file(root_dir, "~/.config/system") then
       library.enabled = true
       library.plugins = true
     end
   end,
-  lspconfig = false,
+  lspconfig = true,
 }
