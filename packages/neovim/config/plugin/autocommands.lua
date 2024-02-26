@@ -20,6 +20,21 @@ api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
+-- Auto trim whitespaces
+local trim_whitespace_group = api.nvim_create_augroup("trim_whitespace", { clear = true })
+api.nvim_create_autocmd("InsertLeave", {
+  group = trim_whitespace_group,
+  callback = function()
+    vim.cmd [[
+      if &modifiable
+        let saved_view = winsaveview()
+        keepjumps '[,']s/\s\+$//e
+        call winrestview(saved_view)
+      endif
+    ]]
+  end,
+})
+
 -- More examples, disabled by default
 
 -- Toggle between relative/absolute line numbers
