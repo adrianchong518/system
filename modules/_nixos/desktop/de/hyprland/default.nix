@@ -20,6 +20,8 @@ in
       libsForQt5.qt5.qtwayland
     ];
 
+    modules.nixos.desktop.utils.rofi.enable = true;
+
     programs.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;

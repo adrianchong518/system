@@ -15,6 +15,7 @@ in {
       jq
       ripgrep
       fd
+      libqalculate
 
       neofetch
       tldr
