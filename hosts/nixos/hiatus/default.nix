@@ -8,6 +8,7 @@
   services = {
     gnome.gnome-keyring.enable = true;
     printing.enable = true;
+    getty.autologinUser = config.user.name;
   };
 
   modules = {
