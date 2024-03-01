@@ -15,6 +15,7 @@
     nixos = {
       services = {
         pipewire.enable = true;
+        dunst.enable = true;
       };
 
       desktop = {
