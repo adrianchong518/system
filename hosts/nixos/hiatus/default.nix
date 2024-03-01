@@ -5,58 +5,17 @@
     ./hardware-configuration.nix
   ];
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.extraModprobeConfig = ''
-    options i915 enable_dpcd_backlight=1
-  '';
-  boot.supportedFilesystems = [ "btrfs" ];
-  hardware.enableAllFirmware = true;
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  services.hardware.bolt.enable = true;
-  services.blueman.enable = true;
-  hardware.bluetooth.enable = true;
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement = {
-      enable = false;
-      finegrained = false;
-    };
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-    prime = {
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-    };
-  };
-
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
-
-  services.supergfxd.enable = true;
-  services.asusd = {
-    enable = true;
-    enableUserService = true;
+  services = {
+    gnome.gnome-keyring.enable = true;
+    printing.enable = true;
   };
 
   modules = {
     nixos = {
+      services = {
+        pipewire.enable = true;
+      };
+
       desktop = {
         de.plasma6.enable = true;
       };
@@ -76,7 +35,7 @@
       };
 
       apps = {
-        # thunderbird.enable = true;
+        thunderbird.enable = true;
         # gimp.enable = true;
         # obsidian.enable = true;
         # zotero.enable = true;

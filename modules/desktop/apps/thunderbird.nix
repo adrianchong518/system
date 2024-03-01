@@ -10,7 +10,12 @@ in {
 
   config = mkIf cfg.enable
     ({
-      hm.programs.thunderbird.enable = true;
+      hm.programs.thunderbird = {
+        enable = true;
+        profiles.default = {
+          isDefault = true;
+        };
+      };
     } // optionalAttrs (isDarwinHost hostType) {
       hm.programs.thunderbird.package = pkgs.runCommand "thunderbird-0.0.0" { } "mkdir $out";
       homebrew.casks = [ "thunderbird" ];

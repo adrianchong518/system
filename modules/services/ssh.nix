@@ -1,4 +1,4 @@
-{ inputs, config, options, pkgs, lib, ... }:
+{ inputs, config, options, pkgs, lib, hostType, ... }:
 
 with lib;
 with lib.my;
@@ -16,7 +16,7 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf cfg.enable ({
     hm.programs.ssh = {
       enable = true;
     } // optionalAttrs cfg.git.enable {
@@ -31,5 +31,7 @@ in
         };
       };
     };
-  };
+  } // optionalAttrs (isNixosHost hostType) {
+    services.openssh.enable = true;
+  });
 }

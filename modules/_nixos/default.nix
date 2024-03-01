@@ -9,7 +9,7 @@ with lib.my; {
 
   user = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "networkmanager" ];
   };
 
   time.timeZone = "Hongkong";
@@ -26,20 +26,4 @@ with lib.my; {
 
     libinput.enable = true;
   };
-
-  services.printing.enable = true;
-
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa = {
-      enable = true;
-      support32Bit = true;
-    };
-    pulse.enable = true;
-  };
-
-  services.openssh.enable = true;
-
-  services.gnome.gnome-keyring.enable = true;
 }
