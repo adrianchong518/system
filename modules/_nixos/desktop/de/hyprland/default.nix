@@ -14,6 +14,11 @@ in
   };
 
   config = mkIf cfg.enable {
+    packages = with pkgs; [
+      kdePackages.polkit-kde-agent-1
+      libsForQt5.qt5.qtwayland
+    ];
+
     programs.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -25,6 +30,10 @@ in
       settings = {
         source = [ "${./hyprland.conf}" ]
           ++ optional config.modules.nixos.services.pipewire.enable "${./pipewire.conf}";
+
+        exec-once = [
+          "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
+        ];
       } // optionalAttrs config.modules.nixos.hardware.nvidia.enable {
         env = [
           "LIBVA_DRIVER_NAME,nvidia"
