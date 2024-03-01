@@ -53,6 +53,7 @@
       );
 
       darwinConfigurations = import ./hosts/darwin { inherit inputs lib; };
+      nixosConfigurations = import ./hosts/nixos { inherit inputs lib; };
 
       devShells = eachDefaultSystemMap (system:
         let
