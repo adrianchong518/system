@@ -20,7 +20,7 @@
         # de.plasma6.enable = true;
         de.hyprland = {
           enable = true;
-          WLR_DRM_DEVICES = "/dev/dri/by-path/pci-0000:00:02.0-card:/dev/dri/by-path/pci-0000:01:00.0-card";
+          WLR_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
           extraSettings = {
             monitor = [
               "eDP-1, 2560x1600@240, 0x0, 1"

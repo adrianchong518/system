@@ -12,7 +12,7 @@ in {
   config = mkIf cfg.enable ({
     hm.programs.gpg.enable = true;
   } // optionalAttrs (isNixosHost hostType) {
-    programs.gnupg.agent = {
+    hm.services.gpg-agent = {
       enable = true;
       pinentryFlavor = cfg.pinentryFlavor;
     };
