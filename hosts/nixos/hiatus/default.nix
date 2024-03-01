@@ -68,7 +68,6 @@
       pandoc.enable = true;
 
       git = {
-        # TODO: signing
         signing = {
           enable = true;
           key = "1DC233DD";

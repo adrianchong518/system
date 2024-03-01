@@ -81,5 +81,6 @@
     bluetooth.enable = true;
     asus.enable = true;
     thunderbolt.enable = true;
+    display.brightnessctl.enable = true;
   };
 }

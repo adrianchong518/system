@@ -23,9 +23,8 @@ in
       enable = true;
 
       settings = {
-        source = [
-          "${./hyprland.conf}"
-        ];
+        source = [ "${./hyprland.conf}" ]
+          ++ optional config.modules.nixos.services.pipewire.enable "${./pipewire.conf}";
       } // optionalAttrs config.modules.nixos.hardware.nvidia.enable {
         env = [
           "LIBVA_DRIVER_NAME,nvidia"
@@ -35,7 +34,15 @@ in
           "WLR_NO_HARDWARE_CURSORS,1"
           "WLR_DRM_DEVICES,${cfg.WLR_DRM_DEVICES}"
         ];
-      } // cfg.extraSettings;
+      } // (
+        let displayCfg = config.modules.nixos.hardware.display;
+        in optionalAttrs displayCfg.brightnessctl.enable {
+          bind = [
+            ", XF86MonBrightnessDown, exec, brightnessctl -d ${displayCfg.defaultDevice} set 5%-"
+            ", XF86MonBrightnessUp, exec, brightnessctl -d ${displayCfg.defaultDevice} set 5%+"
+          ];
+        }
+      ) // cfg.extraSettings;
 
       extraConfig = mkAliasDefinitions options.modules.nixos.desktop.de.hyprland.extraConfig;
     };
