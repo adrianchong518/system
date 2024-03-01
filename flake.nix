@@ -22,6 +22,8 @@
 
     vscode-server.url = "github:msteen/nixos-vscode-server";
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, darwin, flake-utils, ... }:
