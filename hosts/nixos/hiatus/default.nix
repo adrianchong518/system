@@ -97,12 +97,10 @@
 
       git = {
         # TODO: signing
-        /*
         signing = {
           enable = true;
-          key = "0CF62CE0";
+          key = "1DC233DD";
         };
-        */
       };
     };
 
@@ -120,7 +118,10 @@
           identityFile = "~/.ssh/id_ed25519_git";
         };
       };
-      gpg.enable = true;
+      gpg = {
+        enable = true;
+        pinentryFlavor = "gnome3";
+      };
     };
   };
 
