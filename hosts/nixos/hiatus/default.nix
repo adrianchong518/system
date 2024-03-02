@@ -22,10 +22,9 @@
         # de.plasma6.enable = true;
         de.hyprland = {
           enable = true;
-          WLR_DRM_DEVICES = "/dev/dri/card1:/dev/dri/card0";
           extraSettings = {
             monitor = [
-              "eDP-1, 2560x1600@240, 0x0, 1"
+              "eDP-1, 2560x1600@120, 0x0, 1, vrr,1"
               "desc:LG Electronics LG ULTRAWIDE 205NTAB2Q984, 3440x1440@160, -3440x0, 1"
             ];
             "device:asup1207:00-093a:3012-touchpad" = {
