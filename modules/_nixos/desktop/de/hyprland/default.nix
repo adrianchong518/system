@@ -15,7 +15,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    packages = with pkgs; [
+    environment.systemPackages = with pkgs; [
       kdePackages.polkit-kde-agent-1
       libsForQt5.qt5.qtwayland
     ];

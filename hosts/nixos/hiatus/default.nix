@@ -16,6 +16,7 @@
       services = {
         pipewire.enable = true;
         dunst.enable = true;
+        auto-cpufreq.enable = true;
       };
 
       desktop = {
