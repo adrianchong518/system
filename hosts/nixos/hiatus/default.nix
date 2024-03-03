@@ -15,6 +15,10 @@
     bitwarden-cli
   ];
 
+  environment.systemPackages = with pkgs; [
+    wlr-randr
+  ];
+
   modules = {
     nixos = {
       services = {
@@ -31,6 +35,10 @@
             monitor = [
               "eDP-1, 2560x1600@120, 0x0, 1, vrr,1"
               "desc:LG Electronics LG ULTRAWIDE 205NTAB2Q984, 3440x1440@160, -3440x0, 1"
+            ];
+            bindl = [
+              '',switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1, 2560x1600@120, 0x0, 1, vrr,1" && wlr-randr --output eDP-1 --on''
+              '',switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1, disable"''
             ];
           };
           extraConfig = ''

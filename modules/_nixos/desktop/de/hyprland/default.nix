@@ -18,9 +18,15 @@ in
     environment.systemPackages = with pkgs; [
       kdePackages.polkit-kde-agent-1
       libsForQt5.qt5.qtwayland
+
+      hyprlock
+      hypridle
+
+      libnotify
     ];
 
     security.polkit.enable = true;
+    security.pam.services.hyprlock = { };
 
     modules.nixos = {
       services.greetd = {
@@ -166,6 +172,9 @@ in
 
       style = builtins.readFile ./waybar_style.css;
     };
+
+    files.config."hypr/hyprlock.conf".source = ./hyprlock.conf;
+    files.config."hypr/hypridle.conf".source = ./hypridle.conf;
   };
 }
 
