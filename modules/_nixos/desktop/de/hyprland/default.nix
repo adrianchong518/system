@@ -20,7 +20,15 @@ in
       libsForQt5.qt5.qtwayland
     ];
 
-    modules.nixos.desktop.utils.rofi.enable = true;
+    security.polkit.enable = true;
+
+    modules.nixos = {
+      services.greetd = {
+        enable = true;
+        session = "${config.programs.hyprland.package}/bin/Hyprland";
+      };
+      desktop.utils.rofi.enable = true;
+    };
 
     programs.hyprland = {
       enable = true;

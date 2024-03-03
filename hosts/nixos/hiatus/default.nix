@@ -8,7 +8,6 @@
   services = {
     gnome.gnome-keyring.enable = true;
     printing.enable = true;
-    getty.autologinUser = config.user.name;
   };
 
   modules = {
@@ -28,10 +27,13 @@
               "eDP-1, 2560x1600@120, 0x0, 1, vrr,1"
               "desc:LG Electronics LG ULTRAWIDE 205NTAB2Q984, 3440x1440@160, -3440x0, 1"
             ];
-            "device:asup1207:00-093a:3012-touchpad" = {
-              sensitivity = 0.2;
-            };
           };
+          extraConfig = ''
+            device {
+              name = asup1207:00-093a:3012-touchpad
+              sensitivity = 0.2
+            }
+          '';
         };
       };
     };
@@ -100,14 +102,14 @@
 
   # TODO:
   /*
-    hm.programs.git.includes = [
-    {
+      hm.programs.git.includes = [
+      {
       condition = "gitdir:~/dev/hkust/";
       contents.user = {
         email = "ncachong@connect.ust.hk";
         signingKey = "5D9B7991";
       };
-    }
-    ];
-  */
+      }
+      ];
+    */
 }
