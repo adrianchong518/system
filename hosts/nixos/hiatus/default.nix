@@ -44,19 +44,19 @@
       enable = true;
       browsers.firefox.enable = true;
       term.wezterm.enable = true;
-      # office.libreoffice.enable = true;
+      office.libreoffice.enable = true;
 
       communication = {
-        # discord.enable = true;
-        # zoom.enable = true;
+        discord.enable = true;
+        zoom.enable = true;
       };
 
       apps = {
         thunderbird.enable = true;
-        # gimp.enable = true;
-        # obsidian.enable = true;
-        # zotero.enable = true;
-        # kicad.enable = true;
+        gimp.enable = true;
+        obsidian.enable = true;
+        zotero.enable = true;
+        # kicad.enable = true; TODO: BROKEN?
       };
     };
 
