@@ -87,6 +87,7 @@
       pandoc.enable = true;
 
       git = {
+        gh.enable = true;
         signing = {
           enable = true;
           key = "1DC233DD";

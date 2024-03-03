@@ -11,6 +11,7 @@ in
   options.modules.shell.git = with types; {
     enable = mkBoolOpt true;
     lazygit.enable = mkBoolOpt false;
+    gh.enable = mkBoolOpt false;
 
     enableShellAliases = mkBoolOpt true;
 
@@ -60,6 +61,11 @@ in
           signByDefault = true;
           key = cfg.signing.key;
         };
+      };
+
+      programs.gh = mkIf cfg.gh.enable {
+        enable = true;
+        settings.git_protocol = "ssh";
       };
 
       programs.lazygit = mkIf cfg.lazygit.enable {
