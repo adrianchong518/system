@@ -10,6 +10,11 @@
     printing.enable = true;
   };
 
+  packages = with pkgs; [
+    bitwarden
+    bitwarden-cli
+  ];
+
   modules = {
     nixos = {
       services = {
