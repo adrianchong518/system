@@ -116,16 +116,13 @@
     };
   };
 
-  # TODO:
-  /*
-      hm.programs.git.includes = [
-      {
+  hm.programs.git.includes = [
+    {
       condition = "gitdir:~/dev/hkust/";
       contents.user = {
         email = "ncachong@connect.ust.hk";
-        signingKey = "5D9B7991";
+        signingKey = "6EEB1719";
       };
-      }
-      ];
-    */
+    }
+  ];
 }
