@@ -13,6 +13,8 @@
   packages = with pkgs; [
     bitwarden
     bitwarden-cli
+    teams-for-linux
+    whatsapp-for-linux
   ];
 
   environment.systemPackages = with pkgs; [
