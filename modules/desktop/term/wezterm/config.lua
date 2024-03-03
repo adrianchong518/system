@@ -24,6 +24,8 @@ config.inactive_pane_hsb = {
   brightness = 0.7,
 }
 
+config.enable_wayland = false
+
 config.hide_mouse_cursor_when_typing = false
 
 -- Show which key table is active in the status area
