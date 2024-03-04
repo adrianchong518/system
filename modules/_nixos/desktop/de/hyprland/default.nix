@@ -15,15 +15,22 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      kdePackages.polkit-kde-agent-1
-      libsForQt5.qt5.qtwayland
-
-      hyprlock
-      hypridle
-
-      libnotify
+    nixpkgs.overlays = [
+      inputs.hyprland.overlays.default
+      inputs.hyprlock.overlays.default
+      inputs.hypridle.overlays.default
     ];
+
+    environment.systemPackages = with pkgs;
+      [
+        kdePackages.polkit-kde-agent-1
+        libsForQt5.qt5.qtwayland
+
+        hyprlock
+        hypridle
+
+        libnotify
+      ];
 
     security.polkit.enable = true;
     security.pam.services.hyprlock = { };
@@ -36,10 +43,7 @@ in
       desktop.utils.rofi.enable = true;
     };
 
-    programs.hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    };
+    programs.hyprland.enable = true;
 
     hm.wayland.windowManager.hyprland = {
       enable = true;
