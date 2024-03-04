@@ -19,8 +19,6 @@ end
 -- Search down into subfolders
 opt.path = vim.o.path .. "**"
 
-opt.clipboard = "unnamedplus"
-
 opt.number = true
 opt.relativenumber = true
 opt.cursorline = true
