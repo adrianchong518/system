@@ -40,7 +40,10 @@ in
         enable = true;
         session = "${config.programs.hyprland.package}/bin/Hyprland";
       };
-      desktop.utils.rofi.enable = true;
+      desktop.utils = {
+        wayland.enable = true;
+        rofi.enable = true;
+      };
     };
 
     programs.hyprland.enable = true;

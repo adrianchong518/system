@@ -17,10 +17,6 @@
     whatsapp-for-linux
   ];
 
-  environment.systemPackages = with pkgs; [
-    wlr-randr
-  ];
-
   modules = {
     nixos = {
       services = {
