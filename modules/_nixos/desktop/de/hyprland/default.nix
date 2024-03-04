@@ -43,6 +43,7 @@ in
       desktop.utils = {
         wayland.enable = true;
         rofi.enable = true;
+        wlogout.enable = true;
       };
     };
 
