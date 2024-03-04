@@ -72,8 +72,6 @@
   services.logind.extraConfig = ''
     # don’t shutdown when power button is short-pressed
     HandlePowerKey=ignore
-    HandleLidSwitch=ignore
-    HandleLidSwitchExternalPower=ignore
   '';
 
   modules.nixos.hardware = {
