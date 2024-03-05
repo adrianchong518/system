@@ -42,7 +42,7 @@ in
       };
       desktop.utils = {
         wayland.enable = true;
-        rofi.enable = true;
+        rofi = { enable = true; isWayland = true; };
         wlogout.enable = true;
       };
     };
@@ -151,7 +151,7 @@ in
             format-time = "{H} h {M} min";
             format-charging = "{icon} {capacity}%";
             format-plugged = "{icon} {capacity}%";
-            format-alt = "{time} {icon}";
+            format-alt = "{icon} {time}";
             format-icons = {
               charging = "󰃨";
               plugged = "";
