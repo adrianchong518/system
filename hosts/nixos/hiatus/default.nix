@@ -10,6 +10,11 @@
     printing.enable = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    powertop
+    intel-gpu-tools
+  ];
+
   packages = with pkgs; [
     bitwarden
     bitwarden-cli
@@ -24,7 +29,6 @@
       services = {
         pipewire.enable = true;
         dunst.enable = true;
-        auto-cpufreq.enable = true;
       };
 
       desktop = {

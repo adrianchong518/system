@@ -19,7 +19,6 @@ in {
 
       neofetch
       tldr
-      # btop
     ];
   };
 }
