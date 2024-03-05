@@ -10,6 +10,9 @@
     printing.enable = true;
   };
 
+  # gnome-keyring auto login
+  security.pam.services.greetd.enableGnomeKeyring = true;
+
   environment.systemPackages = with pkgs; [
     powertop
     intel-gpu-tools
