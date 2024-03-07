@@ -11,7 +11,7 @@
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "btrfs" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   boot.extraModprobeConfig = ''
     options i915 enable_dpcd_backlight=1
