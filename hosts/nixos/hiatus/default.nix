@@ -72,6 +72,7 @@
         gimp.enable = true;
         obsidian.enable = true;
         zotero.enable = true;
+        zathura.enable = true;
         # kicad.enable = true; TODO: BROKEN?
       };
     };
