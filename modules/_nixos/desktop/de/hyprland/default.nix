@@ -50,6 +50,7 @@ in
         wayland.enable = true;
         rofi = { enable = true; isWayland = true; };
         wlogout.enable = true;
+        thunar.enable = true;
       };
     };
 
