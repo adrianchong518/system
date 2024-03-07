@@ -8,6 +8,11 @@
   services = {
     gnome.gnome-keyring.enable = true;
     printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      openFirewall = true;
+    };
   };
 
   # gnome-keyring auto login
