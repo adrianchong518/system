@@ -11,7 +11,16 @@ in
   };
 
   config = mkIf cfg.enable {
-    hardware.bluetooth.enable = true;
+    hardware.bluetooth = {
+      enable = true;
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+          ControllerMode = "bredr";
+        };
+      };
+    };
+
     services.blueman.enable = true;
   };
 }
