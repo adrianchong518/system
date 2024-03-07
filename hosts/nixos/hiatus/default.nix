@@ -29,11 +29,6 @@
     nixos = {
       udev.openocd.enable = true;
 
-      services = {
-        pipewire.enable = true;
-        dunst.enable = true;
-      };
-
       desktop = {
         # de.plasma6.enable = true;
         de.hyprland = {

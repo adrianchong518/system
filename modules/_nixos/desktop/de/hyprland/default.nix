@@ -36,10 +36,16 @@ in
     security.pam.services.hyprlock = { };
 
     modules.nixos = {
-      services.greetd = {
-        enable = true;
-        session = "${config.programs.hyprland.package}/bin/Hyprland";
+      services = {
+        pipewire.enable = true;
+        dunst.enable = true;
+
+        greetd = {
+          enable = true;
+          session = "${config.programs.hyprland.package}/bin/Hyprland";
+        };
       };
+
       desktop.utils = {
         wayland.enable = true;
         rofi = { enable = true; isWayland = true; };
