@@ -13,6 +13,10 @@
       nssmdns = true;
       openFirewall = true;
     };
+
+    devmon.enable = true;
+    gvfs.enable = true;
+    udisks2.enable = true;
   };
 
   # gnome-keyring auto login
