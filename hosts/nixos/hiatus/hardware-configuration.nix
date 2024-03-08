@@ -10,6 +10,7 @@
   boot.kernelModules = [ "kvm-intel" "asus_nb_wmi" ];
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "btrfs" ];
+  boot.kernelParams = [ "selinux=0" ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
