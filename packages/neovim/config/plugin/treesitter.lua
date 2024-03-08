@@ -1,5 +1,7 @@
 local configs = require "nvim-treesitter.configs"
+
 vim.g.skip_ts_context_comment_string_module = true
+
 configs.setup {
   -- ensure_installed = 'all',
   auto_install = false, -- Do not automatically install missing parsers when entering buffer
@@ -36,7 +38,7 @@ configs.setup {
       },
       selection_modes = {
         ["@parameter.outer"] = "v", -- charwise
-        ["@function.outer"] = "V", -- linewise
+        ["@function.outer"] = "V",  -- linewise
         ["@class.outer"] = "<c-v>", -- blockwise
       },
     },
@@ -84,6 +86,10 @@ require("treesitter-context").setup {
 }
 
 require("ts_context_commentstring").setup()
+
+vim.filetype.add({
+  pattern = { [".*/hypr.*%.conf"] = "hyprlang" },
+})
 
 -- Tree-sitter based folding
 -- vim.opt.foldmethod = 'expr'
