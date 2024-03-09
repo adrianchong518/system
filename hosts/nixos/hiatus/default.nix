@@ -13,6 +13,7 @@
       nssmdns = true;
       openFirewall = true;
     };
+    flatpak.enable = true;
   };
 
   # gnome-keyring auto login
