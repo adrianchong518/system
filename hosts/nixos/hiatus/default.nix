@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, lib, ... }:
+{ inputs, options, config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -30,6 +30,22 @@
     teams-for-linux
     whatsapp-for-linux
   ];
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = options.programs.nix-ld.libraries.default ++ (with pkgs; [
+    dbus.lib
+    libglvnd
+    libxkbcommon
+    SDL2
+    systemdLibs
+    xorg.libICE
+    xorg.libSM
+    xorg.libxcb
+    xorg.xcbutilimage
+    xorg.xcbutilkeysyms
+    xorg.xcbutilrenderutil
+    xorg.xcbutilwm
+  ]);
 
   modules = {
     nixos = {
