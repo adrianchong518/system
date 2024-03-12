@@ -13,6 +13,9 @@ in
   config = mkIf cfg.enable {
     programs = {
       xfconf.enable = true;
+
+      file-roller.enable = true;
+
       thunar = {
         enable = true;
 

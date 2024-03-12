@@ -15,6 +15,8 @@ in {
       jq
       ripgrep
       fd
+      unzip
+      gnutar
       libqalculate
 
       neofetch
