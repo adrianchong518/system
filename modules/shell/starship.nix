@@ -49,12 +49,12 @@ in {
         gcloud.symbol = "g  ";
         openstack.symbol = "o  ";
         conda.symbol = " ";
-        directory.read_only = " ";
+        directory.read_only = " 󰌾";
         docker_context.symbol = " ";
         git_branch.symbol = " ";
         git_commit.tag_symbol = " ";
         hg_branch.symbol = " ";
-        memory_usage.symbol = " ";
+        memory_usage.symbol = "󰍛 ";
         nix_shell.symbol = " ";
         spack.symbol = "🅢 ";
         shlvl.symbol = " ";
