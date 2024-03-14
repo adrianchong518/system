@@ -17,7 +17,6 @@ in {
       fd
       unzip
       gnutar
-      libqalculate
 
       neofetch
       tldr

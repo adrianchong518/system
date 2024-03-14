@@ -4,6 +4,7 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.nixos.desktop.utils.rofi;
+  rofiPackage = if cfg.isWayland then pkgs.rofi-wayland else pkgs.rofi;
 in
 {
   options.modules.nixos.desktop.utils.rofi = with types; {
@@ -12,15 +13,21 @@ in
   };
 
   config = mkIf cfg.enable {
+    packages = with pkgs; [
+      libqalculate
+    ];
+
     hm.programs.rofi = {
       enable = true;
 
-      package = if cfg.isWayland then pkgs.rofi-wayland else pkgs.rofi;
+      package = rofiPackage;
 
       font = "Iosevka Nerd Font 13";
       terminal = "${pkgs.wezterm}/bin/wezterm";
 
-      plugins = with pkgs; [ rofi-calc ];
+      plugins = with pkgs; [
+        (rofi-calc.override { rofi-unwrapped = rofiPackage; })
+      ];
 
       theme = ./catppuccin-mocha.rasi;
 
@@ -33,7 +40,8 @@ in
         hide-scrollbar = true;
         display-drun = "   Apps ";
         display-run = "   Run ";
-        display-window = " 﩯 Window";
+        display-window = " 󰕰 Window";
+        display-calc = " 󱖦 Calc";
         display-Network = " 󰤨  Network";
         sidebar-mode = true;
       };
