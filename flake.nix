@@ -23,7 +23,8 @@
     vscode-server.url = "github:msteen/nixos-vscode-server";
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
 
-    hyprland.url = "github:hyprwm/Hyprland/main";
+    # FIXME: hyprland.url = "github:hyprwm/Hyprland/main";
+    hyprland.url = "github:hyprwm/Hyprland/e7a5db4852d654596e554b9cdeaa2694b346ee03";
     hyprlock.url = "github:hyprwm/hyprlock/main";
     hypridle.url = "github:hyprwm/hypridle/main";
   };

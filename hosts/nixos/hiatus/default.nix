@@ -10,7 +10,7 @@
     printing.enable = true;
     avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;
       openFirewall = true;
     };
     flatpak.enable = true;
@@ -133,10 +133,7 @@
           identityFile = "~/.ssh/id_ed25519_git";
         };
       };
-      gpg = {
-        enable = true;
-        pinentryFlavor = "gnome3";
-      };
+      gpg.enable = true;
     };
   };
 

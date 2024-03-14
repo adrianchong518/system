@@ -6,7 +6,7 @@ let cfg = config.modules.services.gpg;
 in {
   options.modules.services.gpg = with types; {
     enable = mkBoolOpt false;
-    pinentryFlavor = mkOpt (nullOr str) null;
+    pinentryPackage = mkOpt package pkgs.pinentry-gnome3;
   };
 
   config = mkIf cfg.enable ({
@@ -14,7 +14,7 @@ in {
   } // optionalAttrs (isNixosHost hostType) {
     hm.services.gpg-agent = {
       enable = true;
-      pinentryFlavor = cfg.pinentryFlavor;
+      pinentryPackage = cfg.pinentryPackage;
     };
   });
 }
