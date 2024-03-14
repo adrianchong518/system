@@ -1,18 +1,42 @@
-{ inputs, config, options, pkgs, lib, ... }:
+{ flake, inputs, config, options, pkgs, lib, ... }:
 
 with lib;
 with lib.my;
 let
   cfg = config.modules.nixos.desktop.de.hyprland;
   displayCfg = config.modules.nixos.hardware.display;
+
+  wallpaperDir = "${flake}/wallpapers";
+  cycleWallpaper = pkgs.writeShellScript "cycle-wallpaper" /* bash */ ''
+    export SWWW_TRANSITION_FPS=60
+    export SWWW_TRANSITION_STEP=10
+
+    INTERVAL=900
+
+    swww init
+    sleep 0.1
+
+    while true; do
+    	find "${wallpaperDir}" -type f \
+    		| while read -r img; do
+    			echo "$((RANDOM % 1000)):$img"
+    		done \
+    		| sort -n | cut -d':' -f2- \
+    		| while read -r img; do
+    			swww img "$img"
+    			sleep $INTERVAL
+    		done
+    done
+  '';
 in
 {
-  options.modules.nixos.desktop.de.hyprland = with types; {
-    enable = mkBoolOpt false;
-    WLR_DRM_DEVICES = mkOpt str "";
-    extraSettings = mkOpt attrs { };
-    extraConfig = mkOpt lines "";
-  };
+  options.modules.nixos.desktop.de.hyprland = with types;
+    {
+      enable = mkBoolOpt false;
+      WLR_DRM_DEVICES = mkOpt str "";
+      extraSettings = mkOpt attrs { };
+      extraConfig = mkOpt lines "";
+    };
 
   config = mkIf cfg.enable {
     nixpkgs.overlays = [
@@ -28,6 +52,7 @@ in
 
         hyprlock
         hypridle
+        swww
 
         libnotify
 
@@ -69,6 +94,7 @@ in
           "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
           "wl-paste --type text --watch cliphist store"
           "wl-paste --type image --watch cliphist store"
+          "${cycleWallpaper}"
         ];
       } // optionalAttrs config.modules.nixos.hardware.nvidia.enable {
         env = [

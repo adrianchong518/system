@@ -92,6 +92,11 @@
         zathura.enable = true;
         # kicad.enable = true; TODO: BROKEN?
       };
+
+      utils = {
+        feh.enable = true;
+        mpv.enable = true;
+      };
     };
 
     shell = {
