@@ -120,7 +120,7 @@ in
         mainBar = {
           layer = "top";
           position = "top";
-          height = 30;
+          height = 17;
           spacing = 4;
 
           modules-left = [ "clock" ];
@@ -145,11 +145,6 @@ in
 
           "hyprland/submap" = {
             format = "Mode: {}";
-          };
-
-          tray = {
-            icon-size = 21;
-            spacing = 10;
           };
 
           network = {
