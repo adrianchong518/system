@@ -16,6 +16,7 @@ config.font = wezterm.font_with_fallback {
   "Symbols Nerd Font",
 }
 config.font_size = 13
+config.warn_about_missing_glyphs = false
 
 config.use_fancy_tab_bar = false
 
@@ -82,6 +83,9 @@ config.leader = {
 }
 
 config.window_decorations = "RESIZE"
+
+config.window_background_opacity = 0.90
+config.text_background_opacity = 0.5
 
 config.disable_default_key_bindings = true
 config.keys = {
