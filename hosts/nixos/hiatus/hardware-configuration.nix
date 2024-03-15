@@ -103,6 +103,7 @@
         nvidiaBusId = "PCI:1:0:0";
       };
     };
+    intelGraphics.enable = true;
     bluetooth.enable = true;
     asus.enable = true;
     thunderbolt.enable = true;
