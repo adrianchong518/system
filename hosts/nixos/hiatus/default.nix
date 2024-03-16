@@ -51,6 +51,8 @@
     nixos = {
       udev.openocd.enable = true;
 
+      services.transmission.enable = true;
+
       desktop = {
         # de.plasma6.enable = true;
         de.hyprland = {
