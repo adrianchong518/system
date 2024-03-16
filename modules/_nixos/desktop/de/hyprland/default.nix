@@ -62,6 +62,14 @@ in
     security.polkit.enable = true;
     security.pam.services.hyprlock = { };
 
+    hm.home.pointerCursor = {
+      gtk.enable = true;
+      x11.enable = true;
+      package = pkgs.catppuccin-cursors.mochaDark;
+      name = "Catppuccin-Mocha-Dark-Cursors";
+      size = 20;
+    };
+
     modules.nixos = {
       services = {
         pipewire.enable = true;
@@ -81,7 +89,9 @@ in
       };
     };
 
-    programs.hyprland.enable = true;
+    programs.hyprland = {
+      enable = true;
+    };
 
     hm.wayland.windowManager.hyprland = {
       enable = true;
@@ -103,6 +113,8 @@ in
           "GBM_BACKEND,nvidia-drm"
           "__GLX_VENDOR_LIBRARY_NAME,nvidia"
           "WLR_NO_HARDWARE_CURSORS,1"
+          "XCURSOR_THEME,Catppuccin-Mocha-Dark-Cursors"
+          "XCURSOR_SIZE,20"
         ];
       } // (optionalAttrs displayCfg.brightnessctl.enable {
         bind = [
