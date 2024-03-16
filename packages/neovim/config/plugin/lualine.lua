@@ -28,6 +28,7 @@ end
 
 require("lualine").setup {
   globalstatus = true,
+
   sections = {
     lualine_b = { "diff", "diagnostics" },
     lualine_c = {
@@ -40,12 +41,17 @@ require("lualine").setup {
       { extra_mode_status },
     },
   },
+
   inactive_sections = {
     lualine_c = {},
   },
+
   options = {
     theme = "auto",
+    section_separators = '',
+    component_separators = '|',
   },
+
   tabline = {
     lualine_a = {
       { "tabs", mode = 1, show_modified_status = false },
@@ -53,18 +59,21 @@ require("lualine").setup {
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
-    lualine_y = { "branch"},
+    lualine_y = { "branch" },
     lualine_z = { cwd },
   },
+
   winbar = {
     lualine_z = {
       { "filename", path = 1, file_status = true, newfile_status = true },
     },
   },
+
   inactive_winbar = {
     lualine_z = {
       { "filename", path = 1, file_status = true, newfile_status = true },
     },
   },
+
   extensions = { "fugitive", "fzf", "toggleterm", "quickfix" },
 }
