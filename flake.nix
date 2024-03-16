@@ -54,7 +54,7 @@
             inherit system;
           };
         in
-        (mapModules (p: pkgs.callPackage p { }) ./packages)
+        (mapModules (p: pkgs.callPackage p { inherit inputs system; }) ./packages)
       );
 
       darwinConfigurations = import ./hosts/darwin { inherit inputs lib; };

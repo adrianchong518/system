@@ -11,6 +11,7 @@ in {
   config = mkIf cfg.enable {
     hm.programs.wezterm = {
       enable = true;
+      package = pkgs.my.wezterm;
       extraConfig = builtins.readFile ./config.lua;
     };
   };

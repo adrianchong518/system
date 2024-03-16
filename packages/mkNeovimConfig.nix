@@ -1,6 +1,6 @@
 # Function for creating a Neovim derivation
 # From https://github.com/juangiordana/kickstart-nix.nvim
-{ pkgs, lib, stdenv, }:
+{ pkgs, lib, stdenv, ... }:
 with lib;
 { appName ? null
 , # NVIM_APPNAME - Defaults to 'nvim'

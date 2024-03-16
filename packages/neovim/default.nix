@@ -1,4 +1,4 @@
-{ pkgs, lib, stdenv, }:
+{ pkgs, lib, stdenv, ... }:
 let mkNeovimConfig = pkgs.callPackage ../mkNeovimConfig.nix { };
 in mkNeovimConfig {
   appName = "nvim";
