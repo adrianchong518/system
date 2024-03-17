@@ -70,6 +70,10 @@
             }
           '';
         };
+
+        apps = {
+          virt-manager.enable = true;
+        };
       };
     };
 

@@ -12,9 +12,12 @@ in
 
   config = mkIf cfg.enable {
     services.transmission.enable = true;
+
     packages = with pkgs; [
       transmission_4-qt
       stable.stig
     ];
+
+    user.extraGroups = [ "transmission" ];
   };
 }
