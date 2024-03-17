@@ -80,8 +80,8 @@ config.leader = {
 
 config.window_decorations = "RESIZE"
 
-config.window_background_opacity = 0.90
-config.text_background_opacity = 0.5
+config.window_background_opacity = 0.80
+config.text_background_opacity = 0.45
 
 config.disable_default_key_bindings = true
 config.keys = {
