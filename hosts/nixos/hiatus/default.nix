@@ -36,6 +36,8 @@
     dbus.lib
     libglvnd
     libxkbcommon
+    mesa
+    mesa.drivers
     SDL2
     systemdLibs
     xorg.libICE
@@ -61,6 +63,9 @@
             monitor = [
               "eDP-1, 2560x1600@120, 0x0, 1, vrr,1"
               "desc:LG Electronics LG ULTRAWIDE 205NTAB2Q984, 3440x1440@160, -3440x0, 1"
+            ];
+            env = [
+              "WLR_DRM_DEVICES,${config.files.dataHome}/_dri/intel-card:${config.files.dataHome}/_dri/nvidia-card"
             ];
           };
           extraConfig = ''

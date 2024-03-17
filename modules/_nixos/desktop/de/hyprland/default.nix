@@ -50,6 +50,9 @@ in
         kdePackages.polkit-kde-agent-1
         libsForQt5.qt5.qtwayland
 
+        qt5ct
+        libsForQt5.qtstyleplugin-kvantum
+
         hyprlock
         hypridle
         swww
@@ -62,14 +65,38 @@ in
     security.polkit.enable = true;
     security.pam.services.hyprlock = { };
 
-    hm.home.pointerCursor = {
-      gtk.enable = true;
-      x11.enable = true;
-      package = pkgs.catppuccin-cursors.mochaDark;
-      name = "Catppuccin-Mocha-Dark-Cursors";
-      size = 20;
+    # Theming
+    hm = {
+      home.pointerCursor = {
+        gtk.enable = true;
+        x11.enable = true;
+        package = pkgs.catppuccin-cursors.mochaDark;
+        name = "Catppuccin-Mocha-Dark-Cursors";
+        size = 20;
+      };
+
+      qt = {
+        enable = true;
+        platformTheme = "qtct";
+        style.name = "kvantum";
+      };
     };
 
+    files = {
+      config = {
+        "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
+          General.theme = "Catppuccin-Mocha-Mauve";
+        };
+        "Kvantum/Catppuccin-Mocha-Mauve".source = "${pkgs.catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; }}/share/Kvantum/Catppuccin-Mocha-Mauve";
+      };
+    };
+
+    environment.variables = {
+      XCURSOR_THEME = "Catppuccin-Mocha-Dark-Cursors";
+      XCURSOR_SIZE = "20";
+    };
+
+    # Services
     modules.nixos = {
       services = {
         pipewire.enable = true;
@@ -113,8 +140,6 @@ in
           "GBM_BACKEND,nvidia-drm"
           "__GLX_VENDOR_LIBRARY_NAME,nvidia"
           "WLR_NO_HARDWARE_CURSORS,1"
-          "XCURSOR_THEME,Catppuccin-Mocha-Dark-Cursors"
-          "XCURSOR_SIZE,20"
         ];
       } // (optionalAttrs displayCfg.brightnessctl.enable {
         bind = [
