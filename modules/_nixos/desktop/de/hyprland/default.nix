@@ -133,14 +133,6 @@ in
           "wl-paste --type image --watch cliphist store"
           "${cycleWallpaper}"
         ];
-      } // optionalAttrs config.modules.nixos.hardware.nvidia.enable {
-        env = [
-          "LIBVA_DRIVER_NAME,nvidia"
-          "XDG_SESSION_TYPE,wayland"
-          "GBM_BACKEND,nvidia-drm"
-          "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-          "WLR_NO_HARDWARE_CURSORS,1"
-        ];
       } // (optionalAttrs displayCfg.brightnessctl.enable {
         bind = [
           ", XF86MonBrightnessDown, exec, brightnessctl -d ${displayCfg.defaultDevice} set 5%-"
@@ -149,6 +141,13 @@ in
       }) // cfg.extraSettings;
 
       extraConfig = mkAliasDefinitions options.modules.nixos.desktop.de.hyprland.extraConfig;
+    };
+
+    environment.sessionVariables = optionalAttrs config.modules.nixos.hardware.nvidia.enable {
+      XDG_SESSION_TYPE = "wayland";
+      GBM_BACKEND = "nvidia-drm";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      WLR_NO_HARDWARE_CURSORS = "1";
     };
 
     hm.programs.waybar = {
