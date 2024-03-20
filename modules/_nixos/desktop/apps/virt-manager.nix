@@ -8,10 +8,20 @@ in
 {
   options.modules.nixos.desktop.apps.virt-manager = with types; {
     enable = mkBoolOpt false;
+    gpuPCIE = mkOpt (nullOr str) null;
   };
 
   config = mkIf cfg.enable {
-    virtualisation.libvirtd.enable = true;
+    virtualisation = {
+      libvirtd.enable = true;
+      spiceUSBRedirection.enable = true;
+
+      kvmgt = mkIf (cfg.gpuPCIE != null) {
+        enable = true;
+        device = cfg.gpuPCIE;
+      };
+    };
+
     programs.virt-manager.enable = true;
 
     hm.dconf.settings = {
@@ -21,6 +31,6 @@ in
       };
     };
 
-    user.extraGroups = [ "libvirtd" ];
+    user.extraGroups = [ "libvirtd" "kvm" ];
   };
 }

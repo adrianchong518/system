@@ -35,6 +35,7 @@
   programs.nix-ld.libraries = options.programs.nix-ld.libraries.default ++ (with pkgs; [
     dbus.lib
     libglvnd
+    libusb1
     libxkbcommon
     mesa
     mesa.drivers
@@ -77,7 +78,10 @@
         };
 
         apps = {
-          virt-manager.enable = true;
+          virt-manager = {
+            enable = true;
+            gpuPCIE = "0000:00:02.0";
+          };
         };
       };
     };
