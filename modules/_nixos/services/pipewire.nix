@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 with lib;
 with lib.my;
@@ -12,6 +12,7 @@ in
 
   config = mkIf cfg.enable {
     security.rtkit.enable = true;
+
     services.pipewire = {
       enable = true;
       alsa = {
@@ -20,5 +21,10 @@ in
       };
       pulse.enable = true;
     };
+
+    packages = with pkgs; [
+      helvum
+      pavucontrol
+    ];
   };
 }
