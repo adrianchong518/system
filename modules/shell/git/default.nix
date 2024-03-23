@@ -6,6 +6,13 @@ let
   inherit (pkgs.stdenvNoCC) isDarwin;
 
   cfg = config.modules.shell.git;
+
+  catppuccinDeltaThemeSrc = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "delta";
+    rev = "21b37ac3138268d92cee71dfc8539d134817580a";
+    sha256 = "0QQLkfLBVuB2re6tjtPNuOQZNK0MDBAIFgNGHZM8afs=";
+  };
 in
 {
   options.modules.shell.git = with types; {
@@ -32,7 +39,19 @@ in
         userName = cfg.userName;
         userEmail = cfg.userEmail;
 
+        includes = [
+          { path = "${catppuccinDeltaThemeSrc}/themes/latte.gitconfig"; }
+          { path = "${catppuccinDeltaThemeSrc}/themes/frappe.gitconfig"; }
+          { path = "${catppuccinDeltaThemeSrc}/themes/macchiato.gitconfig"; }
+          { path = "${catppuccinDeltaThemeSrc}/themes/mocha.gitconfig"; }
+        ];
+
         extraConfig = {
+          core = {
+            untrackedcache = true;
+            fsmonitor = true;
+          };
+
           init.defaultBranch = "main";
 
           credential.helper =
@@ -43,12 +62,20 @@ in
               pkgs.git.override { withLibsecret = true; }
             }/bin/git-credential-libsecret";
 
-          fetch.parallel = 0;
+          fetch = {
+            parallel = 0;
+            writeCommitGraph = true;
+          };
 
           submodule = {
             fetchJobs = 0;
             recurse = true;
           };
+
+          rerere.enabled = true;
+
+          column.ui = "auto";
+          branch.sort = "-committerdate";
         };
 
         aliases = {
@@ -61,11 +88,22 @@ in
           signByDefault = true;
           key = cfg.signing.key;
         };
+
+        delta = {
+          enable = true;
+          options = {
+            dark = true;
+            side-by-side = true;
+            navigate = true;
+            features = "catppuccin-mocha";
+          } // optionalAttrs config.modules.shell.utils.bat.enable {
+            syntax-theme = "catppuccin-mocha";
+          };
+        };
       };
 
       programs.gh = mkIf cfg.gh.enable {
         enable = true;
-        settings.git_protocol = "ssh";
       };
 
       programs.lazygit = mkIf cfg.lazygit.enable {
