@@ -82,6 +82,24 @@ in
           fix = "commit --amend --no-edit";
           oops = "reset HEAD~1";
           clone-worktree = "!sh ${./git-clone-for-worktree.sh}";
+
+          a = "add";
+          aa = "add --all";
+          ap = "add -p";
+          b = "branch";
+          c = "commit";
+          cam = "commit -am";
+          cl = "clone --recurse-submodules";
+          clw = "clone-worktree";
+          cm = "commit -m";
+          co = "checkout";
+          d = "diff";
+          f = "fetch";
+          p = "push";
+          pl = "pull";
+          s = "stash";
+          st = "status";
+          w = "worktree";
         };
 
         signing = mkIf cfg.signing.enable {
@@ -124,24 +142,6 @@ in
       cdr = "cd $(git rev-parse --show-toplevel)";
 
       g = "git";
-      ga = "git add";
-      gaa = "git add --all";
-      gap = "git add -p";
-      gb = "git branch";
-      gc = "git commit";
-      gcam = "git commit -am";
-      gcl = "git clone --recurse-submodules";
-      gclw = "git clone-worktree";
-      gcm = "git commit -m";
-      gco = "git checkout";
-      gd = "git diff";
-      gf = "git fetch";
-      gp = "git push";
-      gpl = "git pull";
-      gs = "git stash";
-      gst = "git status";
-      gw = "git worktree";
-
       lg = "lazygit";
     };
   };
