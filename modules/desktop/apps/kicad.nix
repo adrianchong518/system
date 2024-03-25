@@ -11,6 +11,6 @@ in {
   config = mkIf cfg.enable (if (isDarwinHost hostType) then {
     homebrew.casks = [ "kicad" ];
   } else {
-    packages = [ pkgs.kicad ];
+    packages = [ pkgs.stable.kicad ];
   });
 }
