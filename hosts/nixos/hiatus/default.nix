@@ -132,6 +132,7 @@
           key = "1DC233DD";
         };
       };
+      jujutsu.enable = true;
     };
 
     editors = {

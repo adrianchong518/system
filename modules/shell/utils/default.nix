@@ -21,5 +21,7 @@ in {
       neofetch
       tldr
     ];
+
+    env.PAGER = "${pkgs.less}/bin/less -FRX";
   };
 }

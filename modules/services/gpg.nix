@@ -10,6 +10,8 @@ in {
   };
 
   config = mkIf cfg.enable ({
+    packages = [ pkgs.gnupg ];
+
     hm.programs.gpg.enable = true;
   } // optionalAttrs (isNixosHost hostType) {
     hm.services.gpg-agent = {

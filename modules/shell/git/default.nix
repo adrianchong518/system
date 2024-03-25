@@ -144,5 +144,7 @@ in
       g = "git";
       lg = "lazygit";
     };
+
+    modules.services.gpg.enable = cfg.signing.enable;
   };
 }
