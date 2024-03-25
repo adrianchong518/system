@@ -17,19 +17,23 @@ in
   };
 
   config = mkIf cfg.enable ({
-    hm.programs.ssh = {
-      enable = true;
-    } // optionalAttrs cfg.git.enable {
-      matchBlocks."github.com" = {
-        host = "github.com";
-        identityFile = cfg.git.identityFile;
-      } // optionalAttrs isDarwin {
-        extraOptions = {
-          AddKeysToAgent = "yes";
-          UseKeychain = "yes";
-          IgnoreUnknown = "UseKeychain";
+    hm = {
+      programs.ssh = {
+        enable = true;
+      } // optionalAttrs cfg.git.enable {
+        matchBlocks."github.com" = {
+          host = "github.com";
+          identityFile = cfg.git.identityFile;
+        } // optionalAttrs isDarwin {
+          extraOptions = {
+            AddKeysToAgent = "yes";
+            UseKeychain = "yes";
+            IgnoreUnknown = "UseKeychain";
+          };
         };
       };
+
+      services.ssh-agent.enable = true;
     };
   } // optionalAttrs (isNixosHost hostType) {
     services.openssh.enable = true;
