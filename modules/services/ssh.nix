@@ -20,13 +20,16 @@ in
     hm = {
       programs.ssh = {
         enable = true;
+
+        extraConfig = ''
+          AddKeysToAgent yes;
+        '';
       } // optionalAttrs cfg.git.enable {
         matchBlocks."github.com" = {
           host = "github.com";
           identityFile = cfg.git.identityFile;
         } // optionalAttrs isDarwin {
           extraOptions = {
-            AddKeysToAgent = "yes";
             UseKeychain = "yes";
             IgnoreUnknown = "UseKeychain";
           };
@@ -37,5 +40,6 @@ in
     };
   } // optionalAttrs (isNixosHost hostType) {
     services.openssh.enable = true;
+    programs.ssh.startAgent = true;
   });
 }
