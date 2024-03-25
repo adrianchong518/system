@@ -22,6 +22,6 @@ in {
       tldr
     ];
 
-    env.PAGER = "${pkgs.less}/bin/less -FRX";
+    env.PAGER = "${pkgs.less}/bin/less -FR";
   };
 }
