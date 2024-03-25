@@ -22,7 +22,7 @@ in
         enable = true;
 
         extraConfig = ''
-          AddKeysToAgent yes;
+          AddKeysToAgent yes
         '';
       } // optionalAttrs cfg.git.enable {
         matchBlocks."github.com" = {
