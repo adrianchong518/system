@@ -146,5 +146,7 @@ in
     };
 
     modules.services.gpg.enable = cfg.signing.enable;
+
+    env.DELTA_PAGER = "${pkgs.less}/bin/less -RF";
   };
 }

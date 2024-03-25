@@ -22,6 +22,9 @@ in {
       tldr
     ];
 
-    env.PAGER = "${pkgs.less}/bin/less -FR";
+    env = {
+      PAGER = "${pkgs.less}/bin/less -FR";
+      LESS = "-R --mouse";
+    };
   };
 }
