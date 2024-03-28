@@ -36,6 +36,7 @@ M.servers = {
         plugins = {
           autopep8 = { enabled = false },
           flake8 = { enabled = true },
+          black = { enabled = true },
         },
       },
     },
@@ -51,35 +52,35 @@ M.servers = {
   },
   {
     name = "lua_ls",
-  settings = {
-    Lua = {
-      runtime = {
-        version = "LuaJIT",
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global, etc.
-        globals = {
-          "vim",
-          "describe",
-          "it",
-          "assert",
-          "stub",
+    settings = {
+      Lua = {
+        runtime = {
+          version = "LuaJIT",
         },
-        disable = {
-          "duplicate-set-field",
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global, etc.
+          globals = {
+            "vim",
+            "describe",
+            "it",
+            "assert",
+            "stub",
+          },
+          disable = {
+            "duplicate-set-field",
+          },
         },
-      },
-      workspace = {
-        checkThirdParty = false,
-      },
-      telemetry = {
-        enable = false,
-      },
-      hint = { -- inlay hints (supported in Neovim >= 0.10)
-        enable = true,
+        workspace = {
+          checkThirdParty = false,
+        },
+        telemetry = {
+          enable = false,
+        },
+        hint = { -- inlay hints (supported in Neovim >= 0.10)
+          enable = true,
+        },
       },
     },
-  },
   }
 }
 
