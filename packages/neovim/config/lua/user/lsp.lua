@@ -35,6 +35,7 @@ M.servers = {
         configurationSources = { "flake8" },
         plugins = {
           autopep8 = { enabled = false },
+          pycodestyle = { enabled = false },
           flake8 = { enabled = true },
           black = { enabled = true },
         },
