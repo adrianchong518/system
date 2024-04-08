@@ -156,11 +156,11 @@ config.keys = {
   { key = "l",          mods = "LEADER|CTRL",  action = act.ShowDebugOverlay },
   { key = "r",          mods = "LEADER|CTRL",  action = act.ReloadConfiguration },
 
-  { key = "0",          mods = "SHIFT|CTRL",   action = act.ResetFontSize },
+  { key = ")",          mods = "SHIFT|CTRL",   action = act.ResetFontSize },
   { key = "0",          mods = "SUPER",        action = act.ResetFontSize },
   { key = "+",          mods = "SHIFT|CTRL",   action = act.IncreaseFontSize },
   { key = "=",          mods = "SUPER",        action = act.IncreaseFontSize },
-  { key = "-",          mods = "SHIFT|CTRL",   action = act.DecreaseFontSize },
+  { key = "_",          mods = "SHIFT|CTRL",   action = act.DecreaseFontSize },
   { key = "-",          mods = "SUPER",        action = act.DecreaseFontSize },
 
   { key = "c",          mods = "SHIFT|CTRL",   action = act.CopyTo "Clipboard" },
