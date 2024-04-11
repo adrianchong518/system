@@ -16,7 +16,11 @@ in {
       enableFishIntegration = true;
     };
 
-    packages = with pkgs; [ any-nix-shell comma ];
+    packages = with pkgs; [
+      any-nix-shell
+      comma
+      nix-output-monitor
+    ];
 
     modules = {
       shell.fish.extraInit = ''
