@@ -151,6 +151,10 @@
       };
       gpg.enable = true;
     };
+
+    dev = {
+      platformio.enable = true;
+    };
   };
 
   hm.programs.git.includes = [
