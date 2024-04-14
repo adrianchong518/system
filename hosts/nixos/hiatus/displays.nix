@@ -24,13 +24,23 @@
           scale = 1.0;
         };
 
-        resetWallpaper = "${pkgs.bash}/bin/bash -c \"find ${flake}/wallpapers -type f | shuf | head -n 1 | xargs swww img --transition-step 10 --transition-fps 60\" && notify-send -u low \"wallpaper reset\" || notify-send -u critical \"wallpaper reset fail\"";
+        resetWallpaper = pkgs.writeShellScript "reset-wallpaper" /* bash */ ''
+          swww init
+          sleep 0.1
+
+          find ${flake}/wallpapers -type f \
+            | shuf \
+            | head -n 1 \
+            | xargs swww img --transition-step 10 --transition-fps 60 \
+          && notify-send -u low "wallpaper reset" \
+          || notify-send -u critical "wallpaper reset fail"
+        '';
         internalPrimary = "${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --primary";
       in
       {
         nomad = {
           outputs = [ builtinDisplay ];
-          exec = [ resetWallpaper internalPrimary ];
+          exec = [ "${resetWallpaper}" internalPrimary ];
         };
         home = {
           outputs = [
@@ -44,7 +54,7 @@
             }
           ];
           exec = [
-            resetWallpaper
+            "${resetWallpaper}"
             "${pkgs.xorg.xrandr}/bin/xrandr --output DP-1 --primary"
           ];
         };
@@ -53,7 +63,7 @@
             builtinDisplay
             { criteria = "*"; status = "enable"; scale = 1.0; }
           ];
-          exec = [ resetWallpaper internalPrimary ];
+          exec = [ "${resetWallpaper}" internalPrimary ];
         };
       };
   };
