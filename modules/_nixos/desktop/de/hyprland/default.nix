@@ -124,22 +124,26 @@ in
     hm.wayland.windowManager.hyprland = {
       enable = true;
 
-      settings = {
-        source = [ "${./hyprland.conf}" ]
-          ++ optional config.modules.nixos.services.pipewire.enable "${./pipewire.conf}";
+      settings = recursiveMerge [
+        {
+          source = [ "${./hyprland.conf}" ]
+            ++ optional config.modules.nixos.services.pipewire.enable "${./pipewire.conf}";
 
-        exec-once = [
-          "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
-          "wl-paste --type text --watch cliphist store"
-          "wl-paste --type image --watch cliphist store"
-          "${cycleWallpaper}"
-        ];
-      } // (optionalAttrs displayCfg.brightnessctl.enable {
-        bind = [
-          ", XF86MonBrightnessDown, exec, brightnessctl -d ${displayCfg.defaultDevice} set 5%-"
-          ", XF86MonBrightnessUp, exec, brightnessctl -d ${displayCfg.defaultDevice} set 5%+"
-        ];
-      }) // cfg.extraSettings;
+          exec-once = [
+            "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
+            "wl-paste --type text --watch cliphist store"
+            "wl-paste --type image --watch cliphist store"
+            "${cycleWallpaper}"
+          ];
+        }
+        (optionalAttrs displayCfg.brightnessctl.enable {
+          bind = [
+            ", XF86MonBrightnessDown, exec, brightnessctl -d ${displayCfg.defaultDevice} set 5%-"
+            ", XF86MonBrightnessUp, exec, brightnessctl -d ${displayCfg.defaultDevice} set 5%+"
+          ];
+        })
+        cfg.extraSettings
+      ];
 
       extraConfig = mkAliasDefinitions options.modules.nixos.desktop.de.hyprland.extraConfig;
     };

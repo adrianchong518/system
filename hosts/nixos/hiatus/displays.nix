@@ -20,38 +20,40 @@
         builtinDisplay = {
           criteria = "eDP-1";
           status = "enable";
-          mode = "2560x1600@120";
+          mode = "2560x1600@240Hz";
           scale = 1.0;
         };
 
-        resetWallpaper = "${pkgs.bash}/bin/bash -c \"find ${flake}/wallpapers -type f | shuf | head -n 1 | xargs swww img --transition-step 10 --transition-fps 60\" && notify-send \"wallpaper reset\" || notify-send -u critical \"wallpaper reset fail\", reset wallpaper";
+        resetWallpaper = "${pkgs.bash}/bin/bash -c \"find ${flake}/wallpapers -type f | shuf | head -n 1 | xargs swww img --transition-step 10 --transition-fps 60\" && notify-send -u low \"wallpaper reset\" || notify-send -u critical \"wallpaper reset fail\"";
+        internalPrimary = "${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --primary";
       in
       {
         nomad = {
           outputs = [ builtinDisplay ];
-        };
-        pluggedIn = {
-          outputs = [ (builtinDisplay // { mode = "2560x1600@240"; }) ];
+          exec = [ resetWallpaper internalPrimary ];
         };
         home = {
           outputs = [
-            (builtinDisplay // { mode = "2560x1600@240"; position = "3440,0"; })
+            (builtinDisplay // { position = "3440,0"; })
             {
               criteria = "LG Electronics LG ULTRAWIDE 205NTAB2Q984";
               status = "enable";
-              mode = "3440x1440@160";
+              mode = "3440x1440@160Hz";
               scale = 1.0;
               position = "0,0";
             }
           ];
-          exec = [ resetWallpaper ];
+          exec = [
+            resetWallpaper
+            "${pkgs.xorg.xrandr}/bin/xrandr --output DP-1 --primary"
+          ];
         };
-        multimonitors = {
+        multi = {
           outputs = [
             builtinDisplay
-            { criteria = "*"; }
+            { criteria = "*"; status = "enable"; scale = 1.0; }
           ];
-          exec = [ resetWallpaper ];
+          exec = [ resetWallpaper internalPrimary ];
         };
       };
   };
