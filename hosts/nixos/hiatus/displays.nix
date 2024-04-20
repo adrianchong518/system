@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     xorg.xrandr
     kanshi
+    wdisplays
   ];
 
   modules.nixos.desktop.de.hyprland.extraSettings = {
