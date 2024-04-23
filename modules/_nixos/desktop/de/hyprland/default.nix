@@ -166,6 +166,9 @@ in
           height = 17;
           spacing = 4;
 
+          mode = "hide";
+          start_hidden = true;
+
           modules-left = [ "clock" ];
           modules-center = [ "hyprland/workspaces" ];
           modules-right = [ "hyprland/submap" "idle_inhibitor" "cpu" "memory" "network" "backlight" "wireplumber" "battery" ];
