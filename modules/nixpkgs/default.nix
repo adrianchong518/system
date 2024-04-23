@@ -29,8 +29,9 @@ in {
     ];
 
     settings = {
+      auto-optimise-store = true;
+
       trusted-users = [ "${config.user.name}" "root" "@admin" "@wheel" ];
-      max-jobs = 8;
 
       substituters = [
         "https://nix-community.cachix.org"
