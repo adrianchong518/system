@@ -23,6 +23,7 @@
   environment.systemPackages = with pkgs; [
     powertop
     intel-gpu-tools
+    wineWowPackages.waylandFull
   ];
 
   packages = with pkgs; [
