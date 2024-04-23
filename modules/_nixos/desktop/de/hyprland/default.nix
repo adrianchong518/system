@@ -53,6 +53,8 @@ in
         qt5ct
         libsForQt5.qtstyleplugin-kvantum
 
+        (catppuccin-gtk.override { accents = [ "mauve" ]; variant = "mocha"; size = "standard"; })
+
         hyprlock
         hypridle
         hyprshot
@@ -166,7 +168,7 @@ in
 
           modules-left = [ "clock" ];
           modules-center = [ "hyprland/workspaces" ];
-          modules-right = [ "hyprland/submap" "cpu" "memory" "network" "backlight" "wireplumber" "battery" ];
+          modules-right = [ "hyprland/submap" "idle_inhibitor" "cpu" "memory" "network" "backlight" "wireplumber" "battery" ];
 
           clock = {
             format = "{:%H:%M | %A %d %b %Y}";
@@ -247,6 +249,14 @@ in
           memory = {
             format = " {percentage}%";
             tooltip-format = "{used:0.1f}GiB ({swapUsed:0.1f}GiB swap)";
+          };
+
+          idle_inhibitor = {
+            format = "{icon}";
+            format-icons = {
+              activated = " ";
+              deactivated = " ";
+            };
           };
         };
       };
