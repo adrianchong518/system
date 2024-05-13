@@ -95,6 +95,8 @@ in
           co = "checkout";
           d = "diff";
           f = "fetch";
+          l = "log --oneline";
+          lg = "log --oneline --graph";
           p = "push";
           pl = "pull";
           s = "stash";

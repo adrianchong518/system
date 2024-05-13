@@ -6,7 +6,7 @@ let inherit (pkgs.stdenvNoCC) isDarwin;
 in {
   options = with types; {
     hm = mkOpt attrs { };
-    user = mkOpt attrs { };
+    my.user = mkOpt attrs { };
 
     packages = mkOpt (listOf package) [ ];
     env = mkOpt (lazyAttrsOf (oneOf [ str path int float ])) { };
@@ -19,7 +19,7 @@ in {
       sessionVariables = mkAliasDefinitions options.env;
     };
 
-    user =
+    my.user =
       let
         user = builtins.getEnv "USER";
         name = if elem user [ "" "root" ] then "adrianchong" else user;
@@ -33,13 +33,13 @@ in {
   } // optionalAttrs (isManagedSystem hostType) {
     # set up primary user
     # hm -> home-manager.users.<primary user>
-    home-manager.users.${config.user.name} = mkAliasDefinitions options.hm;
+    home-manager.users.${config.my.user.name} = mkAliasDefinitions options.hm;
     # user -> users.users.<primary user>
-    users.users.${config.user.name} = mkAliasDefinitions options.user;
+    users.users.${config.my.user.name} = mkAliasDefinitions options.my.user;
   } // optionalAttrs (isHmHost hostType) ({
     home = {
-      username = config.user.name;
-      homeDirectory = config.user.home;
+      username = config.my.user.name;
+      homeDirectory = config.my.user.home;
     };
   } // config.hm);
 }

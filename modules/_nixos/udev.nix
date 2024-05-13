@@ -12,7 +12,7 @@ in
 
   config = mkIf cfg.openocd.enable {
     users.extraGroups.plugdev = { };
-    user.extraGroups = [ "plugdev" "dialout" ];
+    my.user.extraGroups = [ "plugdev" "dialout" ];
     services.udev.packages = [ pkgs.openocd ];
   };
 }

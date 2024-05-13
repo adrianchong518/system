@@ -9,12 +9,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    packages = with pkgs;
-      [
-        (if pkgs.stdenvNoCC.isLinux && pkgs.stdenvNoCC.isAarch64 then
-          firefox
-        else
-          firefox-bin)
-      ];
+    packages = with pkgs; [ firefox-bin firefox-devedition-bin ];
   };
 }

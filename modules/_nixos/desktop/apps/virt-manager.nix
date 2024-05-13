@@ -31,6 +31,6 @@ in
       };
     };
 
-    user.extraGroups = [ "libvirtd" "kvm" ];
+    my.user.extraGroups = [ "libvirtd" "kvm" ];
   };
 }

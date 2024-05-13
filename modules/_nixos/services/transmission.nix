@@ -18,6 +18,6 @@ in
       stable.stig
     ];
 
-    user.extraGroups = [ "transmission" ];
+    my.user.extraGroups = [ "transmission" ];
   };
 }

@@ -34,6 +34,10 @@ in
         };
 
         core.fsmonitor = "watchman";
+
+        aliases = {
+          br-up = [ "branch" "set" "-r" "@-" ];
+        };
       };
     };
 

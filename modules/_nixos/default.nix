@@ -7,7 +7,7 @@ with lib.my; {
 
   system.stateVersion = "23.05";
 
-  user = {
+  my.user = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
   };

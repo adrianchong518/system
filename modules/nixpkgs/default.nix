@@ -31,7 +31,7 @@ in {
     settings = {
       auto-optimise-store = true;
 
-      trusted-users = [ "${config.user.name}" "root" "@admin" "@wheel" ];
+      trusted-users = [ "${config.my.user.name}" "root" "@admin" "@wheel" ];
 
       substituters = [
         "https://nix-community.cachix.org"

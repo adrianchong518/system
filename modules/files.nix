@@ -9,10 +9,10 @@ in {
     config = mkOpt' attrs { } "Files to be placed in $XDG_CONFIG_HOME";
     data = mkOpt' attrs { } "Files to be placed in $XDG_DATA_HOME";
 
-    cacheHome = mkOpt path "${config.user.home}/.cache";
-    configHome = mkOpt path "${config.user.home}/.config";
-    dataHome = mkOpt path "${config.user.home}/.local/share";
-    binHome = mkOpt path "${config.user.home}/.local/bin";
+    cacheHome = mkOpt path "${config.my.user.home}/.cache";
+    configHome = mkOpt path "${config.my.user.home}/.config";
+    dataHome = mkOpt path "${config.my.user.home}/.local/share";
+    binHome = mkOpt path "${config.my.user.home}/.local/bin";
   };
 
   config = {

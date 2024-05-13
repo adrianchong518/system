@@ -29,8 +29,6 @@
   packages = with pkgs; [
     bitwarden
     bitwarden-cli
-    teams-for-linux
-    whatsapp-for-linux
   ];
 
   programs.nix-ld.enable = true;

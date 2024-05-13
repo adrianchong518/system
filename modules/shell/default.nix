@@ -31,7 +31,7 @@ in {
       sessionPath = mkAliasDefinitions options.modules.shell.extraPath;
     };
 
-    user.shell = cfg.default;
+    my.user.shell = cfg.default;
 
     files.config = {
       "shell/rc_init.sh".text = ''

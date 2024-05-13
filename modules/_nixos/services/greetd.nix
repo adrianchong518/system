@@ -18,7 +18,7 @@ in
       settings = {
         initial_session = {
           command = "${cfg.session}";
-          user = config.user.name;
+          user = config.my.user.name;
         };
         default_session = {
           command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${cfg.session}";
