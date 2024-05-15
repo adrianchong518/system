@@ -23,8 +23,6 @@
     vscode-server.url = "github:msteen/nixos-vscode-server";
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
 
-    # hyprland.url = "github:hyprwm/Hyprland/03ebad3cbff0999af885c03e83a506a9d9cb5919";
-    # hyprland.url = "github:hyprwm/Hyprland/main?submodules=1";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     # hyprland.url = "github:hyprwm/Hyprland/e7a5db4852d654596e554b9cdeaa2694b346ee03";
     hyprlock.url = "github:hyprwm/hyprlock/main";
