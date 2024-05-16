@@ -27,6 +27,8 @@
     # hyprland.url = "github:hyprwm/Hyprland/e7a5db4852d654596e554b9cdeaa2694b346ee03";
     hyprlock.url = "github:hyprwm/hyprlock/main";
     hypridle.url = "github:hyprwm/hypridle/main";
+
+    wezterm.url = "github:wez/wezterm?dir=nix";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, darwin, flake-utils, ... }:

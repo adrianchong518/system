@@ -1,4 +1,4 @@
-{ config, options, pkgs, lib, ... }:
+{ inputs, config, options, pkgs, lib, system, ... }:
 
 with lib;
 with lib.my;
@@ -11,7 +11,7 @@ in {
   config = mkIf cfg.enable {
     hm.programs.wezterm = {
       enable = true;
-      package = pkgs.my.wezterm;
+      package = inputs.wezterm.packages.${system}.default;
       extraConfig = builtins.readFile ./config.lua;
     };
   };
