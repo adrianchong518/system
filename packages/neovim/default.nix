@@ -8,6 +8,7 @@ in mkNeovimConfig {
     # language servers, etc.
     lua-language-server
     nil # nix LSP
+    nixpkgs-fmt
   ];
 
   plugins = with pkgs.vimPlugins; [
