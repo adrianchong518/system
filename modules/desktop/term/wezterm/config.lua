@@ -25,8 +25,6 @@ config.inactive_pane_hsb = {
   brightness = 0.7,
 }
 
-config.enable_wayland = false
-
 -- Show which key table is active in the status area
 wezterm.on("update-right-status", function(window, pane)
   local key_table = window:active_key_table()
@@ -80,7 +78,7 @@ config.leader = {
   timeout_milliseconds = math.maxinteger,
 }
 
-config.window_decorations = "RESIZE"
+config.window_decorations = "NONE"
 
 config.window_background_opacity = 0.85
 config.text_background_opacity = 0.45
