@@ -63,6 +63,7 @@ in
         libnotify
 
         cliphist
+        libqalculate
       ];
 
     security.polkit.enable = true;
@@ -100,6 +101,8 @@ in
     };
 
     # Services
+    modules.services.gpg.pinentryPackage = mkDefault pkgs.pinentry-bemenu;
+
     modules.nixos = {
       services = {
         pipewire.enable = true;
@@ -113,7 +116,8 @@ in
 
       desktop.utils = {
         wayland.enable = true;
-        rofi = { enable = true; isWayland = true; };
+        # rofi = { enable = true; isWayland = true; };
+        bemenu.enable = true;
         wlogout.enable = true;
         thunar.enable = true;
       };
