@@ -64,6 +64,7 @@ in
 
         cliphist
         libqalculate
+        j4-dmenu-desktop
       ];
 
     security.polkit.enable = true;
