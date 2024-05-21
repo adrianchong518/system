@@ -24,7 +24,6 @@ in
         bottom = true;
         hp = 10;
 
-        binding = "vim";
         vim-esc-exits = true;
 
         fb = "#1e1e2e";
