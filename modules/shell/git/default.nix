@@ -95,8 +95,8 @@ in
           co = "checkout";
           d = "diff";
           f = "fetch";
-          l = "log --oneline";
-          lg = "log --oneline --graph";
+          l = "--abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)%ar%C(reset) %C(dim cyan)%aD%C(reset)%C(auto)%d%C(reset)%n''          %C(default)%s%C(reset) %C(dim white)- %an%C(reset)'";
+          lg = "l --graph";
           p = "push";
           pl = "pull";
           s = "stash";
