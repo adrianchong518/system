@@ -17,8 +17,8 @@ with lib.my; {
 
   networking.networkmanager.enable = true;
 
-  services.xserver = {
-    xkb = {
+  services = {
+    xserver.xkb = {
       layout = "us";
       variant = "colemak";
       options = "ctrl:nocaps";
