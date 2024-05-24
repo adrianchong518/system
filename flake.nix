@@ -9,10 +9,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
 
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
-    };
+    flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
 
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +21,6 @@
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    # hyprland.url = "github:hyprwm/Hyprland/e7a5db4852d654596e554b9cdeaa2694b346ee03";
     hyprlock.url = "github:hyprwm/hyprlock/main";
     hypridle.url = "github:hyprwm/hypridle/main";
 
