@@ -18,7 +18,7 @@ in {
       unzip
       gnutar
 
-      neofetch
+      fastfetch
       tldr
     ];
 
