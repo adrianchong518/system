@@ -30,6 +30,8 @@
   packages = with pkgs; [
     bitwarden
     bitwarden-cli
+
+    prismlauncher
   ];
 
   programs.nix-ld.enable = true;
