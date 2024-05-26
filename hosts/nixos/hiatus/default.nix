@@ -24,6 +24,7 @@
     powertop
     intel-gpu-tools
     wineWowPackages.waylandFull
+    nvtopPackages.full
   ];
 
   packages = with pkgs; [
