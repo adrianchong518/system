@@ -71,15 +71,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
           name = "workspace",
           a = { vim.lsp.buf.add_workspace_folder, "[lsp] add workspace folder" },
           r = { vim.lsp.buf.remove_workspace_folder, "[lsp] remove workspace folder" },
-          l = {
-            function()
-              vim.print(vim.lsp.buf.list_workspace_folders())
-            end,
-            "[lsp] list workspace folders",
-          },
+          l = { function() vim.print(vim.lsp.buf.list_workspace_folders()) end, "[lsp] list workspace folders" },
         },
         t = { vim.lsp.buf.type_definition, "[lsp] go to type definition" },
-        r = { vim.lsp.buf.rename, "[lsp] rename" },
+        r = { ":IncRename ", "[lsp] rename" },
         S = { require("telescope.builtin").lsp_dynamic_workspace_symbols, "[lsp] workspace symbol" },
         s = { require("telescope.builtin").lsp_document_symbols, "[lsp] document symbol" },
         d = { function() require("trouble").open("document_diagnostics") end, "[lsp] document diagnostics" },
@@ -87,18 +82,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         a = { vim.lsp.buf.code_action, "[lsp] code action" },
         l = { vim.lsp.codelens.run, "[lsp] run code lens" },
         L = { vim.lsp.codelens.refresh, "[lsp] refresh code lenses" },
-        F = {
-          function()
-            vim.lsp.buf.format { async = true }
-          end,
-          "[lsp] format buffer",
-        },
-        h = {
-          function()
-            vim.lsp.inlay_hint(bufnr)
-          end,
-          "[lsp] toggle inlay hints",
-        },
+        F = { function() vim.lsp.buf.format { async = true } end, "[lsp] format buffer" },
+        h = { function() vim.lsp.inlay_hint(bufnr) end, "[lsp] toggle inlay hints" },
       },
     }, { buffer = bufnr })
 

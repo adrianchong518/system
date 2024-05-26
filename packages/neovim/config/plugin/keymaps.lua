@@ -145,11 +145,6 @@ end
 
 keymap.set("n", "<leader>S", toggle_spell_check, { noremap = true, silent = true, desc = "toggle spell" })
 
-keymap.set("n", "<C-d>", "<C-d>zz", { desc = "move down half-page and center" })
-keymap.set("n", "<C-u>", "<C-u>zz", { desc = "move up half-page and center" })
-keymap.set("n", "<C-f>", "<C-f>zz", { desc = "move down full-page and center" })
-keymap.set("n", "<C-b>", "<C-b>zz", { desc = "move up full-page and center" })
-
 --- Disabled keymaps [enable at your own risk]
 
 -- Automatic management of search highlight

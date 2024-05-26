@@ -29,7 +29,7 @@ cmp.setup {
     format = lspkind.cmp_format {
       mode = "symbol_text",
       with_text = true,
-      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 
       menu = {
@@ -66,8 +66,8 @@ cmp.setup {
     ["<C-n>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      -- expand_or_jumpable(): Jump outside the snippet region
-      -- expand_or_locally_jumpable(): Only jump inside the snippet region
+        -- expand_or_jumpable(): Jump outside the snippet region
+        -- expand_or_locally_jumpable(): Only jump inside the snippet region
       elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
@@ -137,11 +137,3 @@ cmp.setup.filetype("lua", {
     { name = "path" },
   },
 })
-
-vim.keymap.set({ "i", "c", "s" }, "<C-n>", cmp.complete, { noremap = false, desc = "[cmp] complete" })
-vim.keymap.set({ "i", "c", "s" }, "<C-f>", function()
-  complete_with_source "path"
-end, { noremap = false, desc = "[cmp] path" })
-vim.keymap.set({ "i", "c", "s" }, "<C-o>", function()
-  complete_with_source "nvim_lsp"
-end, { noremap = false, desc = "[cmp] lsp" })

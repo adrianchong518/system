@@ -22,7 +22,6 @@ opt.path = vim.o.path .. "**"
 opt.number = true
 opt.relativenumber = true
 opt.cursorline = true
-opt.lazyredraw = true
 opt.showmatch = false
 opt.incsearch = true
 opt.hlsearch = true
@@ -38,7 +37,7 @@ opt.nrformats = "bin,hex" -- 'octal'
 opt.undofile = true
 opt.splitright = true
 opt.splitbelow = true
-opt.cmdheight = 1
+opt.cmdheight = 0
 opt.scrolloff = 5
 
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
