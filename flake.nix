@@ -25,6 +25,8 @@
     hypridle.url = "github:hyprwm/hypridle/main";
 
     wezterm.url = "github:wez/wezterm?dir=nix";
+
+    remote-nvim = { url = "github:amitds1997/remote-nvim.nvim"; flake = false; };
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, darwin, flake-utils, ... }:

@@ -1,6 +1,13 @@
-{ pkgs, lib, stdenv, ... }:
-let mkNeovimConfig = pkgs.callPackage ../mkNeovimConfig.nix { };
-in mkNeovimConfig {
+{ pkgs, inputs, lib, stdenv, ... }:
+let
+  mkNeovimConfig = pkgs.callPackage ../mkNeovimConfig.nix { };
+  mkNvimPlugin = src: pname:
+    pkgs.vimUtils.buildVimPlugin {
+      inherit pname src;
+      version = src.lastModifiedDate;
+    };
+in
+mkNeovimConfig {
   appName = "nvim";
   configSrc = ./config;
 
@@ -96,6 +103,7 @@ in mkNeovimConfig {
 
     # bleeding-edge plugins from flake inputs
     # (mkNvimPlugin inputs.wf-nvim "wf.nvim") # (example) keymap hints | https://github.com/Cassin01/wf.nvim
+    (mkNvimPlugin inputs.remote-nvim "remote-nvim")
     # ^ bleeding-edge plugins from flake inputs
   ];
 }

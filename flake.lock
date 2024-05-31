@@ -591,6 +591,22 @@
         "type": "github"
       }
     },
+    "remote-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716691984,
+        "narHash": "sha256-AHMXJdptM6Bckp11NRInxskoCigdrX1EyOrKgDToPbk=",
+        "owner": "amitds1997",
+        "repo": "remote-nvim.nvim",
+        "rev": "2d5158a7b57b90f4d98dfd39eb35ee0dbb1f37cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "amitds1997",
+        "repo": "remote-nvim.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "darwin": "darwin",
@@ -605,6 +621,7 @@
         "nixpkgs-firefox-darwin": "nixpkgs-firefox-darwin",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "remote-nvim": "remote-nvim",
         "vscode-server": "vscode-server",
         "wezterm": "wezterm"
       }

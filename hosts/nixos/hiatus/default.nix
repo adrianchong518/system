@@ -53,6 +53,12 @@
     xorg.xcbutilwm
   ]);
 
+  programs.kdeconnect.enable = true;
+  hm.services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
+
   modules = {
     nixos = {
       udev.openocd.enable = true;
