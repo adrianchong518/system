@@ -124,7 +124,7 @@ def build(
     if cfg is None:
         return
     elif cfg == FlakeOutputs.NIXOS:
-        cmd = "sudo nixos-rebuild build --flake"
+        cmd = "nixos-rebuild build --flake"
         flake = f".#{host}"
     elif cfg == FlakeOutputs.DARWIN:
         flake = f".#{host}"

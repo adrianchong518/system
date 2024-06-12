@@ -8,6 +8,8 @@ end
 
 config.color_scheme = "Catppuccin Mocha"
 
+config.check_for_updates = false
+
 config.font = wezterm.font_with_fallback {
   {
     family = "Iosevka Nerd Font",
