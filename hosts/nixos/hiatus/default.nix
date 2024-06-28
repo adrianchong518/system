@@ -4,6 +4,9 @@
   imports = [
     ./hardware-configuration.nix
     ./displays.nix
+    "${inputs.nixpkgs-howdy}/nixos/modules/security/pam.nix"
+    "${inputs.nixpkgs-howdy}/nixos/modules/services/security/howdy/default.nix"
+    "${inputs.nixpkgs-howdy}/nixos/modules/services/misc/linux-enable-ir-emitter.nix"
   ];
 
   services = {
@@ -15,7 +18,28 @@
       openFirewall = true;
     };
     flatpak.enable = true;
+
+    howdy = {
+      enable = true;
+      package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.howdy;
+      settings = {
+        video.device_path = "/dev/video2";
+        core.no_confirmation = true;
+        video.dark_threshold = 90;
+        video.frame_width = 640;
+        video.frame_height = 360;
+        video.device_fps = 15;
+      };
+    };
+
+    # in case your IR blaster does not blink, run `sudo linux-enable-ir-emitter configure`
+    linux-enable-ir-emitter = {
+      enable = false;
+      package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.linux-enable-ir-emitter;
+    };
   };
+
+  disabledModules = [ "security/pam.nix" ];
 
   # gnome-keyring auto login
   security.pam.services.greetd.enableGnomeKeyring = true;

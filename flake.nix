@@ -27,6 +27,8 @@
     wezterm.url = "github:wez/wezterm?dir=nix";
 
     remote-nvim = { url = "github:amitds1997/remote-nvim.nvim"; flake = false; };
+
+    nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, darwin, flake-utils, ... }:
