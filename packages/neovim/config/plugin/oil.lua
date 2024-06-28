@@ -43,5 +43,3 @@ oil.setup({
 
 vim.keymap.set("n", "-", function() oil.open() end, { desc = "Open parent directory" })
 vim.keymap.set("n", "g-", function() oil.toggle_float() end, { desc = "Toggle floating parent directory" })
-vim.keymap.set("n", "_", function() oil.open(vim.fn.getcwd()) end, { desc = "Open cwd" })
-vim.keymap.set("n", "g_", function() oil.toggle_float(vim.fn.getcwd()) end, { desc = "Toggle floating cwd" })
