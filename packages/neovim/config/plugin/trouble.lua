@@ -1,5 +1,16 @@
 local trouble = require "trouble"
-trouble.setup()
+
+trouble.setup {
+  auto_jump = true,
+  focus = true,
+
+  win = {
+    type = "split",
+    relative = "editor",
+    size = 15,
+    position = "bottom",
+  },
+}
 
 require("which-key").register({
   name = "trouble",
