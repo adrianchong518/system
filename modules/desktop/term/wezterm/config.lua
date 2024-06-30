@@ -82,9 +82,6 @@ config.leader = {
 
 config.window_decorations = "NONE"
 
-config.window_background_opacity = 0.85
-config.text_background_opacity = 0.45
-
 config.disable_default_key_bindings = true
 config.keys = {
   { key = "Enter",      mods = "LEADER",       action = act.SendKey { key = "Space", mods = "CTRL" } },
