@@ -6,8 +6,8 @@ trouble.setup {
 
   win = {
     type = "split",
-    relative = "editor",
-    size = 15,
+    relative = "win",
+    size = 0.3,
     position = "bottom",
   },
 }
