@@ -23,12 +23,18 @@
       enable = true;
       package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.howdy;
       settings = {
-        video.device_path = "/dev/video2";
-        core.no_confirmation = true;
-        video.dark_threshold = 90;
-        video.frame_width = 640;
-        video.frame_height = 360;
-        video.device_fps = 15;
+        core = {
+          detection_notice = true;
+          no_confirmation = true;
+        };
+
+        video = {
+          device_path = "/dev/video2";
+          dark_threshold = 90;
+          frame_width = 640;
+          frame_height = 360;
+          device_fps = 15;
+        };
       };
     };
 
@@ -37,6 +43,8 @@
       enable = false;
       package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.linux-enable-ir-emitter;
     };
+
+    onedrive.enable = true;
   };
 
   disabledModules = [ "security/pam.nix" ];
