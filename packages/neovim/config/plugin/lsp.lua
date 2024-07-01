@@ -55,9 +55,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
     require("which-key").register({
       ["gD"] = { vim.lsp.buf.declaration, "[lsp] go to declaration" },
-      ["gd"] = { function() require("telescope.builtin").open("lsp_definitions") end, "[lsp] go to definition" },
+      ["gd"] = { require("telescope.builtin").lsp_definitions, "[lsp] go to definition" },
       ["gi"] = { vim.lsp.buf.implementation, "[lsp] go to implementation" },
-      ["gr"] = { function() require("telescope.builtin").open("lsp_references") end, "[lsp] find references" },
+      ["gr"] = { require("telescope.builtin").lsp_references, "[lsp] find references" },
       ["K"] = { vim.lsp.buf.hover, "[lsp] hover" },
       ["<C-S-k>"] = { vim.lsp.buf.signature_help, "[lsp] signature help" },
       ["<leader>l"] = {
