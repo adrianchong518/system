@@ -18,6 +18,9 @@ in {
       unzip
       gnutar
 
+      pciutils
+      usbutils
+
       fastfetch
       tldr
     ];

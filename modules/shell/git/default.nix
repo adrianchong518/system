@@ -67,6 +67,10 @@ in
             writeCommitGraph = true;
           };
 
+          pull = {
+            rebase = true;
+          };
+
           submodule = {
             fetchJobs = 0;
             recurse = true;

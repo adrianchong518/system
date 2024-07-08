@@ -121,3 +121,9 @@ cmd.colorscheme "catppuccin"
 cmd.set "fo=jn/croql"
 cmd.set [[errorformat^=%-Gg%\\?make[%*\\d]:\ ***\ [%f:%l:%m]]
 cmd.set [[errorformat^=%-Gg%\\?make:\ ***\ [%f:%l:%m]]
+
+vim.filetype.add({
+  extension = {
+    repos = "yaml",
+  },
+})
