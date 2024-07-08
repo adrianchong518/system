@@ -33,10 +33,12 @@ in
       fontconfig = {
         defaultFonts = {
           serif = [
+            "Noto Serif"
             "Noto Serif CJK HK"
             "Noto Color Emoji"
           ];
           sansSerif = [
+            "Noto Sans"
             "Noto Sans CJK HK"
             "Noto Color Emoji"
           ];
