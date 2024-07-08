@@ -64,6 +64,17 @@
     bitwarden-cli
 
     prismlauncher
+
+    (stm32cubemx.overrideAttrs (old: {
+      version = "6.12.0";
+      src = pkgs.fetchzip {
+        url = "https://sw-center.st.com/packs/resource/library/stm32cube_mx_v6120-lin.zip";
+        hash = "sha256-JEXZB8o8aBTycUXydhbMTexYrrYQhma/N+k3IgSSo7U=";
+        stripRoot = false;
+      };
+    }))
+
+    simple-scan
   ];
 
   programs.nix-ld.enable = true;
