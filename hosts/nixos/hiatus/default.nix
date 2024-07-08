@@ -9,6 +9,14 @@
     "${inputs.nixpkgs-howdy}/nixos/modules/services/misc/linux-enable-ir-emitter.nix"
   ];
 
+  hardware.sane = {
+    enable = true;
+    extraBackends = with pkgs; [ sane-airscan hplipWithPlugin ];
+    disabledDefaultBackends = [ "escl" ];
+  };
+
+  my.user.extraGroups = [ "scanner" "lp" ];
+
   services = {
     gnome.gnome-keyring.enable = true;
     printing.enable = true;
