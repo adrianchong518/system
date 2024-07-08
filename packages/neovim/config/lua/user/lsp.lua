@@ -28,6 +28,7 @@ M.servers = {
   { name = "clangd" },
   { name = "zls" },
   { name = "racket_langserver" },
+  { name = "dockerls" },
   {
     name = "pylsp",
     settings = {

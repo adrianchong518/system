@@ -110,6 +110,15 @@
     indicator = true;
   };
 
+  virtualisation.docker.storageDriver = "btrfs";
+  boot.binfmt = {
+    emulatedSystems = [ "aarch64-linux" ];
+    registrations.aarch64-linux = {
+      fixBinary = true;
+      matchCredentials = true;
+    };
+  };
+
   modules = {
     nixos = {
       udev.openocd.enable = true;
@@ -143,6 +152,7 @@
     };
 
     managed.desktop.gaming.steam.enable = true;
+    managed.docker.enable = true;
 
     desktop = {
       enable = true;

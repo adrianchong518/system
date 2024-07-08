@@ -19,6 +19,8 @@ in
   config = mkIf cfg.enable {
     services.xserver.videoDrivers = [ "nvidia" ];
 
+    virtualisation.docker.enableNvidia = true;
+
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
