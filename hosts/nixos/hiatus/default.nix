@@ -168,7 +168,7 @@
       apps = {
         thunderbird.enable = true;
         gimp.enable = true;
-        obsidian.enable = true;
+        obsidian.enable = false;
         zotero.enable = true;
         zathura.enable = true;
         kicad.enable = true;

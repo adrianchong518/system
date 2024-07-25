@@ -20,9 +20,9 @@
     vscode-server.url = "github:msteen/nixos-vscode-server";
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprlock.url = "github:hyprwm/hyprlock/main";
-    hypridle.url = "github:hyprwm/hypridle/main";
+    # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    # hyprlock.url = "github:hyprwm/hyprlock/main";
+    # hypridle.url = "github:hyprwm/hypridle/main";
 
     wezterm.url = "github:wez/wezterm?dir=nix";
 

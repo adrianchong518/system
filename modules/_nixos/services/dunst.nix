@@ -14,7 +14,7 @@ in
     hm.services.dunst = {
       enable = true;
       iconTheme = {
-        package = pkgs.gnome.adwaita-icon-theme;
+        package = pkgs.adwaita-icon-theme;
         name = "Adawaita";
       };
       settings = {

@@ -39,11 +39,11 @@ in
     };
 
   config = mkIf cfg.enable {
-    nixpkgs.overlays = [
-      inputs.hyprland.overlays.default
-      inputs.hyprlock.overlays.default
-      inputs.hypridle.overlays.default
-    ];
+    # nixpkgs.overlays = [
+    #   inputs.hyprland.overlays.default
+    #   inputs.hyprlock.overlays.default
+    #   inputs.hypridle.overlays.default
+    # ];
 
     environment.systemPackages = with pkgs;
       [
@@ -76,13 +76,13 @@ in
 
     # Theming
     hm = {
-      home.pointerCursor = {
-        gtk.enable = true;
-        x11.enable = true;
-        package = pkgs.catppuccin-cursors.mochaDark;
-        name = "Catppuccin-Mocha-Dark-Cursors";
-        size = 20;
-      };
+      # home.pointerCursor = {
+      #   gtk.enable = true;
+      #   x11.enable = true;
+      #   package = pkgs.catppuccin-cursors.mochaDark;
+      #   name = "Catppuccin-Mocha-Dark-Cursors";
+      #   size = 20;
+      # };
 
       qt = {
         enable = true;
@@ -100,10 +100,10 @@ in
       };
     };
 
-    environment.variables = {
-      XCURSOR_THEME = "Catppuccin-Mocha-Dark-Cursors";
-      XCURSOR_SIZE = "20";
-    };
+    # environment.variables = {
+    #   XCURSOR_THEME = "Catppuccin-Mocha-Dark-Cursors";
+    #   XCURSOR_SIZE = "20";
+    # };
 
     # Services
     modules.services.gpg.pinentryPackage = mkDefault pkgs.pinentry-bemenu;
@@ -175,8 +175,8 @@ in
           height = 17;
           spacing = 4;
 
-          mode = "hide";
-          start_hidden = true;
+          # mode = "hide";
+          # start_hidden = true;
 
           modules-left = [ "clock" ];
           modules-center = [ "hyprland/workspaces" ];
