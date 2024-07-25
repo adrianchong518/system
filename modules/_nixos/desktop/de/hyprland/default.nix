@@ -76,13 +76,13 @@ in
 
     # Theming
     hm = {
-      # home.pointerCursor = {
-      #   gtk.enable = true;
-      #   x11.enable = true;
-      #   package = pkgs.catppuccin-cursors.mochaDark;
-      #   name = "Catppuccin-Mocha-Dark-Cursors";
-      #   size = 20;
-      # };
+      home.pointerCursor = {
+        gtk.enable = true;
+        x11.enable = true;
+        package = pkgs.catppuccin-cursors.mochaDark;
+        name = "Catppuccin-Mocha-Dark-Cursors";
+        size = 20;
+      };
 
       qt = {
         enable = true;
@@ -100,10 +100,10 @@ in
       };
     };
 
-    # environment.variables = {
-    #   XCURSOR_THEME = "Catppuccin-Mocha-Dark-Cursors";
-    #   XCURSOR_SIZE = "20";
-    # };
+    environment.variables = {
+      XCURSOR_THEME = "Catppuccin-Mocha-Dark-Cursors";
+      XCURSOR_SIZE = "20";
+    };
 
     # Services
     modules.services.gpg.pinentryPackage = mkDefault pkgs.pinentry-bemenu;
