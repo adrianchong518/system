@@ -12,13 +12,13 @@ trouble.setup {
   },
 }
 
-require("which-key").register({
-  name = "trouble",
-  x = { function() trouble.toggle() end, "[trouble] toggle" },
-  q = { function() trouble.toggle("quickfix") end, "[trouble] toggle quickfix" },
-  l = { function() trouble.toggle("loclist") end, "[trouble] toggle loclist" },
-  n = { function() trouble.next({ skip_groups = true, jump = true }) end, "[trouble] next" },
-  p = { function() trouble.previous({ skip_groups = true, jump = true }) end, "[trouble] previous" },
-  N = { function() trouble.first({ skip_groups = true, jump = true }) end, "[trouble] first" },
-  P = { function() trouble.last({ skip_groups = true, jump = true }) end, "[trouble] last" },
-}, { prefix = "<leader>x" })
+require("which-key").add({
+  { "<leader>x",  group = "trouble" },
+  { "<leader>xx", function() trouble.toggle() end,                                      desc = "[trouble] toggle" },
+  { "<leader>xq", function() trouble.toggle("quickfix") end,                            desc = "[trouble] toggle quickfix" },
+  { "<leader>xl", function() trouble.toggle("loclist") end,                             desc = "[trouble] toggle loclist" },
+  { "<leader>xn", function() trouble.next({ skip_groups = true, jump = true }) end,     desc = "[trouble] next" },
+  { "<leader>xp", function() trouble.previous({ skip_groups = true, jump = true }) end, desc = "[trouble] previous" },
+  { "<leader>xN", function() trouble.first({ skip_groups = true, jump = true }) end,    desc = "[trouble] first" },
+  { "<leader>xP", function() trouble.last({ skip_groups = true, jump = true }) end,     desc = "[trouble] last" },
+})

@@ -4,16 +4,16 @@ local keymap = vim.keymap
 local diagnostic = vim.diagnostic
 local wk = require "which-key"
 
-wk.register({
-  b = { name = "buffer" },
-  t = { name = "tab" },
-  h = { name = "git hunk" },
-  g = {
-    name = "git",
-    t = { name = "toggle", },
-  },
-  w = { name = "window" },
-}, { prefix = "<leader>" })
+wk.add({
+  { "<leader>b",  group = "buffer" },
+  { "<leader>t",  group = "tab" },
+  { "<leader>h",  group = "git hunk" },
+
+  { "<leader>g",  group = "git" },
+  { "<leader>gt", group = "toggle" },
+
+  { "<leader>w",  group = "window",  proxy = "<C-w>" }
+})
 
 -- Yank from current position till end of current line
 keymap.set("n", "Y", "y$", { silent = true, desc = "yank to end of line" })
@@ -23,61 +23,6 @@ keymap.set("n", "[b", vim.cmd.bprevious, { silent = true, desc = "previous buffe
 keymap.set("n", "]b", vim.cmd.bnext, { silent = true, desc = "next buffer" })
 keymap.set("n", "[B", vim.cmd.bfirst, { silent = true, desc = "first buffer" })
 keymap.set("n", "]B", vim.cmd.blast, { silent = true, desc = "last buffer" })
-
--- Toggle the quickfix list (only opens if it is populated)
-local function toggle_qf_list()
-  local qf_exists = false
-  for _, win in pairs(fn.getwininfo() or {}) do
-    if win["quickfix"] == 1 then
-      qf_exists = true
-    end
-  end
-  if qf_exists == true then
-    vim.cmd.cclose()
-    return
-  end
-  if not vim.tbl_isempty(vim.fn.getqflist()) then
-    vim.cmd.copen()
-  end
-end
-
-keymap.set("n", "<C-c>", toggle_qf_list, { desc = "toggle quickfix list" })
-
-local function try_fallback_notify(opts)
-  local success, _ = pcall(opts.try)
-  if success then
-    return
-  end
-  success, _ = pcall(opts.fallback)
-  if success then
-    return
-  end
-  vim.notify(opts.notify, vim.log.levels.INFO)
-end
-
--- Resize vertical splits
-local toIntegral = math.ceil
-keymap.set("n", "<leader>w+", function()
-  local curWinWidth = api.nvim_win_get_width(0)
-  api.nvim_win_set_width(0, toIntegral(curWinWidth * 3 / 2))
-end, { silent = true, desc = "inc window width" })
-keymap.set("n", "<leader>w-", function()
-  local curWinWidth = api.nvim_win_get_width(0)
-  api.nvim_win_set_width(0, toIntegral(curWinWidth * 2 / 3))
-end, { silent = true, desc = "dec window width" })
-keymap.set("n", "<leader>h+", function()
-  local curWinHeight = api.nvim_win_get_height(0)
-  api.nvim_win_set_height(0, toIntegral(curWinHeight * 3 / 2))
-end, { silent = true, desc = "inc window height" })
-keymap.set("n", "<leader>h-", function()
-  local curWinHeight = api.nvim_win_get_height(0)
-  api.nvim_win_set_height(0, toIntegral(curWinHeight * 2 / 3))
-end, { silent = true, desc = "dec window height" })
-
--- Close floating windows [Neovim 0.10 and above]
-keymap.set("n", "<leader>fq", function()
-  vim.cmd "fclose!"
-end, { silent = true, desc = "close all floating windows" })
 
 -- Remap Esc to switch to normal mode and Ctrl-Esc to pass Esc to terminal
 keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "switch to normal mode" })

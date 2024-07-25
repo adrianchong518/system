@@ -53,39 +53,39 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- Enable completion triggered by <c-x><c-o>
     vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-    require("which-key").register({
-      ["gD"] = { vim.lsp.buf.declaration, "[lsp] go to declaration" },
-      ["gd"] = { require("telescope.builtin").lsp_definitions, "[lsp] go to definition" },
-      ["gi"] = { vim.lsp.buf.implementation, "[lsp] go to implementation" },
-      ["gr"] = { require("telescope.builtin").lsp_references, "[lsp] find references" },
-      ["K"] = { vim.lsp.buf.hover, "[lsp] hover" },
-      ["<C-S-k>"] = { vim.lsp.buf.signature_help, "[lsp] signature help" },
-      ["<leader>l"] = {
-        name = "lsp",
-        p = {
-          name = "peek",
-          d = { peek_definition, "[lsp] peek definition" },
-          t = { peek_type_definition, "[lsp] peek type definition" },
-        },
-        w = {
-          name = "workspace",
-          a = { vim.lsp.buf.add_workspace_folder, "[lsp] add workspace folder" },
-          r = { vim.lsp.buf.remove_workspace_folder, "[lsp] remove workspace folder" },
-          l = { function() vim.print(vim.lsp.buf.list_workspace_folders()) end, "[lsp] list workspace folders" },
-        },
-        t = { vim.lsp.buf.type_definition, "[lsp] go to type definition" },
-        r = { ":IncRename ", "[lsp] rename" },
-        S = { require("telescope.builtin").lsp_dynamic_workspace_symbols, "[lsp] workspace symbol" },
-        s = { require("telescope.builtin").lsp_document_symbols, "[lsp] document symbol" },
-        d = { function() require("telescope.builtin").open("document_diagnostics") end, "[lsp] document diagnostics" },
-        D = { function() require("telescope.builtin").open("workspace_diagnostics") end, "[lsp] workspace diagnostics" },
-        a = { vim.lsp.buf.code_action, "[lsp] code action" },
-        l = { vim.lsp.codelens.run, "[lsp] run code lens" },
-        L = { vim.lsp.codelens.refresh, "[lsp] refresh code lenses" },
-        F = { function() vim.lsp.buf.format { async = true } end, "[lsp] format buffer" },
-        h = { function() vim.lsp.inlay_hint(bufnr) end, "[lsp] toggle inlay hints" },
-      },
-    }, { buffer = bufnr })
+    require("which-key").add({
+      buffer = bufnr,
+
+      { "gD",          vim.lsp.buf.declaration,                                                   desc = "[lsp] go to declaration" },
+      { "gd",          require("telescope.builtin").lsp_definitions,                              desc = "[lsp] go to definition" },
+      { "gi",          vim.lsp.buf.implementation,                                                desc = "[lsp] go to implementation" },
+      { "gr",          require("telescope.builtin").lsp_references,                               desc = "[lsp] find references" },
+      { "K",           vim.lsp.buf.hover,                                                         desc = "[lsp] hover" },
+      { "<C-S-k>",     vim.lsp.buf.signature_help,                                                desc = "[lsp] signature help" },
+
+      { "<leader>l",   group = "lsp" },
+
+      { "<leader>lp",  group = "peek" },
+      { "<leader>lpd", peek_definition,                                                           desc = "[lsp] peek definition" },
+      { "<leader>lpt", peek_type_definition,                                                      desc = "[lsp] peek type definition" },
+
+      { "<leader>lw",  group = "workspace" },
+      { "<leader>lwa", vim.lsp.buf.add_workspace_folder,                                          desc = "[lsp] add workspace folder" },
+      { "<leader>lwr", vim.lsp.buf.remove_workspace_folder,                                       desc = "[lsp] remove workspace folder" },
+      { "<leader>lwl", function() vim.print(vim.lsp.buf.list_workspace_folders()) end,            desc = "[lsp] list workspace folders" },
+
+      { "<leader>lt",  vim.lsp.buf.type_definition,                                               desc = "[lsp] go to type definition" },
+      { "<leader>lr",  ":IncRename ",                                                             desc = "[lsp] rename" },
+      { "<leader>lS",  require("telescope.builtin").lsp_dynamic_workspace_symbols,                desc = "[lsp] workspace symbol" },
+      { "<leader>ls",  require("telescope.builtin").lsp_document_symbols,                         desc = "[lsp] document symbol" },
+      { "<leader>ld",  function() require("telescope.builtin").open("document_diagnostics") end,  desc = "[lsp] document diagnostics" },
+      { "<leader>lD",  function() require("telescope.builtin").open("workspace_diagnostics") end, desc = "[lsp] workspace diagnostics" },
+      { "<leader>la",  vim.lsp.buf.code_action,                                                   desc = "[lsp] code action" },
+      { "<leader>ll",  vim.lsp.codelens.run,                                                      desc = "[lsp] run code lens" },
+      { "<leader>lL",  vim.lsp.codelens.refresh,                                                  desc = "[lsp] refresh code lenses" },
+      { "<leader>lF",  function() vim.lsp.buf.format { async = true } end,                        desc = "[lsp] format buffer" },
+      { "<leader>lh",  function() vim.lsp.inlay_hint(bufnr) end,                                  desc = "[lsp] toggle inlay hints" },
+    })
 
     -- Format on save if supported
     if (client.server_capabilities.documentFormattingProvider) then

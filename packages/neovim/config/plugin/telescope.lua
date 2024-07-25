@@ -65,38 +65,35 @@ local function open_in_oil(bufnr)
   require("oil").open(folder_path)
 end
 
-wk.register({
-    f = {
-      name = "find",
-      a = { function()
-        builtin.find_files({ follow = true, no_ignore = true, no_ignore_parent = true, hidden = true })
-      end, "[telescope] find files" },
-      o = { builtin.oldfiles, "[telescope] old files" },
-      w = { builtin.live_grep, "[telescope] live grep" },
-      W = { fuzzy_grep, "[telescope] fuzzy grep" },
-      g = { live_grep_current_file_type, "[telescope] live grep filetype" },
-      G = { fuzzy_grep_current_file_type, "[telescope] fuzzy grep filetype" },
-      f = { builtin.find_files, "[telescope] project files" },
-      c = { builtin.quickfix, "[telescope] quickfix list" },
-      q = { builtin.command_history, "[telescope] command history" },
-      l = { builtin.loclist, "[telescope] loclist" },
-      r = { builtin.registers, "[telescope] registers" },
-      h = { builtin.help_tags, "[telescope] help" },
-      m = { builtin.man_pages, "[telescope] man pages" },
-      k = { builtin.keymaps, "[telescope] keymap" },
-      e = { "<CMD>Telescope file_browser<CR>", "[telescope] file browser" },
-      E = { "<CMD>Telescope file_browser path=%:p:h select_buffer=true<CR>", "[telescope] file browser (current buffer)" },
-      t = { "<CMD>TodoTelescope<CR>", "[todo comments] open in telescope" },
-    },
-    b = {
-      b = { builtin.buffers, "[telescope] buffers" },
-      f = { builtin.current_buffer_fuzzy_find, "[telescope] fuzzy find (current buffer)" },
-    },
+wk.add({
+  { "<leader>f",  group = "find" },
+  {
+    "<leader>fa",
+    function()
+      builtin.find_files({ follow = true, no_ignore = true, no_ignore_parent = true, hidden = true })
+    end,
+    desc = "[telescope] find files"
   },
-  { prefix = "<leader>" })
+  { "<leader>fo", builtin.oldfiles,                                                desc = "[telescope] old files" },
+  { "<leader>fw", builtin.live_grep,                                               desc = "[telescope] live grep" },
+  { "<leader>fW", fuzzy_grep,                                                      desc = "[telescope] fuzzy grep" },
+  { "<leader>fg", live_grep_current_file_type,                                     desc = "[telescope] live grep filetype" },
+  { "<leader>fG", fuzzy_grep_current_file_type,                                    desc = "[telescope] fuzzy grep filetype" },
+  { "<leader>ff", builtin.find_files,                                              desc = "[telescope] project files" },
+  { "<leader>fc", builtin.quickfix,                                                desc = "[telescope] quickfix list" },
+  { "<leader>fq", builtin.command_history,                                         desc = "[telescope] command history" },
+  { "<leader>fl", builtin.loclist,                                                 desc = "[telescope] loclist" },
+  { "<leader>fr", builtin.registers,                                               desc = "[telescope] registers" },
+  { "<leader>fh", builtin.help_tags,                                               desc = "[telescope] help" },
+  { "<leader>fm", builtin.man_pages,                                               desc = "[telescope] man pages" },
+  { "<leader>fk", builtin.keymaps,                                                 desc = "[telescope] keymap" },
+  { "<leader>fe", "<CMD>Telescope file_browser<CR>",                               desc = "[telescope] file browser" },
+  { "<leader>fE", "<CMD>Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "[telescope] file browser (current buffer)" },
+  { "<leader>ft", "<CMD>TodoTelescope<CR>",                                        desc = "[todo comments] open in telescope" },
 
-vim.keymap.set("n", "<leader>f*", grep_string_current_file_type, { desc = "[telescope] grep string filetype" })
-vim.keymap.set("n", "<leader>*", builtin.grep_string, { desc = "[telescope] grep string" })
+  { "<leader>bb", builtin.buffers,                                                 desc = "[telescope] buffers" },
+  { "<leader>bf", builtin.current_buffer_fuzzy_find,                               desc = "[telescope] fuzzy find (current buffer)" },
+})
 
 telescope.setup {
   defaults = {

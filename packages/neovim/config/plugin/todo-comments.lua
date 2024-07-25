@@ -8,6 +8,6 @@ vim.keymap.set("n", "[t", function()
   require("todo-comments").jump_prev()
 end, { desc = "[todo comments] prev" })
 
-require("which-key").register {
-  ["<leader>ft"] = { "<CMD>TodoTelescope<CR>", "[todo comments] open in telescope" },
+require("which-key").add {
+  { "<leader>ft", "<CMD>TodoTelescope<CR>", desc = "[todo comments] open in telescope" },
 }
