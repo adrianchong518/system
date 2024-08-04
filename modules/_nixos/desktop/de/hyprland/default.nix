@@ -39,11 +39,11 @@ in
     };
 
   config = mkIf cfg.enable {
-    # nixpkgs.overlays = [
-    #   inputs.hyprland.overlays.default
-    #   inputs.hyprlock.overlays.default
-    #   inputs.hypridle.overlays.default
-    # ];
+    nixpkgs.overlays = [
+      inputs.hyprland.overlays.default
+      inputs.hyprlock.overlays.default
+      inputs.hypridle.overlays.default
+    ];
 
     environment.systemPackages = with pkgs;
       [
@@ -178,7 +178,7 @@ in
           # mode = "hide";
           # start_hidden = true;
 
-          modules-left = [ "clock" ];
+          modules-left = [ "clock" "tray" ];
           modules-center = [ "hyprland/workspaces" ];
           modules-right = [ "hyprland/submap" "idle_inhibitor" "cpu" "memory" "network" "backlight" "wireplumber" "battery" ];
 
@@ -196,6 +196,12 @@ in
                 today = "<span color='#FFFFFF'><b>{}</b></span>";
               };
             };
+          };
+
+          tray = {
+            icon-size = 21;
+            spacing = 0;
+            show-passive-items = true;
           };
 
           "hyprland/submap" = {
