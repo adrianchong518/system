@@ -7,7 +7,10 @@ require("auto-hlsearch").setup()
 require("crates").setup()
 -- require("fidget").setup()
 require("Comment").setup()
-require("inc_rename").setup()
+-- require("inc_rename").setup()
+
+require("mini.icons").setup()
+
 require("remote-nvim").setup({
   client_callback = function(port, workspace_config)
     local cmd = ("wezterm cli set-tab-title --pane-id $(wezterm cli spawn nvim --server localhost:%s --remote-ui) %s")

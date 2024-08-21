@@ -75,7 +75,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       { "<leader>lwl", function() vim.print(vim.lsp.buf.list_workspace_folders()) end,            desc = "[lsp] list workspace folders" },
 
       { "<leader>lt",  vim.lsp.buf.type_definition,                                               desc = "[lsp] go to type definition" },
-      { "<leader>lr",  ":IncRename ",                                                             desc = "[lsp] rename" },
+      { "<leader>lr",  vim.lsp.buf.rename,                                                        desc = "[lsp] rename" },
       { "<leader>lS",  require("telescope.builtin").lsp_dynamic_workspace_symbols,                desc = "[lsp] workspace symbol" },
       { "<leader>ls",  require("telescope.builtin").lsp_document_symbols,                         desc = "[lsp] document symbol" },
       { "<leader>ld",  function() require("telescope.builtin").open("document_diagnostics") end,  desc = "[lsp] document diagnostics" },

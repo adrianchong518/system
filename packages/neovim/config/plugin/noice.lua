@@ -1,3 +1,4 @@
+--[[
 local noice = require "noice"
 
 noice.setup({
@@ -39,3 +40,4 @@ vim.keymap.set({ "n", "i", "s" }, "<C-b>", function()
     return "<C-b>"
   end
 end, { silent = true, expr = true })
+]]

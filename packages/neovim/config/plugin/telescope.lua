@@ -3,7 +3,7 @@ local actions = require "telescope.actions"
 local actions_state = require("telescope.actions.state")
 local builtin = require "telescope.builtin"
 local wk = require "which-key"
-local trouble = require("trouble.providers.telescope")
+local trouble = require("trouble.sources.telescope")
 
 local layout_config = {
   horizontal = {
@@ -106,12 +106,12 @@ telescope.setup {
     mappings = {
       i = {
         ["<C-s>"] = actions.file_split,
-        ["<C-t>"] = trouble.open_with_trouble,
+        ["<C-t>"] = trouble.open,
         ["<C-o>"] = open_in_oil,
       },
       n = {
         q = actions.close,
-        ["<C-t>"] = trouble.open_with_trouble,
+        ["<C-t>"] = trouble.open,
         o = open_in_oil,
       },
     },

@@ -62,7 +62,7 @@ mkNeovimConfig {
     statuscol-nvim # Status column | https://github.com/luukvbaal/statuscol.nvim/
     nvim-treesitter-context # nvim-treesitter-context
     # fidget-nvim # lsp loading progess | https://github.com/j-hui/fidget.nvim/
-    noice-nvim
+    # noice-nvim
     # ^ UI
 
     # language support
@@ -85,7 +85,7 @@ mkNeovimConfig {
     Navigator-nvim # pane navigation integration with tmux/wezterm | https://github.com/numToStr/Navigator.nvim/
     nvim-autopairs # autopairs | https://github.com/windwp/nvim-autopairs/
     indent-blankline-nvim # Add indentation guides | https://github.com/lukas-reineke/indent-blankline.nvim/
-    inc-rename-nvim
+    # inc-rename-nvim
     leap-nvim
     flit-nvim
     # ^ navigation/editing enhancement plugins
@@ -101,6 +101,7 @@ mkNeovimConfig {
     vim-repeat
     promise-async
     nui-nvim
+    mini-nvim
     # ^ libraries that other plugins depend on
 
     # bleeding-edge plugins from flake inputs
