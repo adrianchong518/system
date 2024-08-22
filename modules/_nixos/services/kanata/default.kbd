@@ -1,0 +1,68 @@
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt comp rctl
+)
+
+(defvar
+  mod-tap-time 70
+  mod-hold-time 150
+)
+
+(defvirtualkeys
+  to-base (layer-switch base)
+)
+
+(defalias
+  mod-tap (multi
+    (layer-switch base-nomods)
+    (on-idle 30 tap-virtualkey to-base)
+  )
+
+  a (tap-hold $mod-tap-time $mod-hold-time (multi a @mod-tap) lmet)
+  r (tap-hold $mod-tap-time $mod-hold-time (multi r @mod-tap) lalt)
+  s (tap-hold $mod-tap-time $mod-hold-time (multi s @mod-tap) lsft)
+  t (tap-hold $mod-tap-time $mod-hold-time (multi t @mod-tap) lctl)
+  n (tap-hold $mod-tap-time $mod-hold-time (multi n @mod-tap) rctl)
+  e (tap-hold $mod-tap-time $mod-hold-time (multi e @mod-tap) rsft)
+  i (tap-hold $mod-tap-time $mod-hold-time (multi i @mod-tap) ralt)
+  o (tap-hold $mod-tap-time $mod-hold-time (multi o @mod-tap) rmet)
+
+  spc (tap-hold 0 300 spc (layer-while-held nav))
+
+  fn1 (one-shot 500 (layer-while-held fn1))
+)
+
+(deflayer base
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    f    p    g    j    l    u    y    ;    [    ]    \
+  XX   @a   @r   @s   @t   d    h    @n   @e   @i   @o   '    ret
+  @fn1 z    x    c    v    b    k    m    ,    .    /    rsft
+  XX   XX   XX             @spc           XX   comp XX
+)
+
+(deflayer base-nomods
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    f    p    g    j    l    u    y    ;    [    ]    \
+  XX   a    r    s    t    d    h    n    e    i    o    '    ret
+  XX   z    x    c    v    b    k    m    ,    .    /    rsft
+  XX   XX   XX             spc            XX   comp XX
+)
+
+(deflayer nav
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX   XX   XX   XX   down rght XX   XX   XX   XX   XX   XX
+  XX   lmet lalt lsft lctl XX   lft  XX   XX   XX   XX   XX   XX
+  XX   XX   XX   XX   XX   XX   up   XX   XX   XX   XX   XX
+  XX   XX   XX             XX             XX   XX   XX
+)
+
+(deflayer fn1
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   lrld XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX             XX             XX   XX   XX
+)

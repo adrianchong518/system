@@ -20,8 +20,8 @@ with lib.my; {
   services = {
     xserver.xkb = {
       layout = "us";
-      variant = "colemak";
-      options = "ctrl:nocaps";
+      # variant = "colemak";
+      # options = "ctrl:nocaps";
     };
 
     libinput.enable = true;

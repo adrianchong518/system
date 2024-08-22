@@ -123,7 +123,10 @@
     nixos = {
       udev.openocd.enable = true;
 
-      services.transmission.enable = true;
+      services = {
+        transmission.enable = true;
+        kanata.enable = true;
+      };
 
       desktop = {
         # de.plasma6.enable = true;
