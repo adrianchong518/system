@@ -35,10 +35,12 @@ tooltip {
 }
 
 #workspaces button {
-    transition: all 0.3s ease;
+    /* transition: all 0.3s ease; */
     border: 2px solid transparent;
-    border-radius: 10px;
+    border-radius: 0px;
     background: rgba(0, 0, 0, 0);
+    padding: 0px 0px;
+    min-width: 0px;
 }
 
 #workspaces button label {
@@ -47,12 +49,11 @@ tooltip {
 
 #workspaces button:hover {
     border: 2px solid white;
-    min-width: 45px;
 }
 
 #workspaces button.active label {
     font-weight: bolder;
-    text-decoration-line: underline;
+    text-decoration-line: none;
 }
 
 #tray menu {

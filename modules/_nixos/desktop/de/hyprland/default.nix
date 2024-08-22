@@ -80,7 +80,7 @@ in
         gtk.enable = true;
         x11.enable = true;
         package = pkgs.catppuccin-cursors.mochaDark;
-        name = "Catppuccin-Mocha-Dark-Cursors";
+        name = "catppuccin-mocha-dark-cursors";
         size = 20;
       };
 
@@ -100,9 +100,11 @@ in
       };
     };
 
-    environment.variables = {
-      XCURSOR_THEME = "Catppuccin-Mocha-Dark-Cursors";
-      XCURSOR_SIZE = "20";
+    environment.variables = rec {
+      HYPRCURSOR_THEME = "catppuccin-mocha-dark-cursors";
+      HYPRCURSOR_SIZE = "20";
+      XCURSOR_THEME = HYPRCURSOR_THEME;
+      XCURSOR_SIZE = HYPRCURSOR_SIZE;
     };
 
     # Services

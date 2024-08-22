@@ -82,7 +82,7 @@ config.leader = {
 
 config.window_decorations = "NONE"
 
-config.pane_focus_follows_mouse = true
+config.pane_focus_follows_mouse = false
 config.mouse_wheel_scrolls_tabs = false
 
 config.disable_default_key_bindings = true
