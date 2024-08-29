@@ -16,11 +16,7 @@ in
       package = pkgs.kanata-with-cmd;
 
       keyboards.default = {
-        extraDefCfg = ''
-          process-unmapped-keys yes
-          concurrent-tap-hold yes
-        '';
-        config = builtins.readFile ./default.kbd;
+        configFile = ./default.kbd;
       };
     };
   };

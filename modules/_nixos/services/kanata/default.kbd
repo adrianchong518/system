@@ -1,68 +1,89 @@
+(defcfg
+  process-unmapped-keys yes
+  block-unmapped-keys yes
+  delegate-to-first-layer yes
+  concurrent-tap-hold yes
+)
+
 (defsrc
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt comp rctl
+  q    w    e    r    t    y    u    i    o    p
+  a    s    d    f    g    h    j    k    l    ;
+  ;; lsft z    x    c    v    n    m    ,    .    /
+  z    x    c    v    b    n    m    ,    .    /
+       lalt           spc            ralt
 )
 
-(defvar
-  mod-tap-time 70
-  mod-hold-time 150
-)
-
-(defvirtualkeys
-  to-base (layer-switch base)
+(deftemplate mod-tap (key mod)
+  (tap-hold-release 150 175 $key $mod)
 )
 
 (defalias
-  mod-tap (multi
-    (layer-switch base-nomods)
-    (on-idle 30 tap-virtualkey to-base)
-  )
+  a (t! mod-tap a lmet)
+  r (t! mod-tap r lalt)
+  s (t! mod-tap s lsft)
+  t (t! mod-tap t lctl)
+  n (t! mod-tap n rctl)
+  e (t! mod-tap e rsft)
+  i (t! mod-tap i ralt)
+  o (t! mod-tap o rmet)
 
-  a (tap-hold $mod-tap-time $mod-hold-time (multi a @mod-tap) lmet)
-  r (tap-hold $mod-tap-time $mod-hold-time (multi r @mod-tap) lalt)
-  s (tap-hold $mod-tap-time $mod-hold-time (multi s @mod-tap) lsft)
-  t (tap-hold $mod-tap-time $mod-hold-time (multi t @mod-tap) lctl)
-  n (tap-hold $mod-tap-time $mod-hold-time (multi n @mod-tap) rctl)
-  e (tap-hold $mod-tap-time $mod-hold-time (multi e @mod-tap) rsft)
-  i (tap-hold $mod-tap-time $mod-hold-time (multi i @mod-tap) ralt)
-  o (tap-hold $mod-tap-time $mod-hold-time (multi o @mod-tap) rmet)
+  spc (tap-hold 150 200 spc (layer-while-held nav))
 
-  spc (tap-hold 0 300 spc (layer-while-held nav))
-
-  fn1 (one-shot 500 (layer-while-held fn1))
+  bse (layer-switch base)
+  sym (layer-switch sym)
+  fn (layer-switch fn)
 )
 
 (deflayer base
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    f    p    g    j    l    u    y    ;    [    ]    \
-  XX   @a   @r   @s   @t   d    h    @n   @e   @i   @o   '    ret
-  @fn1 z    x    c    v    b    k    m    ,    .    /    rsft
-  XX   XX   XX             @spc           XX   comp XX
-)
-
-(deflayer base-nomods
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    f    p    g    j    l    u    y    ;    [    ]    \
-  XX   a    r    s    t    d    h    n    e    i    o    '    ret
-  XX   z    x    c    v    b    k    m    ,    .    /    rsft
-  XX   XX   XX             spc            XX   comp XX
+  q    w    f    p    g    j    l    u    y    bspc
+  @a   @r   @s   @t   d    h    @n   @e   @i   @o
+  z    x    c    v    b    k    m    esc  tab  ret
+       XX             @spc           @sym
 )
 
 (deflayer nav
-  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX   XX   XX   XX   XX   XX   down rght XX   XX   XX   XX   XX   XX
-  XX   lmet lalt lsft lctl XX   lft  XX   XX   XX   XX   XX   XX
-  XX   XX   XX   XX   XX   XX   up   XX   XX   XX   XX   XX
-  XX   XX   XX             XX             XX   XX   XX
+  XX   mlft mmid mrgt XX   down rght 7    8    9
+  lmet lalt lsft lctl XX   lft  XX   4    5    6
+  XX   XX   XX   XX   XX   up   0    1    2    3
+       XX             XX             XX
 )
 
-(deflayer fn1
-  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX   XX   lrld XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  XX   XX   XX             XX             XX   XX   XX
+(defalias
+  lbc S-[
+  rbc S-]
+
+  ! S-1
+  @ S-2
+  # S-3
+  & S-5
+  % S-7
+  * S-8
+
+  < S-,
+  > S-.
+  ? S-/
+
+  ^ (t! mod-tap S-6 lmet)
+  $ (t! mod-tap S-4 lalt)
+  lpn (t! mod-tap S-9 lsft)
+  rpn (t! mod-tap S-0 lctl)
+
+  col (t! mod-tap S-; lctl)
+  - (t! mod-tap - lsft)
+  ' (t! mod-tap ' lalt)
+  dqt (t! mod-tap S-' lmet)
+)
+
+(deflayer sym
+  @<   @>   @lbc @rbc `    @*   =    S--  ;    bspc
+  @^   @$   @lpn @rpn @@   \    @col @-   @'   @dqt
+  @%   @&   [    ]    @#   @!   @?   ,    .    /
+       @bse           @spc           @fn
+)
+
+(deflayer fn
+  XX   XX   XX   XX   XX   del  f12  f7   f8   f9
+  lmet lalt lsft lctl XX   XX   f11  f4   f5   f6
+  lrld XX   XX   XX   XX   XX   f10  f1   f2   f3
+       @bse           @spc           @sym
 )
