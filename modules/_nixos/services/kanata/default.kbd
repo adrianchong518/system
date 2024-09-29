@@ -82,8 +82,8 @@
 )
 
 (deflayer fn
-  brdn brup vold vold mute del  f12  f7   f8   f9
+  brdn brup vold volu mute del  f12  f7   f8   f9
   lmet lalt lsft lctl XX   XX   f11  f4   f5   f6
-  lrld next pp   prev XX   XX   f10  f1   f2   f3
+  lrld prev pp   next XX   XX   f10  f1   f2   f3
        @bse           @spc           @sym
 )
