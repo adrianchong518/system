@@ -83,6 +83,8 @@
     }))
 
     simple-scan
+
+    teams-for-linux
   ];
 
   programs.nix-ld.enable = true;
