@@ -16,6 +16,7 @@ in {
       ripgrep
       fd
       unzip
+      p7zip
       gnutar
 
       pciutils
