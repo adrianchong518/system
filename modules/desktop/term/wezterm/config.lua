@@ -185,11 +185,11 @@ config.keys = {
   { key = "q",          mods = "SHIFT|CTRL",   action = act.QuitApplication },
   { key = "q",          mods = "SUPER",        action = act.Nop },
 
-  { key = "h",          mods = "SHIFT|CTRL",   action = act.HideApplication },
-  { key = "h",          mods = "SUPER",        action = act.HideApplication },
+  -- { key = "h",          mods = "SHIFT|CTRL",   action = act.HideApplication },
+  -- { key = "h",          mods = "SUPER",        action = act.HideApplication },
 
-  { key = "m",          mods = "SHIFT|CTRL",   action = act.Hide },
-  { key = "m",          mods = "SUPER",        action = act.Hide },
+  -- { key = "m",          mods = "SHIFT|CTRL",   action = act.Hide },
+  -- { key = "m",          mods = "SUPER",        action = act.Hide },
 
   { key = "z",          mods = "SHIFT|CTRL",   action = act.TogglePaneZoomState },
 
