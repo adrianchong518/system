@@ -71,6 +71,7 @@ mkNeovimConfig {
     rustaceanvim # rust-tools successor | https://github.com/mrcjkb/rustaceanvim/
     crates-nvim # check crate versions in Cargo.toml | https://github.com/saecki/crates.nvim/
     neogen # generate documentation template | https://github.com/danymat/neogen/
+    vimtex
     # ^ language support
 
     # navigation/editing enhancement plugins

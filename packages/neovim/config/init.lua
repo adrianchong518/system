@@ -5,7 +5,7 @@ local g = vim.g
 
 -- <leader> key. Defaults to `\`. Some people prefer space.
 g.mapleader = " "
-g.maplocalleader = " "
+g.maplocalleader = ","
 
 opt.compatible = false
 

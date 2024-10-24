@@ -29,6 +29,7 @@ M.servers = {
   { name = "zls" },
   { name = "racket_langserver" },
   { name = "dockerls" },
+  { name = "texlab" },
   {
     name = "pylsp",
     settings = {
