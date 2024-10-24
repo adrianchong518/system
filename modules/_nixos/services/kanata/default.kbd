@@ -1,6 +1,5 @@
 (defcfg
   process-unmapped-keys yes
-  block-unmapped-keys yes
   delegate-to-first-layer yes
   concurrent-tap-hold yes
 )
@@ -10,7 +9,7 @@
   a    s    d    f    g    h    j    k    l    ;
   ;; lsft z    x    c    v    n    m    ,    .    /
   z    x    c    v    b    n    m    ,    .    /
-       lalt           spc            ralt
+  lmet lalt           spc            ralt rmet caps
 )
 
 (deftemplate mod-tap (key mod)
@@ -32,20 +31,21 @@
   bse (layer-switch base)
   sym (layer-switch sym)
   fn (layer-switch fn)
+  qwt (layer-switch qwerty)
 )
 
 (deflayer base
   q    w    f    p    g    j    l    u    y    bspc
   @a   @r   @s   @t   d    h    @n   @e   @i   @o
   z    x    c    v    b    k    m    esc  tab  ret
-       XX             @spc           @sym
+  XX   XX             @spc           @sym @sym XX
 )
 
 (deflayer nav
   XX   mlft mmid mrgt XX   down rght 7    8    9
   lmet lalt lsft lctl XX   lft  XX   4    5    6
   XX   XX   XX   XX   XX   up   0    1    2    3
-       XX             XX             XX
+  XX   XX             XX             XX   XX   XX
 )
 
 (defalias
@@ -78,12 +78,20 @@
   @<   @>   @lbc @rbc `    @*   =    S--  ;    bspc
   @^   @$   @lpn @rpn @@   \    @col @-   @'   @dqt
   @%   @&   [    ]    @#   @!   @?   ,    .    /
-       @bse           @spc           @fn
+  @bse @bse           @spc           @fn  @fn  XX
 )
 
 (deflayer fn
   brdn brup vold volu mute del  f12  f7   f8   f9
   lmet lalt lsft lctl XX   XX   f11  f4   f5   f6
-  lrld prev pp   next XX   XX   f10  f1   f2   f3
-       @bse           @spc           @sym
+  lrld prev pp   next @qwt XX   f10  f1   f2   f3
+  @bse @bse           @spc           @sym @sym XX
+)
+
+(deflayer qwerty
+  q    w    e    r    t    y    u    i    o    p
+  a    s    d    f    g    h    j    k    l    ;
+  ;; lsft z    x    c    v    n    m    ,    .    /
+  z    x    c    v    b    n    m    ,    .    /
+  lmet lalt           spc            @bse @bse lctl
 )
