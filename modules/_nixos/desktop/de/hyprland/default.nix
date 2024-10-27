@@ -67,6 +67,7 @@ in
         cliphist
         libqalculate
         j4-dmenu-desktop
+        networkmanagerapplet
       ];
 
     security.polkit.enable = true;
@@ -152,6 +153,7 @@ in
             "wl-paste --type text --watch cliphist store"
             "wl-paste --type image --watch cliphist store"
             "${cycleWallpaper}"
+            "nm-applet"
           ];
         }
         (optionalAttrs displayCfg.brightnessctl.enable {
@@ -185,9 +187,9 @@ in
           # mode = "hide";
           # start_hidden = true;
 
-          modules-left = [ "clock" "tray" ];
+          modules-left = [ "clock" "tray" "taskbar" ];
           modules-center = [ "hyprland/workspaces" ];
-          modules-right = [ "hyprland/submap" "idle_inhibitor" "cpu" "memory" "network" "backlight" "wireplumber" "battery" ];
+          modules-right = [ "hyprland/submap" "idle_inhibitor" "temperature" "cpu" "memory" "network" "backlight" "wireplumber" "battery" ];
 
           clock = {
             format = "{:%H:%M | %A %d %b %Y}";
@@ -261,8 +263,12 @@ in
 
           wireplumber = {
             format = "{icon} {volume}%";
-            format-muted = "";
+            format-muted = " muted";
             # on-click = "helvum";
+            on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+            on-click-right = "pavucontrol";
+            on-scroll-up = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+";
+            on-scroll-down = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-";
             format-icons = [ "" "" "" ];
           };
 
@@ -282,6 +288,11 @@ in
               activated = " ";
               deactivated = " ";
             };
+          };
+
+          temperature = {
+            format = " {temperatureC}°C";
+            thermal-zone = 5;
           };
         };
       };
