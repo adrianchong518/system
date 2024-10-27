@@ -6,7 +6,7 @@ let
   cfg = config.modules.nixos.desktop.de.hyprland;
   displayCfg = config.modules.nixos.hardware.display;
 
-  wallpaperDir = "${flake}/wallpapers";
+  wallpaperDir = "${config.files.configHome}/wallpaper";
   cycleWallpaper = pkgs.writeShellScript "cycle-wallpaper" /* bash */ ''
     export SWWW_TRANSITION_FPS=60
     export SWWW_TRANSITION_STEP=10
@@ -43,6 +43,7 @@ in
       inputs.hyprland.overlays.default
       inputs.hyprlock.overlays.default
       inputs.hypridle.overlays.default
+      inputs.hyprutils.overlays.default
     ];
 
     environment.systemPackages = with pkgs;
@@ -50,7 +51,7 @@ in
         kdePackages.polkit-kde-agent-1
         libsForQt5.qt5.qtwayland
 
-        qt5ct
+        libsForQt5.qt5ct
         libsForQt5.qtstyleplugin-kvantum
 
         (catppuccin-gtk.override { accents = [ "mauve" ]; variant = "mocha"; size = "standard"; })
@@ -96,7 +97,7 @@ in
         "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
           General.theme = "Catppuccin-Mocha-Mauve";
         };
-        "Kvantum/Catppuccin-Mocha-Mauve".source = "${pkgs.catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; }}/share/Kvantum/Catppuccin-Mocha-Mauve";
+        "Kvantum/Catppuccin-Mocha-Mauve".source = "${pkgs.catppuccin-kvantum.override { accent = "mauve"; variant = "mocha"; }}/share/Kvantum/Catppuccin-Mocha-Mauve";
       };
     };
 
@@ -132,10 +133,13 @@ in
 
     programs.hyprland = {
       enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
 
     hm.wayland.windowManager.hyprland = {
       enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
 
       settings = recursiveMerge [
         {
