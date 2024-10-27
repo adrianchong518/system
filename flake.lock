@@ -548,11 +548,11 @@
     },
     "nixpkgs-howdy": {
       "locked": {
-        "lastModified": 1714585140,
-        "narHash": "sha256-cQ7nYEKOgf5D8HNdy8VSFH5Ms0v1wsdpZ19fxr9mnAs=",
+        "lastModified": 1728158464,
+        "narHash": "sha256-VNmRUFAhwnAlARiI9jPCGqmnBnoMVLz7dtxZpk+ctzQ=",
         "owner": "fufexan",
         "repo": "nixpkgs",
-        "rev": "39edb2550421f88ff2a5c330c3471a2a9c596f91",
+        "rev": "24f7f70893753481b1c8d7797a6a3f7e7c748e72",
         "type": "github"
       },
       "original": {
@@ -704,6 +704,21 @@
         "type": "github"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1729759608,
+        "narHash": "sha256-qH+KQ0GYls+OB9inNRtO7+k4GTtB/1m7mAGX78J/YOo=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "60fcca8c5b60a1889b78827890d42100387cdcf5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
+      }
+    },
     "remote-nvim": {
       "flake": false,
       "locked": {
@@ -735,6 +750,7 @@
         "nixpkgs-howdy": "nixpkgs-howdy",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nur": "nur",
         "remote-nvim": "remote-nvim",
         "vscode-server": "vscode-server",
         "wezterm": "wezterm"

@@ -121,6 +121,21 @@
     };
   };
 
+  i18n.inputMethod = {
+    type = "fcitx5";
+    enable = true;
+    fcitx5.waylandFrontend = true;
+    fcitx5.addons = with pkgs; [
+      rime-data
+      fcitx5-rime
+      fcitx5-mozc
+      fcitx5-gtk
+      fcitx5-catppuccin
+      config.nur.repos.linyinfeng.rimePackages.rime-cantonese
+    ];
+  };
+  services.xserver.desktopManager.runXdgAutostartIfNone = true;
+
   modules = {
     nixos = {
       udev.openocd.enable = true;
