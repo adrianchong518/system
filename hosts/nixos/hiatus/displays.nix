@@ -28,11 +28,10 @@
         resetWallpaper = pkgs.writeShellScript "reset-wallpaper" /* bash */ ''
           swww init
           sleep 0.1
+          
+          img=`cat /tmp/hypr/wallpaper`
 
-          find ${flake}/wallpapers -type f \
-            | shuf \
-            | head -n 1 \
-            | xargs swww img --transition-step 10 --transition-fps 60 \
+          swww img --transition-step 10 --transition-fps 60 "$img" \
           && notify-send -u low "wallpaper reset" \
           || notify-send -u critical "wallpaper reset fail"
         '';

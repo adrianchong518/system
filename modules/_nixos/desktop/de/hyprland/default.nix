@@ -23,6 +23,7 @@ let
           done \
     		| sort -n | cut -d':' -f2- \
     		| while read -r img; do
+          echo "$img" > /tmp/hypr/wallpaper
     			swww img "$img"
     			sleep $INTERVAL
     		done
