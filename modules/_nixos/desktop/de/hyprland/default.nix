@@ -84,7 +84,7 @@ in
         x11.enable = true;
         package = pkgs.catppuccin-cursors.mochaDark;
         name = "catppuccin-mocha-dark-cursors";
-        size = 20;
+        size = 24;
       };
 
       qt = {
@@ -105,7 +105,7 @@ in
 
     environment.variables = rec {
       HYPRCURSOR_THEME = "catppuccin-mocha-dark-cursors";
-      HYPRCURSOR_SIZE = "20";
+      HYPRCURSOR_SIZE = "24";
       XCURSOR_THEME = HYPRCURSOR_THEME;
       XCURSOR_SIZE = HYPRCURSOR_SIZE;
     };
