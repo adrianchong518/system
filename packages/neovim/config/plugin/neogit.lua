@@ -14,6 +14,7 @@ neogit.setup {
       folded = false,
     },
   },
+  graph_style = "kitty",
 }
 vim.keymap.set("n", "<leader>go", neogit.open, { noremap = true, silent = true, desc = "[neogit] open" })
 vim.keymap.set("n", "<leader>gs", function()

@@ -30,6 +30,18 @@ M.servers = {
   { name = "racket_langserver" },
   { name = "dockerls" },
   { name = "texlab" },
+  { name = "ts_ls" },
+  { name = "yamlls" },
+  { name = "emmet_language_server" },
+  {
+    name = "eslint",
+    on_attach = function(client, bufnr)
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        command = "EslintFixAll",
+      })
+    end,
+  },
   {
     name = "pylsp",
     settings = {

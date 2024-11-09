@@ -40,7 +40,16 @@ mkNeovimConfig {
 
     # git integration plugins
     diffview-nvim # https://github.com/sindrets/diffview.nvim/
-    neogit # https://github.com/TimUntersberger/neogit/
+    # neogit # https://github.com/TimUntersberger/neogit/
+    (pkgs.vimUtils.buildVimPlugin {
+      name = "neogit";
+      src = pkgs.fetchFromGitHub {
+        owner = "NeogitOrg";
+        repo = "neogit";
+        rev = "8e1e301c2e33c60375850bcf22ba1fb77b684b97";
+        sha256 = "sha256-CX42tQFBkXnhl8WkFTdsQXBss8fTb46k7tqEbxqdMPU=";
+      };
+    })
     gitsigns-nvim # https://github.com/lewis6991/gitsigns.nvim/
     vim-fugitive # https://github.com/tpope/vim-fugitive/
     # ^ git integration plugins
@@ -67,11 +76,14 @@ mkNeovimConfig {
 
     # language support
     nvim-lspconfig # more convenient lsp config | nvim-lspconfig
+    none-ls-nvim
     neodev-nvim # adds support for Neovim's Lua API to lua-language-server | https://github.com/folke/neodev.nvim/
     rustaceanvim # rust-tools successor | https://github.com/mrcjkb/rustaceanvim/
     crates-nvim # check crate versions in Cargo.toml | https://github.com/saecki/crates.nvim/
     neogen # generate documentation template | https://github.com/danymat/neogen/
     vimtex
+    tailwind-tools-nvim
+    nvim-ts-autotag
     # ^ language support
 
     # navigation/editing enhancement plugins

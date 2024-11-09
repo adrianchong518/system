@@ -29,3 +29,6 @@ require("remote-nvim").setup({
     })
   end,
 })
+
+require("tailwind-tools").setup()
+require('nvim-ts-autotag').setup()

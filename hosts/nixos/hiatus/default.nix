@@ -85,6 +85,8 @@
     simple-scan
 
     teams-for-linux
+
+    devenv
   ];
 
   programs.nix-ld.enable = true;

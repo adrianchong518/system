@@ -28,6 +28,9 @@ local function on_attach_builder(lsp)
     if lsp.override_autoformat then
       client.server_capabilities.documentFormattingProvider = true
     end
+    if lsp.on_attach then
+      lsp.on_attach()
+    end
   end
 end
 
@@ -46,7 +49,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
     -- Attach plugins
-    require("nvim-navic").attach(client, bufnr)
+    if client.server_capabilities.documentSymbolProvider then
+      require("nvim-navic").attach(client, bufnr)
+    end
 
     vim.cmd.setlocal "signcolumn=yes"
     vim.bo[bufnr].bufhidden = "hide"
