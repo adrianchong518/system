@@ -15,9 +15,12 @@ let
     source-han-sans
 
     noto-fonts
+    noto-fonts-extra
     noto-fonts-emoji
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
+
+    helvetica-neue-lt-std
   ];
 in
 {

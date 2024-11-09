@@ -22,6 +22,7 @@ in
     };
 
     services.blueman.enable = true;
+    hm.services.blueman-applet.enable = true;
 
     systemd.user.services.mpris-proxy = {
       description = "Mpris proxy";

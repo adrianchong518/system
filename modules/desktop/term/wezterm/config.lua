@@ -16,6 +16,7 @@ config.font = wezterm.font_with_fallback {
     harfbuzz_features = { "calt=0", "dlig=1" },
   },
   "Symbols Nerd Font",
+  "Flog Symbols",
 }
 config.font_size = 13
 config.warn_about_missing_glyphs = false
@@ -87,7 +88,7 @@ config.mouse_wheel_scrolls_tabs = false
 
 config.disable_default_key_bindings = true
 config.keys = {
-  { key = "Enter",      mods = "LEADER",       action = act.SendKey { key = "Space", mods = "CTRL" } },
+  { key = "Enter",      mods = "CTRL|SHIFT",   action = act.ActivateKeyTable { name = "as_is" } },
 
   { key = "n",          mods = "LEADER",       action = act.ActivateTabRelative(1) },
   { key = "p",          mods = "LEADER",       action = act.ActivateTabRelative(-1) },
@@ -302,6 +303,14 @@ config.key_tables = {
     { key = "PageDown",  mods = "NONE", action = act.CopyMode "NextMatchPage" },
     { key = "UpArrow",   mods = "NONE", action = act.CopyMode "PriorMatch" },
     { key = "DownArrow", mods = "NONE", action = act.CopyMode "NextMatch" },
+  },
+
+  as_is = {
+    { key = "Space", mods = "CTRL", action = act.SendKey { key = "Space", mods = "CTRL" } },
+    { key = "h",     mods = "CTRL", action = act.SendKey { key = "h", mods = "CTRL" } },
+    { key = "j",     mods = "CTRL", action = act.SendKey { key = "j", mods = "CTRL" } },
+    { key = "k",     mods = "CTRL", action = act.SendKey { key = "k", mods = "CTRL" } },
+    { key = "l",     mods = "CTRL", action = act.SendKey { key = "l", mods = "CTRL" } },
   },
 }
 
