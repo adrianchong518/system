@@ -68,6 +68,7 @@ in
         libqalculate
         j4-dmenu-desktop
         networkmanagerapplet
+        playerctl
       ];
 
     security.polkit.enable = true;
@@ -157,7 +158,7 @@ in
           ];
         }
         (optionalAttrs displayCfg.brightnessctl.enable {
-          bind = [
+          bindle = [
             ", XF86MonBrightnessDown, exec, brightnessctl -d ${displayCfg.defaultDevice} set 5%-"
             ", XF86MonBrightnessUp, exec, brightnessctl -d ${displayCfg.defaultDevice} set 5%+"
           ];
