@@ -128,3 +128,12 @@ vim.filetype.add({
     repos = "yaml",
   },
 })
+
+-- Suppress specific LSP notifications
+local notify = vim.notify
+vim.notify = function(msg, ...)
+  if msg:find("Format request failed") then
+    return
+  end
+  notify(msg, ...)
+end
