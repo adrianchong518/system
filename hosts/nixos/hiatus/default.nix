@@ -215,6 +215,7 @@
 
       starship.enable = true;
       utils.enable = true;
+      yazi.enable = true;
 
       pandoc.enable = true;
 
