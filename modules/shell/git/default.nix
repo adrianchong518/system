@@ -148,7 +148,7 @@ in
       cdr = "cd $(git rev-parse --show-toplevel)";
 
       g = "git";
-      lg = "lazygit";
+      lg = mkIf cfg.lazygit.enable "lazygit";
     };
 
     modules.services.gpg.enable = cfg.signing.enable;
