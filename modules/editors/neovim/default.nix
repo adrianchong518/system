@@ -11,6 +11,9 @@ in {
 
   config = mkIf cfg.enable {
     packages = [ pkgs.my.neovim ];
-    modules.shell.aliases.v = mkIf cfg.enableAliases "nvim";
+    modules.shell.aliases = mkIf cfg.enableAliases {
+      v = "nvim";
+      gg = "nvim -c Neogit";
+    };
   };
 }

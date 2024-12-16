@@ -17,9 +17,19 @@ neogit.setup {
   graph_style = "kitty",
 }
 vim.keymap.set("n", "<leader>go", neogit.open, { noremap = true, silent = true, desc = "[neogit] open" })
+
+vim.keymap.set("n", "<leader>gO", function()
+  neogit.open { cwd = "%:p:h" }
+end, { noremap = true, silent = true, desc = "[neogit] open" })
+
 vim.keymap.set("n", "<leader>gs", function()
   neogit.open { kind = "auto" }
 end, { noremap = true, silent = true, desc = "[neogit] open (split)" })
+
+vim.keymap.set("n", "<leader>gS", function()
+  neogit.open { kind = "auto", cwd = "%:p:h" }
+end, { noremap = true, silent = true, desc = "[neogit] open (split)" })
+
 vim.keymap.set("n", "<leader>gc", function()
   neogit.open { "commit" }
 end, { noremap = true, silent = true, desc = "[neogit] commit" })
