@@ -11,7 +11,7 @@ opt.compatible = false
 
 -- Enable true colour support
 if fn.has "termguicolors" then
-  opt.termguicolors = true
+    opt.termguicolors = true
 end
 
 -- See :h <option> to see what the options do
@@ -43,6 +43,9 @@ opt.scrolloff = 5
 
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
+opt.listchars = "tab:▸ ,space:∘,trail:•,extends:>,precedes:<,nbsp:%,eol:⤶"
+opt.list = true
+
 opt.foldcolumn = "1"
 opt.foldlevel = 99      -- huge number for ufo.nvim
 opt.foldlevelstart = 99 -- huge number for ufo.nvim
@@ -51,15 +54,15 @@ opt.foldenable = true
 -- Configure Neovim diagnostic messages
 
 local function prefix_diagnostic(prefix, diagnostic)
-  return string.format(prefix .. " %s", diagnostic.message)
+    return string.format(prefix .. " %s", diagnostic.message)
 end
 
 local sign = function(opts)
-  fn.sign_define(opts.name, {
-    texthl = opts.name,
-    text = opts.text,
-    numhl = "",
-  })
+    fn.sign_define(opts.name, {
+        texthl = opts.name,
+        text = opts.text,
+        numhl = "",
+    })
 end
 -- Requires Nerd fonts
 sign { name = "DiagnosticSignError", text = "󰅚" }
@@ -68,37 +71,37 @@ sign { name = "DiagnosticSignInfo", text = "ⓘ" }
 sign { name = "DiagnosticSignHint", text = "󰌶" }
 
 vim.diagnostic.config {
-  virtual_text = {
-    prefix = "",
-    format = function(diagnostic)
-      local severity = diagnostic.severity
-      if severity == vim.diagnostic.severity.ERROR then
-        return prefix_diagnostic("󰅚", diagnostic)
-      end
-      if severity == vim.diagnostic.severity.WARN then
-        return prefix_diagnostic("⚠", diagnostic)
-      end
-      if severity == vim.diagnostic.severity.INFO then
-        return prefix_diagnostic("ⓘ", diagnostic)
-      end
-      if severity == vim.diagnostic.severity.HINT then
-        return prefix_diagnostic("󰌶", diagnostic)
-      end
-      return prefix_diagnostic("■", diagnostic)
-    end,
-  },
-  signs = true,
-  update_in_insert = false,
-  underline = true,
-  severity_sort = true,
-  float = {
-    focusable = false,
-    style = "minimal",
-    border = "rounded",
-    source = "always",
-    header = "",
-    prefix = "",
-  },
+    virtual_text = {
+        prefix = "",
+        format = function(diagnostic)
+            local severity = diagnostic.severity
+            if severity == vim.diagnostic.severity.ERROR then
+                return prefix_diagnostic("󰅚", diagnostic)
+            end
+            if severity == vim.diagnostic.severity.WARN then
+                return prefix_diagnostic("⚠", diagnostic)
+            end
+            if severity == vim.diagnostic.severity.INFO then
+                return prefix_diagnostic("ⓘ", diagnostic)
+            end
+            if severity == vim.diagnostic.severity.HINT then
+                return prefix_diagnostic("󰌶", diagnostic)
+            end
+            return prefix_diagnostic("■", diagnostic)
+        end,
+    },
+    signs = true,
+    update_in_insert = false,
+    underline = true,
+    severity_sort = true,
+    float = {
+        focusable = false,
+        style = "minimal",
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
+    },
 }
 
 g.editorconfig = true
@@ -124,16 +127,16 @@ cmd.set [[errorformat^=%-Gg%\\?make[%*\\d]:\ ***\ [%f:%l:%m]]
 cmd.set [[errorformat^=%-Gg%\\?make:\ ***\ [%f:%l:%m]]
 
 vim.filetype.add({
-  extension = {
-    repos = "yaml",
-  },
+    extension = {
+        repos = "yaml",
+    },
 })
 
 -- Suppress specific LSP notifications
 local notify = vim.notify
 vim.notify = function(msg, ...)
-  if msg:find("Format request failed") then
-    return
-  end
-  notify(msg, ...)
+    if msg:find("Format request failed") then
+        return
+    end
+    notify(msg, ...)
 end
