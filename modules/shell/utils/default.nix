@@ -24,11 +24,15 @@ in {
 
       fastfetch
       tldr
+
+      just
     ];
 
     env = {
       PAGER = "${pkgs.less}/bin/less -FR";
       LESS = "-R --mouse";
     };
+
+    modules.shell.aliases.j = "just";
   };
 }
