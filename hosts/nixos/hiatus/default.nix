@@ -138,7 +138,8 @@
       fcitx5-mozc
       fcitx5-gtk
       fcitx5-catppuccin
-      config.nur.repos.linyinfeng.rimePackages.rime-cantonese
+      nur.repos.linyinfeng.rimePackages.rime-cantonese
+      nur.repos.linyinfeng.rimePackages.rime-luna-pinyin
     ];
   };
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
