@@ -34,6 +34,7 @@ require("lualine").setup {
     lualine_c = {
       -- nvim-navic
       { navic.get_location, cond = navic.is_available },
+      "copilot"
     },
     lualine_y = { "searchcount", "progress", "location" },
     lualine_z = {

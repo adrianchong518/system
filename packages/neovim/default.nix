@@ -11,6 +11,8 @@ mkNeovimConfig {
   appName = "nvim";
   configSrc = ./config;
 
+  withNodeJs = true;
+
   extraPackages = with pkgs; [
     # language servers, etc.
     lua-language-server
@@ -61,6 +63,11 @@ mkNeovimConfig {
     # ^ telescope and extensions
 
     oil-nvim # file explorer | https://github.com/stevearc/oil.nvim/
+
+    copilot-lua
+    copilot-cmp
+    copilot-lualine
+    codecompanion-nvim
 
     # UI
     catppuccin-nvim # Catppuccin theme | https://github.com/catppuccin/nvim/

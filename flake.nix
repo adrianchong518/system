@@ -56,6 +56,7 @@
         let
           pkgs = import inputs.nixpkgs {
             inherit system;
+            config = import ./modules/nixpkgs/_nixpkgs-config.nix;
           };
         in
         (mapModules (p: pkgs.callPackage p { inherit inputs system; }) ./packages)

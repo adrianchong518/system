@@ -4,6 +4,13 @@ local luasnip = require "luasnip"
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
+lspkind.init {
+  symbol_map = {
+    Copilot = "",
+  },
+}
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+
 local function has_words_before()
   local unpack_ = unpack or table.unpack
   local line, col = unpack_(vim.api.nvim_win_get_cursor(0))
@@ -116,6 +123,7 @@ cmp.setup {
   },
   sources = cmp.config.sources {
     -- The insertion order influences the priority of the sources
+    { name = "copilot" },
     { name = "nvim_lsp" },
     { name = "nvim_lsp_signature_help" },
     { name = "buffer" },
@@ -126,7 +134,7 @@ cmp.setup {
   end,
   experimental = {
     native_menu = false,
-    ghost_text = true,
+    ghost_text = false,
   },
 }
 

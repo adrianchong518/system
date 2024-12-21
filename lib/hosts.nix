@@ -46,7 +46,7 @@ rec {
         {
           networking.hostName = mkDefault hostName;
         }
-        inputs.nur.nixosModules.nur
+        inputs.nur.modules.nixos.default
         ../modules
         (import path)
       ];

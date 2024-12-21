@@ -7,10 +7,6 @@ let
   fontPkgs = with pkgs; [
     iosevka-bin
 
-    (nerdfonts.override {
-      fonts = [ "Iosevka" "IosevkaTerm" "NerdFontsSymbolsOnly" ];
-    })
-
     source-han-serif
     source-han-sans
 
@@ -21,7 +17,11 @@ let
     noto-fonts-cjk-serif
 
     helvetica-neue-lt-std
-  ];
+  ] ++ (with nerd-fonts; [
+    iosevka
+    iosevka-term
+    symbols-only
+  ]);
 in
 {
   options.modules.desktop = { enable = mkBoolOpt false; };
