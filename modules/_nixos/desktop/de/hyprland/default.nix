@@ -83,6 +83,7 @@ in
       home.pointerCursor = {
         gtk.enable = true;
         x11.enable = true;
+        hyprcursor.enable = true;
         package = pkgs.catppuccin-cursors.mochaDark;
         name = "catppuccin-mocha-dark-cursors";
         size = 24;
@@ -98,9 +99,9 @@ in
     files = {
       config = {
         "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-          General.theme = "Catppuccin-Mocha-Mauve";
+          General.theme = "catppuccin-mocha-mauve";
         };
-        "Kvantum/Catppuccin-Mocha-Mauve".source = "${pkgs.catppuccin-kvantum.override { accent = "mauve"; variant = "mocha"; }}/share/Kvantum/Catppuccin-Mocha-Mauve";
+        "Kvantum/catppuccin-mocha-mauve".source = "${pkgs.catppuccin-kvantum.override { accent = "mauve"; variant = "mocha"; }}/share/Kvantum/catppuccin-mocha-mauve";
       };
     };
 
