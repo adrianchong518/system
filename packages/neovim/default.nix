@@ -102,7 +102,7 @@ mkNeovimConfig {
     nvim-ufo # https://github.com/kevinhwang91/nvim-ufo/
     todo-comments-nvim # https://github.com/folke/todo-comments.nvim/
     comment-nvim # https://github.com/numtostr/comment.nvim/
-    Navigator-nvim # pane navigation integration with tmux/wezterm | https://github.com/numToStr/Navigator.nvim/
+    smart-splits-nvim # pane navigation integration with tmux/wezterm | https://github.com/numToStr/Navigator.nvim/
     nvim-autopairs # autopairs | https://github.com/windwp/nvim-autopairs/
     indent-blankline-nvim # Add indentation guides | https://github.com/lukas-reineke/indent-blankline.nvim/
     # inc-rename-nvim
