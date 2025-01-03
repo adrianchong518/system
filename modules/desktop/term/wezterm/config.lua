@@ -21,7 +21,7 @@ config.font = wezterm.font_with_fallback {
   "Symbols Nerd Font",
   "Flog Symbols",
 }
-config.font_size = 13
+config.font_size = 11
 config.warn_about_missing_glyphs = false
 
 config.use_fancy_tab_bar = false

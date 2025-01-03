@@ -19,7 +19,7 @@ in
         ignorecase = true;
         wrap = true;
 
-        line-height = 13;
+        line-height = 11;
         fn = "Iosevka";
         bottom = true;
         hp = 10;

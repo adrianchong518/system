@@ -17,7 +17,7 @@ in {
 
       settings = {
         font_family = "JetBrainsMono Nerd Font";
-        font_size = 13;
+        font_size = 11;
         adjust_line_height = "120%";
 
         window_padding_width = "1.0";

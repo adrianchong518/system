@@ -22,7 +22,7 @@ in
 
       package = rofiPackage;
 
-      font = "Iosevka Nerd Font 13";
+      font = "Iosevka Nerd Font 11";
       terminal = "${pkgs.wezterm}/bin/wezterm";
 
       plugins = with pkgs; [
