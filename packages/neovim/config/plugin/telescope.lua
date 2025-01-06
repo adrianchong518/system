@@ -38,24 +38,10 @@ local function grep_current_file_type(picker)
   }
 end
 
---- Grep the string under the cursor, filtering for the current file type
-local function grep_string_current_file_type()
-  grep_current_file_type(builtin.grep_string)
-end
-
---- Live grep, filtering for the current file type
-local function live_grep_current_file_type()
-  grep_current_file_type(builtin.live_grep)
-end
-
 --- Like live_grep, but fuzzy (and slower)
 local function fuzzy_grep(opts)
   opts = vim.tbl_extend("error", opts or {}, { search = "", prompt_title = "Fuzzy grep" })
   builtin.grep_string(opts)
-end
-
-local function fuzzy_grep_current_file_type()
-  grep_current_file_type(fuzzy_grep)
 end
 
 local function open_in_oil(bufnr)
@@ -77,8 +63,7 @@ wk.add({
   { "<leader>fo", builtin.oldfiles,                                                desc = "[telescope] old files" },
   { "<leader>fw", builtin.live_grep,                                               desc = "[telescope] live grep" },
   { "<leader>fW", fuzzy_grep,                                                      desc = "[telescope] fuzzy grep" },
-  { "<leader>fg", live_grep_current_file_type,                                     desc = "[telescope] live grep filetype" },
-  { "<leader>fG", fuzzy_grep_current_file_type,                                    desc = "[telescope] fuzzy grep filetype" },
+  { "<leader>fg", builtin.grep_string,                                             desc = "[telescope] grep string under cursor" },
   { "<leader>ff", builtin.find_files,                                              desc = "[telescope] project files" },
   { "<leader>fc", builtin.quickfix,                                                desc = "[telescope] quickfix list" },
   { "<leader>fq", builtin.command_history,                                         desc = "[telescope] command history" },

@@ -13,7 +13,8 @@ in {
       enable = true;
       options = {
         selection-clipboard = "clipboard";
-        scroll-step = "100";
+        scroll-step = "200";
+        scroll-hstep = "200";
       };
       extraConfig = ''
         set default-fg                rgba(205,214,244,1)
