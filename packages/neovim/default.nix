@@ -42,16 +42,7 @@ mkNeovimConfig {
 
     # git integration plugins
     diffview-nvim # https://github.com/sindrets/diffview.nvim/
-    # neogit # https://github.com/TimUntersberger/neogit/
-    (pkgs.vimUtils.buildVimPlugin {
-      name = "neogit";
-      src = pkgs.fetchFromGitHub {
-        owner = "NeogitOrg";
-        repo = "neogit";
-        rev = "8e1e301c2e33c60375850bcf22ba1fb77b684b97";
-        sha256 = "sha256-CX42tQFBkXnhl8WkFTdsQXBss8fTb46k7tqEbxqdMPU=";
-      };
-    })
+    neogit # https://github.com/TimUntersberger/neogit/
     gitsigns-nvim # https://github.com/lewis6991/gitsigns.nvim/
     vim-fugitive # https://github.com/tpope/vim-fugitive/
     # ^ git integration plugins
@@ -126,7 +117,7 @@ mkNeovimConfig {
 
     # bleeding-edge plugins from flake inputs
     # (mkNvimPlugin inputs.wf-nvim "wf.nvim") # (example) keymap hints | https://github.com/Cassin01/wf.nvim
-    (mkNvimPlugin inputs.remote-nvim "remote-nvim")
+    # (mkNvimPlugin inputs.remote-nvim "remote-nvim")
     # ^ bleeding-edge plugins from flake inputs
   ];
 }
