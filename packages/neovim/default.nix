@@ -6,6 +6,8 @@ let
       inherit pname src;
       version = src.lastModifiedDate;
     };
+
+  stable = import inputs.nixpkgs-stable { inherit (pkgs) system; };
 in
 mkNeovimConfig {
   appName = "nvim";
@@ -24,7 +26,7 @@ mkNeovimConfig {
   plugins = with pkgs.vimPlugins; [
     # plugins from nixpkgs go in here.
     # https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=vimPlugins
-    nvim-treesitter.withAllGrammars
+    stable.vimPlugins.nvim-treesitter.withAllGrammars
     luasnip # snippets | https://github.com/l3mon4d3/luasnip/
 
     # nvim-cmp (autocompletion) and extensions
@@ -67,7 +69,7 @@ mkNeovimConfig {
     lualine-nvim # Status line | https://github.com/nvim-lualine/lualine.nvim/
     nvim-navic # Add LSP location to lualine | https://github.com/SmiteshP/nvim-navic
     statuscol-nvim # Status column | https://github.com/luukvbaal/statuscol.nvim/
-    nvim-treesitter-context # nvim-treesitter-context
+    stable.vimPlugins.nvim-treesitter-context # nvim-treesitter-context
     # fidget-nvim # lsp loading progess | https://github.com/j-hui/fidget.nvim/
     # noice-nvim
     # ^ UI
@@ -87,7 +89,7 @@ mkNeovimConfig {
     # navigation/editing enhancement plugins
     vim-unimpaired # predefined ] and [ navigation keymaps | https://github.com/tpope/vim-unimpaired/
     nvim-surround # https://github.com/kylechui/nvim-surround/
-    nvim-treesitter-textobjects # https://github.com/nvim-treesitter/nvim-treesitter-textobjects/
+    stable.vimPlugins.nvim-treesitter-textobjects # https://github.com/nvim-treesitter/nvim-treesitter-textobjects/
     nvim-ts-context-commentstring # https://github.com/joosepalviste/nvim-ts-context-commentstring/
     auto-hlsearch-nvim # https://github.com/asiryk/auto-hlsearch.nvim/
     nvim-ufo # https://github.com/kevinhwang91/nvim-ufo/

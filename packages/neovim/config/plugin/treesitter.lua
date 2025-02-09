@@ -13,6 +13,11 @@ configs.setup {
       if ok and stats and stats.size > max_filesize then
         return true
       end
+
+      local ft = vim.bo.filetype
+      if ft == "c" or ft == "cpp" then
+        return true
+      end
     end,
   },
   textobjects = {
