@@ -67,6 +67,12 @@
     nvtopPackages.full
   ];
 
+  services.tailscale.enable = true;
+  networking.nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
+  networking.search = [ "taildf7228.ts.net" ];
+  services.tailscale.useRoutingFeatures = "client";
+  networking.firewall.checkReversePath = "loose";
+
   packages = with pkgs; [
     bitwarden
     bitwarden-cli
