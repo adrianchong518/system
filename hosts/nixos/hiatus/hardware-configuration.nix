@@ -10,7 +10,7 @@
   boot.kernelModules = [ "kvm-intel" "asus_nb_wmi" "cpufreq_stats" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
   boot.supportedFilesystems = [ "btrfs" ];
-  boot.kernelParams = [ "selinux=0" ];
+  boot.kernelParams = [ "selinux=0" "resume_offset=178464000" ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
@@ -65,7 +65,9 @@
     fsType = "vfat";
   };
 
-  swapDevices = [{ device = "/dev/disk/by-uuid/8cca5057-7fdb-4eee-a367-f4f96435d8a4"; }];
+  boot.resumeDevice = "/dev/dm-0";
+
+  swapDevices = [{ device = "/var/lib/swapfile"; size = 32 * 1024; }];
 
   networking.useDHCP = lib.mkDefault true;
 
