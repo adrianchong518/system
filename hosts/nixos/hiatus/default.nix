@@ -143,6 +143,11 @@
   };
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+  hm.services.udiskie.enable = true;
+
   modules = {
     nixos = {
       udev.openocd.enable = true;

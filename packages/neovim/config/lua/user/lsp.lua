@@ -97,7 +97,8 @@ M.servers = {
       },
     },
   },
-  { name = "arduino_language_server" }
+  { name = "arduino_language_server" },
+  { name = "ruff" }
 }
 
 return M
