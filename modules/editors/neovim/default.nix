@@ -13,7 +13,7 @@ in {
     packages = [ pkgs.my.neovim ];
     modules.shell.aliases = mkIf cfg.enableAliases {
       v = "nvim";
-      gg = "nvim -c Neogit";
+      gg = "nvim -c 'Neogit kind=replace'";
     };
   };
 }

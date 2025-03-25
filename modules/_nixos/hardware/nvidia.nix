@@ -32,9 +32,9 @@ in
         enable = true;
         finegrained = false;
       };
-      open = false;
+      open = true;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
 
       prime = mkIf cfg.prime.enable ({
         intelBusId = cfg.prime.intelBusId;

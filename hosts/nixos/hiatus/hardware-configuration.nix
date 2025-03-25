@@ -7,7 +7,7 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" "usb_storage" "uas" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" "asus_nb_wmi" "cpufreq_stats" ];
+  boot.kernelModules = [ "kvm-intel" "asus_nb_wmi" "cpufreq_stats" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
   boot.supportedFilesystems = [ "btrfs" ];
   boot.kernelParams = [ "selinux=0" "resume_offset=178464000" ];
@@ -17,6 +17,7 @@
   boot.extraModprobeConfig = ''
     options i915 enable_dpcd_backlight=1
     options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+    options nvidia_drm modeset=1 fbdev=1
   '';
 
   hardware.enableAllFirmware = true;
