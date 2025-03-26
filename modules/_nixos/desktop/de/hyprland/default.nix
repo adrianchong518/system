@@ -190,7 +190,7 @@ in
           # mode = "hide";
           # start_hidden = true;
 
-          modules-left = [ "clock" "tray" "taskbar" ];
+          modules-left = [ "clock" "tray" "taskbar" "hyprland/window" ];
           modules-center = [ "hyprland/workspaces" ];
           modules-right = [ "hyprland/submap" "idle_inhibitor" "temperature" "cpu" "memory" "network" "backlight" "wireplumber" "battery" ];
 
@@ -296,6 +296,11 @@ in
           temperature = {
             format = " {temperatureC}°C";
             thermal-zone = 5;
+          };
+
+          "hyprland/window" = {
+            format = "{class}: {title}";
+            separate-outputs = true;
           };
         };
       };
