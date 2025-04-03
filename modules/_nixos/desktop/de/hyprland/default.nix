@@ -192,7 +192,7 @@ in
 
           modules-left = [ "clock" "tray" "taskbar" "hyprland/window" ];
           modules-center = [ "hyprland/workspaces" ];
-          modules-right = [ "hyprland/submap" "idle_inhibitor" "temperature" "cpu" "memory" "network" "backlight" "wireplumber" "battery" ];
+          modules-right = [ "hyprland/submap" "custom/waybar-mpris" "idle_inhibitor" "temperature" "cpu" "memory" "network" "backlight" "wireplumber" "battery" ];
 
           clock = {
             format = "{:%H:%M | %A %d %b %Y}";
@@ -302,6 +302,20 @@ in
             format = "{class}: {title}";
             separate-outputs = true;
           };
+
+          "custom/waybar-mpris" =
+            let
+              waybar-mpris = "${pkgs.waybar-mpris.overrideAttrs (old: {
+              version = "fork";
+              src = inputs.waybar-mpris;
+              })}/bin/waybar-mpris";
+            in
+            {
+              return-type = "json";
+              exec = "${waybar-mpris} --autofocus --play  --pause  --max-title 40";
+              on-click = "${waybar-mpris} --send toggle";
+              escape = true;
+            };
         };
       };
 

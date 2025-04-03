@@ -1114,6 +1114,7 @@
         "nur": "nur",
         "remote-nvim": "remote-nvim",
         "vscode-server": "vscode-server",
+        "waybar-mpris": "waybar-mpris",
         "wezterm": "wezterm"
       }
     },
@@ -1281,6 +1282,22 @@
         "owner": "msteen",
         "repo": "nixos-vscode-server",
         "type": "github"
+      }
+    },
+    "waybar-mpris": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1668944664,
+        "narHash": "sha256-B08muZ56DxzsVEe/dHqB99/1hjn0BNvZm6PqXCMB6Nc=",
+        "ref": "refs/heads/master",
+        "rev": "6bb667ae822cca86d195d4398bb7f19feaf7d9eb",
+        "revCount": 57,
+        "type": "git",
+        "url": "https://git.yaroslavps.com/waybar-mpris"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.yaroslavps.com/waybar-mpris"
       }
     },
     "wezterm": {

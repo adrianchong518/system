@@ -30,6 +30,8 @@
 
     remote-nvim = { url = "github:amitds1997/remote-nvim.nvim"; flake = false; };
 
+    waybar-mpris = { url = "git+https://git.yaroslavps.com/waybar-mpris"; flake = false; };
+
     nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
   };
 
