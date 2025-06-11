@@ -127,6 +127,14 @@
     };
   };
 
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+    package = pkgs.appimage-run.override {
+      extraPkgs = pkgs: [ pkgs.xorg.libxshmfence ];
+    };
+  };
+
   i18n.inputMethod = {
     type = "fcitx5";
     enable = true;

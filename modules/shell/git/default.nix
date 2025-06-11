@@ -71,6 +71,10 @@ in
             rebase = true;
           };
 
+          push = {
+            autoSetupRemote = true;
+          };
+
           submodule = {
             fetchJobs = 0;
             recurse = true;
