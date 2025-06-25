@@ -4,9 +4,9 @@
   imports = [
     ./hardware-configuration.nix
     ./displays.nix
-    "${inputs.nixpkgs-howdy}/nixos/modules/security/pam.nix"
-    "${inputs.nixpkgs-howdy}/nixos/modules/services/security/howdy/default.nix"
-    "${inputs.nixpkgs-howdy}/nixos/modules/services/misc/linux-enable-ir-emitter.nix"
+    # "${inputs.nixpkgs-howdy}/nixos/modules/security/pam.nix"
+    # "${inputs.nixpkgs-howdy}/nixos/modules/services/security/howdy/default.nix"
+    # "${inputs.nixpkgs-howdy}/nixos/modules/services/misc/linux-enable-ir-emitter.nix"
   ];
 
   hardware.sane = {
@@ -27,35 +27,35 @@
     };
     flatpak.enable = true;
 
-    howdy = {
-      enable = true;
-      package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.howdy;
-      settings = {
-        core = {
-          detection_notice = true;
-          no_confirmation = true;
-        };
-
-        video = {
-          device_path = "/dev/video2";
-          dark_threshold = 90;
-          frame_width = 640;
-          frame_height = 360;
-          device_fps = 15;
-        };
-      };
-    };
+    # howdy = {
+    #   enable = true;
+    #   package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.howdy;
+    #   settings = {
+    #     core = {
+    #       detection_notice = true;
+    #       no_confirmation = true;
+    #     };
+    #
+    #     video = {
+    #       device_path = "/dev/video2";
+    #       dark_threshold = 90;
+    #       frame_width = 640;
+    #       frame_height = 360;
+    #       device_fps = 15;
+    #     };
+    #   };
+    # };
 
     # in case your IR blaster does not blink, run `sudo linux-enable-ir-emitter configure`
-    linux-enable-ir-emitter = {
-      enable = false;
-      package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.linux-enable-ir-emitter;
-    };
+    # linux-enable-ir-emitter = {
+    #   enable = false;
+    #   package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.linux-enable-ir-emitter;
+    # };
 
     onedrive.enable = true;
   };
 
-  disabledModules = [ "security/pam.nix" ];
+  # disabledModules = [ "security/pam.nix" ];
 
   # gnome-keyring auto login
   security.pam.services.greetd.enableGnomeKeyring = true;

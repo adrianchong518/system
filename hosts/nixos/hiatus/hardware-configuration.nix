@@ -9,7 +9,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" "asus_nb_wmi" "cpufreq_stats" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
-  boot.supportedFilesystems = [ "btrfs" ];
+  boot.supportedFilesystems = [ "btrfs" "exfat" ];
   boot.kernelParams = [ "selinux=0" "resume_offset=178464000" ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;

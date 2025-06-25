@@ -13,7 +13,7 @@ let
 
     INTERVAL=900
 
-    swww init
+    swww-daemon &
     sleep 0.1
 
     while true; do
