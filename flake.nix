@@ -73,28 +73,17 @@
             inherit system;
             overlays = [ inputs.devshell.overlays.default ];
           };
-          pyEnv = (pkgs.python3.withPackages
-            (ps: with ps; [ typer ])); #[ black colorama shellingham ]));
-          sysdo = pkgs.writeShellScriptBin "sysdo" ''
-            cd $PRJ_ROOT && ${pyEnv}/bin/python3 bin/do.py $@
-          '';
         in
         {
           default = pkgs.devshell.mkShell {
             packages = with pkgs; [
-              pyEnv
               nil
               lua-language-server
               treefmt
               stylua
               nixpkgs-fmt
+              just
             ];
-            commands = [{
-              name = "sysdo";
-              package = sysdo;
-              category = "utilities";
-              help = "perform actions on this repository";
-            }];
           };
         }
       );
