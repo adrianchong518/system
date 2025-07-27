@@ -29,6 +29,15 @@ let
     		done
     done
   '';
+
+  isDischarging = pkgs.writeShellScriptBin "is-discharging" /*bash*/ ''
+    battery=$(fd BAT /sys/class/power_supply/ -1)
+    if [[ -n "$battery" ]]; then
+      if [[ $(cat "$battery"/status) = "Discharging" ]]; then
+        bash -c "$*"
+      fi
+    fi
+  '';
 in
 {
   options.modules.nixos.desktop.de.hyprland = with types;
@@ -69,6 +78,8 @@ in
         j4-dmenu-desktop
         networkmanagerapplet
         playerctl
+
+        isDischarging
       ];
 
     security.polkit.enable = true;
