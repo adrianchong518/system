@@ -7,7 +7,6 @@ in {
     overlays = import "${flake}/overlays" { inherit flake inputs lib; };
   };
 
-  hm.nixpkgs.config = import nixpkgsConfigFile;
   files.config."nixpkgs/config.nix".source = nixpkgsConfigFile;
 
   nix = {

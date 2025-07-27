@@ -19,7 +19,7 @@ in
   config = mkIf cfg.enable {
     services.xserver.videoDrivers = [ "nvidia" ];
 
-    virtualisation.docker.enableNvidia = true;
+    hardware.nvidia-container-toolkit.enable = true;
 
     hardware.graphics = {
       enable = true;

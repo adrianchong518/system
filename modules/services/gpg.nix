@@ -16,7 +16,7 @@ in {
   } // optionalAttrs (isNixosHost hostType) {
     hm.services.gpg-agent = {
       enable = true;
-      pinentryPackage = cfg.pinentryPackage;
+      pinentry.package = cfg.pinentryPackage;
     };
   });
 }

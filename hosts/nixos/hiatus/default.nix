@@ -100,7 +100,6 @@
     libusb1
     libxkbcommon
     mesa
-    mesa.drivers
     SDL2
     systemdLibs
     xorg.libICE

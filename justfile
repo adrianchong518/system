@@ -42,7 +42,7 @@ build *extra_flags: _check-git
 alias s := switch
 # Build and switch to the new system configuration
 switch *extra_flags: _check-git
-    {{ if platform == "nixos" { "sudo" } else { "" } }} {{rebuild-cmd}} build --flake {{flake}} --show-trace {{extra_flags}}
+    {{ if platform == "nixos" { "sudo" } else { "" } }} {{rebuild-cmd}} switch --flake {{flake}} --show-trace {{extra_flags}}
 
 # Update all / supplied flakes
 update *flakes:

@@ -72,7 +72,7 @@ in
           };
 
           push = {
-            autoSetupRemote = true;
+            autoSetupRemote = false;
           };
 
           submodule = {

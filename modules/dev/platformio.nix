@@ -10,13 +10,19 @@ in
 {
   options.modules.dev.platformio = with types; { enable = mkBoolOpt false; };
 
-  config = mkIf cfg.enable (if isDarwinHost hostType then {
-    homebrew.brews = [ "platformio" ];
-  } else {
-    packages =
-      if isLinux then
-        [ pkgs.platformio ]
-      else
-        (throw "platformio is not supported on this system");
-  });
+  config = mkIf cfg.enable
+    (
+      if isDarwinHost hostType then {
+        homebrew.brews = [ "platformio" ];
+      } else {
+        packages =
+          if isLinux then
+            [ pkgs.platformio ]
+          else
+            (throw "platformio is not supported on this system");
+      } // optionalAttrs (isNixosHost hostType)
+        {
+          services.udev.packages = [ pkgs.platformio-core.udev ];
+        }
+    );
 }
