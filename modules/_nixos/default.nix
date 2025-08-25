@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ inputs, pkgs, lib, ... }:
 
 with lib;
 with lib.my; {
@@ -12,7 +12,8 @@ with lib.my; {
     extraGroups = [ "wheel" "networkmanager" ];
   };
 
-  time.timeZone = "Hongkong";
+  # time.timeZone = "Hongkong";
+  services.automatic-timezoned.enable = true;
   i18n.defaultLocale = "en_US.UTF-8";
 
   networking.networkmanager.enable = true;
