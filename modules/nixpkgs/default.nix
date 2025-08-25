@@ -3,7 +3,11 @@
 let nixpkgsConfigFile = ./_nixpkgs-config.nix;
 in {
   nixpkgs = {
-    config = import nixpkgsConfigFile;
+    config = import nixpkgsConfigFile // {
+      packageOverrides = p: {
+        libinput = pkgs.my.libinput;
+      };
+    };
     overlays = import "${flake}/overlays" { inherit flake inputs lib; };
   };
 

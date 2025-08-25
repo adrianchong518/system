@@ -1,0 +1,12 @@
+diff a/src/evdev-wheel.c b/src/evdev-wheel.c
+--- a/src/evdev-wheel.c
++++ b/src/evdev-wheel.c
+@@ -30,7 +30,7 @@
+ #include "evdev-fallback.h"
+ #include "util-input-event.h"
+ 
+-#define ACC_V120_THRESHOLD 60
++#define ACC_V120_THRESHOLD 1
+ #define WHEEL_SCROLL_TIMEOUT ms2us(500)
+ 
+ enum wheel_event {
