@@ -84,6 +84,8 @@ mkNeovimConfig {
     vimtex
     tailwind-tools-nvim
     nvim-ts-autotag
+    plantuml-syntax
+    markdown-preview-nvim
     # ^ language support
 
     # navigation/editing enhancement plugins

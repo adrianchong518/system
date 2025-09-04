@@ -142,3 +142,5 @@ vim.notify = function(msg, ...)
   end
   notify(msg, ...)
 end
+
+g.mkdp_filetypes = { "markdown", "plantuml" }
