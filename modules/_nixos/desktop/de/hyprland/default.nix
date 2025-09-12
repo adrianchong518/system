@@ -100,6 +100,11 @@ in
         size = 24;
       };
 
+      gtk = {
+        enable = true;
+        theme.name = "catppuccin-mocha-mauve-standard";
+      };
+
       qt = {
         enable = true;
         platformTheme.name = "qtct";
@@ -145,6 +150,8 @@ in
         thunar.enable = true;
       };
     };
+
+    programs.xfconf.enable = true;
 
     programs.hyprland = {
       enable = true;
