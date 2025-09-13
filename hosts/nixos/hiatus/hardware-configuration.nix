@@ -10,7 +10,27 @@
   boot.kernelModules = [ "kvm-intel" "asus_nb_wmi" "cpufreq_stats" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
   boot.supportedFilesystems = [ "btrfs" "exfat" ];
-  boot.kernelParams = [ "selinux=0" "resume_offset=178464000" ];
+  boot.kernelParams = [
+    "selinux=0"
+    "resume_offset=178464000"
+    "quiet"
+    "intremap=on"
+    "boot.shell_on_fail"
+    "udev.log_priority=3"
+    "rd.systemd.show_status=auto"
+  ];
+  boot.consoleLogLevel = 3;
+  boot.initrd.verbose = false;
+  boot.initrd.systemd.enable = true;
+
+  boot.plymouth = {
+    enable = true;
+
+    font = "${pkgs.iosevka-bin}/share/fonts/truetype/Iosevka-Regular.ttc";
+
+    theme = "catppuccin-mocha";
+    themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];
+  };
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
@@ -23,8 +43,14 @@
   hardware.enableAllFirmware = true;
 
   boot.loader = {
-    systemd-boot.enable = true;
-    systemd-boot.configurationLimit = 42;
+    grub = {
+      enable = true;
+      configurationLimit = 10;
+      device = "nodev";
+      efiSupport = true;
+      useOSProber = true;
+      theme = pkgs.catppuccin-grub;
+    };
     efi.canTouchEfiVariables = true;
   };
 
