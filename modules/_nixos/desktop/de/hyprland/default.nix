@@ -103,6 +103,10 @@ in
       gtk = {
         enable = true;
         theme.name = "catppuccin-mocha-mauve-standard";
+        iconTheme = {
+          package = pkgs.paper-icon-theme;
+          name = "Paper";
+        };
       };
 
       qt = {

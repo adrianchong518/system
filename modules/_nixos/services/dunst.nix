@@ -14,8 +14,8 @@ in
     hm.services.dunst = {
       enable = true;
       iconTheme = {
-        package = pkgs.adwaita-icon-theme;
-        name = "Adawaita";
+        package = pkgs.paper-icon-theme;
+        name = "Paper";
       };
       settings = {
         global = {
