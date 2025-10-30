@@ -87,6 +87,8 @@
     gnome-network-displays
 
     devenv
+
+    distrobox
   ];
 
   networking.firewall.allowedTCPPorts = [ 7236 7250 ];
