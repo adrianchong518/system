@@ -11,7 +11,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.transmission.enable = true;
+    services.transmission = {
+      enable = true;
+      package = pkgs.transmission_4;
+    };
 
     packages = with pkgs; [
       transmission_4-qt

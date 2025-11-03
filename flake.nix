@@ -21,11 +21,6 @@
     vscode-server.url = "github:msteen/nixos-vscode-server";
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprlock.url = "github:hyprwm/hyprlock/main";
-    hypridle.url = "github:hyprwm/hypridle/main";
-    hyprutils.url = "github:hyprwm/hyprutils/main";
-
     wezterm.url = "github:wez/wezterm?dir=nix";
 
     remote-nvim = { url = "github:amitds1997/remote-nvim.nvim"; flake = false; };
@@ -59,6 +54,7 @@
           pkgs = import inputs.nixpkgs {
             inherit system;
             config = import ./modules/nixpkgs/_nixpkgs-config.nix;
+            overlays = [ (import ./overlays/cuda.nix { }) ]; # XXX: cuda causes issues
           };
         in
         (mapModules (p: pkgs.callPackage p { inherit inputs system; }) ./packages)

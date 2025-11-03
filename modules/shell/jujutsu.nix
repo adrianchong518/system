@@ -28,16 +28,12 @@ in
         };
 
         signing = mkIf gitCfg.signing.enable {
-          sign-all = true;
+          # sign-all = true;
           backend = "gpg";
           key = gitCfg.signing.key;
         };
 
         core.fsmonitor = "watchman";
-
-        aliases = {
-          br-up = [ "branch" "set" "-r" "@-" ];
-        };
       };
     };
 

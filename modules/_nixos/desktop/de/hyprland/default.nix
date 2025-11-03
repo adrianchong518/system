@@ -49,13 +49,6 @@ in
     };
 
   config = mkIf cfg.enable {
-    nixpkgs.overlays = [
-      inputs.hyprland.overlays.default
-      inputs.hyprlock.overlays.default
-      inputs.hypridle.overlays.default
-      inputs.hyprutils.overlays.default
-    ];
-
     environment.systemPackages = with pkgs;
       [
         kdePackages.polkit-kde-agent-1
@@ -159,15 +152,13 @@ in
 
     programs.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland.override (old: {
-        libinput = pkgs.my.libinput;
-      });
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      # package = pkgs.hyprland.override (old: {
+      #   # libinput = pkgs.my.libinput;
+      # });
     };
 
     hm.wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
 
       settings = recursiveMerge [
         {

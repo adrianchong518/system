@@ -20,7 +20,7 @@ mkNeovimConfig {
     lua-language-server
     nil # nix LSP
     nixpkgs-fmt
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
   ];
 
   plugins = with pkgs.vimPlugins; [

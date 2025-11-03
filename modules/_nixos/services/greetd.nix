@@ -4,7 +4,7 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.nixos.services.greetd;
-  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+  tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
 in
 {
   options.modules.nixos.services.greetd = with types; {

@@ -36,9 +36,6 @@ in
       programs.git = {
         enable = true;
 
-        userName = cfg.userName;
-        userEmail = cfg.userEmail;
-
         includes = [
           { path = "${catppuccinDeltaThemeSrc}/themes/latte.gitconfig"; }
           { path = "${catppuccinDeltaThemeSrc}/themes/frappe.gitconfig"; }
@@ -46,7 +43,12 @@ in
           { path = "${catppuccinDeltaThemeSrc}/themes/mocha.gitconfig"; }
         ];
 
-        extraConfig = {
+        settings = {
+          user = {
+            name = cfg.userName;
+            email = cfg.userEmail;
+          };
+
           core = {
             untrackedcache = true;
             fsmonitor = true;
@@ -84,49 +86,50 @@ in
 
           column.ui = "auto";
           branch.sort = "-committerdate";
-        };
 
-        aliases = {
-          fix = "commit --amend --no-edit";
-          oops = "reset HEAD~1";
-          clone-worktree = "!sh ${./git-clone-for-worktree.sh}";
+          alias = {
+            fix = "commit --amend --no-edit";
+            oops = "reset HEAD~1";
+            clone-worktree = "!sh ${./git-clone-for-worktree.sh}";
 
-          a = "add";
-          aa = "add --all";
-          ap = "add -p";
-          b = "branch";
-          c = "commit";
-          cam = "commit -am";
-          cl = "clone --recurse-submodules";
-          clw = "clone-worktree";
-          cm = "commit -m";
-          co = "checkout";
-          d = "diff";
-          f = "fetch";
-          l = "log --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)%ar%C(reset) %C(dim cyan)%aD%C(reset)%C(auto)%d%C(reset)%n''          %C(default)%s%C(reset) %C(dim white)- %an%C(reset)'";
-          lg = "l --graph";
-          p = "push";
-          pl = "pull";
-          s = "stash";
-          st = "status";
-          w = "worktree";
+            a = "add";
+            aa = "add --all";
+            ap = "add -p";
+            b = "branch";
+            c = "commit";
+            cam = "commit -am";
+            cl = "clone --recurse-submodules";
+            clw = "clone-worktree";
+            cm = "commit -m";
+            co = "checkout";
+            d = "diff";
+            f = "fetch";
+            l = "log --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)%ar%C(reset) %C(dim cyan)%aD%C(reset)%C(auto)%d%C(reset)%n''          %C(default)%s%C(reset) %C(dim white)- %an%C(reset)'";
+            lg = "l --graph";
+            p = "push";
+            pl = "pull";
+            s = "stash";
+            st = "status";
+            w = "worktree";
+          };
         };
 
         signing = mkIf cfg.signing.enable {
           signByDefault = true;
           key = cfg.signing.key;
         };
+      };
 
-        delta = {
-          enable = true;
-          options = {
-            dark = true;
-            side-by-side = true;
-            navigate = true;
-            features = "catppuccin-mocha";
-          } // optionalAttrs config.modules.shell.utils.bat.enable {
-            syntax-theme = "catppuccin-mocha";
-          };
+      programs.delta = {
+        enable = true;
+        enableGitIntegration = true;
+        options = {
+          dark = true;
+          side-by-side = true;
+          navigate = true;
+          features = "catppuccin-mocha";
+        } // optionalAttrs config.modules.shell.utils.bat.enable {
+          syntax-theme = "catppuccin-mocha";
         };
       };
 

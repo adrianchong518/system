@@ -74,7 +74,7 @@
   networking.firewall.checkReversePath = "loose";
 
   packages = with pkgs; [
-    bitwarden
+    bitwarden-desktop
     bitwarden-cli
 
     prismlauncher
@@ -145,7 +145,7 @@
       fcitx5-rime
       fcitx5-mozc
       fcitx5-gtk
-      fcitx5-catppuccin
+      catppuccin-fcitx5
       nur.repos.linyinfeng.rimePackages.rime-cantonese
       nur.repos.linyinfeng.rimePackages.rime-luna-pinyin
     ];
@@ -240,7 +240,7 @@
           key = "1DC233DD";
         };
       };
-      jujutsu.enable = false;
+      jujutsu.enable = true;
     };
 
     editors = {

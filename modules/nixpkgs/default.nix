@@ -5,7 +5,7 @@ in {
   nixpkgs = {
     config = import nixpkgsConfigFile // {
       packageOverrides = p: {
-        libinput = pkgs.my.libinput;
+        # libinput = pkgs.my.libinput;
       };
     };
     overlays = import "${flake}/overlays" { inherit flake inputs lib; };

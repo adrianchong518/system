@@ -9,6 +9,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    packages = with pkgs; [ /* firefox-bin */ firefox-devedition-bin ];
+    packages = with pkgs; [ firefox-bin ];
   };
 }

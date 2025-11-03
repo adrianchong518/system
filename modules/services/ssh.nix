@@ -20,10 +20,11 @@ in
     hm = {
       programs.ssh = {
         enable = true;
+        enableDefaultConfig = false;
 
-        extraConfig = ''
-          AddKeysToAgent yes
-        '';
+        matchBlocks."*" = {
+          AddKeysToAgent = "yes";
+        };
       } // optionalAttrs cfg.git.enable {
         matchBlocks."github.com" = {
           host = "github.com";
@@ -40,6 +41,5 @@ in
     };
   } // optionalAttrs (isNixosHost hostType) {
     services.openssh.enable = true;
-    programs.ssh.startAgent = true;
   });
 }
