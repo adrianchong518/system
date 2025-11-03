@@ -89,6 +89,7 @@
     devenv
 
     distrobox
+    winboat
   ];
 
   networking.firewall.allowedTCPPorts = [ 7236 7250 ];
