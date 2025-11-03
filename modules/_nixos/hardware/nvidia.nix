@@ -19,6 +19,8 @@ in
   config = mkIf cfg.enable {
     services.xserver.videoDrivers = [ "nvidia" ];
 
+    nixpkgs.config.cudaSupport = true;
+
     hardware.nvidia-container-toolkit.enable = true;
 
     hardware.graphics = {
