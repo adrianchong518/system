@@ -33,7 +33,7 @@ in
           key = gitCfg.signing.key;
         };
 
-        core.fsmonitor = "watchman";
+        # core.fsmonitor = "watchman";
       };
     };
 
