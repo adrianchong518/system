@@ -82,7 +82,6 @@ mkNeovimConfig {
     crates-nvim # check crate versions in Cargo.toml | https://github.com/saecki/crates.nvim/
     neogen # generate documentation template | https://github.com/danymat/neogen/
     vimtex
-    tailwind-tools-nvim
     nvim-ts-autotag
     plantuml-syntax
     markdown-preview-nvim

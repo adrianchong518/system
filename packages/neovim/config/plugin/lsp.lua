@@ -1,5 +1,3 @@
-local lspconfig = require("lspconfig")
-
 require("neodev.lsp").setup()
 
 local function preview_location_callback(_, result)
@@ -35,11 +33,12 @@ local function on_attach_builder(lsp)
 end
 
 for _, lsp in ipairs(require("user.lsp").servers) do
-  lspconfig[lsp.name].setup {
+  vim.lsp.config(lsp.name, {
     capabilities = require("user.lsp").capabilities,
     on_attach = on_attach_builder(lsp),
     settings = lsp.settings,
-  }
+  })
+  vim.lsp.enable(lsp.name)
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {

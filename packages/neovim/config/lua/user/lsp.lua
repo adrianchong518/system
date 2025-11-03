@@ -33,6 +33,7 @@ M.servers = {
   { name = "ts_ls" },
   { name = "yamlls" },
   { name = "emmet_language_server" },
+  { name = "tailwindcss" },
   {
     name = "eslint",
     on_attach = function(client, bufnr)

@@ -30,5 +30,4 @@ require("mini.icons").setup()
 --   end,
 -- })
 
-require("tailwind-tools").setup()
 require('nvim-ts-autotag').setup()
