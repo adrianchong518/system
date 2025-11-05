@@ -90,6 +90,19 @@ end
 
 keymap.set("n", "<leader>S", toggle_spell_check, { noremap = true, silent = true, desc = "toggle spell" })
 
+keymap.set({ "n", "v", "x" }, "c", "\"_c", { noremap = true })
+keymap.set({ "n", "v", "x" }, "d", "\"_d", { noremap = true })
+keymap.set({ "n", "v", "x" }, "C", "\"_C", { noremap = true })
+keymap.set({ "n", "v", "x" }, "D", "\"_D", { noremap = true })
+keymap.set({ "n", "v", "x" }, "<leader>c", "c", { noremap = true })
+keymap.set({ "n", "v", "x" }, "<leader>d", "d", { noremap = true })
+keymap.set({ "n", "v", "x" }, "<leader>C", "C", { noremap = true })
+keymap.set({ "n", "v", "x" }, "<leader>D", "D", { noremap = true })
+keymap.set({ "n", "v", "x" }, "<leader>y", "\"+y", { noremap = true })
+keymap.set({ "n", "v", "x" }, "<leader>Y", "\"+Y", { noremap = true })
+keymap.set({ "n", "v", "x" }, "<leader>p", "\"+p", { noremap = true })
+keymap.set({ "n", "v", "x" }, "<leader>P", "\"+P", { noremap = true })
+
 --- Disabled keymaps [enable at your own risk]
 
 -- Automatic management of search highlight
