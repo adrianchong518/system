@@ -1,4 +1,4 @@
-{ config, options, pkgs, lib, hostType, ... }:
+{ inputs, config, options, pkgs, lib, hostType, ... }:
 
 with lib;
 with lib.my;
@@ -18,6 +18,10 @@ in {
       packages = mkAliasDefinitions options.packages;
       sessionVariables = mkAliasDefinitions options.env;
     };
+
+    hm.imports = [
+      inputs.catppuccin.homeModules.catppuccin
+    ];
 
     my.user =
       let

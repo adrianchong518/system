@@ -3,7 +3,10 @@
 with lib;
 with lib.my; {
   imports = importModulesRec ./.
-    ++ [ inputs.home-manager.nixosModules.home-manager ];
+    ++ [
+    inputs.home-manager.nixosModules.home-manager
+    inputs.catppuccin.nixosModules.catppuccin
+  ];
 
   system.stateVersion = "23.05";
 

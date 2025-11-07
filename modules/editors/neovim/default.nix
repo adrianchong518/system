@@ -15,5 +15,6 @@ in {
       v = "nvim";
       gg = "nvim -c 'Neogit kind=replace'";
     };
+    hm.catppuccin.nvim.enable = false;
   };
 }

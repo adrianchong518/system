@@ -19,4 +19,10 @@ in {
 
     message = "Cannot enable desktop apps without a enabling desktop";
   }];
+
+  hm.catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
+  };
 }

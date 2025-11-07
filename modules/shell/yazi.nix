@@ -17,9 +17,6 @@ in
       enable = true;
       shellWrapperName = "y";
 
-      theme = { flavor = { use = "catppuccin-mocha"; }; };
-      flavors = { catppuccin-mocha = ./catppuccin-mocha.yazi; };
-
       plugins = {
         chmod = "${yazi-plugins}/chmod.yazi";
         full-border = "${yazi-plugins}/full-border.yazi";

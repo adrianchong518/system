@@ -4,12 +4,11 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.nixos.services.greetd;
-  tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
 in
 {
   options.modules.nixos.services.greetd = with types; {
     enable = mkBoolOpt false;
-    session = mkOpt str "${tuigreet}";
+    session = mkOpt str "${config.my.user.shell}";
   };
 
   config = mkIf cfg.enable {
@@ -21,8 +20,8 @@ in
           user = config.my.user.name;
         };
         default_session = {
-          command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${cfg.session}";
-          user = "greeter";
+          command = "agreety --cmd ${cfg.session}";
+          user = config.my.user.name;
         };
       };
     };

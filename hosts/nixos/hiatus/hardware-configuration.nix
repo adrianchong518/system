@@ -25,11 +25,7 @@
 
   boot.plymouth = {
     enable = true;
-
     font = "${pkgs.iosevka-bin}/share/fonts/truetype/Iosevka-Regular.ttc";
-
-    theme = "catppuccin-mocha";
-    themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];
   };
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
@@ -49,7 +45,6 @@
       device = "nodev";
       efiSupport = true;
       useOSProber = true;
-      theme = pkgs.catppuccin-grub;
     };
     efi.canTouchEfiVariables = true;
   };

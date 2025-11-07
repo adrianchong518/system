@@ -52,9 +52,6 @@ in {
         set fish_cursor_replace_one underscore
       '';
     };
-
-    files.config."fish/themes/catppuccin-mocha.theme".source =
-      ./catppuccin-mocha.theme;
   } // optionalAttrs (isManagedSystem hostType) {
     programs.fish.enable = true;
     environment.shells = [ cfg.package ];

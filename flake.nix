@@ -25,6 +25,9 @@
 
     waybar-mpris = { url = "git+https://git.yaroslavps.com/waybar-mpris"; flake = false; };
 
+    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
+
     nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
   };
 

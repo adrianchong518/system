@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, ... }:
 
 with lib;
 with lib.my; {
@@ -19,4 +19,6 @@ with lib.my; {
     stable.source = "${inputs.nixpkgs-stable}";
     unstable.source = "${inputs.nixpkgs-unstable}";
   };
+
+  catppuccin = config.hm.catppuccin;
 }

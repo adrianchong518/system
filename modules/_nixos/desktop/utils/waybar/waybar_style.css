@@ -1,0 +1,53 @@
+* {
+    font-family: Iosevka Nerd Font Propo;
+    font-size: 11px;
+    min-height: 0;
+    color: @text;
+}
+
+#clock,
+#workspaces,
+#submap,
+#tray,
+#wireplumber,
+#network,
+#backlight,
+#cpu,
+#memory
+#battery {
+    background: rgba(0, 0, 0, 0);
+    padding: 0px 8px;
+    margin: 0px 0px;
+}
+
+window#waybar {
+    background: alpha(@base, 0.9);
+}
+
+tooltip {
+    background: alpha(@base, 0.9);
+}
+
+#workspaces {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#workspaces button {
+    /* transition: all 0.3s ease; */
+    border: 2px solid transparent;
+    border-radius: 0px;
+    background: rgba(0, 0, 0, 0);
+    padding: 0px 0px;
+    min-width: 0px;
+}
+
+#workspaces button.active label {
+    color: @mauve;
+    font-weight: bolder;
+    text-decoration-line: none;
+}
+
+#tray menu {
+    background: alpha(@base, 0.9);
+}

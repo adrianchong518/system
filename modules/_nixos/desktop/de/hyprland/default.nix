@@ -6,36 +6,11 @@ let
   cfg = config.modules.nixos.desktop.de.hyprland;
   displayCfg = config.modules.nixos.hardware.display;
 
-  wallpaperDir = "${config.files.configHome}/wallpaper";
-  cycleWallpaper = pkgs.writeShellScript "cycle-wallpaper" /* bash */ ''
-    export SWWW_TRANSITION_FPS=60
-    export SWWW_TRANSITION_STEP=10
-
-    INTERVAL=900
-
-    swww-daemon &
-    sleep 0.1
-
-    while true; do
-    	find "${wallpaperDir}" -type f \
-    		| while read -r img; do
-            echo "$((RANDOM % 1000)):$img"
-          done \
-    		| sort -n | cut -d':' -f2- \
-    		| while read -r img; do
-          echo "$img" > /tmp/hypr/wallpaper
-    			swww img "$img"
-    			sleep $INTERVAL
-    		done
-    done
-  '';
-
-  isDischarging = pkgs.writeShellScriptBin "is-discharging" /*bash*/ ''
-    battery=$(fd BAT /sys/class/power_supply/ -1)
-    if [[ -n "$battery" ]]; then
-      if [[ $(cat "$battery"/status) = "Discharging" ]]; then
-        bash -c "$*"
-      fi
+  setWallpaper = pkgs.writeShellScript "set-wallpaper" ''
+    WALLPAPER_DIR="${cfg.wallpaperDir}"
+    if [ -d "$WALLPAPER_DIR" ]; then
+      FILE=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
+      ${pkgs.swaybg}/bin/swaybg -i "$FILE" -m fill &
     fi
   '';
 in
@@ -46,6 +21,8 @@ in
       WLR_DRM_DEVICES = mkOpt str "";
       extraSettings = mkOpt attrs { };
       extraConfig = mkOpt lines "";
+
+      wallpaperDir = mkOpt str "${config.files.configHome}/wallpaper";
     };
 
   config = mkIf cfg.enable {
@@ -57,12 +34,9 @@ in
         libsForQt5.qt5ct
         libsForQt5.qtstyleplugin-kvantum
 
-        (catppuccin-gtk.override { accents = [ "mauve" ]; variant = "mocha"; size = "standard"; })
-
         hyprlock
         hypridle
         hyprshot
-        swww
 
         libnotify
 
@@ -71,8 +45,6 @@ in
         j4-dmenu-desktop
         networkmanagerapplet
         playerctl
-
-        isDischarging
       ];
 
     security.polkit.enable = true;
@@ -88,17 +60,18 @@ in
         gtk.enable = true;
         x11.enable = true;
         hyprcursor.enable = true;
-        package = pkgs.catppuccin-cursors.mochaDark;
-        name = "catppuccin-mocha-dark-cursors";
-        size = 24;
       };
+      catppuccin.cursors.enable = true;
 
       gtk = {
         enable = true;
-        theme.name = "catppuccin-mocha-mauve-standard";
-        iconTheme = {
-          package = pkgs.paper-icon-theme;
-          name = "Paper";
+        theme = {
+          name = "catppuccin-mocha-mauve-standard";
+          package = (pkgs.catppuccin-gtk.override {
+            accents = [ config.catppuccin.accent ];
+            variant = config.catppuccin.flavor;
+            size = "standard";
+          });
         };
       };
 
@@ -107,22 +80,6 @@ in
         platformTheme.name = "qtct";
         style.name = "kvantum";
       };
-    };
-
-    files = {
-      config = {
-        "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-          General.theme = "catppuccin-mocha-mauve";
-        };
-        "Kvantum/catppuccin-mocha-mauve".source = "${pkgs.catppuccin-kvantum.override { accent = "mauve"; variant = "mocha"; }}/share/Kvantum/catppuccin-mocha-mauve";
-      };
-    };
-
-    environment.variables = rec {
-      HYPRCURSOR_THEME = "catppuccin-mocha-dark-cursors";
-      HYPRCURSOR_SIZE = "24";
-      XCURSOR_THEME = HYPRCURSOR_THEME;
-      XCURSOR_SIZE = HYPRCURSOR_SIZE;
     };
 
     # Services
@@ -169,7 +126,7 @@ in
             "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
             "wl-paste --type text --watch cliphist store"
             "wl-paste --type image --watch cliphist store"
-            "${cycleWallpaper}"
+            "${setWallpaper}"
             "nm-applet"
           ];
         }
@@ -193,148 +150,20 @@ in
       # WLR_NO_HARDWARE_CURSORS = "1";
     };
 
-    hm.programs.waybar = {
-      enable = true;
-      settings = {
-        mainBar = {
-          layer = "top";
-          position = "top";
-          height = 17;
-          spacing = 4;
+    modules.nixos.desktop.utils.waybar.enable = true;
+    hm.programs.waybar.settings.mainBar = {
+      modules-left = mkAfter [ "hyprland/window" ];
+      modules-center = [ "hyprland/workspaces" ];
+      modules-right = mkBefore [ "hyprland/submap" ];
 
-          # mode = "hide";
-          # start_hidden = true;
-
-          modules-left = [ "clock" "tray" "taskbar" "hyprland/window" ];
-          modules-center = [ "hyprland/workspaces" ];
-          modules-right = [ "hyprland/submap" "custom/waybar-mpris" "idle_inhibitor" "temperature" "cpu" "memory" "network" "backlight" "wireplumber" "battery" ];
-
-          clock = {
-            format = "{:%H:%M | %A %d %b %Y}";
-            tooltip-format = "<tt><small>{calendar}</small></tt>";
-            calendar = {
-              mode = "month";
-              on-scroll = 1;
-              format = {
-                months = "<span color='#FFFFFF'><b>{}</b></span>";
-                days = "<span color='#DCDCDC'><b>{}</b></span>";
-                weeks = "<span color='#FFFFFF'><b>W{}</b></span>";
-                weekdays = "<span color='#FFFFFF'><b>{}</b></span>";
-                today = "<span color='#FFFFFF'><b>{}</b></span>";
-              };
-            };
-          };
-
-          tray = {
-            icon-size = 21;
-            spacing = 0;
-            show-passive-items = true;
-          };
-
-          "hyprland/submap" = {
-            format = "Mode: {}";
-          };
-
-          network = {
-            interval = 30;
-            format = "{ifname}";
-            format-ethernet = "{icon} {ipaddr}";
-            format-wifi = "{icon} {signalStrength}%";
-            format-linked = "{ifname} (No IP)";
-            format-disconnected = "{icon}";
-            format-icons = {
-              ethernet = "󰈀";
-              wifi = "󰖩";
-              disconnected = "󰖪";
-            };
-            tooltip = true;
-            tooltip-format = " {essid} at {ifname} via {gwaddr}";
-          };
-
-          backlight = {
-            device = "${displayCfg.defaultDevice}";
-            format = "{icon} {percent}%";
-            format-icons = [ "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨" ];
-            tooltip = false;
-          };
-
-          battery = {
-            interval = 5;
-            states = {
-              good = 95;
-              warning = 35;
-              critical = 20;
-            };
-            format = "{icon} {capacity}%";
-            format-warning = "{icon} {capacity}%";
-            format-critical = "{icon} {capacity}%";
-            format-time = "{H} h {M} min";
-            format-charging = "{icon} {capacity}%";
-            format-plugged = "{icon} {capacity}%";
-            format-alt = "{icon} {time}";
-            format-icons = {
-              charging = "󰃨";
-              plugged = "";
-              default = [ "" "" "" "" "" ];
-            };
-          };
-
-          wireplumber = {
-            format = "{icon} {volume}%";
-            format-muted = " muted";
-            # on-click = "helvum";
-            on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-            on-click-right = "pavucontrol";
-            on-scroll-up = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+";
-            on-scroll-down = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-";
-            format-icons = [ "" "" "" ];
-          };
-
-          cpu = {
-            format = " {icon} {usage}%";
-            format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
-          };
-
-          memory = {
-            format = " {percentage}%";
-            tooltip-format = "{used:0.1f}GiB ({swapUsed:0.1f}GiB swap)";
-          };
-
-          idle_inhibitor = {
-            format = "{icon}";
-            format-icons = {
-              activated = " ";
-              deactivated = " ";
-            };
-          };
-
-          temperature = {
-            format = " {temperatureC}°C";
-            thermal-zone = 5;
-          };
-
-          "hyprland/window" = {
-            format = "{class}: {title}";
-            separate-outputs = true;
-          };
-
-          "custom/waybar-mpris" =
-            let
-              waybar-mpris = "${pkgs.waybar-mpris.overrideAttrs (old: {
-              version = "fork";
-              src = inputs.waybar-mpris;
-              })}/bin/waybar-mpris";
-            in
-            {
-              return-type = "json";
-              exec = "${waybar-mpris} --autofocus --play  --pause  --max-title 40";
-              on-click = "${waybar-mpris} --send toggle";
-              escape = true;
-            };
-        };
+      "hyprland/window" = {
+        format = "{class}: {title}";
+        separate-outputs = true;
       };
 
-      style = builtins.readFile ./waybar_style.css;
+      "hyprland/submap" = {
+        format = "Mode: {}";
+      };
     };
 
     files.config."hypr/hyprlock.conf".source = ./hyprlock.conf;

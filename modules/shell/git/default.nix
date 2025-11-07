@@ -6,13 +6,6 @@ let
   inherit (pkgs.stdenvNoCC) isDarwin;
 
   cfg = config.modules.shell.git;
-
-  catppuccinDeltaThemeSrc = pkgs.fetchFromGitHub {
-    owner = "catppuccin";
-    repo = "delta";
-    rev = "21b37ac3138268d92cee71dfc8539d134817580a";
-    sha256 = "0QQLkfLBVuB2re6tjtPNuOQZNK0MDBAIFgNGHZM8afs=";
-  };
 in
 {
   options.modules.shell.git = with types; {
@@ -35,13 +28,6 @@ in
     hm = {
       programs.git = {
         enable = true;
-
-        includes = [
-          { path = "${catppuccinDeltaThemeSrc}/themes/latte.gitconfig"; }
-          { path = "${catppuccinDeltaThemeSrc}/themes/frappe.gitconfig"; }
-          { path = "${catppuccinDeltaThemeSrc}/themes/macchiato.gitconfig"; }
-          { path = "${catppuccinDeltaThemeSrc}/themes/mocha.gitconfig"; }
-        ];
 
         settings = {
           user = {
@@ -127,7 +113,6 @@ in
           dark = true;
           side-by-side = true;
           navigate = true;
-          features = "catppuccin-mocha";
         } // optionalAttrs config.modules.shell.utils.bat.enable {
           syntax-theme = "catppuccin-mocha";
         };

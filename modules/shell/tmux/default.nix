@@ -77,10 +77,6 @@ in {
           '';
         }
         { plugin = vim-tmux-navigator; }
-        {
-          plugin = catppuccin;
-          extraConfig = "";
-        }
       ];
     };
 

@@ -146,7 +146,6 @@
       fcitx5-rime
       fcitx5-mozc
       fcitx5-gtk
-      catppuccin-fcitx5
       nur.repos.linyinfeng.rimePackages.rime-cantonese
       nur.repos.linyinfeng.rimePackages.rime-luna-pinyin
     ];

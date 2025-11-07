@@ -29,7 +29,7 @@ in
         (rofi-calc.override { rofi-unwrapped = rofiPackage; })
       ];
 
-      theme = ./catppuccin-mocha.rasi;
+      # theme = ./catppuccin-mocha.rasi;
 
       extraConfig = {
         modi = "run,drun,window,calc";
