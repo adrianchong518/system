@@ -169,7 +169,7 @@
       desktop = {
         # de.plasma6.enable = true;
         de.hyprland = {
-          enable = true;
+          enable = false;
           extraSettings = {
             env = [
               "WLR_DRM_DEVICES,${config.files.dataHome}/_dri/intel-card:${config.files.dataHome}/_dri/nvidia-card"
@@ -182,6 +182,8 @@
             }
           '';
         };
+
+        de.niri.enable = true;
 
         apps = {
           virt-manager = {

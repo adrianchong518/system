@@ -14,7 +14,8 @@
 
   hm.services.kanshi = {
     enable = true;
-    systemdTarget = "hyprland-session.target";
+    # systemdTarget = "hyprland-session.target";
+    systemdTarget = "niri.service";
 
     profiles =
       let

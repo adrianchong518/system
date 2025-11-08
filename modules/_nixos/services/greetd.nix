@@ -20,7 +20,7 @@ in
           user = config.my.user.name;
         };
         default_session = {
-          command = "agreety --cmd ${cfg.session}";
+          command = "${config.services.greetd.package}/bin/agreety --cmd ${cfg.session}";
           user = config.my.user.name;
         };
       };
