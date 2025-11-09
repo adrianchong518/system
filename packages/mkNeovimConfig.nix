@@ -4,7 +4,8 @@
 with lib;
 { appName ? null
 , # NVIM_APPNAME - Defaults to 'nvim'
-  configSrc
+  package ? pkgs.neovim-unwrapped
+, configSrc
 , plugins ? [ ]
 , # List of plugins
   # List of dev plugins (will be bootstrapped) - useful for plugin developers
@@ -154,7 +155,7 @@ let
     }"'';
   # wrapNeovimUnstable is the nixpkgs utility function for building a Neovim derivation.
 in
-pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped (neovimConfig // {
+pkgs.wrapNeovimUnstable package (neovimConfig // {
   luaRcContent = initLua;
   wrapperArgs = escapeShellArgs neovimConfig.wrapperArgs + " "
     + extraMakeWrapperArgs + " " + extraMakeWrapperLuaCArgs + " "

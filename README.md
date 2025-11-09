@@ -1,10 +1,6 @@
 # Nix System Configuration
 
-This repository contains the system configuration for all my devices (currently one).
-
-This configuration setup is "heavily based on" (copied from)
-
-**NOTE**: There is currently no NixOS configs as this is deemed unnecessary for now as I am not using NixOS.
+This repository contains the system configuration for all my devices.
 
 ## System Setup and Bootstrapping
 
@@ -45,24 +41,25 @@ git clone https://github.com/adrianchong518/system ~/.system
 
 You can bootstrap a new nix-darwin system using
 
+> [!CAUTION]
+> Not implemented
+
 ```bash
 nix --extra-experimental-features "nix-command flakes" develop -c sysdo bootstrap --darwin [host]
 ```
 
 or a home-manager configuration using
 
+> [!CAUTION]
+> Not implemented
+
 ```bash
 nix --extra-experimental-features "nix-command flakes" develop -c sysdo bootstrap --home-manager [host]
 ```
 
-## `sysdo` CLI Tool
+## Daily Maintanence
 
-The `sysdo` util is also developed by @kclejeune in [kclejeune/system](https://github.com/kclejeune/system),
-which I directly "yoinked" and made slight modifications.
-
-In the future, I would most likely write my own utility to fit my needs better.
-
-Read [sysdo.md](./doc/sysdo.md) for documentation and usage.
+Usually, actions, such as updating, building, and switching, are done via the `just` task runner system, i.e. see `justfile` for available tasks.
 
 ## References
 
