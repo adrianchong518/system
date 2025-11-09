@@ -42,6 +42,8 @@ in
     # Services
     modules.services.gpg.pinentryPackage = mkDefault pkgs.pinentry-bemenu;
 
+    hm.wayland.systemd.target = "hyprland-session.target";
+
     modules.nixos = {
       services = {
         pipewire.enable = true;

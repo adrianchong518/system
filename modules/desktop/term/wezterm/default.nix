@@ -13,5 +13,6 @@ in {
       enable = true;
       extraConfig = builtins.readFile ./config.lua;
     };
+    hm.catppuccin.wezterm.enable = false;
   };
 }

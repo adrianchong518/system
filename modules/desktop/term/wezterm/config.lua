@@ -9,10 +9,9 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
----@diagnostic disable-next-line: undefined-global
-dofile(catppuccin_plugin).apply_to_config(config, catppuccin_config)
-
 config.check_for_updates = false
+
+config.color_scheme = "Catppuccin Mocha"
 
 config.font = wezterm.font_with_fallback {
   {

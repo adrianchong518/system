@@ -27,10 +27,11 @@ in
 
     security.polkit.enable = true;
     services.gnome.gnome-keyring.enable = true;
-    security.pam.services.swaylock = { };
     hm.services.polkit-gnome.enable = true;
 
     xdg.portal.enable = true;
+
+    hm.wayland.systemd.target = "niri.service";
 
     modules.nixos = {
       services = {
@@ -48,7 +49,8 @@ in
         bemenu.enable = true;
         wlogout.enable = true;
         thunar.enable = true;
-        swaybg.enable = true;
+        # swaybg.enable = true;
+        swayidle.enable = true;
       };
     };
 
