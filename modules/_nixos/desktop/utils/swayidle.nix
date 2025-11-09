@@ -17,19 +17,24 @@ in
     hm.catppuccin.swaylock.enable = true;
     security.pam.services.swaylock = { };
 
-    hm.services.swayidle = {
-      enable = true;
-      package = pkgs.swayidle.override { systemdSupport = true; };
+    hm.services.swayidle =
+      let
+        loginctl = "${pkgs.systemd}/bin/loginctl";
+        systemctl = "${pkgs.systemd}/bin/systemctl";
+      in
+      {
+        enable = true;
+        package = pkgs.swayidle.override { systemdSupport = true; };
 
-      events = [
-        { event = "lock"; command = "${pkgs.swaylock}/bin/swaylock -f"; }
-        { event = "before-sleep"; command = "loginctl lock-session"; }
-      ];
+        events = [
+          { event = "lock"; command = "${pkgs.swaylock}/bin/swaylock -f"; }
+          { event = "before-sleep"; command = "${loginctl} lock-session"; }
+        ];
 
-      timeouts = [
-        { timeout = cfg.lockTimeout; command = "loginctl lock-session"; }
-        { timeout = cfg.sleepTimeout; command = "systemctl suspend"; }
-      ];
-    };
+        timeouts = [
+          { timeout = cfg.lockTimeout; command = "${loginctl} lock-session"; }
+          { timeout = cfg.sleepTimeout; command = "${systemctl} suspend"; }
+        ];
+      };
   };
 }
