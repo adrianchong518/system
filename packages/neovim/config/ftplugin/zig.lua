@@ -1,1 +1,1 @@
-vim.cmd.setlocal("colorcolumn=101")
+vim.cmd.setlocal('colorcolumn=101')

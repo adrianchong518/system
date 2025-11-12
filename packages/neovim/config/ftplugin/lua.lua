@@ -1,3 +1,3 @@
-require("user").set_indent_width(2)
+require('user').set_indent_width(2)
 
-vim.bo.comments = ":---,:--"
+vim.bo.comments = ':---,:--'

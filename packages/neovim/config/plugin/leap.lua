@@ -1,20 +1,27 @@
-local leap = require("leap")
-
-vim.keymap.set('n', 's', '<Plug>(leap)')
+vim.keymap.set({ 'n', 'x', 'o', }, 's', '<Plug>(leap)')
 vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
-vim.keymap.set({ 'x', 'o' }, 's', '<Plug>(leap-forward)')
-vim.keymap.set({ 'x', 'o' }, 'S', '<Plug>(leap-backward)')
+
+-- Highly recommended: define a preview filter to reduce visual noise
+-- and the blinking effect after the first keypress
+-- (`:h leap.opts.preview`). You can still target any visible
+-- positions if needed, but you can define what is considered an
+-- exceptional case.
+-- Exclude whitespace and the middle of alphabetic words from preview:
+--   foobar[baaz] = quux
+--   ^----^^^--^^-^-^--^
+require('leap').opts.preview = function(ch0, ch1, ch2)
+  return not (
+    ch1:match('%s')
+    or (ch0:match('%a') and ch1:match('%a') and ch2:match('%a'))
+  )
+end
 
 -- Define equivalence classes for brackets and quotes, in addition to
--- the default whitespace group.
-leap.opts.equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
+-- the default whitespace group:
+require('leap').opts.equivalence_classes = {
+  ' \t\r\n', '([{', ')]}', '\'"`',
+}
 
--- Override some old defaults - use backspace instead of tab (see issue #165).
-leap.opts.special_keys.prev_target = '<backspace>'
-leap.opts.special_keys.prev_group = '<backspace>'
-
--- Use the traversal keys to repeat the previous motion without explicitly
--- invoking Leap.
+-- Use the traversal keys to repeat the previous motion without
+-- explicitly invoking Leap:
 require('leap.user').set_repeat_keys('<enter>', '<backspace>')
-
-require('flit').setup()

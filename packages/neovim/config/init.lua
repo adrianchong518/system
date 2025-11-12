@@ -1,146 +1,53 @@
-local cmd = vim.cmd
-local fn = vim.fn
-local opt = vim.o
-local g = vim.g
+vim.cmd.colorscheme 'catppuccin'
 
--- <leader> key. Defaults to `\`. Some people prefer space.
-g.mapleader = " "
-g.maplocalleader = ","
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '  '
 
-opt.compatible = false
+vim.o.path = vim.o.path .. '**'
 
--- Enable true colour support
-if fn.has "termguicolors" then
-  opt.termguicolors = true
-end
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.numberwidth = 2
+vim.o.signcolumn = 'yes'
 
--- See :h <option> to see what the options do
+vim.o.cursorline = true
 
--- Search down into subfolders
-opt.path = vim.o.path .. "**"
+vim.o.scrolloff = 5
 
-opt.number = true
-opt.relativenumber = true
-opt.numberwidth = 2
-opt.cursorline = true
-opt.showmatch = false
-opt.incsearch = true
-opt.hlsearch = true
+vim.o.incsearch = true
+vim.o.hlsearch = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
-opt.modeline = false
+vim.o.modeline = false
 
-opt.expandtab = true
-opt.tabstop = 4
-opt.softtabstop = 4
-opt.shiftwidth = 4
-opt.history = 2000
-opt.nrformats = "bin,hex" -- 'octal'
-opt.undofile = true
-opt.splitright = true
-opt.splitbelow = true
-opt.cmdheight = 1
-opt.scrolloff = 5
+vim.o.splitright = true
+vim.o.splitbelow = true
 
-opt.fileencodings = "ucs-bom,utf-8,default,euc-jp,euc-cn,euc-tw,latin1"
+vim.cmd.filetype('plugin', 'indent', 'on')
+vim.o.formatoptions = 'jn/croql'
 
-opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.g.editorconfig = true
+vim.o.exrc = true
 
-opt.listchars = "tab:▸ ,space:∘,trail:•,extends:>,precedes:<,nbsp:%,eol:⤶"
-opt.list = true
+vim.o.expandtab = true
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
 
-opt.foldcolumn = "1"
-opt.foldlevel = 99      -- huge number for ufo.nvim
-opt.foldlevelstart = 99 -- huge number for ufo.nvim
-opt.foldenable = true
+vim.o.undofile = true
 
--- Configure Neovim diagnostic messages
+vim.o.fileencodings = 'ucs-bom,utf-8,default,euc-jp,euc-cn,euc-tw,latin1'
 
-local function prefix_diagnostic(prefix, diagnostic)
-  return string.format(prefix .. " %s", diagnostic.message)
-end
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.o.listchars = 'tab:▸ ,space:∘,trail:•,extends:>,precedes:<,nbsp:%,eol:⤶'
+vim.o.list = true
 
-local sign = function(opts)
-  fn.sign_define(opts.name, {
-    texthl = opts.name,
-    text = opts.text,
-    numhl = "",
-  })
-end
--- Requires Nerd fonts
-sign { name = "DiagnosticSignError", text = "󰅚" }
-sign { name = "DiagnosticSignWarn", text = "⚠" }
-sign { name = "DiagnosticSignInfo", text = "ⓘ" }
-sign { name = "DiagnosticSignHint", text = "󰌶" }
+vim.cmd.packadd 'cfilter' -- Allows filtering the quickfix list with :cfdo
+vim.cmd.set [[errorformat^=%-Gg%\\?make[%*\\d]:\ ***\ [%f:%l:%m]]
+vim.cmd.set [[errorformat^=%-Gg%\\?make:\ ***\ [%f:%l:%m]]
 
-vim.diagnostic.config {
-  virtual_text = {
-    prefix = "",
-    format = function(diagnostic)
-      local severity = diagnostic.severity
-      if severity == vim.diagnostic.severity.ERROR then
-        return prefix_diagnostic("󰅚", diagnostic)
-      end
-      if severity == vim.diagnostic.severity.WARN then
-        return prefix_diagnostic("⚠", diagnostic)
-      end
-      if severity == vim.diagnostic.severity.INFO then
-        return prefix_diagnostic("ⓘ", diagnostic)
-      end
-      if severity == vim.diagnostic.severity.HINT then
-        return prefix_diagnostic("󰌶", diagnostic)
-      end
-      return prefix_diagnostic("■", diagnostic)
-    end,
-  },
-  signs = true,
-  update_in_insert = false,
-  underline = true,
-  severity_sort = true,
-  float = {
-    focusable = false,
-    style = "minimal",
-    border = "rounded",
-    source = "always",
-    header = "",
-    prefix = "",
+vim.filetype.add {
+  extension = {
+    repos = 'yaml',
   },
 }
-
-g.editorconfig = true
-
--- Native plugins
-cmd.filetype("plugin", "indent", "on")
-cmd.packadd "cfilter" -- Allows filtering the quickfix list with :cfdo
-
--- let sqlite.lua (which some plugins depend on) know where to find sqlite
-vim.g.sqlite_clib_path = require("luv").os_getenv "LIBSQLITE"
-
--- this should be at the end, because
--- it causes neovim to source ftplugins
--- on the packpath when passing a file to the nvim command
-cmd.syntax "on"
-cmd.syntax "enable"
-
--- Set catppuccin theme
-cmd.colorscheme "catppuccin"
-
-cmd.set "fo=jn/croql"
-cmd.set [[errorformat^=%-Gg%\\?make[%*\\d]:\ ***\ [%f:%l:%m]]
-cmd.set [[errorformat^=%-Gg%\\?make:\ ***\ [%f:%l:%m]]
-
-vim.filetype.add({
-  extension = {
-    repos = "yaml",
-  },
-})
-
--- Suppress specific LSP notifications
-local notify = vim.notify
-vim.notify = function(msg, ...)
-  if msg:find("Format request failed") then
-    return
-  end
-  notify(msg, ...)
-end
-
-g.mkdp_filetypes = { "markdown", "plantuml" }

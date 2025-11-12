@@ -21,6 +21,7 @@
     vscode-server.url = "github:msteen/nixos-vscode-server";
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
 
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     remote-nvim = { url = "github:amitds1997/remote-nvim.nvim"; flake = false; };
 
     waybar-mpris = { url = "git+https://git.yaroslavps.com/waybar-mpris"; flake = false; };

@@ -73,15 +73,24 @@ let
     buildPhase = ''
       mkdir -p $out/nvim
       mkdir -p $out/lua
+      mkdir -p $out/after
       rm init.lua
     '';
 
     installPhase = ''
-      cp -r after $out/after
-      rm -r after
-      cp -r lua $out/lua
-      rm -r lua
-      cp -r * $out/nvim
+      if [ -d after ]; then
+        cp -r after $out/after
+        rm -r after
+      fi
+
+      if [ -d lua ]; then
+        cp -r lua $out/lua
+        rm -r lua
+      fi
+
+      if [ -n "$(ls -A .)" ]; then
+        cp -r * $out/nvim
+      fi
     '';
   };
 

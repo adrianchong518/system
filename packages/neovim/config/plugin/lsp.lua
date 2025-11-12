@@ -1,126 +1,127 @@
-require("neodev.lsp").setup()
+require('lazydev').setup()
 
-local function preview_location_callback(_, result)
-  if result == nil or vim.tbl_isempty(result) then
-    return nil
+require('blink-cmp').setup {
+  sources = {
+    default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'copilot', },
+    providers = {
+      lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink', score_offset = 100, },
+      copilot = { name = 'copilot', module = 'blink-copilot', async = true, },
+    },
+  },
+
+  keymap = {
+    ['<M-space>'] = { 'show', 'show_documentation', 'hide_documentation', },
+  },
+
+  completion = {
+    list = {
+      selection = { preselect = false, auto_insert = false, },
+    },
+    documentation = {
+      auto_show = true,
+      auto_show_delay_ms = 500,
+    },
+  },
+
+  signature = { enabled = true, },
+}
+
+vim.diagnostic.config {
+  virtual_text = { current_line = false, },
+  virtual_lines = { current_line = true, },
+}
+
+vim.lsp.enable {
+  'nil_ls',
+  'copilot',
+  'lua_ls',
+  'clangd',
+  'zls',
+  'racket_langserver',
+  'dockerls',
+  'texlab',
+  'yamlls',
+  'ruff',
+}
+
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      format = {
+        defaultConfig = {
+          quote_style = 'single',
+          trailing_table_separator = 'always',
+        },
+      },
+    },
+  },
+})
+
+vim.lsp.config('nil_ls', {
+  settings = {
+    ['nil'] = {
+      formatting = { command = { 'nixpkgs-fmt', }, },
+    },
+  },
+})
+
+local null_ls = require 'null-ls'
+null_ls.setup {
+  sources = {
+    null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.black,
+  },
+}
+
+-- Suppress specific LSP notifications
+local notify = vim.notify
+---@diagnostic disable-next-line: duplicate-set-field
+vim.notify = function(msg, ...)
+  if msg:find('Format request failed') then
+    return
   end
-  local buf, _ = vim.lsp.util.preview_location(result[1])
-  if buf then
-    local cur_buf = vim.api.nvim_get_current_buf()
-    vim.bo[buf].filetype = vim.bo[cur_buf].filetype
-  end
+  notify(msg, ...)
 end
 
-local function peek_definition()
-  local params = vim.lsp.util.make_position_params()
-  return vim.lsp.buf_request(0, "textDocument/definition", params, preview_location_callback)
-end
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('my.lsp', {}),
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
-local function peek_type_definition()
-  local params = vim.lsp.util.make_position_params()
-  return vim.lsp.buf_request(0, "textDocument/typeDefinition", params, preview_location_callback)
-end
+    require('user').add_mini_clue { mode = 'n', keys = '<leader>l', desc = '+lsp', }
 
-local function on_attach_builder(lsp)
-  return function(client, bufnr)
-    if lsp.override_autoformat then
-      client.server_capabilities.documentFormattingProvider = true
-    end
-    if lsp.on_attach then
-      lsp.on_attach()
-    end
-  end
-end
+    local miniextra = require 'mini.extra'
 
-for _, lsp in ipairs(require("user.lsp").servers) do
-  vim.lsp.config(lsp.name, {
-    capabilities = require("user.lsp").capabilities,
-    on_attach = on_attach_builder(lsp),
-    settings = lsp.settings,
-  })
-  vim.lsp.enable(lsp.name)
-end
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'definition', })
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'declaration', })
+    vim.keymap.set('n', 'gi', function() miniextra.pickers.lsp({ scope = 'implementation', }) end,
+      { desc = 'implementation', })
+    vim.keymap.set('n', 'gr', function() miniextra.pickers.lsp({ scope = 'references', }) end,
+      { desc = 'declaration', })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-  callback = function(ev)
-    local bufnr = ev.buf
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, { desc = 'type definition', })
+    vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'rename', })
+    vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'code action', })
 
-    -- Attach plugins
-    if client.server_capabilities.documentSymbolProvider then
-      require("nvim-navic").attach(client, bufnr)
-    end
+    vim.keymap.set('n', '<leader>ld', function() miniextra.pickers.diagnostic({ scope = 'current', }) end,
+      { desc = 'document symbols', })
+    vim.keymap.set('n', '<leader>lD', function() miniextra.pickers.diagnostic({ scope = 'all', }) end,
+      { desc = 'workspace symbols', })
+    vim.keymap.set('n', '<leader>ls', function() miniextra.pickers.lsp({ scope = 'document_symbol', }) end,
+      { desc = 'document symbols', })
+    vim.keymap.set('n', '<leader>lS', function()
+      miniextra.pickers.lsp({ scope = 'workspace_symbol', symbol_query = vim.fn.input('Symbol: '), })
+    end, { desc = 'workspace symbols', })
 
-    vim.cmd.setlocal "signcolumn=yes"
-    vim.bo[bufnr].bufhidden = "hide"
-
-    -- Enable completion triggered by <c-x><c-o>
-    vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-    require("which-key").add({
-      buffer = bufnr,
-
-      { "gD",          vim.lsp.buf.declaration,                                                   desc = "[lsp] go to declaration" },
-      { "gd",          require("telescope.builtin").lsp_definitions,                              desc = "[lsp] go to definition" },
-      { "gi",          vim.lsp.buf.implementation,                                                desc = "[lsp] go to implementation" },
-      { "gr",          require("telescope.builtin").lsp_references,                               desc = "[lsp] find references" },
-      { "K",           vim.lsp.buf.hover,                                                         desc = "[lsp] hover" },
-      { "<C-S-k>",     vim.lsp.buf.signature_help,                                                desc = "[lsp] signature help" },
-
-      { "<leader>l",   group = "lsp" },
-
-      { "<leader>lp",  group = "peek" },
-      { "<leader>lpd", peek_definition,                                                           desc = "[lsp] peek definition" },
-      { "<leader>lpt", peek_type_definition,                                                      desc = "[lsp] peek type definition" },
-
-      { "<leader>lw",  group = "workspace" },
-      { "<leader>lwa", vim.lsp.buf.add_workspace_folder,                                          desc = "[lsp] add workspace folder" },
-      { "<leader>lwr", vim.lsp.buf.remove_workspace_folder,                                       desc = "[lsp] remove workspace folder" },
-      { "<leader>lwl", function() vim.print(vim.lsp.buf.list_workspace_folders()) end,            desc = "[lsp] list workspace folders" },
-
-      { "<leader>lt",  vim.lsp.buf.type_definition,                                               desc = "[lsp] go to type definition" },
-      { "<leader>lr",  vim.lsp.buf.rename,                                                        desc = "[lsp] rename" },
-      { "<leader>lS",  require("telescope.builtin").lsp_dynamic_workspace_symbols,                desc = "[lsp] workspace symbol" },
-      { "<leader>ls",  require("telescope.builtin").lsp_document_symbols,                         desc = "[lsp] document symbol" },
-      { "<leader>ld",  function() require("telescope.builtin").open("document_diagnostics") end,  desc = "[lsp] document diagnostics" },
-      { "<leader>lD",  function() require("telescope.builtin").open("workspace_diagnostics") end, desc = "[lsp] workspace diagnostics" },
-      { "<leader>la",  vim.lsp.buf.code_action,                                                   desc = "[lsp] code action" },
-      { "<leader>ll",  vim.lsp.codelens.run,                                                      desc = "[lsp] run code lens" },
-      { "<leader>lL",  vim.lsp.codelens.refresh,                                                  desc = "[lsp] refresh code lenses" },
-      { "<leader>lF",  function() vim.lsp.buf.format { async = true } end,                        desc = "[lsp] format buffer" },
-      { "<leader>lh",  function() vim.lsp.inlay_hint(bufnr) end,                                  desc = "[lsp] toggle inlay hints" },
-    })
-
-    -- Format on save if supported
-    if (client.server_capabilities.documentFormattingProvider) then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = 0,
+    if not client:supports_method('textDocument/willSaveWaitUntil')
+        and client:supports_method('textDocument/formatting') then
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = vim.api.nvim_create_augroup('my.lsp', { clear = false, }),
+        buffer = args.buf,
         callback = function()
-          vim.lsp.buf.format { async = false }
+          vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000, })
         end,
       })
-    end
-
-    -- Auto-refresh code lenses
-    if not client then
-      return
-    end
-    local function buf_refresh_codeLens()
-      vim.schedule(function()
-        if client.server_capabilities.codeLensProvider then
-          vim.lsp.codelens.refresh()
-          return
-        end
-      end)
-    end
-    local group = vim.api.nvim_create_augroup(string.format("lsp-%s-%s", bufnr, client.id), {})
-    if client.server_capabilities.codeLensProvider then
-      vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost", "TextChanged" }, {
-        group = group,
-        callback = buf_refresh_codeLens,
-        buffer = bufnr,
-      })
-      buf_refresh_codeLens()
     end
   end,
 })

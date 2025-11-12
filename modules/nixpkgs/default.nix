@@ -73,6 +73,14 @@ in {
         };
         flake = inputs.nixpkgs-unstable;
       };
+
+      my = {
+        from = {
+          id = "my";
+          type = "indirect";
+        };
+        flake = flake;
+      };
     };
   };
 
