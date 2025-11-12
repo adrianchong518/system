@@ -6,6 +6,7 @@ require('window-picker').setup {
 
   filter_rules = {
     autoselect_one = false,
+    include_current_win = true,
   },
 
   highlights = {

@@ -97,6 +97,7 @@ config.keys = {
   { key = 'k',          mods = 'LEADER',       action = act.ActivatePaneDirection 'Up', },
   { key = 'j',          mods = 'LEADER',       action = act.ActivatePaneDirection 'Down', },
   { key = 'l',          mods = 'LEADER',       action = act.ActivatePaneDirection 'Right', },
+  { key = 'w',          mods = 'LEADER',       action = act.PaneSelect { alphabet = 'tnseriaodh', }, },
 
   { key = 's',          mods = 'LEADER',       action = act.SplitVertical { domain = 'CurrentPaneDomain', }, },
   { key = 'v',          mods = 'LEADER',       action = act.SplitHorizontal { domain = 'CurrentPaneDomain', }, },
@@ -115,64 +116,39 @@ config.keys = {
 
   { key = 'r',          mods = 'LEADER',       action = act.ActivateKeyTable { name = 'resize_pane', one_shot = false, }, },
 
-  { key = 'w',          mods = 'LEADER',       action = act.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES', }, },
-  {
-    key = 'w',
-    mods = 'LEADER|SHIFT',
-    action = act.PromptInputLine {
-      description = wezterm.format {
-        { Attribute = { Intensity = 'Bold', }, },
-        { Foreground = { AnsiColor = 'Fuchsia', }, },
-        { Text = 'Enter name for new workspace', },
-      },
-      action = wezterm.action_callback(function(window, pane, line)
-        -- line will be `nil` if they hit escape without entering anything
-        -- An empty string if they just hit enter
-        -- Or the actual line of text they wrote
-        if line then
-          window:perform_action(
-            act.SwitchToWorkspace {
-              name = line,
-            },
-            pane
-          )
-        end
-      end),
-    },
-  },
-  { key = 'f',        mods = 'LEADER',       action = workspace_switcher.switch_workspace(), },
-  { key = 'f',        mods = 'LEADER|SHIFT', action = workspace_switcher.switch_to_prev_workspace(), },
+  { key = 'f',          mods = 'LEADER',       action = workspace_switcher.switch_workspace(), },
+  { key = 'f',          mods = 'LEADER|SHIFT', action = workspace_switcher.switch_to_prev_workspace(), },
 
-  { key = 'Space',    mods = 'LEADER|CTRL',  action = act.ActivateCommandPalette, },
-  { key = 'l',        mods = 'LEADER|CTRL',  action = act.ShowDebugOverlay, },
-  { key = 'r',        mods = 'LEADER|CTRL',  action = act.ReloadConfiguration, },
+  { key = 'Space',      mods = 'LEADER|CTRL',  action = act.ActivateCommandPalette, },
+  { key = 'l',          mods = 'LEADER|CTRL',  action = act.ShowDebugOverlay, },
+  { key = 'r',          mods = 'LEADER|CTRL',  action = act.ReloadConfiguration, },
 
-  { key = ')',        mods = 'SHIFT|CTRL',   action = act.ResetFontSize, },
-  { key = '0',        mods = 'SUPER',        action = act.ResetFontSize, },
-  { key = '+',        mods = 'SHIFT|CTRL',   action = act.IncreaseFontSize, },
-  { key = '=',        mods = 'SUPER',        action = act.IncreaseFontSize, },
-  { key = '_',        mods = 'SHIFT|CTRL',   action = act.DecreaseFontSize, },
-  { key = '-',        mods = 'SUPER',        action = act.DecreaseFontSize, },
+  { key = ')',          mods = 'SHIFT|CTRL',   action = act.ResetFontSize, },
+  { key = '0',          mods = 'SUPER',        action = act.ResetFontSize, },
+  { key = '+',          mods = 'SHIFT|CTRL',   action = act.IncreaseFontSize, },
+  { key = '=',          mods = 'SUPER',        action = act.IncreaseFontSize, },
+  { key = '_',          mods = 'SHIFT|CTRL',   action = act.DecreaseFontSize, },
+  { key = '-',          mods = 'SUPER',        action = act.DecreaseFontSize, },
 
-  { key = 'c',        mods = 'SHIFT|CTRL',   action = act.CopyTo 'Clipboard', },
-  { key = 'c',        mods = 'SUPER',        action = act.CopyTo 'Clipboard', },
-  { key = 'Copy',     mods = 'NONE',         action = act.CopyTo 'Clipboard', },
+  { key = 'c',          mods = 'SHIFT|CTRL',   action = act.CopyTo 'Clipboard', },
+  { key = 'c',          mods = 'SUPER',        action = act.CopyTo 'Clipboard', },
+  { key = 'Copy',       mods = 'NONE',         action = act.CopyTo 'Clipboard', },
 
-  { key = 'v',        mods = 'SHIFT|CTRL',   action = act.PasteFrom 'Clipboard', },
-  { key = 'v',        mods = 'SUPER',        action = act.PasteFrom 'Clipboard', },
-  { key = 'Paste',    mods = 'NONE',         action = act.PasteFrom 'Clipboard', },
+  { key = 'v',          mods = 'SHIFT|CTRL',   action = act.PasteFrom 'Clipboard', },
+  { key = 'v',          mods = 'SUPER',        action = act.PasteFrom 'Clipboard', },
+  { key = 'Paste',      mods = 'NONE',         action = act.PasteFrom 'Clipboard', },
 
-  { key = 'f',        mods = 'SHIFT|CTRL',   action = act.Search 'CurrentSelectionOrEmptyString', },
-  { key = 'f',        mods = 'SUPER',        action = act.Search 'CurrentSelectionOrEmptyString', },
+  { key = 'f',          mods = 'SHIFT|CTRL',   action = act.Search 'CurrentSelectionOrEmptyString', },
+  { key = 'f',          mods = 'SUPER',        action = act.Search 'CurrentSelectionOrEmptyString', },
 
-  { key = 'k',        mods = 'SHIFT|CTRL',   action = act.ClearScrollback 'ScrollbackOnly', },
-  { key = 'k',        mods = 'SUPER',        action = act.ClearScrollback 'ScrollbackOnly', },
+  { key = 'k',          mods = 'SHIFT|CTRL',   action = act.ClearScrollback 'ScrollbackOnly', },
+  { key = 'k',          mods = 'SUPER',        action = act.ClearScrollback 'ScrollbackOnly', },
 
-  { key = 'n',        mods = 'SHIFT|CTRL',   action = act.SpawnWindow, },
-  { key = 'n',        mods = 'SUPER',        action = act.SpawnWindow, },
+  { key = 'n',          mods = 'SHIFT|CTRL',   action = act.SpawnWindow, },
+  { key = 'n',          mods = 'SUPER',        action = act.SpawnWindow, },
 
-  { key = 'q',        mods = 'SHIFT|CTRL',   action = act.QuitApplication, },
-  { key = 'q',        mods = 'SUPER',        action = act.Nop, },
+  { key = 'q',          mods = 'SHIFT|CTRL',   action = act.QuitApplication, },
+  { key = 'q',          mods = 'SUPER',        action = act.Nop, },
 
   -- { key = "h",          mods = "SHIFT|CTRL",   action = act.HideApplication },
   -- { key = "h",          mods = "SUPER",        action = act.HideApplication },
@@ -180,10 +156,10 @@ config.keys = {
   -- { key = "m",          mods = "SHIFT|CTRL",   action = act.Hide },
   -- { key = "m",          mods = "SUPER",        action = act.Hide },
 
-  { key = 'z',        mods = 'SHIFT|CTRL',   action = act.TogglePaneZoomState, },
+  { key = 'z',          mods = 'SHIFT|CTRL',   action = act.TogglePaneZoomState, },
 
-  { key = 'PageUp',   mods = 'SHIFT',        action = act.ScrollByPage(-1), },
-  { key = 'PageDown', mods = 'SHIFT',        action = act.ScrollByPage(1), },
+  { key = 'PageUp',     mods = 'SHIFT',        action = act.ScrollByPage(-1), },
+  { key = 'PageDown',   mods = 'SHIFT',        action = act.ScrollByPage(1), },
 }
 
 config.key_tables = {
