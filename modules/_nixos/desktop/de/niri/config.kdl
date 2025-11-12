@@ -392,7 +392,8 @@ binds {
 
     Mod+O repeat=false { toggle-overview; }
 
-    Mod+Q repeat=false { close-window; }
+    Mod+Q     repeat=false { close-window; }
+    Mod+Alt+Q repeat=false { spawn-sh "niri msg --json focused-window | jq '.pid' | xargs kill -9"; }
 
     Mod+H     { focus-column-left; }
     Mod+J     { focus-window-down; }
