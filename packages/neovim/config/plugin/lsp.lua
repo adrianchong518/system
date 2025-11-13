@@ -102,6 +102,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, { desc = 'type definition', })
     vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'rename', })
     vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'code action', })
+    vim.keymap.set('n', '<leader>lf', vim.diagnostic.open_float, { desc = 'diagnostic', })
 
     vim.keymap.set('n', '<leader>ld', function() miniextra.pickers.diagnostic({ scope = 'current', }) end,
       { desc = 'document symbols', })
