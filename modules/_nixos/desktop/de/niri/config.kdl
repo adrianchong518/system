@@ -311,10 +311,10 @@ screenshot-path null
 // https://yalter.github.io/niri/Configuration:-Animations
 animations {
     // Uncomment to turn off all animations.
-    // off
+    off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    slowdown 0.5
+    // slowdown 0.5
 }
 
 overview {
@@ -341,6 +341,11 @@ window-rule {
 window-rule {
     match app-id="^org.pwmt.zathura$"
     default-column-display "tabbed"
+}
+
+window-rule {
+    match app-id="MATLAB"
+    open-floating true
 }
 
 // Example: block out two password managers from screen capture.

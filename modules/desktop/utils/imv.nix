@@ -21,5 +21,14 @@ in
         };
       };
     };
+
+    hm.xdg.mimeApps.defaultApplications = {
+      "image/png" = "imv.desktop";
+      "image/jpg" = "imv.desktop";
+      "image/jpeg" = "imv.desktop";
+      "image/bmp" = "imv.desktop";
+      "image/webp" = "imv.desktop";
+      "image/svg+xml" = "imv.desktop";
+    };
   };
 }

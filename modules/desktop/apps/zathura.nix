@@ -8,7 +8,7 @@ in {
     enable = mkBoolOpt false;
   };
 
-  config = mkIf cfg.enable ({
+  config = mkIf cfg.enable {
     hm.programs.zathura = {
       enable = true;
       options = {
@@ -21,7 +21,7 @@ in {
         set recolor "false"
       '';
     };
-  } // optionalAttrs (isNixosHost hostType) {
-    xdg.mime.defaultApplications."application/pdf" = "org.pwmt.zathura.desktop";
-  });
+
+    hm.xdg.mimeApps.defaultApplications."application/pdf" = "org.pwmt.zathura.desktop";
+  };
 }

@@ -11,10 +11,10 @@ in
   };
 
   config = mkIf cfg.enable {
+    packages = [ pkgs.file-roller ];
+
     programs = {
       xfconf.enable = true;
-
-      file-roller.enable = true;
 
       thunar = {
         enable = true;

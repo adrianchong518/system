@@ -25,6 +25,8 @@ in {
         cacheHome = cfg.cacheHome;
         configHome = cfg.configHome;
         dataHome = cfg.dataHome;
+
+        mimeApps.enable = true;
       };
 
       home.file = mkAliasDefinitions options.files.home;

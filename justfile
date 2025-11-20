@@ -48,5 +48,9 @@ switch *extra_flags: _check-git
 update *flakes:
     nix flake update {{flakes}}
 
+alias r := run
+run package *extra_flags: _check-git
+    nix run .#{{package}} -- {{extra_flags}}
+
 @_check-git:
     {{git}} add --all --intent-to-add
