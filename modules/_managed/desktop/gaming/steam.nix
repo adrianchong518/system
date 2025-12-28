@@ -11,6 +11,10 @@ in {
   config = mkIf cfg.enable
     (optionalAttrs (isDarwinHost hostType) { homebrew.casks = [ "steam" ]; }
       // optionalAttrs (isNixosHost hostType) {
-      programs.steam.enable = true;
+      programs.steam = {
+        enable = true;
+        protontricks.enable = true;
+      };
+      packages = [ pkgs.gamescope ];
     });
 }
