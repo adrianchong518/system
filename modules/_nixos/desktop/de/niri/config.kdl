@@ -258,7 +258,7 @@ layout {
         // bottom 64
     }
 
-    always-center-single-column
+    // always-center-single-column
 
     tab-indicator {
         place-within-column
@@ -379,7 +379,6 @@ binds {
     Mod+Space hotkey-overlay-title="Run an Application" { 
         spawn-sh "j4-dmenu-desktop -x --dmenu='bemenu -p open --binding vim --single-instance'"; 
     }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+Ctrl+Q allow-when-locked=true { spawn "wlogout"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
@@ -401,8 +400,8 @@ binds {
     Mod+Alt+Q repeat=false { spawn-sh "niri msg --json focused-window | jq '.pid' | xargs kill -9"; }
 
     Mod+H     { focus-column-left; }
-    Mod+J     { focus-window-down; }
-    Mod+K     { focus-window-up; }
+    Mod+J     { focus-window-down-or-top; }
+    Mod+K     { focus-window-up-or-bottom; }
     Mod+L     { focus-column-right; }
 
     Mod+Shift+H     { move-column-left; }
