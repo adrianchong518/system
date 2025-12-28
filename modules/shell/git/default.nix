@@ -113,8 +113,6 @@ in
           dark = true;
           side-by-side = true;
           navigate = true;
-        } // optionalAttrs config.modules.shell.utils.bat.enable {
-          syntax-theme = "catppuccin-mocha";
         };
       };
 
