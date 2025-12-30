@@ -94,14 +94,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'definition', })
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'declaration', })
-    vim.keymap.set('n', 'gi', function() miniextra.pickers.lsp({ scope = 'implementation', }) end,
+    vim.keymap.set('n', 'gri', function() miniextra.pickers.lsp({ scope = 'implementation', }) end,
       { desc = 'implementation', })
-    vim.keymap.set('n', 'gr', function() miniextra.pickers.lsp({ scope = 'references', }) end,
-      { desc = 'declaration', })
+    vim.keymap.set('n', 'grr', function() miniextra.pickers.lsp({ scope = 'references', }) end,
+      { desc = 'references', })
 
-    vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, { desc = 'type definition', })
-    vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'rename', })
-    vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'code action', })
+    -- vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, { desc = 'type definition', })
+    -- vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'rename', })
+    -- vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'code action', })
     vim.keymap.set('n', '<leader>lf', vim.diagnostic.open_float, { desc = 'diagnostic', })
 
     vim.keymap.set('n', '<leader>ld', function() miniextra.pickers.diagnostic({ scope = 'current', }) end,
@@ -110,9 +110,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
       { desc = 'workspace symbols', })
     vim.keymap.set('n', '<leader>ls', function() miniextra.pickers.lsp({ scope = 'document_symbol', }) end,
       { desc = 'document symbols', })
-    vim.keymap.set('n', '<leader>lS', function()
-      miniextra.pickers.lsp({ scope = 'workspace_symbol', symbol_query = vim.fn.input('Symbol: '), })
-    end, { desc = 'workspace symbols', })
+    vim.keymap.set('n', '<leader>lS', function() miniextra.pickers.lsp({ scope = 'workspace_symbol_live', }) end,
+      { desc = 'workspace symbols', })
 
     if not client:supports_method('textDocument/willSaveWaitUntil')
         and client:supports_method('textDocument/formatting') then

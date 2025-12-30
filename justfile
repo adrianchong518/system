@@ -1,5 +1,7 @@
+set unstable
+
 host := trim_end_match(`hostname`, ".local")
-platform := if os() == "linux" { 
+platform := if os() == "linux" {
     if `command -v nixos-rebuild` != "" {
         "nixos"
     } else {
@@ -46,7 +48,7 @@ switch *extra_flags: _check-git
 
 # Update all / supplied flakes
 update *flakes:
-    nix flake update {{flakes}}
+    nix flake update {{flakes}} {{ if which("gh") != "" { "--option access-tokens \"github.com=$(gh auth token)\"" } else { "" } }}
 
 alias r := run
 run package *extra_flags: _check-git

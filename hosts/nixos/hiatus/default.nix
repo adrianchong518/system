@@ -89,8 +89,7 @@
     devenv
 
     distrobox
-    # XXX: https://github.com/NixOS/nixpkgs/issues/462513
-    (winboat.override { nodejs_24 = pkgs.stable.nodejs_24; })
+    winboat
   ];
 
   networking.firewall.allowedTCPPorts = [ 7236 7250 ];

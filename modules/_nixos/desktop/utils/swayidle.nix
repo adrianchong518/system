@@ -26,10 +26,10 @@ in
         enable = true;
         package = pkgs.swayidle.override { systemdSupport = true; };
 
-        events = [
-          { event = "lock"; command = "${pkgs.swaylock}/bin/swaylock -f"; }
-          { event = "before-sleep"; command = "${loginctl} lock-session"; }
-        ];
+        events = {
+          lock = "${pkgs.swaylock}/bin/swaylock -f";
+          before-sleep = "${loginctl} lock-session";
+        };
 
         timeouts = [
           { timeout = cfg.lockTimeout; command = "${loginctl} lock-session"; }
