@@ -16,6 +16,11 @@ mkNeovimConfig {
     dockerfile-language-server
     copilot-language-server
 
+    texlab
+
+    tinymist
+    websocat
+
     ripgrep
   ];
 
@@ -30,6 +35,7 @@ mkNeovimConfig {
 
     vimtex
     markdown-preview-nvim
+    typst-preview-nvim
 
     oil-nvim
     leap-nvim

@@ -90,6 +90,9 @@
 
     distrobox
     winboat
+
+    typst
+    texlive.combined.scheme-full
   ];
 
   networking.firewall.allowedTCPPorts = [ 7236 7250 ];

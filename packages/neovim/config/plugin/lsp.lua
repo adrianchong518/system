@@ -42,6 +42,7 @@ vim.lsp.enable {
   'texlab',
   'yamlls',
   'ruff',
+  'tinymist',
 }
 
 vim.lsp.config('lua_ls', {
