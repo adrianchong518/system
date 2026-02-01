@@ -4,7 +4,7 @@
   concurrent-tap-hold yes
 
   ;; HACK: linux hiatus only
-  linux-dev /dev/input/by-path/pci-0000\:00\:14.0-usb-0\:6\:1.0-event-mouse
+  linux-dev /dev/input/by-path/pci-0000\:00\:14.0-usb-0\:6\:1.0-event-mouse:/dev/input/by-id/usb-Apple_Inc._Magic_Keyboard_F0T801300HDJ1Y1AN-if01-event-kbd
 )
 
 (defsrc
