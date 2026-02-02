@@ -130,6 +130,7 @@
     };
     intelGraphics.enable = true;
     bluetooth.enable = true;
+    wifi.enable = true;
     asus.enable = true;
     thunderbolt.enable = true;
     display.brightnessctl.enable = true;
