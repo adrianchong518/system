@@ -66,6 +66,12 @@ vim.lsp.config('nil_ls', {
   },
 })
 
+vim.lsp.config('tinymist', {
+  settings = {
+    formatterMode = 'typstyle',
+  },
+})
+
 local null_ls = require 'null-ls'
 null_ls.setup {
   sources = {
@@ -105,6 +111,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'code action', })
     vim.keymap.set('n', '<leader>lf', vim.diagnostic.open_float, { desc = 'diagnostic', })
 
+    vim.keymap.set('n', '<leader>lF', function() vim.lsp.buf.format() end, { desc = 'format buffer', })
     vim.keymap.set('n', '<leader>ld', function() miniextra.pickers.diagnostic({ scope = 'current', }) end,
       { desc = 'document symbols', })
     vim.keymap.set('n', '<leader>lD', function() miniextra.pickers.diagnostic({ scope = 'all', }) end,
