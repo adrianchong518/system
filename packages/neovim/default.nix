@@ -36,6 +36,7 @@ mkNeovimConfig {
     vimtex
     markdown-preview-nvim
     typst-preview-nvim
+    nvim-metals
 
     oil-nvim
     leap-nvim

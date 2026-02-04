@@ -72,6 +72,28 @@ vim.lsp.config('tinymist', {
   },
 })
 
+local nvim_metals_group = vim.api.nvim_create_augroup('nvim-metals', { clear = true, })
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'scala', 'sbt', 'java', },
+  callback = function()
+    local config = require('metals').bare_config()
+    config.settings = {
+      useGlobalExecutable = true,
+    }
+    require('metals').initialize_or_attach(config)
+  end,
+  group = nvim_metals_group,
+})
+
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile', }, {
+  pattern = { '*.worksheet.sc', },
+  callback = function()
+    vim.lsp.inlay_hint.enable(true)
+  end,
+  group = nvim_metals_group,
+})
+
 local null_ls = require 'null-ls'
 null_ls.setup {
   sources = {

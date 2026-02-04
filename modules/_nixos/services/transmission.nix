@@ -18,7 +18,7 @@ in
 
     packages = with pkgs; [
       transmission_4-qt
-      stable.stig
+      # stable.stig
     ];
 
     my.user.extraGroups = [ "transmission" ];

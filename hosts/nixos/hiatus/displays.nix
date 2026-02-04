@@ -28,7 +28,7 @@
         resetWallpaper = pkgs.writeShellScript "reset-wallpaper" /* bash */ ''
           swww init
           sleep 0.1
-          
+
           img=`cat /tmp/hypr/wallpaper`
 
           swww img --transition-step 10 --transition-fps 60 "$img" \
