@@ -23,7 +23,7 @@ in
         enableDefaultConfig = false;
 
         matchBlocks."*" = {
-          AddKeysToAgent = "yes";
+          addKeysToAgent = "yes";
         };
       } // optionalAttrs cfg.git.enable {
         matchBlocks."github.com" = {

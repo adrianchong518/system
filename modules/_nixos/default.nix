@@ -12,7 +12,7 @@ with lib.my; {
 
   my.user = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "input" ];
   };
 
   # time.timeZone = "Hongkong";

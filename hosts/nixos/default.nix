@@ -5,4 +5,5 @@ let
 in
 mapListToAttrs mkNixosHost [
   { path = ./hiatus; }
+  { path = ./howling; system = "aarch64-linux"; }
 ]

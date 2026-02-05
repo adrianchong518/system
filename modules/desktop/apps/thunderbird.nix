@@ -12,7 +12,6 @@ in {
     ({
       hm.programs.thunderbird = {
         enable = true;
-        package = pkgs.thunderbird-bin;
         profiles.default = {
           isDefault = true;
         };
