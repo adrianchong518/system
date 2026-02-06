@@ -14,6 +14,10 @@
   boot.initrd.verbose = false;
   boot.initrd.systemd.enable = true;
 
+  boot.kernelPackages = lib.mkForce (pkgs.my.linux-asahi_fairydust.override {
+    _kernelPatches = config.boot.kernelPatches;
+  });
+
   boot.plymouth = {
     enable = true;
     font = "${pkgs.iosevka-bin}/share/fonts/truetype/Iosevka-Regular.ttc";
