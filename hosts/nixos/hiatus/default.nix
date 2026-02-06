@@ -59,6 +59,7 @@
 
   # gnome-keyring auto login
   security.pam.services.greetd.enableGnomeKeyring = true;
+  modules.nixos.services.greetd.autoLogin = true;
 
   environment.systemPackages = with pkgs; [
     powertop

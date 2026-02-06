@@ -9,14 +9,15 @@ in
   options.modules.nixos.services.greetd = with types; {
     enable = mkBoolOpt false;
     session = mkOpt str "${config.my.user.shell}";
+    autoLogin = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
     services.greetd = {
       enable = true;
-      settings = {
+      settings = rec {
         initial_session = {
-          command = "${cfg.session}";
+          command = if cfg.autoLogin then "${cfg.session}" else default_session.command;
           user = config.my.user.name;
         };
         default_session = {
