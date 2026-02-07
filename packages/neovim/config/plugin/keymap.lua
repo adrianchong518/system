@@ -51,5 +51,7 @@ vim.keymap.set('n', '<leader>fw', minipick.builtin.grep_live, { desc = 'live gre
 vim.keymap.set('n', '<leader>fg', function()
   minipick.builtin.grep({ pattern = vim.fn.expand '<cword>', })
 end, { desc = 'grep under cursor', })
+vim.keymap.set('n', '<leader>fc', require('mini.extra').pickers.commands, { desc = 'commands', })
+vim.keymap.set('n', '<leader>fk', require('mini.extra').pickers.keymaps, { desc = 'keymaps', })
 
 vim.keymap.set('n', '<esc><esc>', vim.cmd.nohlsearch)
