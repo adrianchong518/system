@@ -13,9 +13,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    hm.programs.swaylock.enable = true;
-    hm.catppuccin.swaylock.enable = true;
-    security.pam.services.swaylock = { };
+    modules.nixos.desktop.utils.swaylock.enable = true;
 
     hm.services.swayidle =
       let

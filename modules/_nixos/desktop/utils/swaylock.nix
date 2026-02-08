@@ -10,5 +10,9 @@ in
     enable = mkBoolOpt false;
   };
 
-  config = mkIf cfg.enable { };
+  config = mkIf cfg.enable {
+    hm.programs.swaylock.enable = true;
+    hm.catppuccin.swaylock.enable = true;
+    security.pam.services.swaylock = { };
+  };
 }

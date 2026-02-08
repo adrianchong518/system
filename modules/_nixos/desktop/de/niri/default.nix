@@ -51,6 +51,7 @@ in
         thunar.enable = true;
         # swaybg.enable = true;
         swayidle.enable = true;
+        swaylock.enable = true;
       };
     };
 
