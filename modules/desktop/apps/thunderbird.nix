@@ -12,6 +12,7 @@ in {
     ({
       hm.programs.thunderbird = {
         enable = true;
+        package = mkIf (pkgs.stdenv.hostPlatform.isx86) pkgs.thunderbird-bin;
         profiles.default = {
           isDefault = true;
         };
