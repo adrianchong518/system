@@ -23,5 +23,9 @@ in {
     };
 
     hm.xdg.mimeApps.defaultApplications."application/pdf" = "org.pwmt.zathura.desktop";
+
+    modules.shell.aliases = {
+      pdf = "zathura --fork";
+    };
   };
 }
