@@ -6,7 +6,7 @@
   ];
 
   boot.initrd.availableKernelModules = [ "usb_storage" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "lz4" ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
   boot.supportedFilesystems = [ "btrfs" "exfat" ];
@@ -16,6 +16,13 @@
   boot.kernelPackages = lib.mkForce (pkgs.my.linux-asahi_fairydust.override {
     _kernelPatches = config.boot.kernelPatches;
   });
+
+  boot.kernelParams = [
+    "zswap.enabled=1"
+    "zswap.compressor=lz4"
+    "zswap.max_pool_percent=30"
+    "zswap.shrinker_enabled=1"
+  ];
 
   hardware.asahi.peripheralFirmwareDirectory = pkgs.requireFile {
     name = "firmware";
