@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 
-local workspace_switcher = wezterm.plugin.require('https://github.com/MLFlexer/smart_workspace_switcher.wezterm')
+-- local workspace_switcher = wezterm.plugin.require('https://github.com/MLFlexer/smart_workspace_switcher.wezterm')
 
 local config = {}
 if wezterm.config_builder then
@@ -116,8 +116,8 @@ config.keys = {
 
   { key = 'r',          mods = 'LEADER',       action = act.ActivateKeyTable { name = 'resize_pane', one_shot = false, }, },
 
-  { key = 'f',          mods = 'LEADER',       action = workspace_switcher.switch_workspace(), },
-  { key = 'f',          mods = 'LEADER|SHIFT', action = workspace_switcher.switch_to_prev_workspace(), },
+  -- { key = 'f',          mods = 'LEADER',       action = workspace_switcher.switch_workspace(), },
+  -- { key = 'f',          mods = 'LEADER|SHIFT', action = workspace_switcher.switch_to_prev_workspace(), },
 
   { key = 'Space',      mods = 'LEADER|CTRL',  action = act.ActivateCommandPalette, },
   { key = 'l',          mods = 'LEADER|CTRL',  action = act.ShowDebugOverlay, },
