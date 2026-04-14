@@ -15,8 +15,9 @@
     };
     catppuccin.cursors.enable = true;
 
-    gtk = {
+    gtk = rec {
       enable = true;
+      gtk4.theme = theme;
       theme = {
         name = "catppuccin-mocha-mauve-standard";
         package = (pkgs.catppuccin-gtk.override {

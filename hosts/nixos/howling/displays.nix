@@ -1,7 +1,7 @@
-{ flake, pkgs, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    xorg.xrandr
+    xrandr
     kanshi
     wdisplays
   ];
@@ -21,10 +21,11 @@
           criteria = "eDP-1";
           status = "enable";
           mode = "2560x1600@60Hz";
+          position = "0,0";
           scale = 1.0;
         };
 
-        internalPrimary = "${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --primary";
+        internalPrimary = "${pkgs.xrandr}/bin/xrandr --output eDP-1 --primary";
       in
       {
         nomad = {
@@ -45,7 +46,22 @@
             }
           ];
           exec = [
-            "${pkgs.xorg.xrandr}/bin/xrandr --output DP-1 --primary"
+            "${pkgs.xrandr}/bin/xrandr --output DP-1 --primary"
+          ];
+        };
+        lab = {
+          outputs = [
+            (builtinDisplay // { position = "0,1080"; })
+            {
+              criteria = "STD*";
+              status = "enable";
+              mode = "1920x1080@60Hz";
+              scale = 1.0;
+              position = "320,0";
+            }
+          ];
+          exec = [
+            internalPrimary
           ];
         };
         multi = {

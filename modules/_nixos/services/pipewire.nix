@@ -24,7 +24,6 @@ in
     };
 
     packages = with pkgs; [
-      helvum
       pavucontrol
     ];
   };

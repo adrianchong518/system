@@ -43,7 +43,6 @@ let
     # set to `true`, it is installed in the 'opt' packpath, and can be lazy loaded with
     # ':packadd! {plugin-name}
     optional = false;
-    runtime = { };
   };
 
   externalPackages = extraPackages ++ (optionals withSqlite [ pkgs.sqlite ]);
@@ -52,14 +51,6 @@ let
   normalizedPlugins =
     map (x: defaultPlugin // (if x ? plugin then x else { plugin = x; }))
       plugins;
-
-  # This nixpkgs util function creates an attrset
-  # that pkgs.wrapNeovimUnstable uses to configure the Neovim build.
-  neovimConfig = pkgs.neovimUtils.makeNeovimConfig {
-    inherit extraPython3Packages withPython3 withRuby withNodeJs viAlias
-      vimAlias;
-    plugins = normalizedPlugins;
-  };
 
   # Split runtimepath into 3 directories:
   # - lua, to be prepended to the rtp at the beginning of init.lua
@@ -164,10 +155,14 @@ let
     }"'';
   # wrapNeovimUnstable is the nixpkgs utility function for building a Neovim derivation.
 in
-pkgs.wrapNeovimUnstable package (neovimConfig // {
+pkgs.wrapNeovimUnstable package ({
+  inherit extraPython3Packages withPython3 withRuby withNodeJs viAlias
+    vimAlias;
+  plugins = normalizedPlugins;
+
   luaRcContent = initLua;
-  wrapperArgs = escapeShellArgs neovimConfig.wrapperArgs + " "
-    + extraMakeWrapperArgs + " " + extraMakeWrapperLuaCArgs + " "
+  wrapperArgs = extraMakeWrapperArgs + " "
+    + extraMakeWrapperLuaCArgs + " "
     + extraMakeWrapperLuaArgs;
   wrapRc = true;
 })

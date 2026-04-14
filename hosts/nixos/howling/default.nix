@@ -24,11 +24,6 @@ with lib;
   # gnome-keyring auto login
   security.pam.services.greetd.enableGnomeKeyring = true;
 
-  environment.systemPackages = with pkgs; [
-    # powertop
-    # wineWowPackages.waylandFull
-  ];
-
   services.tailscale.enable = true;
   networking.nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
   networking.search = [ "taildf7228.ts.net" ];
@@ -39,13 +34,9 @@ with lib;
     bitwarden-desktop
     bitwarden-cli
 
-    # XXX: not supported
-    # my.stm32cubemx
-
     teams-for-linux
 
     distrobox
-    # winboat
 
     typst
     texlive.combined.scheme-full
@@ -62,13 +53,13 @@ with lib;
     mesa
     SDL2
     systemdLibs
-    xorg.libICE
-    xorg.libSM
-    xorg.libxcb
-    xorg.xcbutilimage
-    xorg.xcbutilkeysyms
-    xorg.xcbutilrenderutil
-    xorg.xcbutilwm
+    libice
+    libsm
+    libxcb
+    libxcb-image
+    libxcb-keysyms
+    libxcb-render-util
+    libxcb-wm
   ]);
 
   i18n.inputMethod = {
@@ -123,15 +114,15 @@ with lib;
 
       communication = {
         discord.enable = true;
-        zoom.enable = true;
+        zoom.enable = false;
       };
 
       apps = {
         thunderbird.enable = true;
-        gimp.enable = true;
+        gimp.enable = false;
         zotero.enable = true;
         zathura.enable = true;
-        kicad.enable = true;
+        kicad.enable = false;
       };
 
       utils = {

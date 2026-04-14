@@ -103,6 +103,7 @@ in
         signing = mkIf cfg.signing.enable {
           signByDefault = true;
           key = cfg.signing.key;
+          format = "openpgp";
         };
       };
 

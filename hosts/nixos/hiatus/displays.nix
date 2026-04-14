@@ -1,7 +1,7 @@
 { flake, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    xorg.xrandr
+    xrandr
     kanshi
     wdisplays
   ];
@@ -21,27 +21,16 @@
           criteria = "eDP-1";
           status = "enable";
           mode = "2560x1600@240Hz";
+          position = "0,0";
           scale = 1.0;
         };
 
-        # XXX: maybe unnecessary for swaybg
-        resetWallpaper = pkgs.writeShellScript "reset-wallpaper" /* bash */ ''
-          swww init
-          sleep 0.1
-
-          img=`cat /tmp/hypr/wallpaper`
-
-          swww img --transition-step 10 --transition-fps 60 "$img" \
-          && notify-send -u low "wallpaper reset" \
-          || notify-send -u critical "wallpaper reset fail"
-        '';
-        internalPrimary = "${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --primary";
+        internalPrimary = "${pkgs.xrandr}/bin/xrandr --output eDP-1 --primary";
       in
       {
         nomad = {
           outputs = [ builtinDisplay ];
           exec = [
-            # "${resetWallpaper}"
             internalPrimary
           ];
         };
@@ -58,7 +47,7 @@
           ];
           exec = [
             # "${resetWallpaper}"
-            "${pkgs.xorg.xrandr}/bin/xrandr --output DP-1 --primary"
+            "${pkgs.xrandr}/bin/xrandr --output DP-1 --primary"
           ];
         };
         multi = {

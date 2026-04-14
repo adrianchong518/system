@@ -9,7 +9,7 @@ linuxPackagesFor (inputs.nixos-apple-silicon.packages.${system}.linux-asahi.over
   src = fetchFromGitHub {
     owner = "AsahiLinux";
     repo = "linux";
-    rev = "b0b5bbf9f67e9063af591e7a1187d37d0f2b8e29";
-    hash = "sha256-CWKAyyGuu9jjcwN3Gz98ZjcTLRPQwnpKd32IyD4zsBw=";
+    rev = "4e84610e5722c34e48fef3f33f7bd8faedb13348";
+    hash = "sha256-G32SzJW1paAUaBCnw5cou20WwpuVR8OZSDRpV58IUJU=";
   };
 }))

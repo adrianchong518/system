@@ -24,14 +24,11 @@
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    remote-nvim = { url = "github:amitds1997/remote-nvim.nvim"; flake = false; };
 
     waybar-mpris = { url = "git+https://git.yaroslavps.com/waybar-mpris"; flake = false; };
 
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
-
-    nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, darwin, flake-utils, ... }:
