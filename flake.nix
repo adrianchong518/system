@@ -81,6 +81,7 @@
               stylua
               nixpkgs-fmt
               just
+              nh
             ];
           };
         }

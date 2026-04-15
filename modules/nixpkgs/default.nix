@@ -21,7 +21,7 @@ in {
       experimental-features = nix-command flakes
     '';
     gc = {
-      automatic = true;
+      automatic = false;
       options = "--delete-older-than 14d";
     };
     nixPath = builtins.map

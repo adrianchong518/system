@@ -13,17 +13,17 @@ platform := if os() == "linux" {
     error("Unsupported OS: " + os())
 }
 
-flake := ".#" + host
-
-rebuild-cmd := if platform == "nixos" {
-    require("nixos-rebuild")
+nh := require("nh")
+rebuild-subcmd := if platform == "nixos" {
+    "os"
 } else if platform == "hm" {
-    require("home-manager")
+    "home"
 } else if platform == "darwin" {
-    require("darwin-rebuild")
+    "darwin"
 } else {
     error("Unsupported platform: " + platform)
 }
+rebuild-cmd := f"{{nh}} {{rebuild-subcmd}}"
 
 git := require("git")
 
@@ -39,12 +39,12 @@ bootstrap:
 alias b := build
 # Build the system configuration
 build *extra_flags: _check-git
-    {{rebuild-cmd}} build --flake {{flake}} --show-trace {{extra_flags}}
+    {{rebuild-cmd}} build . --show-trace {{extra_flags}}
 
 alias s := switch
 # Build and switch to the new system configuration
 switch *extra_flags: _check-git
-    {{ if platform == "nixos" { "sudo" } else { "" } }} {{rebuild-cmd}} switch --flake {{flake}} --show-trace {{extra_flags}}
+    {{rebuild-cmd}} switch . --show-trace {{extra_flags}}
 
 # Update all / supplied flakes
 update *flakes:
