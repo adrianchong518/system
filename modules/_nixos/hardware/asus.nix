@@ -12,9 +12,6 @@ in
 
   config = mkIf cfg.enable {
     services.supergfxd.enable = true;
-    services.asusd = {
-      enable = true;
-      enableUserService = true;
-    };
+    services.asusd.enable = true;
   };
 }
