@@ -16,6 +16,9 @@ let
     noto-fonts-cjk-serif
 
     helvetica-neue-lt-std
+
+    libertine
+    inconsolata
   ] ++ (with nerd-fonts; [
     iosevka
     iosevka-term

@@ -69,6 +69,7 @@ vim.lsp.config('nil_ls', {
 vim.lsp.config('tinymist', {
   settings = {
     formatterMode = 'typstyle',
+    projectResolution = 'lockDatabase',
   },
 })
 
