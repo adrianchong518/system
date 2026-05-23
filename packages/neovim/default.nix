@@ -42,7 +42,6 @@ mkNeovimConfig {
     leap-nvim
 
     neogit
-    gitsigns-nvim
 
     catppuccin-nvim
 

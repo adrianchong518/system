@@ -8,6 +8,7 @@ require('mini.move').setup()
 require('mini.pairs').setup()
 require('mini.splitjoin').setup()
 require('mini.trailspace').setup()
+require('mini.notify').setup()
 
 require('mini.indentscope').setup {
   draw = {

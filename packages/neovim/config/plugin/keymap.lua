@@ -9,6 +9,9 @@ miniclue.setup({
     { mode = 'n', keys = '<Leader>', },
     { mode = 'x', keys = '<Leader>', },
 
+    { mode = 'n', keys = '[', },
+    { mode = 'n', keys = ']', },
+
     { mode = 'i', keys = '<C-x>', },
 
     { mode = 'n', keys = 'g', },
@@ -32,6 +35,7 @@ miniclue.setup({
 
   clues = {
     miniclue.gen_clues.builtin_completion(),
+    miniclue.gen_clues.square_brackets(),
     miniclue.gen_clues.g(),
     miniclue.gen_clues.marks(),
     miniclue.gen_clues.registers(),
@@ -41,6 +45,8 @@ miniclue.setup({
     { mode = 'n', keys = '<localleader>', desc = '+local', },
   },
 })
+
+require('mini.bracketed').setup {}
 
 local minipick = require 'mini.pick'
 require('user').add_mini_clue { mode = 'n', keys = '<leader>f', desc = '+find', }
