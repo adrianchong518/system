@@ -4,9 +4,6 @@
   imports = [
     ./hardware-configuration.nix
     ./displays.nix
-    # "${inputs.nixpkgs-howdy}/nixos/modules/security/pam.nix"
-    # "${inputs.nixpkgs-howdy}/nixos/modules/services/security/howdy/default.nix"
-    # "${inputs.nixpkgs-howdy}/nixos/modules/services/misc/linux-enable-ir-emitter.nix"
   ];
 
   hardware.sane = {
@@ -27,35 +24,8 @@
     };
     flatpak.enable = true;
 
-    # howdy = {
-    #   enable = true;
-    #   package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.howdy;
-    #   settings = {
-    #     core = {
-    #       detection_notice = true;
-    #       no_confirmation = true;
-    #     };
-    #
-    #     video = {
-    #       device_path = "/dev/video2";
-    #       dark_threshold = 90;
-    #       frame_width = 640;
-    #       frame_height = 360;
-    #       device_fps = 15;
-    #     };
-    #   };
-    # };
-
-    # in case your IR blaster does not blink, run `sudo linux-enable-ir-emitter configure`
-    # linux-enable-ir-emitter = {
-    #   enable = false;
-    #   package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.linux-enable-ir-emitter;
-    # };
-
     onedrive.enable = true;
   };
-
-  # disabledModules = [ "security/pam.nix" ];
 
   # gnome-keyring auto login
   security.pam.services.greetd.enableGnomeKeyring = true;
@@ -73,6 +43,8 @@
   networking.search = [ "taildf7228.ts.net" ];
   services.tailscale.useRoutingFeatures = "client";
   networking.firewall.checkReversePath = "loose";
+
+  networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
 
   packages = with pkgs; [
     bitwarden-desktop
@@ -109,13 +81,13 @@
     mesa
     SDL2
     systemdLibs
-    xorg.libICE
-    xorg.libSM
-    xorg.libxcb
-    xorg.xcbutilimage
-    xorg.xcbutilkeysyms
-    xorg.xcbutilrenderutil
-    xorg.xcbutilwm
+    libice
+    libsm
+    libxcb
+    libxcb-image
+    libxcb-keysyms
+    libxcb-render-util
+    libxcb-wm
   ]);
 
   programs.kdeconnect.enable = true;
