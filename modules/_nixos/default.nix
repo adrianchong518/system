@@ -21,6 +21,10 @@ with lib.my; {
 
   networking.networkmanager.enable = true;
 
+  security.sudo.extraConfig = ''
+    Defaults pwfeedback
+  '';
+
   services = {
     xserver.xkb = {
       layout = "us";
