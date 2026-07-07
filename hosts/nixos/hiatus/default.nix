@@ -14,6 +14,8 @@
 
   my.user.extraGroups = [ "scanner" "lp" ];
 
+  services.usbmuxd.enable = true;
+
   services = {
     gnome.gnome-keyring.enable = true;
     printing.enable = true;
