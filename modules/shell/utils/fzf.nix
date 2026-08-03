@@ -20,11 +20,16 @@ in {
       defaultOptions = [
         "--preview '${pkgs.bat}/bin/bat --color=always --style=changes {}' --height 50% --reverse"
       ];
-      fileWidgetCommand = "${defaultCommand}";
-      fileWidgetOptions = defaultOptions;
-      changeDirWidgetCommand = "${defaultCommand} --type d";
-      changeDirWidgetOptions =
-        [ "--preview '${config.modules.shell.aliases.ta} {}'" ];
+
+      fileWidget = {
+        command = "${defaultCommand}";
+        options = defaultOptions;
+      };
+
+      changeDirWidget = {
+        command = "${defaultCommand} --type d";
+        options = [ "--preview '${config.modules.shell.aliases.ta} {}'" ];
+      };
     };
   };
 }

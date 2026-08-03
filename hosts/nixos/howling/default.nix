@@ -39,7 +39,7 @@ with lib;
     distrobox
 
     typst
-    texlive.combined.scheme-full
+    texliveFull
   ];
 
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome ];

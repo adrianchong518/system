@@ -36,7 +36,7 @@
   environment.systemPackages = with pkgs; [
     powertop
     intel-gpu-tools
-    wineWowPackages.waylandFull
+    wineWow64Packages.waylandFull
     nvtopPackages.full
   ];
 
@@ -67,7 +67,7 @@
     winboat
 
     typst
-    texlive.combined.scheme-full
+    texliveFull
   ];
 
   networking.firewall.allowedTCPPorts = [ 7236 7250 ];
@@ -111,7 +111,7 @@
     enable = true;
     binfmt = true;
     package = pkgs.appimage-run.override {
-      extraPkgs = pkgs: [ pkgs.xorg.libxshmfence ];
+      extraPkgs = pkgs: [ pkgs.libxshmfence ];
     };
   };
 

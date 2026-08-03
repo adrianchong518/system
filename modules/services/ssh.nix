@@ -22,18 +22,16 @@ in
         enable = true;
         enableDefaultConfig = false;
 
-        matchBlocks."*" = {
+        settings."Match *" = {
           addKeysToAgent = "yes";
         };
       } // optionalAttrs cfg.git.enable {
-        matchBlocks."github.com" = {
-          host = "github.com";
-          identityFile = cfg.git.identityFile;
+        settings."github.com" = {
+          HostName = "github.com";
+          IdentityFile = cfg.git.identityFile;
         } // optionalAttrs isDarwin {
-          extraOptions = {
-            UseKeychain = "yes";
-            IgnoreUnknown = "UseKeychain";
-          };
+          UseKeychain = "yes";
+          IgnoreUnknown = "UseKeychain";
         };
       };
 

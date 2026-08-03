@@ -21,6 +21,7 @@ in {
   }];
 
   hm.catppuccin = {
+    autoEnable = true;
     enable = true;
     flavor = "mocha";
     accent = "mauve";
