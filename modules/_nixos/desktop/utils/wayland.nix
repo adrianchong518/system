@@ -15,7 +15,7 @@ in
       wlr-randr
       wl-clipboard
 
-      libsForQt5.qt5.qtwayland
+      qt5.qtwayland
     ];
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";

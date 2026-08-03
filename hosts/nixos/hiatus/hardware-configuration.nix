@@ -6,7 +6,7 @@
   ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" "usb_storage" "uas" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "thunderbolt" ];
   boot.kernelModules = [ "kvm-intel" "asus_nb_wmi" "cpufreq_stats" "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
   boot.supportedFilesystems = [ "btrfs" "exfat" ];

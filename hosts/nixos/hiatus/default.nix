@@ -54,7 +54,7 @@
 
     prismlauncher
 
-    my.stm32cubemx
+    # my.stm32cubemx
 
     simple-scan
 
@@ -189,7 +189,7 @@
       apps = {
         thunderbird.enable = true;
         gimp.enable = true;
-        obsidian.enable = false;
+        obsidian.enable = true;
         zotero.enable = true;
         zathura.enable = true;
         kicad.enable = true;

@@ -1,4 +1,5 @@
 set unstable
+set lists
 
 host := trim_end_match(`hostname`, ".local")
 platform := if os() == "linux" {
@@ -45,6 +46,10 @@ alias s := switch
 # Build and switch to the new system configuration
 switch *extra_flags: _check-git
     {{rebuild-cmd}} switch . --show-trace {{extra_flags}}
+
+# Build and register the new system configuration without switching
+boot *extra_flags: _check-git
+    {{rebuild-cmd}} boot . --show-trace {{extra_flags}}
 
 # Update all / supplied flakes
 update *flakes:
