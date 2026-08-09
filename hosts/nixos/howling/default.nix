@@ -123,6 +123,7 @@ with lib;
         zotero.enable = true;
         zathura.enable = true;
         kicad.enable = false;
+        obsidian.enable = true;
       };
 
       utils = {
