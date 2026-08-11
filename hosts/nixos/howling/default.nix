@@ -31,7 +31,6 @@ with lib;
   networking.firewall.checkReversePath = "loose";
 
   packages = with pkgs; [
-    bitwarden-desktop
     bitwarden-cli
 
     teams-for-linux

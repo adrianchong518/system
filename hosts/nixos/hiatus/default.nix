@@ -49,7 +49,6 @@
   networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
 
   packages = with pkgs; [
-    bitwarden-desktop
     bitwarden-cli
 
     prismlauncher
