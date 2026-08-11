@@ -24,12 +24,13 @@
     "zswap.shrinker_enabled=1"
   ];
 
+  hardware.asahi.enable = true;
   hardware.asahi.peripheralFirmwareDirectory = pkgs.requireFile {
-    name = "firmware";
+    name = "vendorfw";
     hashMode = "recursive";
-    hash = "sha256-kjzKgwIHSqaMbNX8yQAlXCW81bz6YPLCRT3VhLOj09E=";
+    hash = "sha256-tTQYYxEOWTYCePwohNVzJhf2rbBmRt2fJzgDfGa7tlE=";
     message = ''
-      nix-store --add-fixed --recursive sha256 /etc/nixos/firmware
+      nix-store --add-fixed --recursive sha256 /boot/vendorfw
     '';
   };
 
