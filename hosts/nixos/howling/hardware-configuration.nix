@@ -13,9 +13,10 @@
   boot.consoleLogLevel = 3;
   boot.initrd.verbose = false;
 
-  boot.kernelPackages = lib.mkForce (pkgs.my.linux-asahi_fairydust.override {
-    _kernelPatches = config.boot.kernelPatches;
-  });
+  # FIXME: modDirVersion issue?
+  # boot.kernelPackages = lib.mkForce (pkgs.my.linux-asahi_fairydust.override {
+  #   _kernelPatches = config.boot.kernelPatches;
+  # });
 
   boot.kernelParams = [
     "zswap.enabled=1"
@@ -65,7 +66,7 @@
     HandlePowerKey = "ignore";
   };
 
-  powerManagement.enable = true;
+  # powerManagement.enable = true;
 
   modules.nixos.hardware = {
     bluetooth.enable = true;
