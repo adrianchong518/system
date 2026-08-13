@@ -382,8 +382,8 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Ctrl+T hotkey-overlay-title="Open a Terminal: wezterm" { spawn "wezterm"; }
-    Mod+Space hotkey-overlay-title="Run an Application" { 
-        spawn-sh "j4-dmenu-desktop -x --dmenu='bemenu -p open --binding vim --single-instance'"; 
+    Mod+Space hotkey-overlay-title="Run an Application" {
+        spawn-sh "j4-dmenu-desktop -x --dmenu='bemenu -p open --binding vim --single-instance'";
     }
     Mod+Ctrl+Q allow-when-locked=true { spawn "wlogout"; }
 
@@ -403,7 +403,7 @@ binds {
     Mod+O repeat=false { toggle-overview; }
 
     Mod+Q     repeat=false { close-window; }
-    Mod+Alt+Q repeat=false { spawn-sh "niri msg --json focused-window | jq '.pid' | xargs kill -9"; }
+    Mod+Alt+Q repeat=false { spawn-sh "niri msg --json pick-window | jq '.pid' | xargs kill -9"; }
 
     Mod+H     { focus-column-left; }
     Mod+J     { focus-window-down-or-top; }
