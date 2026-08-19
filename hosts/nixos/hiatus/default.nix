@@ -67,6 +67,7 @@
 
     typst
     texliveFull
+    elan
   ];
 
   networking.firewall.allowedTCPPorts = [ 7236 7250 ];
