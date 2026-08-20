@@ -278,6 +278,6 @@ config.key_tables = {
   },
 }
 
-wezterm.plugin.update_all()
+-- wezterm.plugin.update_all()
 
 return config

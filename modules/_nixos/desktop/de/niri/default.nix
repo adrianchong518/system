@@ -16,9 +16,10 @@ in
       xwayland-satellite
 
       libnotify
+      my.cclip
 
       libqalculate
-      j4-dmenu-desktop
+      # j4-dmenu-desktop
       networkmanagerapplet
       playerctl
     ];
@@ -46,7 +47,8 @@ in
 
       desktop.utils = {
         wayland.enable = true;
-        bemenu.enable = true;
+        # bemenu.enable = true;
+        otter-launcher.enable = true;
         wlogout.enable = true;
         thunar.enable = true;
         # swaybg.enable = true;

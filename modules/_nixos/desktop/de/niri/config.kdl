@@ -283,11 +283,12 @@ layout {
 
 spawn-at-startup "waybar"
 spawn-at-startup "dunst"
-spawn-at-startup "swaybg-set-wallpaper"
+// spawn-at-startup "swaybg-set-wallpaper"
 spawn-at-startup "nm-applet"
 
-spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
-spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
+// spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
+// spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
+spawn-sh-at-startup "cclipd -s 2 -t 'image/png' -t 'image/*' -t 'text/plain;charset=utf-8' -t 'text/*' -t '*'"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -330,6 +331,14 @@ overview {
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
+
+window-rule {
+    match app-id=r#"^otter-launcher$"#
+    open-floating true
+
+    default-window-height { fixed 200; }
+    default-column-width { fixed 300; }
+}
 
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
@@ -382,8 +391,11 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Ctrl+T hotkey-overlay-title="Open a Terminal: wezterm" { spawn "wezterm"; }
+    // Mod+Space hotkey-overlay-title="Run an Application" {
+    //     spawn-sh "j4-dmenu-desktop -x --dmenu='bemenu -p open --binding vim --single-instance'";
+    // }
     Mod+Space hotkey-overlay-title="Run an Application" {
-        spawn-sh "j4-dmenu-desktop -x --dmenu='bemenu -p open --binding vim --single-instance'";
+        spawn-sh "wezterm --config enable_tab_bar=false start --class otter-launcher sh -c 'sleep 0.01 && otter-launcher'";
     }
     Mod+Ctrl+Q allow-when-locked=true { spawn "wlogout"; }
 

@@ -20,12 +20,16 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    vscode-server.url = "github:msteen/nixos-vscode-server";
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     waybar-mpris = { url = "git+https://git.yaroslavps.com/waybar-mpris"; flake = false; };
+
+    otter-launcher.url = "github:kuokuo123/otter-launcher";
+    otter-launcher.inputs.nixpkgs.follows = "nixpkgs";
+
+    cclip = { url = "github:heather7283/cclip"; flake = false; };
 
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";

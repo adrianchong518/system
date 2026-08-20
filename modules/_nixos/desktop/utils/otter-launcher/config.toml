@@ -1,0 +1,167 @@
+[general]
+default_module = "r" # module to run when no prefix is matched
+empty_module = "app" # run with an empty prompt
+exec_cmd = "/usr/bin/env bash -c" # exec command of your shell
+vi_mode = false # set true to use vi keybinds, false emacs keybinds
+esc_to_abort = true # useful for vi users
+cheatsheet_entry = "?" # when prompted, will show a list of configured modules
+cheatsheet_viewer = "less -R; clear" # command to show cheatsheet; through piping stdout
+clear_screen_after_execution = false
+loop_mode = false # don't quit after executing a module, useful with scratchpads; stderr is hidden in loop mode
+external_editor = "/usr/bin/env nvim" # if set, press ctrl+x ctrl+e (or v in vi normal mode) to edit prompt in the specified program
+delay_startup = 0 # sometimes the otter runs too fast even before the terminal window is ready; this slows it down by milliseconds; useful when chafa image is skewed
+
+[interface]
+# use three quotes to write longer codes
+header = """
+  \x1b[1;38;2;203;166;247m$USER@nixos\x1b[0m
+        """
+header_cmd = '' # run a command and print stdout above the header
+header_cmd_trimmed_lines = 0 # remove trailing lines from header_cmd output, in case of some programs appending excessive empty lines
+place_holder = "execute" # at the input field
+suggestion_mode = "list" # available options: list, hint
+separator = ""
+footer = "" # add a line after suggestion list
+suggestion_lines = 7 # 0 to disable suggestions and tab completion
+list_prefix = "  "
+selection_prefix = "\u001B[31;1m "
+prefix_padding = 3 # format prefixes to have a uniformed width
+default_module_message = "  \u001B[33mlaunch\u001B[0m app" # shown when the default module is in use
+empty_module_message = "" # shown when the empty module is in use
+customized_list_order = false # false to list modules alphabetically; true to list as per the configured order in the below [[modules]] section
+indicator_with_arg_module = " * " # the sign showing whether a module should run with an argument
+indicator_no_arg_module = " "
+# below color options affect all modules; per-module coloring can be configured using ansi codes individually
+prefix_color = "\u001B[33m"
+description_color = "\u001B[39m"
+place_holder_color = "\u001B[30m"
+hint_color = "\u001B[30m" # suggestion color in hint mode
+# move the interface rightward or downward
+move_interface_right = 0
+move_interface_down = 0
+
+[[modules]]
+description = "run program"
+prefix = "r"
+cmd = """
+fsel -d -p {}
+"""
+with_argument = true
+
+[[modules]]
+description = "programs"
+prefix = "app"
+cmd = """
+niri msg action set-window-width 400 &&
+niri msg action set-window-height 400 &&
+niri msg action center-window &&
+fsel -d -ss {}
+"""
+with_argument = true
+
+[[modules]]
+description = "clipboard"
+prefix = "c"
+cmd = """
+niri msg action set-window-width 550 &&
+niri msg action set-window-height 750 &&
+niri msg action center-window &&
+fsel --cclip -ss {}
+"""
+with_argument = true
+
+[[modules]]
+description = "bluetooth"
+prefix = "bt"
+cmd = """
+niri msg action set-window-width 550 &&
+niri msg action set-window-height 400 &&
+niri msg action center-window &&
+bluetui
+"""
+
+[[modules]]
+description = "nixos wiki"
+prefix = "nw"
+cmd = """
+niri msg action spawn-sh -- "firefox --new-window 'https://wiki.nixos.org/w/index.php?search={}'"
+"""
+with_argument = true
+url_encode = true
+unbind_proc = true
+
+[[modules]]
+description = "nixpkgs"
+prefix = "nix"
+cmd = """
+niri msg action spawn-sh -- "firefox --new-window 'https://search.nixos.org/packages?channel=unstable&query={}'"
+"""
+with_argument = true
+url_encode = true
+unbind_proc = true
+
+[[modules]]
+description = "youtube"
+prefix = "y"
+cmd = """
+niri msg action spawn-sh -- "firefox --new-window 'https://www.youtube.com'"
+"""
+with_argument = false
+url_encode = true
+unbind_proc = true
+
+[[modules]]
+description = "niri window switcher"
+prefix = "ws"
+cmd = """
+niri msg action set-window-width 750 &&
+niri msg action set-window-height 400 &&
+niri msg action center-window &&
+niri msg -j windows |
+jq -r '.[] | ((.id |tostring) + " [" + (.app_id)) + "] " + (.title)' |
+    rg -v '\\[otter-launcher\\]' |
+    sort |
+    fzf --padding 1,2 --info-command 'printf " windows"' --cycle --gutter " " --pointer " ▌" --color "bg+:-1,pointer:1,info:8,separator:8,scrollbar:0" --prompt '  ' --preview '' |
+    {
+        read -r id name
+        if [ -n "$id" ]; then
+            niri msg action focus-window --id $id
+        fi
+    }
+"""
+
+[[modules]]
+description = "power menu"
+prefix = "po"
+cmd = """
+function power {
+if [[ -n $1 ]]; then
+case $1 in
+"logout") session=`loginctl session-status | head -n 1 | awk '{print $1}'`; loginctl terminate-session $session ;;
+"suspend") systemctl suspend ;;
+"hibernate") systemctl hibernate ;;
+"reboot") systemctl reboot ;;
+"shutdown") systemctl poweroff ;;
+esac fi }
+power $(echo -e 'reboot\nshutdown\nlogout\nsuspend\nhibernate' | fzf --padding 1,2 --info-command 'printf " power menu ($FZF_POS/$FZF_TOTAL_COUNT)"' --cycle --gutter " " --pointer " ▌" --color "bg+:-1,pointer:1,info:8,separator:8,scrollbar:0" --prompt '  ' --preview '' | tail -1)
+"""
+
+[[modules]]
+description = "nmtui"
+prefix = "nm"
+cmd = """
+niri msg action set-window-width 750 &&
+niri msg action set-window-height 550 &&
+niri msg action center-window &&
+nmtui
+"""
+
+[[modules]]
+description = "audio control"
+prefix = "au"
+cmd = """
+niri msg action set-window-width 650 &&
+niri msg action set-window-height 550 &&
+niri msg action center-window &&
+wiremix
+"""

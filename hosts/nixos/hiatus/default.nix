@@ -92,12 +92,6 @@
     libxcb-wm
   ]);
 
-  programs.kdeconnect.enable = true;
-  hm.services.kdeconnect = {
-    enable = true;
-    indicator = true;
-  };
-
   virtualisation.docker.storageDriver = "btrfs";
   boot.binfmt = {
     emulatedSystems = [ "aarch64-linux" ];
@@ -209,7 +203,7 @@
 
       starship.enable = true;
       utils.enable = true;
-      yazi.enable = true;
+      # yazi.enable = true;
 
       pandoc.enable = true;
 
@@ -220,7 +214,7 @@
           key = "1DC233DD";
         };
       };
-      jujutsu.enable = true;
+      # jujutsu.enable = true;
     };
 
     editors = {
