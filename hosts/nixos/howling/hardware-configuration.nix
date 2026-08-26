@@ -13,10 +13,9 @@
   boot.consoleLogLevel = 3;
   boot.initrd.verbose = false;
 
-  # FIXME: modDirVersion issue?
-  # boot.kernelPackages = lib.mkForce (pkgs.my.linux-asahi_fairydust.override {
-  #   _kernelPatches = config.boot.kernelPatches;
-  # });
+  boot.kernelPackages = lib.mkForce (pkgs.my.linux-asahi_fairydust.override {
+    _kernelPatches = config.boot.kernelPatches;
+  });
 
   boot.kernelParams = [
     "zswap.enabled=1"
