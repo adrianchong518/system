@@ -101,6 +101,7 @@ let
         wucke13
       ];
       platforms = [ "x86_64-linux" ];
+      broken = true;
     };
   };
 in
