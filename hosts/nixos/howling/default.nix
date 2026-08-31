@@ -39,6 +39,7 @@ with lib;
 
     typst
     texliveFull
+    elan
   ];
 
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome ];
