@@ -64,6 +64,21 @@
             internalPrimary
           ];
         };
+        lab2 = {
+          outputs = [
+            builtinDisplay
+            {
+              criteria = "Integrated Tech Express Inc DP2HDMI*";
+              status = "enable";
+              mode = "1920x1080@60Hz";
+              scale = 1.0;
+              position = "2560,0";
+            }
+          ];
+          exec = [
+            internalPrimary
+          ];
+        };
         multi = {
           outputs = [
             builtinDisplay
