@@ -22,11 +22,10 @@ in {
       customPaneNavigationAndResize = true;
 
       escapeTime = 0;
-      newSession = true;
+
+      baseIndex = 1;
 
       extraConfig = ''
-        set -g base-index 1
-        setw -g pane-base-index 1
         set -g renumber-windows   on
 
         set -g set-titles on
@@ -35,7 +34,6 @@ in {
         set -g status-interval 1
         set -g status-right-length 50
         set -g status-right " #H %H:%M "
-        set -g @catppuccin_window_text " #T"
 
         # XXX: https://github.com/catppuccin/tmux/issues/600
         set -gF message-style "fg=#{@thm_fg},bg=#{@thm_crust},fill=#{@thm_crust}"
