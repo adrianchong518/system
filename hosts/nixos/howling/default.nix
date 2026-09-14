@@ -109,7 +109,7 @@ with lib;
     desktop = {
       enable = true;
       browsers.firefox.enable = true;
-      term.wezterm.enable = true;
+      term.foot.enable = true;
       office.libreoffice.enable = true;
 
       communication = {
@@ -134,6 +134,7 @@ with lib;
 
     shell = {
       fish.enable = true;
+      tmux.enable = true;
       default = config.modules.shell.fish.package;
 
       starship.enable = true;

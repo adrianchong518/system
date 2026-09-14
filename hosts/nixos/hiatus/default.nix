@@ -172,7 +172,7 @@
     desktop = {
       enable = true;
       browsers.firefox.enable = true;
-      term.wezterm.enable = true;
+      term.foot.enable = true;
       office.libreoffice.enable = true;
 
       communication = {

@@ -23,6 +23,7 @@
     nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
     waybar-mpris = { url = "git+https://git.yaroslavps.com/waybar-mpris"; flake = false; };
 

@@ -390,12 +390,12 @@ debug {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Ctrl+T hotkey-overlay-title="Open a Terminal: wezterm" { spawn "wezterm"; }
+    Mod+Ctrl+T hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
     // Mod+Space hotkey-overlay-title="Run an Application" {
     //     spawn-sh "j4-dmenu-desktop -x --dmenu='bemenu -p open --binding vim --single-instance'";
     // }
     Mod+Space hotkey-overlay-title="Run an Application" {
-        spawn-sh "wezterm --config enable_tab_bar=false start --class otter-launcher sh -c 'sleep 0.01 && otter-launcher'";
+        spawn-sh "foot --app-id otter-launcher sh -c 'sleep 0.01 && otter-launcher'";
     }
     Mod+Ctrl+Q allow-when-locked=true { spawn "wlogout"; }
 
