@@ -79,7 +79,6 @@
         {
           default = pkgs.devshell.mkShell {
             packages = with pkgs; [
-              self.packages.${system}.neovim
               nil
               lua-language-server
               treefmt
