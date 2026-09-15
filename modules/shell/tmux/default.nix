@@ -19,6 +19,7 @@ in {
 
       mouse = true;
       aggressiveResize = true;
+      focusEvents = true;
       customPaneNavigationAndResize = true;
 
       escapeTime = 0;
@@ -26,6 +27,8 @@ in {
       baseIndex = 1;
 
       extraConfig = ''
+        set -ag terminal-overrides ",xterm-256color:RGB"
+
         set -g renumber-windows   on
 
         set -g set-titles on

@@ -46,6 +46,8 @@
   services.tailscale.useRoutingFeatures = "client";
   networking.firewall.checkReversePath = "loose";
 
+  programs.mosh.enable = true;
+
   networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
 
   packages = with pkgs; [
