@@ -22,7 +22,7 @@ in
         enable = true;
         enableDefaultConfig = false;
 
-        settings."Match *" = {
+        settings."Match host *" = {
           addKeysToAgent = "yes";
         };
       } // optionalAttrs cfg.git.enable {
