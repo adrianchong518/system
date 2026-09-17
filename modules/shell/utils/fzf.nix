@@ -14,6 +14,7 @@ in {
       enableBashIntegration = true;
       enableZshIntegration = true;
       enableFishIntegration = true;
+      tmux.enableShellIntegration = true;
 
       defaultCommand =
         "${pkgs.fd}/bin/fd --type f --hidden --follow --exclude '.git' --exclude 'node_modules'";

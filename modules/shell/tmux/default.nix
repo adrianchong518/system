@@ -4,7 +4,10 @@ with lib;
 with lib.my;
 let cfg = config.modules.shell.tmux;
 in {
-  options.modules.shell.tmux = with types; { enable = mkBoolOpt false; };
+  options.modules.shell.tmux = with types; {
+    enable = mkBoolOpt false;
+    sesh.enable = mkBoolOpt true;
+  };
 
   config = mkIf cfg.enable {
     hm.programs.tmux = {
@@ -36,8 +39,9 @@ in {
         set -g set-titles-string "#h: #W"
 
         set -g status-interval 1
+        set -g status-left ""
         set -g status-right-length 50
-        set -g status-right " #H %H:%M "
+        set -g status-right "[#S] #H %H:%M "
 
         # XXX: https://github.com/catppuccin/tmux/issues/600
         set -gF message-style "fg=#{@thm_fg},bg=#{@thm_crust},fill=#{@thm_crust}"
@@ -56,6 +60,8 @@ in {
         bind-key -T copy-mode-vi v send-keys -X begin-selection
         bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
         bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+      '' + optionalString cfg.sesh.enable ''
+        bind -N "last-session (via sesh) " L run-shell "sesh last"
       '';
 
       plugins = with pkgs.tmuxPlugins; [
@@ -89,6 +95,11 @@ in {
       set -g @catppuccin_window_text " #W"
       set -g @catppuccin_window_current_text " #W"
     '';
+
+    hm.programs.sesh = mkIf cfg.sesh.enable {
+      enable = true;
+      tmuxKey = "f";
+    };
 
     modules.shell.fish.extraInit = /* fish */ ''
       if set -q TMUX
