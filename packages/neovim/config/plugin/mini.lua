@@ -35,6 +35,11 @@ require('mini.pick').setup {
   },
 }
 
+require('mini.sessions').setup {
+  autoread = true,
+  autowrite = true,
+}
+
 local hi_words = require('mini.extra').gen_highlighter.words
 local hipatterns = require('mini.hipatterns')
 hipatterns.setup {

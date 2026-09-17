@@ -27,9 +27,10 @@ in {
       baseIndex = 1;
 
       extraConfig = ''
-        set -ag terminal-overrides ",xterm-256color:RGB"
+        set -ag terminal-overrides ",*:RGB"
 
-        set -g renumber-windows   on
+        set -g renumber-windows on
+        set -g detach-on-destroy off
 
         set -g set-titles on
         set -g set-titles-string "#h: #W"
@@ -68,6 +69,10 @@ in {
           plugin = resurrect;
           extraConfig = ''
             set -g @resurrect-strategy-nvim 'session'
+
+            resurrect_dir=~/.tmux/resurrect/
+            set -g @resurrect-dir $resurrect_dir
+            set -g @resurrect-hook-post-save-all "sed -i 's| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/$USER/bin/||g; s|/nix/store/.*/bin/||g' $(readlink -f $resurrect_dir/last)"
           '';
         }
         {

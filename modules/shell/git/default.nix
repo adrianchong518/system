@@ -10,6 +10,7 @@ in
 {
   options.modules.shell.git = with types; {
     enable = mkBoolOpt true;
+    delta.enable = mkBoolOpt false;
     lazygit.enable = mkBoolOpt false;
     gh.enable = mkBoolOpt false;
 
@@ -100,6 +101,11 @@ in
           };
         };
 
+        ignores = [
+          ".direnv/"
+          "Session.vim"
+        ];
+
         signing = mkIf cfg.signing.enable {
           signByDefault = true;
           key = cfg.signing.key;
@@ -107,7 +113,7 @@ in
         };
       };
 
-      programs.delta = {
+      programs.delta = mkIf cfg.delta.enable {
         enable = true;
         enableGitIntegration = true;
         options = {
