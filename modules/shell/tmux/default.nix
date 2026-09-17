@@ -47,9 +47,10 @@ in {
         set -gF message-style "fg=#{@thm_fg},bg=#{@thm_crust},fill=#{@thm_crust}"
         set -gF message-command-style "fg=#{@thm_fg},bg=#{@thm_crust},fill=#{@thm_crust}"
 
-        bind 'v' split-window -c '#{pane_current_path}' -h
-        bind 's' split-window -c '#{pane_current_path}'
+        bind v   split-window -c '#{pane_current_path}' -h
+        bind s   split-window -c '#{pane_current_path}'
         bind c   new-window   -c '#{pane_current_path}'
+        bind C-c new-window   -c '#{pane_current_path}' -a
 
         bind r {
           copy-mode
