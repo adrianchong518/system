@@ -16,7 +16,7 @@ in
 
       settings = {
         main = {
-          font = "Iosevka Nerd Font:size=11";
+          font = "Iosevka Nerd Font:size=11,Flog Symbols:size=11";
         };
         mouse = {
           hide-when-typing = "yes";
