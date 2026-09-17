@@ -3,12 +3,17 @@ require('mini.icons').setup()
 require('mini.ai').setup()
 require('mini.align').setup()
 require('mini.comment').setup()
-require('mini.jump').setup()
 require('mini.move').setup()
 require('mini.pairs').setup()
 require('mini.splitjoin').setup()
 require('mini.trailspace').setup()
 require('mini.notify').setup()
+
+require('mini.jump').setup {
+  delay = {
+    highlight = 10000000,
+  },
+}
 
 require('mini.indentscope').setup {
   draw = {
