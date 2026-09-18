@@ -38,11 +38,6 @@ in {
         set -g set-titles on
         set -g set-titles-string "#h: #W"
 
-        set -g status-interval 1
-        set -g status-left ""
-        set -g status-right-length 50
-        set -g status-right "[#S] #H %H:%M "
-
         # XXX: https://github.com/catppuccin/tmux/issues/600
         set -gF message-style "fg=#{@thm_fg},bg=#{@thm_crust},fill=#{@thm_crust}"
         set -gF message-command-style "fg=#{@thm_fg},bg=#{@thm_crust},fill=#{@thm_crust}"
@@ -86,6 +81,12 @@ in {
           plugin = continuum;
           extraConfig = ''
             set -g @continuum-restore 'on'
+            set -g @continuum-save-interval '5'
+
+            set -g status-interval 1
+            set -g status-left ""
+            set -g status-right-length 50
+            set -g status-right "[#S] #H %H:%M "
           '';
         }
         open
