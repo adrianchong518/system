@@ -61,8 +61,8 @@
   ! S-1
   @ S-2
   # S-3
-  & S-5
-  % S-7
+  % S-5
+  & S-7
   * S-8
 
   < S-,
@@ -83,7 +83,7 @@
 (deflayer sym
   @<   @>   @lbc @rbc `    @*   =    S--  ;    bspc
   @^   @$   @lpn @rpn @@   \    @col @-   @'   @dqt
-  @%   @&   [    ]    @#   @!   @?   ,    .    /
+  @&   @%   [    ]    @#   @!   @?   ,    .    /
   @bse @bse           @spc           @fn  @fn  XX
 )
 
