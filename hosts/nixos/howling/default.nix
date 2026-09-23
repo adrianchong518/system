@@ -35,8 +35,6 @@ with lib;
   packages = with pkgs; [
     bitwarden-cli
 
-    teams-for-linux
-
     distrobox
 
     typst

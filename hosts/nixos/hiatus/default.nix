@@ -55,12 +55,9 @@
 
     prismlauncher
 
-    # my.stm32cubemx
+    my.stm32cubemx
 
     simple-scan
-
-    teams-for-linux
-    gnome-network-displays
 
     devenv
 

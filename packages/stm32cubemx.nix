@@ -57,7 +57,7 @@ let
         echo "Warning: Unwritable \$updater_xml prevents CubeMX software packages from working correctly. Fixing that."
         (set -x; chmod u+w "\$updater_xml")
       fi
-      ${jdk21}/bin/java -jar $out/opt/STM32CubeMX/STM32CubeMX "\$@"
+      env _JAVA_AWT_WM_NONREPARENTING=1 AWT_TOOLKIT=MToolkit ${jdk21}/bin/java -jar $out/opt/STM32CubeMX/STM32CubeMX "\$@"
       EOF
       chmod +x $out/bin/${pname}
 
@@ -100,8 +100,7 @@ let
         angaz
         wucke13
       ];
-      platforms = [ "x86_64-linux" ];
-      broken = true;
+      platforms = [ "x86_64-linux" "aarch64-linux" ];
     };
   };
 in
