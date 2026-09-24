@@ -34,6 +34,8 @@
 
     catppuccin.url = "github:catppuccin/nix";
     # catppuccin.inputs.nixpkgs.follows = "nixpkgs";
+
+    omp.url = "github:can1357/oh-my-pi";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, darwin, flake-utils, ... }:

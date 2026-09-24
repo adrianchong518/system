@@ -21,6 +21,7 @@ in {
 
     hm.imports = [
       inputs.catppuccin.homeModules.catppuccin
+      inputs.omp.homeManagerModules.default
     ];
 
     my.user =
