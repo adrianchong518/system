@@ -37,6 +37,8 @@ with lib;
 
     distrobox
 
+    my.stm32cubemx
+
     typst
     texliveFull
     elan
