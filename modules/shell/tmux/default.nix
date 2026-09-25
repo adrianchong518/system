@@ -7,6 +7,7 @@ in {
   options.modules.shell.tmux = with types; {
     enable = mkBoolOpt false;
     sesh.enable = mkBoolOpt true;
+    autoStart.enable = mkBoolOpt true;
   };
 
   config = mkIf cfg.enable {
@@ -101,6 +102,23 @@ in {
     hm.programs.sesh = mkIf cfg.sesh.enable {
       enable = true;
       tmuxKey = "f";
+    };
+
+    hm.systemd.user.services.tmux-session = mkIf cfg.autoStart.enable {
+      Unit = {
+        Description = "tmux session";
+        Documentation = "man:tmux(1)";
+      };
+
+      Service = {
+        Type = "forking";
+        Restart = "always";
+        ExecStart = "${pkgs.tmux}/bin/tmux start-server";
+      };
+
+      Install = {
+        WantedBy = [ "default.target" ];
+      };
     };
 
     modules.shell.fish.extraInit = /* fish */ ''
