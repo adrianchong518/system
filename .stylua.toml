@@ -1,0 +1,7 @@
+# Mirrors the lua_ls format defaultConfig in
+# packages/neovim/config/plugin/lsp.lua
+quote_style = "AutoPreferSingle"
+indent_type = "Spaces"
+indent_width = 2
+# omit parentheses for single string / table arguments
+call_parentheses = "None"

@@ -1,0 +1,15 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.lua]
+indent_style = space
+indent_size = 2
+align_continuous_assign_statement = false
+align_continuous_rect_table_field = false
+align_array_table = false
+align_continuous_inline_comment = false

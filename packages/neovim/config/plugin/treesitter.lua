@@ -1,4 +1,4 @@
-local ts_group = vim.api.nvim_create_augroup('treesitter', { clear = true, })
+local ts_group = vim.api.nvim_create_augroup('treesitter', { clear = true })
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = '*',

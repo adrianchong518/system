@@ -1,10 +1,9 @@
-{
-  inputs,
-  config,
-  options,
-  pkgs,
-  lib,
-  ...
+{ inputs
+, config
+, options
+, pkgs
+, lib
+, ...
 }:
 
 with lib;

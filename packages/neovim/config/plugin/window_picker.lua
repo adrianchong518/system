@@ -39,4 +39,4 @@ vim.keymap.set('n', '<leader>w', function()
   if id ~= nil then
     vim.fn.win_gotoid(id)
   end
-end, { desc = 'goto window', })
+end, { desc = 'goto window' })

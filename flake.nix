@@ -68,6 +68,16 @@
         (mapModules (p: pkgs.callPackage p { inherit inputs system; }) ./packages)
       );
 
+      formatter = eachDefaultSystemMap (system:
+        let
+          pkgs = import inputs.nixpkgs { inherit system; };
+        in
+        pkgs.writeShellScriptBin "format" ''
+          export PATH="${pkgs.lib.makeBinPath [ pkgs.treefmt pkgs.nixpkgs-fmt pkgs.stylua ]}''${PATH:+:$PATH}"
+          exec ${pkgs.treefmt}/bin/treefmt "$@"
+        ''
+      );
+
       darwinConfigurations = import ./hosts/darwin { inherit inputs lib; };
       nixosConfigurations = import ./hosts/nixos { inherit inputs lib; };
 

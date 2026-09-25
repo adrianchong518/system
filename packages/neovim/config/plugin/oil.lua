@@ -1,6 +1,6 @@
-local oil = require('oil')
+local oil = require 'oil'
 
-oil.setup({
+oil.setup {
   use_default_keymaps = false,
   keymaps = {
     ['g?'] = 'actions.show_help',
@@ -22,11 +22,11 @@ oil.setup({
     ['gd'] = {
       desc = 'Toggle detail view',
       callback = function()
-        local config = require('oil.config')
+        local config = require 'oil.config'
         if #config.columns == 1 then
-          oil.set_columns({ 'permissions', 'size', 'mtime', 'icon', })
+          oil.set_columns { 'permissions', 'size', 'mtime', 'icon' }
         else
-          oil.set_columns({ 'icon', })
+          oil.set_columns { 'icon' }
         end
       end,
     },
@@ -39,14 +39,16 @@ oil.setup({
       return name == '..'
     end,
   },
-})
+}
 
-vim.keymap.set('n', '-', oil.open, { desc = 'oil', })
-vim.keymap.set('n', 'g-', function() oil.open(vim.fn.getcwd()) end, { desc = 'oil (cwd)', })
+vim.keymap.set('n', '-', oil.open, { desc = 'oil' })
+vim.keymap.set('n', 'g-', function()
+  oil.open(vim.fn.getcwd())
+end, { desc = 'oil (cwd)' })
 
 vim.keymap.set('n', '<leader>fo', function()
-  local dir = require('mini.pick').builtin.cli({ command = { 'fd', '-td', '-H', '-E.git', }, })
+  local dir = require('mini.pick').builtin.cli { command = { 'fd', '-td', '-H', '-E.git' } }
   if dir ~= nil then
     oil.open(dir)
   end
-end, { desc = 'open directory in oil', })
+end, { desc = 'open directory in oil' })

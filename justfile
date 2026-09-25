@@ -51,6 +51,11 @@ switch *extra_flags: _check-git
 boot *extra_flags: _check-git
     {{rebuild-cmd}} boot . --show-trace {{extra_flags}}
 
+# Format the repository
+alias f := fmt
+fmt *args:
+    nix fmt -- {{args}}
+
 # Update all / supplied flakes
 update *flakes:
     nix flake update {{flakes}} {{ if which("gh") != "" { "--option access-tokens \"github.com=$(gh auth token)\"" } else { "" } }}
