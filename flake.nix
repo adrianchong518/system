@@ -6,6 +6,7 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-fairydust.url = "github:nixos/nixpkgs/e2587caef70cea85dd97d7daab492899902dbf5d";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nur.url = "github:nix-community/NUR";
@@ -15,7 +16,7 @@
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixos-apple-silicon.url = "github:nix-community/nixos-apple-silicon";
+    nixos-apple-silicon.url = "github:nix-community/nixos-apple-silicon/3d2325a31f37221e276f721fabac363a65d0cf7d";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -66,6 +67,18 @@
           };
         in
         (mapModules (p: pkgs.callPackage p { inherit inputs system; }) ./packages)
+        //
+        {
+          linux-asahi_fairydust =
+            let
+              pkgs = import inputs.nixpkgs-fairydust {
+                inherit system;
+                config = import ./modules/nixpkgs/_nixpkgs-config.nix;
+                overlays = [ (import ./overlays/cuda.nix { }) ]; # XXX: cuda causes issues
+              };
+            in
+            pkgs.callPackage ./packages/_linux-asahi_fairydust.nix { inherit inputs system; };
+        }
       );
 
       formatter = eachDefaultSystemMap (system:
