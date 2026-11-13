@@ -46,27 +46,9 @@ with lib;
 
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome ];
 
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = options.programs.nix-ld.libraries.default ++ (with pkgs; [
-    dbus.lib
-    libglvnd
-    libusb1
-    libxkbcommon
-    mesa
-    SDL2
-    systemdLibs
-    libice
-    libsm
-    libxcb
-    libxcb-image
-    libxcb-keysyms
-    libxcb-render-util
-    libxcb-wm
-  ]);
-
   i18n.inputMethod = {
     type = "fcitx5";
-    enable = true;
+    enable = false; # XXX: temp
     fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [
       rime-data
@@ -89,7 +71,7 @@ with lib;
       udev.openocd.enable = true;
 
       services = {
-        transmission.enable = true;
+        transmission.enable = false;
         kanata.enable = true;
       };
 
@@ -98,14 +80,12 @@ with lib;
 
         apps = {
           virt-manager = {
-            enable = true;
+            enable = false;
           };
         };
       };
     };
 
-    # XXX: may not support?
-    # managed.desktop.gaming.steam.enable = true;
     managed.docker.enable = true;
 
     desktop = {
@@ -125,12 +105,12 @@ with lib;
         zotero.enable = true;
         zathura.enable = true;
         kicad.enable = false;
-        obsidian.enable = true;
+        obsidian.enable = false;
       };
 
       utils = {
         imv.enable = true;
-        mpv.enable = true;
+        mpv.enable = false; #XXX: temp
       };
     };
 

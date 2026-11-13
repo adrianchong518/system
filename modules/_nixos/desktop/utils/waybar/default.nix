@@ -132,10 +132,11 @@ in
 
           "custom/waybar-mpris" =
             let
-              waybar-mpris = "${pkgs.waybar-mpris.overrideAttrs (old: {
-              version = "fork";
-              src = inputs.waybar-mpris;
-              })}/bin/waybar-mpris";
+              # waybar-mpris = "${pkgs.waybar-mpris.overrideAttrs (old: {
+              # version = "fork";
+              # src = inputs.waybar-mpris;
+              # })}/bin/waybar-mpris";
+              waybar-mpris = "${pkgs.waybar-mpris}/bin/waybar-mpris";
             in
             {
               return-type = "json";

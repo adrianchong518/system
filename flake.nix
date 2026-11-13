@@ -8,7 +8,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-fairydust.url = "github:nixos/nixpkgs/e2587caef70cea85dd97d7daab492899902dbf5d";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
     nur.url = "github:nix-community/NUR";
 
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
@@ -34,7 +34,7 @@
     cclip = { url = "github:heather7283/cclip"; flake = false; };
 
     catppuccin.url = "github:catppuccin/nix";
-    # catppuccin.inputs.nixpkgs.follows = "nixpkgs";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
 
     omp.url = "github:can1357/oh-my-pi";
   };

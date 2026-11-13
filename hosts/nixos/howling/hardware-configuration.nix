@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, pkgs, inputs, system, modulesPath, ... }:
 
 {
   imports = [
@@ -11,11 +11,29 @@
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
   boot.supportedFilesystems = [ "btrfs" "exfat" ];
   boot.consoleLogLevel = 3;
-  boot.initrd.verbose = false;
 
   boot.kernelPackages = lib.mkForce (pkgs.my.linux-asahi_fairydust.override {
     _kernelPatches = config.boot.kernelPatches;
   });
+  nixpkgs.overlays =
+    let
+      kernelPkgs = import inputs.nixpkgs-fairydust {
+        inherit system;
+        config = import ../../../modules/nixpkgs/_nixpkgs-config.nix;
+        overlays = [ (import ../../../overlays/cuda.nix { }) ];
+      };
+    in
+    [
+      (lib.mkAfter (
+        final: prev: {
+          uboot-asahi = prev.uboot-asahi.overrideAttrs (oldAttrs: {
+            makeFlags = [ "DTC=${lib.getExe final.buildPackages.dtc}" ] ++ oldAttrs.makeFlags;
+          });
+          linuxPackages = kernelPkgs.linuxPackages;
+          aggregateModules = kernelPkgs.aggregateModules;
+        }
+      ))
+    ];
 
   boot.kernelParams = [
     "zswap.enabled=1"

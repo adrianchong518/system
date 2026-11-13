@@ -11,5 +11,5 @@ in
     enable = mkBoolOpt false;
   };
 
-  config = mkIf cfg.enable { packages = [ (if isLinux then pkgs.vesktop else pkgs.discord) ]; };
+  config = mkIf cfg.enable { packages = [ (if isLinux then pkgs.stable.vesktop else pkgs.stable.discord) ]; };
 }
