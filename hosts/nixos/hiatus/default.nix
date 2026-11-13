@@ -114,14 +114,22 @@ with lib;
     enable = true;
     fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [
-      rime-data
-      fcitx5-rime
-      fcitx5-mozc
-      fcitx5-gtk
+      stable.rime-data
+      stable.fcitx5-rime
+      stable.fcitx5-mozc
+      stable.fcitx5-gtk
       nur.repos.linyinfeng.rimePackages.rime-cantonese
       nur.repos.linyinfeng.rimePackages.rime-luna-pinyin
     ];
   };
+  nixpkgs.overlays = [
+    (final: prev: {
+      qt6Packages = prev.qt6Packages.overrideScope (qtFinal: qtPrev: {
+        fcitx5-with-addons = final.stable.qt6Packages.fcitx5-with-addons;
+      });
+    })
+  ];
+
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
   services.devmon.enable = true;

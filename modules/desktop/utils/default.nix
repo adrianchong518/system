@@ -14,7 +14,7 @@ in
   config = {
     packages = with pkgs; ([ ]
       ++ optional cfg.feh.enable feh
-      ++ optional cfg.mpv.enable mpv
+      ++ optional cfg.mpv.enable stable.mpv
     );
   };
 }

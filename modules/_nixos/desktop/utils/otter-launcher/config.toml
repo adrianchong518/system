@@ -12,33 +12,46 @@ external_editor = "/usr/bin/env nvim" # if set, press ctrl+x ctrl+e (or v in vi 
 delay_startup = 0 # sometimes the otter runs too fast even before the terminal window is ready; this slows it down by milliseconds; useful when chafa image is skewed
 
 [interface]
-# use three quotes to write longer codes
+# options for the layout
+padding = [0, 1, 0, 1] # pad with columns/lines, [top, right, down, left]
+# use three quotes to write longer codes; ANSI color codes and shell expansion are allowed
 header = """
-  \x1b[1;38;2;203;166;247m$USER@nixos\x1b[0m
-        """
-header_cmd = '' # run a command and print stdout above the header
-header_cmd_trimmed_lines = 0 # remove trailing lines from header_cmd output, in case of some programs appending excessive empty lines
-place_holder = "execute" # at the input field
+$(
+load=$(awk 'NR == 1 {print $1"%"}' /proc/loadavg)
+mem=$(free -h | awk 'NR == 2 {print $3}' | sed 's/Gi/0G/')
+
+left="$USER@$HOSTNAME"
+left="> $left"
+right="> $load%  > $mem"
+
+gap=$(( COLUMNS - ${#left} - ${#right} ))
+(( gap < 0 )) && gap=0
+
+printf '\x1b[34;1m> \x1b[0m%s@%s%*s\x1b[31;1m> \x1b[0m%s  \x1b[33;1m> \x1b[0m%s' "$USER" "$HOSTNAME" "$gap" '' "$load" "$mem")"""
+# available [color options](https://docs.rs/ratatui/latest/ratatui/prelude/enum.Color.html)
+header_color = "blue"
+# options for input field
+prompt_sign = "> "
+prompt_sign_color = "blue"
+placeholder = "type & search"
+placeholder_color = "black"
+# options for selectable suggestions
 suggestion_mode = "list" # available options: list, hint
-separator = ""
-footer = "" # add a line after suggestion list
-suggestion_lines = 7 # 0 to disable suggestions and tab completion
-list_prefix = "  "
-selection_prefix = "\u001B[31;1m "
-prefix_padding = 3 # format prefixes to have a uniformed width
-default_module_message = "  \u001B[33mlaunch\u001B[0m app" # shown when the default module is in use
-empty_module_message = "" # shown when the empty module is in use
-customized_list_order = false # false to list modules alphabetically; true to list as per the configured order in the below [[modules]] section
-indicator_with_arg_module = " * " # the sign showing whether a module should run with an argument
-indicator_no_arg_module = " "
-# below color options affect all modules; per-module coloring can be configured using ansi codes individually
-prefix_color = "\u001B[33m"
-description_color = "\u001B[39m"
-place_holder_color = "\u001B[30m"
-hint_color = "\u001B[30m" # suggestion color in hint mode
-# move the interface rightward or downward
-move_interface_right = 0
-move_interface_down = 0
+suggestion_position = "bottom" # to the input field; options: top, bottom
+prefix_color = "yellow"
+prefix_padding = 3 # pad with spaces to have uniformed width
+description_color = "reset"
+selection_prefix = "▌ " # shown for the selected
+selection_prefix_color = "red"
+inverse_selection = true # highlight the selected
+list_prefix = "  " # shown for the not selected
+list_prefix_color = "reset"
+indicator_args = "" # shown for modules taking arguments
+indicator_bare = "" # for those not taking arguments
+indicator_color = "red"
+scrollbar = true
+# options for separator
+separator = false # draw a line between intput field and suggestion list; only affect list mode
 
 [[modules]]
 description = "run program"

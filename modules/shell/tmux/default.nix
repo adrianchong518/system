@@ -43,6 +43,9 @@ in {
         set -gF message-style "fg=#{@thm_fg},bg=#{@thm_crust},fill=#{@thm_crust}"
         set -gF message-command-style "fg=#{@thm_fg},bg=#{@thm_crust},fill=#{@thm_crust}"
 
+        # XXX: https://github.com/catppuccin/tmux/issues/608
+        set -g window-status-current-style "nounderscore"
+
         bind v   split-window -c '#{pane_current_path}' -h
         bind s   split-window -c '#{pane_current_path}'
         bind c   new-window   -c '#{pane_current_path}'
