@@ -65,6 +65,8 @@ with lib;
     distrobox
     winboat
 
+    (chatgpt.override { codex = null; })
+
     typst
     texliveFull
     elan

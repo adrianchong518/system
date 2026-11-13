@@ -39,6 +39,8 @@ with lib;
 
     my.stm32cubemx
 
+    (chatgpt.override { codex = null; })
+
     typst
     texliveFull
     elan
