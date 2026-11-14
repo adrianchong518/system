@@ -8,5 +8,5 @@ in {
     enable = mkBoolOpt false;
   };
 
-  config = mkIf cfg.enable { packages = [ pkgs.obsidian ]; };
+  config = mkIf cfg.enable { packages = [ pkgs.stable.obsidian ]; };
 }

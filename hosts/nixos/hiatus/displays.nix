@@ -15,7 +15,7 @@
   hm.services.kanshi = {
     enable = true;
 
-    profiles =
+    settings =
       let
         builtinDisplay = {
           criteria = "eDP-1";
@@ -27,39 +27,82 @@
 
         internalPrimary = "${pkgs.xrandr}/bin/xrandr --output eDP-1 --primary";
       in
-      {
-        nomad = {
-          outputs = [ builtinDisplay ];
-          exec = [
-            internalPrimary
-          ];
-        };
-        home = {
-          outputs = [
-            (builtinDisplay // { position = "3440,0"; })
-            {
-              criteria = "LG Electronics LG ULTRAWIDE 205NTAB2Q984";
-              status = "enable";
-              mode = "3440x1440@160Hz";
-              scale = 1.0;
-              position = "0,0";
-            }
-          ];
-          exec = [
-            # "${resetWallpaper}"
-            "${pkgs.xrandr}/bin/xrandr --output DP-1 --primary"
-          ];
-        };
-        multi = {
-          outputs = [
-            builtinDisplay
-            { criteria = "*"; status = "enable"; scale = 1.0; }
-          ];
-          exec = [
-            # "${resetWallpaper}"
-            internalPrimary
-          ];
-        };
-      };
+      [
+        {
+          profile = {
+            name = "nomad";
+            outputs = [ builtinDisplay ];
+            exec = [
+              internalPrimary
+            ];
+          };
+        }
+        {
+          profile = {
+            name = "home";
+            outputs = [
+              (builtinDisplay // { position = "3440,0"; })
+              {
+                criteria = "LG Electronics LG ULTRAWIDE 205NTAB2Q984";
+                status = "enable";
+                mode = "3440x1440@160Hz";
+                scale = 1.0;
+                position = "0,0";
+              }
+            ];
+            exec = [
+              "${pkgs.xrandr}/bin/xrandr --output DP-1 --primary"
+            ];
+          };
+        }
+        {
+          profile = {
+            name = "lab";
+            outputs = [
+              (builtinDisplay // { position = "0,1080"; })
+              {
+                criteria = "STD*";
+                status = "enable";
+                mode = "1920x1080@60Hz";
+                scale = 1.0;
+                position = "320,0";
+              }
+            ];
+            exec = [
+              internalPrimary
+            ];
+          };
+        }
+        {
+          profile = {
+            name = "lab2";
+            outputs = [
+              builtinDisplay
+              {
+                criteria = "Integrated Tech Express Inc DP2HDMI*";
+                status = "enable";
+                mode = "1920x1080@60Hz";
+                scale = 1.0;
+                position = "2560,0";
+              }
+            ];
+            exec = [
+              internalPrimary
+            ];
+          };
+        }
+        {
+          profile = {
+            name = "multi";
+            outputs = [
+              builtinDisplay
+              { criteria = "*"; status = "enable"; scale = 1.0; }
+            ];
+            exec = [
+              internalPrimary
+            ];
+          };
+        }
+      ];
   };
 }
