@@ -39,7 +39,8 @@ with lib;
 
     my.stm32cubemx
 
-    (chatgpt.override { codex = null; })
+    chatgpt
+    codex
 
     typst
     texliveFull

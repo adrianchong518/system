@@ -65,7 +65,8 @@ with lib;
     distrobox
     winboat
 
-    (chatgpt.override { codex = null; })
+    chatgpt
+    codex
 
     typst
     texliveFull
