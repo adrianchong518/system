@@ -12,7 +12,8 @@
   boot.supportedFilesystems = [ "btrfs" "exfat" ];
   boot.kernelParams = [ "selinux=0" "resume_offset=178464000" ];
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  # FIXME: github.com/nixos/nixpkgs/issues/587387
+  boot.kernelPackages = pkgs.unstable.linuxPackages_zen;
 
   boot.extraModprobeConfig = ''
     options i915 enable_dpcd_backlight=1

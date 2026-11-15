@@ -1,7 +1,13 @@
-{ inputs, lib, ... }:
+{ inputs, ... }:
 
 # expose other channels via overlays
 (final: prev: {
-  stable = inputs.nixpkgs-stable.legacyPackages.${prev.system};
-  unstable = inputs.nixpkgs-unstable.legacyPackages.${prev.system};
+  stable = import inputs.nixpkgs-stable {
+    system = prev.stdenv.hostPlatform.system;
+    config = import ../modules/nixpkgs/_nixpkgs-config.nix;
+  };
+  unstable = import inputs.nixpkgs-unstable {
+    system = prev.stdenv.hostPlatform.system;
+    config = import ../modules/nixpkgs/_nixpkgs-config.nix;
+  };
 })
